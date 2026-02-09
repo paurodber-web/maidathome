@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Maid At Home - Airy Clean</title>
+    <title>Terms & Conditions | Maid At Home - Professional Cleaning Services</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -18,9 +18,10 @@
             --secondary: #0f172a;
             --accent: #2563eb;
             --bg: #ffffff;
-            --surface: #f1f5f9;
+            --surface: #f8fafc;
             --text: #1e293b;
             --text-muted: #64748b;
+            --border: #f1f5f9;
         }
 
         * {
@@ -37,21 +38,6 @@
             line-height: 1.5;
             text-size-adjust: 100%;
             -webkit-text-size-adjust: 100%;
-        }
-
-
-
-
-
-
-
-        h1,
-        h2,
-        h3 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--secondary);
-            font-weight: 800;
-            letter-spacing: -0.04em;
         }
 
         header {
@@ -131,132 +117,128 @@
             transform: translateY(-2px);
         }
 
-        /* Hero About */
-        .hero-about {
-            padding: 200px 5% 100px;
-            background: linear-gradient(180deg, var(--surface) 0%, white 100%);
+        /* Hero Terms */
+        .terms-hero {
+            padding: 220px 5% 100px;
+            background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
+            text-align: center;
         }
 
-        .hero-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .hero-about h1 {
-            font-size: clamp(3rem, 6vw, 4.5rem);
+        .terms-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             line-height: 1.1;
             margin-bottom: 32px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: -0.05em;
         }
 
-        .hero-about p {
+        .terms-hero p {
             font-size: 1.25rem;
             color: var(--text-muted);
-            line-height: 1.7;
-            max-width: 600px;
-            margin-bottom: 40px;
-        }
-
-        .hero-image {
-            border-radius: 40px;
-            overflow: hidden;
-            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.15);
-            aspect-ratio: 4 / 3;
-            background: #f8fafc;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* Content Sections */
-        .about-section {
-            padding: 120px 5%;
-        }
-
-        .content-container {
-            max-width: 1400px;
+            max-width: 700px;
             margin: 0 auto;
+            font-weight: 400;
         }
 
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 60px;
+        /* Content Section */
+        .terms-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 5% 160px;
         }
 
-        .about-card {
-            padding: 48px;
-            background: var(--surface);
-            border-radius: 32px;
-            transition: 0.4s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .about-card:hover {
+        .terms-card {
             background: white;
-            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.08);
-            transform: translateY(-10px);
+            border: 1px solid var(--border);
+            padding: 80px;
+            border-radius: 40px;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.05);
         }
 
-        .about-card h3 {
+        .term-section {
+            margin-bottom: 60px;
+            scroll-margin-top: 120px;
+        }
+
+        .term-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .term-section h2 {
             font-size: 1.75rem;
             margin-bottom: 24px;
+            color: var(--secondary);
             display: flex;
             align-items: center;
             gap: 16px;
         }
 
-        .about-card p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1.7;
+        .term-section h2 span {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            color: var(--primary);
+            background: #eff6ff;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-weight: 800;
         }
 
-        .icon-box {
-            width: 48px;
-            height: 48px;
+        .term-section p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .term-section ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .term-section li {
+            position: relative;
+            padding-left: 28px;
+            font-size: 1.05rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .term-section li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
             background: var(--primary);
-            color: white;
-            border-radius: 12px;
+            border-radius: 50%;
+        }
+
+        .contact-box {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 24px;
+            margin-top: 40px;
+        }
+
+        .contact-method {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 32px;
+            gap: 16px;
+            margin-top: 16px;
+            font-weight: 700;
+            color: var(--secondary);
         }
 
-        /* Image Section */
-        .image-banner {
-            padding: 0 5%;
-            margin: 60px 0;
-        }
-
-        .banner-wrap {
-            max-width: 1400px;
-            margin: 0 auto;
-            border-radius: 40px;
-            overflow: hidden;
-            height: 500px;
-            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.15);
-        }
-
-        .banner-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
+        /* Footer */
         footer {
             background: var(--secondary);
-            padding: 100px 5% 40px;
+            padding: 100px 5% 60px;
             color: white;
         }
 
@@ -264,13 +246,13 @@
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 60px;
             margin-bottom: 80px;
         }
 
         .footer-logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: white;
             text-decoration: none;
@@ -282,29 +264,36 @@
             color: var(--primary);
         }
 
-        .footer-col h4 {
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
+        .footer-desc {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
             margin-bottom: 32px;
         }
 
-        .footer-col ul {
-            list-style: none;
+        .footer-sub {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
         }
 
-        .footer-col ul li {
-            margin-bottom: 16px;
+        .sub-links {
+            display: flex;
+            gap: 24px;
         }
 
-        .footer-col ul li a {
-            color: rgba(255, 255, 255, 0.6);
+        .sub-link {
+            color: inherit;
             text-decoration: none;
             transition: 0.3s;
         }
 
-        .footer-col ul li a:hover {
+        .sub-link:hover {
             color: white;
         }
 
@@ -313,19 +302,17 @@
             transform: translateY(30px);
         }
 
-        @media (max-width: 1024px) {
-            .hero-inner {
-                grid-template-columns: 1fr;
-                text-align: center;
+        @media (max-width: 768px) {
+            .terms-card {
+                padding: 40px 24px;
             }
 
-            .hero-about p {
-                margin-left: auto;
-                margin-right: auto;
+            .terms-hero {
+                padding-top: 160px;
             }
 
-            .grid-3 {
-                grid-template-columns: 1fr;
+            .nav-links {
+                display: none;
             }
         }
     </style>
@@ -346,167 +333,290 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero-about">
-            <div class="hero-inner">
-                <div class="reveal">
-                    <h1>Your reliable partner for house cleaning services</h1>
-                    <p>We are your reliable partner for professional home care. Our solutions are designed to ensure a
-                        clean, comfortable, and welcoming environment for every household.</p>
-                    <a href="#" class="btn-blue"
-                        style="padding: 16px 40px; font-size: 1rem; display: inline-block;">Contact
-                        us today</a>
-                </div>
-                <div class="hero-image reveal">
-                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=1470"
-                        alt="Home Care">
-                </div>
-            </div>
+        <section class="terms-hero">
+            <h1 class="reveal">Know your rights and responsibilities for a <span style="color: var(--primary)">smooth
+                    cleaning experience.</span></h1>
+            <p class="reveal">Understanding your rights and responsibilities ensures a seamless cleaning service with
+                Maid At Home.</p>
         </section>
 
-        <!-- Our Story, Mission, Difference -->
-        <section class="about-section">
-            <div class="content-container">
-                <div class="grid-3">
-                    <div class="about-card reveal">
-                        <div class="icon-box">
+        <section class="terms-container">
+            <div class="terms-card reveal">
+                <div class="term-section">
+                    <h2><span>1</span> Introduction</h2>
+                    <p>By using Maid At Home’s cleaning services, you agree to these Terms and Conditions. These terms
+                        ensure clarity and fairness for both parties. If you do not accept these terms, please do not
+                        proceed with our services.</p>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>2</span> Services provided</h2>
+                    <p>Maid At Home offers residential cleaning services, including but not limited to regular cleaning,
+                        spring cleaning, and move-out cleaning. Detailed service descriptions are available on our
+                        website.</p>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>3</span> Booking & Confirmation</h2>
+                    <ul>
+                        <li>Bookings can be made via our website or customer service team.</li>
+                        <li>A confirmation email will be sent upon booking with details of the service.</li>
+                        <li>Service availability is subject to change, and we reserve the right to decline or reschedule
+                            bookings.</li>
+                    </ul>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>4</span> Arrival times</h2>
+                    <p>Our cleaning team will strive to arrive on time for your service. However, unexpected traffic or
+                        other unforeseen factors may occasionally affect the arrival time. Typically, our cleaners
+                        service homes between 9:00 a.m. and 5:00 p.m.</p>
+                    <p>The cleaning team will have an arrival window of up to 30 minutes. When booking your service, you
+                        will be asked to choose how you'd like us to proceed if the team is later than 30 minutes. This
+                        ensures we can address any delays in a way that suits you.</p>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>5</span> Team size</h2>
+                    <p>If multiple cleaners are assigned to your service, the total hours booked will be divided by the
+                        size of the team. This ensures that each cleaner contributes equally to the service, allowing
+                        for a more efficient and effective cleaning experience.</p>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>6</span> Right of refusal</h2>
+                    <p>Maid At Home reserves the right to refuse service for various reasons, including but not limited
+                        to:</p>
+                    <ul>
+                        <li>Inability to gain entry to the property;</li>
+                        <li>Lack of power/electricity or heating/air conditioning;</li>
+                        <li>Frequent cancellations or changes to the schedule;</li>
+                        <li>Improper or dishonest booking practices;</li>
+                        <li>Services or tasks that fall outside the scope of the original booking;</li>
+                        <li>Rudeness or mistreatment of cleaning professionals;</li>
+                        <li>Breaching the Client Obligations outlined in this document;</li>
+                        <li>Incorrect or non-functioning billing information.</li>
+                    </ul>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>7</span> Cleaner safety - Hot weather</h2>
+                    <p>To protect the well-being of our cleaning team on hot days (35°C or higher), we request that you
+                        have air conditioning turned on. If air conditioning is unavailable, please notify our office
+                        beforehand to discuss other options. If no arrangements are made and the temperature exceeds
+                        35°C without air conditioning, we may need to cancel the service and a cancellation fee may
+                        apply.</p>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>8</span> Cleaner solicitations</h2>
+                    <p>Maid At Home refers clients to independent cleaning professionals who have agreed to our terms,
+                        including a non-solicitation policy. If you wish to hire a cleaner directly, you must wait 12
+                        months after their agreement with us ends. Breaching this policy may lead to the termination of
+                        our services. We appreciate your understanding and cooperation.</p>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>9</span> The agency</h2>
+                    <p>We connect clients with independent cleaning professionals who operate on their own. They are not
+                        our employees but pay a fee for our referral service.</p>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>10</span> Pricing & Payment</h2>
+                    <ul>
+                        <li>Prices are available on our website and are subject to change.</li>
+                        <li>Payment is processed through Stripe and must be made via credit/debit card.</li>
+                        <li>Credit/debit card details must be provided in the booking form.</li>
+                        <li>A pre-authorization hold will be placed on the card two days before the service. If the
+                            booking is made less than two days before the service, the hold will be placed immediately.
+                        </li>
+                        <li>The final payment will be processed after the service has been completed.</li>
+                        <li>Additional fees may apply for extra tasks requested on the day of service.</li>
+                    </ul>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>11</span> Discounts</h2>
+                    <p>For recurring services, the discount applies from the second service onward. The first service
+                        will be charged at the full rate.</p>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>12</span> Cancellations & Rescheduling</h2>
+                    <ul>
+                        <li>Cancellations or rescheduling must be requested at least 24 hours before the service time.
+                        </li>
+                        <li>Services postponed more than once will incur a cancellation fee. This policy is in place to
+                            prevent indefinite postponements that could be used to avoid cancellation fees.</li>
+                        <li>If a service needs to be rescheduled, it must be completed within a maximum of 7 days from
+                            the original booking date. Failure to do so may result in a cancellation fee of 50% of the
+                            service.</li>
+                        <li>If a service is cancelled on the spot, when cleaning team is already at the premises, a
+                            cancellation fee of 100% of the service cost (+ extras) will apply.</li>
+                        <li>Failure to provide access to the property at the scheduled time will result in a
+                            cancellation fee. Our cleaning team will wait up to 15 minutes.</li>
+                    </ul>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>13</span> Unpaid services</h2>
+                    <p>If payment for services is not received within the agreed timeframe, the client will be
+                        responsible for all fees associated with the collection process, including any charges from debt
+                        collectors.</p>
+                    <p>We reserve the right to take necessary steps to recover outstanding payments, and these
+                        additional fees will be added to the total balance due.</p>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>14</span> Service guarantee & Complaints</h2>
+                    <p><strong>General Guarantee:</strong> If you're unhappy with the service, let us know within 48
+                        hours, and please provide photos to help us assess the issue. We’ll do everything we can to fix
+                        it with a re-clean. If the issue persists, a full refund will be considered depending on the
+                        situation. Re-cleans are available on weekdays, except in exceptional cases.</p>
+                    <p><strong>Flat Rate Services:</strong> For flat rate services, our guarantee applies only to the
+                        tasks and extras that are included in the flat rate service. Any additional services or tasks
+                        outside of the agreed scope are not covered by the guarantee.</p>
+                    <p><strong>Hourly Services:</strong> For hourly services, our guarantee covers the quality of
+                        cleaning, not the number of areas cleaned. If you're moving out, we recommend not choosing
+                        hourly services as it’s hard to estimate the time required for such a big task. In these cases,
+                        our guarantee won't apply.</p>
+                    <p><strong>Move Out Services:</strong> For move-out cleanings, you have up to 7 days to contact our
+                        support team if you're unsatisfied. We’ll review your concerns and, if needed, arrange for a
+                        re-clean, which will be completed within 7 days.</p>
+                    <p><strong>Steam Cleaning:</strong> While our team uses high-tech equipment to clean your carpets
+                        and upholstery, we can't guarantee removal of permanent stains or marks. If we’ve done our best
+                        with the service, we won’t be able to return for the same issue. However, if there are
+                        exceptional circumstances, we’ll be happy to review the situation.</p>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>15</span> Client responsibilities</h2>
+                    <ul>
+                        <li>Clients must provide access to the property at the agreed time.</li>
+                        <li>Clients must ensure pets do not interfere with cleaning services.</li>
+                        <li>Clients must provide a mop and vacuum, unless pre-arranged for the cleaner to bring their
+                            own.</li>
+                        <li>The environment should be safe for cleaning staff.</li>
+                    </ul>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>16</span> Access to premises</h2>
+                    <p>For security reasons, our cleaners do not keep keys to your property. The client is responsible
+                        for providing access to the premises. This can be done by securely hiding a key or using a
+                        lockbox, for example.</p>
+                    <p>If you have any specific instructions on how to grant access, please make sure to provide them
+                        ahead of time to ensure a smooth and timely service.</p>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>17</span> Limitations & Exclusions</h2>
+                    <p>Please note that the following tasks are excluded from all bookings and are not completed by Maid
+                        At Home:</p>
+                    <ul>
+                        <li>Moving of heavy/large items of furniture</li>
+                        <li>Grout cleaning of floors</li>
+                        <li>Cleaning of ceilings</li>
+                        <li>In-between the glass sheets on ovens</li>
+                        <li>Rubbish removal</li>
+                        <li>Human/animal waste removal</li>
+                        <li>Stained silicone</li>
+                        <li>Removal of adhesives or paint</li>
+                        <li>Cleaning of air conditioning filters</li>
+                        <li>Removal of fly wire screens</li>
+                        <li>Curtains cleaning</li>
+                        <li>High-pressure cleaning</li>
+                        <li>Concrete stains</li>
+                        <li>Garages</li>
+                        <li>Exterior of the property, including outside windows, gardens, pools, BBQs</li>
+                        <li>Pest control</li>
+                    </ul>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>18</span> Damages & Liabilities</h2>
+                    <p>Maid At Home is a referral service that connects clients with independent cleaners. These
+                        cleaners are not our employees but operate under their own terms. Our role is to facilitate the
+                        connection and ensure a smooth process for both clients and cleaners.</p>
+                    <p>Because cleaners operate independently, they are fully responsible for their work, including any
+                        damages or issues that may arise. Maid At Home cannot be held liable for any losses, problems,
+                        or failures related to their service.</p>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>19</span> Insurance</h2>
+                    <ul>
+                        <li>Our cleaning team carries public liability insurance to cover any accidental damage caused
+                            during service. The cleaning team is liable for any damage and will be covered by their own
+                            insurance.</li>
+                        <li>We ensure that all cleaners are fully insured before selecting them to work with us.</li>
+                        <li>We are not liable for damage to items that are improperly secured or areas not previously
+                            disclosed as fragile.</li>
+                        <li>Clients must report any damage within 24 hours of the service completion.</li>
+                    </ul>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>20</span> Privacy policy</h2>
+                    <ul>
+                        <li>Client information is collected solely for booking and service purposes and will not be
+                            shared with third parties.</li>
+                        <li>We use secure systems to store personal data.</li>
+                    </ul>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>21</span> Governing law & Jurisdiction</h2>
+                    <p>These Terms of Service, along with any separate agreements through which we provide services,
+                        shall be governed by and construed in accordance with the laws in force in Australia. Both
+                        parties irrevocably and unconditionally submit to the exclusive jurisdiction of the courts of
+                        Australia.</p>
+                </div>
+
+                <div class="term-section">
+                    <h2><span>22</span> Changes to terms</h2>
+                    <ul>
+                        <li>Maid At Home reserves the right to update these Terms & Conditions at any time without prior
+                            notification.</li>
+                        <li>Continued use of our services constitutes acceptance of the updated terms.</li>
+                    </ul>
+                </div>
+
+                <div class="term-section" id="contact">
+                    <h2><span>23</span> Contact information</h2>
+                    <p>For any inquiries regarding these Terms & Conditions, please contact us:</p>
+                    <div class="contact-box">
+                        <div class="contact-method">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                <path d="M2 17l10 5 10-5"></path>
-                                <path d="M2 12l10 5 10-5"></path>
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
                             </svg>
+                            Email: info@maidathome.com.au
                         </div>
-                        <h3>Our Story</h3>
-                        <p>Maid At Home was founded with a drive for excellence and a vision to make home services more
-                            accessible and hassle-free for everyone. We started as a small team dedicated to one simple
-                            idea: that every home deserves a 5-star hospitality standard clean.</p>
-                    </div>
-
-                    <div class="about-card reveal">
-                        <div class="icon-box">
+                        <div class="contact-method">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
                             </svg>
-                        </div>
-                        <h3>Our Mission</h3>
-                        <p>Our goal is straightforward: to provide homeowners with reliable, efficient solutions that
-                            make daily life easier and more enjoyable. We strive to restore your time so you can focus
-                            on what truly matters, while we handle the meticulous details.</p>
-                    </div>
-
-                    <div class="about-card reveal">
-                        <div class="icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                        </div>
-                        <h3>What Sets Us Apart</h3>
-                        <p>What makes us unique is our dedication to delivering excellence in every detail of our
-                            service. From our vetted cleaning specialists to our eco-friendly products, we don't just
-                            clean—we care. Precision is in our DNA.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Core Values Section -->
-        <section class="about-section" style="background: var(--surface); padding: 160px 5%;">
-            <div class="content-container">
-                <div style="text-align: center; margin-bottom: 80px;">
-                    <span class="reveal"
-                        style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">Our
-                        Principles</span>
-                    <h2 class="reveal" style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px;">The values that
-                        drive us</h2>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
-                    <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <h4 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--secondary);">Integrity</h4>
-                        <p style="color: var(--text-muted); line-height: 1.6;">Transparent pricing and honest
-                            communication in every single interaction. We build relationships on trust.</p>
-                    </div>
-                    <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <h4 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--secondary);">Sustainability
-                        </h4>
-                        <p style="color: var(--text-muted); line-height: 1.6;">We exclusively use eco-friendly and
-                            non-toxic products to protect your home environment and our planet.</p>
-                    </div>
-                    <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <h4 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--secondary);">Quality First</h4>
-                        <p style="color: var(--text-muted); line-height: 1.6;">Our protocols are inspired by premium
-                            hospitality standards, ensuring no detail is ever overlooked.</p>
-                    </div>
-                    <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <h4 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--secondary);">Reliability</h4>
-                        <p style="color: var(--text-muted); line-height: 1.6;">When we say we'll be there, we'll be
-                            there. Consistent, high-quality results are our guarantee.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Our Promise Section -->
-        <section class="about-section">
-            <div class="content-container"
-                style="display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;">
-                <div class="reveal"
-                    style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.1);">
-                    <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80&w=1470"
-                        alt="Professional Clean" style="width: 100%; display: block;">
-                </div>
-                <div class="reveal">
-                    <h2 style="font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 32px;">Our Promise to You</h2>
-                    <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px;">We
-                        understand that your home is your sanctuary. Our promise is simple: to treat your space with the
-                        highest level of respect and to provide a clean that allows you to truly relax.</p>
-                    <div style="display: flex; flex-direction: column; gap: 20px;">
-                        <div
-                            style="display: flex; align-items: center; gap: 16px; font-weight: 700; color: var(--secondary);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                                style="color: var(--accent);">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            100% Satisfaction Guarantee
-                        </div>
-                        <div
-                            style="display: flex; align-items: center; gap: 16px; font-weight: 700; color: var(--secondary);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                                style="color: var(--accent);">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            Vetted and Trained Professionals
-                        </div>
-                        <div
-                            style="display: flex; align-items: center; gap: 16px; font-weight: 700; color: var(--secondary);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                                style="color: var(--accent);">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            Fully Insured & Reliable Service
+                            Phone: +61 413 398 546
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
-        <!-- Footer -->
         <footer>
             <div style="max-width: 1400px; margin: 0 auto;">
                 <div
                     style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px;">
                     <!-- Logo & Description -->
                     <div class="reveal">
-                        <a href="index.html" class="logo"
+                        <a href="#" class="logo"
                             style="color: white; font-size: 1.8rem; margin-bottom: 24px; display: block;">Maid<span>.</span>At<span>.</span>Home</a>
                         <p
                             style="color: rgba(255,255,255,0.6); line-height: 1.8; font-size: 1.1rem; max-width: 320px; margin-bottom: 32px;">
@@ -814,13 +924,14 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Header scroll effect
+        // Header Scroll Effect
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) document.getElementById('header').classList.add('scrolled');
-            else document.getElementById('header').classList.remove('scrolled');
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
         });
 
-        // Reveal animations
+        // Reveal Animations
         gsap.utils.toArray('.reveal').forEach(el => {
             gsap.to(el, {
                 opacity: 1,

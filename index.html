@@ -121,14 +121,164 @@
             padding: 12px 24px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 0.85rem;
+            line-height: 20.4px;
             transition: 0.3s;
         }
 
         .btn-blue:hover {
             opacity: 0.9;
             transform: translateY(-2px);
+        }
+
+        /* Discount Popup */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-card {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            padding: 60px 40px;
+            border-radius: 40px;
+            position: relative;
+            text-align: center;
+            transform: scale(0.9) translateY(40px);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 40px 100px -20px rgba(15, 23, 42, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .popup-overlay.active .popup-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: #f8fafc;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            color: var(--text-muted);
+        }
+
+        .popup-close:hover {
+            background: #f1f5f9;
+            color: var(--text);
+            transform: rotate(90deg);
+        }
+
+        .popup-tag {
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .popup-title {
+            font-size: 2.5rem;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            color: var(--secondary);
+            letter-spacing: -0.04em;
+        }
+
+        .popup-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .promo-code-box {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .promo-code-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            letter-spacing: 2px;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.3);
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+        }
+
+        .btn-decline {
+            display: block;
+            margin-top: 24px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-decline:hover {
+            color: var(--text);
         }
 
         /* HERO V2: Centered Impact */
@@ -590,10 +740,9 @@
             <a href="services.html" class="nav-link">Services</a>
             <a href="pricing.html" class="nav-link">Pricing</a>
             <a href="contact.html" class="nav-link">Contact</a>
-            <a href="#faq" class="nav-link">FAQS</a>
-            <a href="#" class="nav-link">Blog</a>
+            <a href="faqs.html" class="nav-link">FAQs</a>
         </nav>
-        <a href="#" class="btn-blue">Book Service</a>
+        <a href="booking.html" class="btn-blue">Book Now</a>
     </header>
 
     <main>
@@ -1260,7 +1409,7 @@
                     style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px;">
                     <!-- Logo & Description -->
                     <div class="reveal">
-                        <a href="#" class="logo"
+                        <a href="index.html" class="logo"
                             style="color: white; font-size: 1.8rem; margin-bottom: 24px; display: block;">Maid<span>.</span>At<span>.</span>Home</a>
                         <p
                             style="color: rgba(255,255,255,0.6); line-height: 1.8; font-size: 1.1rem; max-width: 320px; margin-bottom: 32px;">
@@ -1309,14 +1458,18 @@
                                     style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
                                     onmouseover="this.style.color='white'"
                                     onmouseout="this.style.color='rgba(255,255,255,0.6)'">Pricing</a></li>
-                            <li style="margin-bottom: 16px;"><a href="#faq"
+                            <li style="margin-bottom: 16px;"><a href="faqs.html"
                                     style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
                                     onmouseover="this.style.color='white'"
-                                    onmouseout="this.style.color='rgba(255,255,255,0.6)'">Suppport</a></li>
+                                    onmouseout="this.style.color='rgba(255,255,255,0.6)'">FAQs</a></li>
                             <li style="margin-bottom: 16px;"><a href="contact.html"
                                     style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
                                     onmouseover="this.style.color='white'"
                                     onmouseout="this.style.color='rgba(255,255,255,0.6)'">Contact</a></li>
+                            <li style="margin-bottom: 16px;"><a href="booking.html"
+                                    style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
+                                    onmouseover="this.style.color='white'"
+                                    onmouseout="this.style.color='rgba(255,255,255,0.6)'">Book Now</a></li>
                         </ul>
                     </div>
 
@@ -1373,151 +1526,7 @@
                         <a href="#" class="suburb-link"
                             style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
                             onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Melbourne CBD</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Southbank</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Docklands</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">St Kilda</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Prahran</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">South Yarra</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Toorak</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Richmond</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Collingwood</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Fitzroy</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Carlton</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Brunswick</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Essendon</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Yarraville</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Footscray</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Williamstown</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Brighton</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Hampton</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Sandringham</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Caulfield</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Elsternwick</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Mentone</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Cheltenham</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Frankston</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Dandenong</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Box Hill</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Glen Waverley</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Camberwell</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Kew</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Balwyn</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Doncaster</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Epping</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Preston</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Northcote</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Moonee Ponds</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
                             onmouseout="this.style.color='rgba(255,255,255,0.4)'">Abbotsford</a>
-                        <a href="#" class="suburb-link"
-                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Windsor</a>
                         <a href="#" class="suburb-link"
                             style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
                             onmouseover="this.style.color='white'"
@@ -1525,7 +1534,87 @@
                         <a href="#" class="suburb-link"
                             style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
                             onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Malvern</a>
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Balwyn</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Box Hill</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Brighton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Brunswick</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Burwood</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Camberwell</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Carlton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Caulfield</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Cheltenham</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Collingwood</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Dandenong</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Docklands</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Doncaster</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Elsternwick</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Epping</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Essendon</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Fitzroy</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Footscray</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Frankston</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Glen Waverley</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Hampton</a>
                         <a href="#" class="suburb-link"
                             style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
                             onmouseover="this.style.color='white'"
@@ -1533,11 +1622,75 @@
                         <a href="#" class="suburb-link"
                             style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
                             onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Kew</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Malvern</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Melbourne CBD</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Mentone</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Moonee Ponds</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
                             onmouseout="this.style.color='rgba(255,255,255,0.4)'">Newport</a>
                         <a href="#" class="suburb-link"
                             style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
                             onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Burwood</a>
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Northcote</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Prahran</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Preston</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Richmond</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Sandringham</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">South Yarra</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Southbank</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">St Kilda</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Toorak</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Williamstown</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Windsor</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Yarraville</a>
                     </div>
                 </div>
 
@@ -1547,11 +1700,11 @@
                     <p style="color: rgba(255,255,255,0.4); font-size: 0.95rem;">© 2026 Maid At Home. Precision in every
                         detail.</p>
                     <div style="display: flex; gap: 32px;">
-                        <a href="#"
+                        <a href="privacy-policy.html"
                             style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.9rem; transition: 0.3s;"
                             onmouseover="this.style.color='white'"
                             onmouseout="this.style.color='rgba(255,255,255,0.4)'">Privacy Policy</a>
-                        <a href="#"
+                        <a href="terms-conditions.html"
                             style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.9rem; transition: 0.3s;"
                             onmouseover="this.style.color='white'"
                             onmouseout="this.style.color='rgba(255,255,255,0.4)'">Terms of Service</a>
@@ -1559,6 +1712,31 @@
                 </div>
             </div>
         </footer>
+
+        <!-- Discount Popup -->
+        <div class="popup-overlay" id="discountPopup">
+            <div class="popup-card">
+                <button class="popup-close" id="closePopupBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+                <span class="popup-tag">Exclusive One-Time Offer</span>
+                <h2 class="popup-title">Refresh your home with 15% off.</h2>
+                <p class="popup-desc">Give us a chance to experience our 5-star hospitality cleaning. We promise you
+                    won't regret it! <br><br><strong>Important:</strong> This offer will only appear once. Don't let
+                    this opportunity slip away.</p>
+
+                <div class="promo-code-box">
+                    <span class="promo-code-text" id="promoCode">FIRST15</span>
+                    <button class="copy-btn" id="copyCodeBtn">Copy Code</button>
+                </div>
+
+                <a href="#" class="btn-decline" id="declineBtn">No, I'd rather pay full price</a>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -1570,6 +1748,78 @@
         gsap.utils.toArray('.reveal').forEach(el => {
             gsap.to(el, { opacity: 1, y: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 90%" } });
         });
+
+        // Discount Popup Logic
+        const popup = document.getElementById('discountPopup');
+        const closeBtn = document.getElementById('closePopupBtn');
+        const declineBtn = document.getElementById('declineBtn');
+        const copyBtn = document.getElementById('copyCodeBtn');
+        const promoCodeText = "FIRST15";
+
+        let popupShown = false;
+
+        window.addEventListener('scroll', () => {
+            // Check localStorage directly for accurate one-time display
+            if (!popupShown && !localStorage.getItem('maidAtHomePopupShown') && window.scrollY > 800) {
+                popup.classList.add('active');
+                popupShown = true;
+                try {
+                    localStorage.setItem('maidAtHomePopupShown', 'true');
+                } catch (e) {
+                    // Silently fail if storage is restricted (incognito/local file)
+                }
+            }
+        });
+
+        const closePopup = () => {
+            popup.classList.remove('active');
+        };
+
+        closeBtn.addEventListener('click', closePopup);
+        declineBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closePopup();
+        });
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) closePopup();
+        });
+
+        copyBtn.addEventListener('click', () => {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(promoCodeText).then(() => {
+                    updateButtonState();
+                }).catch(err => {
+                    fallbackCopyTextToClipboard(promoCodeText);
+                });
+            } else {
+                fallbackCopyTextToClipboard(promoCodeText);
+            }
+        });
+
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                updateButtonState();
+            } catch (err) {
+                console.error('Copy fallback failed', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function updateButtonState() {
+            copyBtn.innerText = 'Copied!';
+            copyBtn.classList.add('copied');
+            setTimeout(() => {
+                copyBtn.innerText = 'Copy Code';
+                copyBtn.classList.remove('copied');
+            }, 2000);
+        }
     </script>
 </body>
 

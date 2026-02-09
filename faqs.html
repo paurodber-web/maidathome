@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs | Maid At Home - Professional Cleaning Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #0f172a;
+            --accent: #2563eb;
+            --bg: #ffffff;
+            --surface: #f8fafc;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #f1f5f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.5;
+            text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--secondary);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 1000;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            top: 0;
+            width: 100%;
+            border-radius: 0;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0f172a;
+            text-decoration: none;
+            letter-spacing: -0.04em;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #0f172a;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #2563eb;
+        }
+
+        .btn-blue {
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.85rem;
+            line-height: 20.4px;
+            transition: 0.3s;
+        }
+
+        .btn-blue:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Hero FAQ */
+        .faq-hero {
+            padding: 200px 5% 80px;
+            background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
+            text-align: center;
+        }
+
+        .faq-hero h1 {
+            font-size: clamp(3rem, 7vw, 5rem);
+            line-height: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .faq-hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* FAQ Layout */
+        .faq-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 80px;
+            padding: 80px 5% 160px;
+        }
+
+        /* Sidebar Nav */
+        .faq-sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        .faq-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .faq-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 24px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .faq-nav-link:hover {
+            background: var(--surface);
+            color: var(--text);
+            transform: translateX(8px);
+        }
+
+        .faq-nav-link.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.2);
+        }
+
+        .faq-nav-link span {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        /* FAQ Sections */
+        .faq-content {
+            display: flex;
+            flex-direction: column;
+            gap: 100px;
+        }
+
+        .faq-section {
+            scroll-margin-top: 120px;
+        }
+
+        .faq-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .faq-section h2::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+            display: block;
+        }
+
+        /* Accordion */
+        .faq-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-header {
+            padding: 32px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        .faq-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--surface);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .faq-icon svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.4s ease;
+        }
+
+        .faq-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-body-inner {
+            padding: 0 40px 40px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .faq-item.active {
+            border-color: var(--primary);
+            background: var(--surface);
+        }
+
+        .faq-item.active .faq-body {
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-header h3 {
+            color: var(--primary);
+        }
+
+        .faq-item.active .faq-icon {
+            background: var(--primary);
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 120px 5% 60px;
+            color: white;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 24px;
+        }
+
+        .footer-desc {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .suburb-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+        }
+
+        .suburb-link {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .suburb-link:hover {
+            color: white;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @media (max-width: 1024px) {
+            .faq-container {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-sidebar {
+                display: none;
+            }
+
+            .faq-hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <a href="index.html" class="logo">MaidAtHome<span>.</span></a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About us</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="faqs.html" class="nav-link">FAQs</a>
+        </nav>
+        <a href="booking.html" class="btn-blue">Book Now</a>
+    </header>
+
+    <main>
+        <section class="faq-hero">
+            <h1 class="reveal">Got questions? <br><span style="color: var(--primary)">We’ve got answers.</span></h1>
+            <p class="reveal">Everything you need to know about our cleaning services, pricing, and how we care for your
+                home.</p>
+        </section>
+
+        <div class="faq-container">
+            <!-- Sidebar Nav -->
+            <aside class="faq-sidebar reveal">
+                <nav class="faq-nav">
+                    <a href="#about-us" class="faq-nav-link active"><span>01</span> About Us</a>
+                    <a href="#services" class="faq-nav-link"><span>02</span> Services</a>
+                    <a href="#how-it-works" class="faq-nav-link"><span>03</span> How it works</a>
+                    <a href="#pricing-payments" class="faq-nav-link"><span>04</span> Pricing & Payments</a>
+                    <a href="#cleaners" class="faq-nav-link"><span>05</span> Cleaners</a>
+                    <a href="#bookings" class="faq-nav-link"><span>06</span> Bookings</a>
+                    <a href="#cancellations" class="faq-nav-link"><span>07</span> Cancellations</a>
+                    <a href="#supplies" class="faq-nav-link"><span>08</span> Supplies & Equipment</a>
+                    <a href="#pets" class="faq-nav-link"><span>09</span> Pets</a>
+                </nav>
+            </aside>
+
+            <!-- FAQ Content -->
+            <div class="faq-content">
+
+                <!-- 01 About Us -->
+                <section id="about-us" class="faq-section">
+                    <h2 class="reveal">About Us</h2>
+                    <div class="faq-group">
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Who are you?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">We’re Maid At Home, a trusted cleaning service based in
+                                    Melbourne, dedicated to making homes shine. Our goal is simple, cleaning spaces to
+                                    improve lives.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Who are your cleaners?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">Our cleaners are experienced, highly trained and fully
+                                    vetted professionals. We ensure they meet our high standards before they join our
+                                    team.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>What makes Maid At Home different?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">At Maid At Home, we’re all about quality, reliability, and a
+                                    personal touch. Over 90% of our clients return because we genuinely care about
+                                    making their homes feel fresh and comfortable. We focus on attention to detail,
+                                    transparent pricing, and flexible options to suit your needs.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 02 Services -->
+                <section id="services" class="faq-section">
+                    <h2 class="reveal">Services</h2>
+                    <div class="faq-group">
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>What types of cleaning services do you offer?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">We offer a range of services, including residential
+                                    cleaning, deep cleaning, move-in/move-out cleaning, and seasonal deep cleaning.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Are your cleaning products eco-friendly?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">Yes, we use eco-friendly and non-toxic cleaning products
+                                    that are safe for your family, pets, and the environment. Our goal is to provide a
+                                    clean home while minimizing our impact on the planet.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Can I request the same cleaner every time?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">We do our best to accommodate requests for the same cleaner,
+                                    but we can’t guarantee it for one-off bookings. If you book regularly, we’ll
+                                    prioritise assigning the same cleaner whenever possible.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Do I need to be home during the cleaning?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">No, you don’t have to be home. Many of our clients provide
+                                    us with access instructions so we can clean while they’re away. However, if you
+                                    prefer to be present, that’s perfectly fine too!</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>What if I'm not satisfied with the cleaning?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">Your satisfaction is our priority. If you’re not happy with
+                                    the service, please let us know within 24 hours, and we’ll arrange a re-clean at no
+                                    extra cost.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 03 How it works -->
+                <section id="how-it-works" class="faq-section">
+                    <h2 class="reveal">How it works</h2>
+                    <div class="faq-group">
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Are there any lock-in contracts?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">No, there are no lock-in contracts! You can book our
+                                    services as needed, whether it's a one-time clean or a recurring service. We believe
+                                    in earning your trust through quality cleaning, not contracts.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Do you offer a satisfaction guarantee?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">Yes! We take pride in our work and stand by our service. If
+                                    you’re not completely satisfied, let us know within 24 hours, and we’ll make it
+                                    right. For hourly services, the guarantee applies as long as enough time was booked
+                                    to complete the requested tasks and priorities were clearly communicated before the
+                                    service.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>How do cleaners access my home if I’m not there?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">Many of our clients provide us with access instructions
+                                    (like a lockbox code or hidden key) so we can clean while they’re away. Your home’s
+                                    security is our top priority.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>How do I request changes to my service?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">You can update your preferences through your online account
+                                    or by contacting us via email or phone. Let us know what adjustments you’d like for
+                                    future visits.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>What if something is damaged?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">Our cleaners have public liability insurance and are
+                                    responsible for any damages caused during the service. If something gets damaged,
+                                    please contact us as soon as possible.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>What happens if my cleaner finishes early?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">If your cleaner finishes before the allocated time, they
+                                    will focus on additional tasks if needed.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>What security measures are in place?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">All our cleaners are thoroughly vetted, insured, and trained
+                                    to maintain professionalism and respect for your home.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 04 Pricing & Payments -->
+                <section id="pricing-payments" class="faq-section">
+                    <h2 class="reveal">Pricing & Payments</h2>
+                    <div class="faq-group">
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>What pricing models do you offer?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">We offer flat rate (based on the number of bedrooms) and
+                                    hourly rate.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Are there any discounts available?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">Yes! We offer discounts for weekly & fortnightly services
+                                    (10% discount) and also for 3 weekly & monthly services (5% discount). *Discount
+                                    only applies to hourly services.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Do you charge extra for weekends?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">No, we don’t charge extra. However, Sunday and public
+                                    holiday availability depends on cleaner availability.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>How can I get a quote?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">You can get an instant quote by using our online booking
+                                    form. Simply enter your details and see the pricing before confirming.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>How is payment processed?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">A hold (total value of the service) will be placed on your
+                                    card two days before the service. The final charge is processed only after the
+                                    cleaning is completed. We accept all major debit and credit cards.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Are there any additional fees?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">We’re upfront with our pricing—no hidden fees. However,
+                                    additional charges may apply if no parking is provided.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Do you offer referral discounts?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">We don’t currently offer referral discounts, but we always
+                                    appreciate recommendations! A referral program is in the works.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 05 Cleaners -->
+                <section id="cleaners" class="faq-section">
+                    <h2 class="reveal">Cleaners</h2>
+                    <div class="faq-group">
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>How are your cleaners vetted?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">We carefully select and screen all our cleaners through a
+                                    thorough vetting process, which includes background checks, interviews, and skills
+                                    assessments. We also ensure they align with our high standards of professionalism
+                                    and customer care.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Will I have the same cleaner every time?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">For recurring services, we do our best to send the same
+                                    cleaner whenever possible. This helps ensure consistency and a more personalised
+                                    experience. However, if your usual cleaner is unavailable, we will provide a trusted
+                                    replacement.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>What if I'm not satisfied with my cleaner?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">If you're not completely happy with your cleaner, let us
+                                    know, and we'll address your concerns. If needed, we can arrange for a different
+                                    cleaner.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Do cleaners keep keys or entry codes?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">No, our cleaners do not keep keys. If you need to provide
+                                    access, please use a lockbox or another secure method.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Can I trust the cleaners with valuables?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">Yes, our cleaners are carefully selected and background
+                                    checked. We pride ourselves on the trustworthiness of our team.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 06 Bookings -->
+                <section id="bookings" class="faq-section">
+                    <h2 class="reveal">Bookings</h2>
+                    <div class="faq-group">
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>When can I book a cleaning service?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">You can book a cleaning service at any time through our
+                                    online booking system, but bookings must be made at least 24 hours in advance. We
+                                    offer availability Monday through Saturday, while Sunday and public holiday bookings
+                                    depend on the cleaner’s availability.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Can I reschedule my booking?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">Yes, you can reschedule your booking, but only once
+                                    (otherwise a cancellation fee will apply). To avoid a cancellation fee, rescheduling
+                                    must be requested at least 24 hours before the service.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>How do I update my booking details?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">You can update your details through your online account. If
+                                    you need assistance, contact us via email or phone.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>What happens if my cleaner is late?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">While we always aim to be on time, traffic and other delays
+                                    can occasionally happen. We have a 15–30 minute arrival window. If your cleaner is
+                                    late, please contact us.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 07 Cancellations -->
+                <section id="cancellations" class="faq-section">
+                    <h2 class="reveal">Cancellations</h2>
+                    <div class="faq-group">
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>How can I cancel a cleaning service?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">You can cancel your service by contacting us via email or
+                                    phone. If you have an account, you can also cancel directly through our online
+                                    system.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>What are the charges for late cancellations?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">Cancellations made less than 24 hours before the scheduled
+                                    service will incur a fee (50% of the service + extras). If you cancel on the spot
+                                    when the cleaner arrives, a 100% cancellation fee will apply.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 08 Supplies & Equipment -->
+                <section id="supplies" class="faq-section">
+                    <h2 class="reveal">Supplies & Equipment</h2>
+                    <div class="faq-group">
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>What cleaning supplies do your cleaners provide?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">Our cleaners bring all the necessary cleaning products to
+                                    get the job done. If you have specific products you’d like us to use, just let us
+                                    know when booking and provide them.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>Why don’t cleaners provide vacuums and mops?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">To avoid cross-contamination between homes, we ask clients
+                                    to provide their own mop and vacuum. However, if you don’t have them, just let us
+                                    know when booking and we can arrange a cleaner who can bring their own.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 09 Pets -->
+                <section id="pets" class="faq-section">
+                    <h2 class="reveal">Pets</h2>
+                    <div class="faq-group">
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>How do you accommodate homes with pets?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">We’re happy to clean homes with pets! However, please let us
+                                    know in advance, as some of our cleaners may have allergies or be uncomfortable
+                                    around certain animals.</div>
+                            </div>
+                        </div>
+                        <div class="faq-item reveal">
+                            <div class="faq-header">
+                                <h3>What should I do with my pet during the cleaning?</h3>
+                                <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg></div>
+                            </div>
+                            <div class="faq-body">
+                                <div class="faq-body-inner">To ensure a smooth service, we recommend keeping pets in a
+                                    separate room or securing them if they tend to be curious or energetic around new
+                                    people.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-grid">
+                <div class="reveal">
+                    <a href="index.html" class="footer-logo">Maid<span>.</span>At<span>.</span>Home</a>
+                    <p class="footer-desc">Elevating the standard of home cleaning with a 5-star hospitality approach.
+                    </p>
+                </div>
+                <div class="reveal">
+                    <h4 style="margin-bottom: 24px;">Quick Links</h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <a href="about.html" class="suburb-link">About Us</a>
+                        <a href="services.html" class="suburb-link">Services</a>
+                        <a href="pricing.html" class="suburb-link">Pricing</a>
+                        <a href="contact.html" class="suburb-link">Contact</a>
+                        <a href="faqs.html" class="suburb-link">FAQs</a>
+                        <a href="booking.html" class="suburb-link">Book Now</a>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <h5
+                        style="color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; font-weight: 700;">
+                        Service Areas</h5>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px 24px;">
+                        <a href="#" class="suburb-link">Abbotsford</a>
+                        <a href="#" class="suburb-link">Armadale</a>
+                        <a href="#" class="suburb-link">Balwyn</a>
+                        <a href="#" class="suburb-link">Box Hill</a>
+                        <a href="#" class="suburb-link">Brighton</a>
+                        <a href="#" class="suburb-link">Brunswick</a>
+                        <a href="#" class="suburb-link">Burwood</a>
+                        <a href="#" class="suburb-link">Camberwell</a>
+                        <a href="#" class="suburb-link">Carlton</a>
+                        <a href="#" class="suburb-link">Caulfield</a>
+                        <a href="#" class="suburb-link">Cheltenham</a>
+                        <a href="#" class="suburb-link">Collingwood</a>
+                        <a href="#" class="suburb-link">Dandenong</a>
+                        <a href="#" class="suburb-link">Docklands</a>
+                        <a href="#" class="suburb-link">Doncaster</a>
+                        <a href="#" class="suburb-link">Elsternwick</a>
+                        <a href="#" class="suburb-link">Epping</a>
+                        <a href="#" class="suburb-link">Essendon</a>
+                        <a href="#" class="suburb-link">Fitzroy</a>
+                        <a href="#" class="suburb-link">Footscray</a>
+                        <a href="#" class="suburb-link">Frankston</a>
+                        <a href="#" class="suburb-link">Glen Waverley</a>
+                        <a href="#" class="suburb-link">Hampton</a>
+                        <a href="#" class="suburb-link">Hawthorn</a>
+                        <a href="#" class="suburb-link">Kew</a>
+                        <a href="#" class="suburb-link">Malvern</a>
+                        <a href="#" class="suburb-link">Melbourne CBD</a>
+                        <a href="#" class="suburb-link">Mentone</a>
+                        <a href="#" class="suburb-link">Moonee Ponds</a>
+                        <a href="#" class="suburb-link">Newport</a>
+                        <a href="#" class="suburb-link">Northcote</a>
+                        <a href="#" class="suburb-link">Prahran</a>
+                        <a href="#" class="suburb-link">Preston</a>
+                        <a href="#" class="suburb-link">Richmond</a>
+                        <a href="#" class="suburb-link">Sandringham</a>
+                        <a href="#" class="suburb-link">South Yarra</a>
+                        <a href="#" class="suburb-link">Southbank</a>
+                        <a href="#" class="suburb-link">St Kilda</a>
+                        <a href="#" class="suburb-link">Toorak</a>
+                        <a href="#" class="suburb-link">Williamstown</a>
+                        <a href="#" class="suburb-link">Windsor</a>
+                        <a href="#" class="suburb-link">Yarraville</a>
+                    </div>
+                </div>
+            </div>
+            <div
+                style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; display: flex; justify-content: space-between; align-items: center;">
+                <p style="color: rgba(255,255,255,0.4); font-size: 0.9rem;">© 2026 Maid At Home. Precision in every
+                    detail.</p>
+                <div style="display: flex; gap: 24px;">
+                    <a href="privacy-policy.html" class="suburb-link">Privacy Policy</a>
+                    <a href="terms-conditions.html" class="suburb-link">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // Accordion Logic
+        document.querySelectorAll('.faq-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+
+                // Close all other items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-body').style.maxHeight = null;
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                    const body = item.querySelector('.faq-body');
+                    body.style.maxHeight = body.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Active Link on Scroll
+        const sections = document.querySelectorAll('.faq-section');
+        const navLinks = document.querySelectorAll('.faq-nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = sections[0].getAttribute('id');
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Reveal Animations
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "expo.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%",
+                }
+            });
+        });
+
+        // Trigger scroll on load
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+
+</html>

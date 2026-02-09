@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Maid At Home - Airy Clean</title>
+    <title>Book a Service | Maid At Home - Airy Clean</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -38,12 +38,6 @@
             text-size-adjust: 100%;
             -webkit-text-size-adjust: 100%;
         }
-
-
-
-
-
-
 
         h1,
         h2,
@@ -131,8 +125,8 @@
             transform: translateY(-2px);
         }
 
-        /* Hero About */
-        .hero-about {
+        /* Hero Section */
+        .hero-booking {
             padding: 200px 5% 100px;
             background: linear-gradient(180deg, var(--surface) 0%, white 100%);
         }
@@ -146,13 +140,13 @@
             margin: 0 auto;
         }
 
-        .hero-about h1 {
+        .hero-booking h1 {
             font-size: clamp(3rem, 6vw, 4.5rem);
             line-height: 1.1;
             margin-bottom: 32px;
         }
 
-        .hero-about p {
+        .hero-booking p {
             font-size: 1.25rem;
             color: var(--text-muted);
             line-height: 1.7;
@@ -175,136 +169,27 @@
             display: block;
         }
 
-        /* Content Sections */
-        .about-section {
-            padding: 120px 5%;
+        /* Booking Section */
+        .booking-section {
+            padding: 80px 0 120px;
+            background-color: white;
         }
 
-        .content-container {
-            max-width: 1400px;
+        .booking-container {
+            max-width: 100%;
             margin: 0 auto;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 60px;
-        }
-
-        .about-card {
-            padding: 48px;
-            background: var(--surface);
-            border-radius: 32px;
-            transition: 0.4s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .about-card:hover {
             background: white;
-            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.08);
-            transform: translateY(-10px);
+            border-radius: 32px;
         }
 
-        .about-card h3 {
-            font-size: 1.75rem;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .about-card p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        .icon-box {
-            width: 48px;
-            height: 48px;
-            background: var(--primary);
-            color: white;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 32px;
-        }
-
-        /* Image Section */
-        .image-banner {
-            padding: 0 5%;
-            margin: 60px 0;
-        }
-
-        .banner-wrap {
-            max-width: 1400px;
-            margin: 0 auto;
-            border-radius: 40px;
-            overflow: hidden;
-            height: 500px;
-            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.15);
-        }
-
-        .banner-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        footer {
-            background: var(--secondary);
-            padding: 100px 5% 40px;
-            color: white;
-        }
-
-        .footer-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 60px;
-            margin-bottom: 80px;
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: white;
+        .suburb-link {
+            color: rgba(255, 255, 255, 0.4);
             text-decoration: none;
-            display: block;
-            margin-bottom: 24px;
-        }
-
-        .footer-logo span {
-            color: var(--primary);
-        }
-
-        .footer-col h4 {
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 32px;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 16px;
-        }
-
-        .footer-col ul li a {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
+            font-size: 0.85rem;
             transition: 0.3s;
         }
 
-        .footer-col ul li a:hover {
+        .suburb-link:hover {
             color: white;
         }
 
@@ -313,19 +198,26 @@
             transform: translateY(30px);
         }
 
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 100px 5% 40px;
+            color: white;
+        }
+
         @media (max-width: 1024px) {
             .hero-inner {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
 
-            .hero-about p {
+            .hero-booking p {
                 margin-left: auto;
                 margin-right: auto;
             }
 
-            .grid-3 {
-                grid-template-columns: 1fr;
+            .booking-container {
+                padding: 20px;
             }
         }
     </style>
@@ -347,156 +239,42 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero-about">
+        <section class="hero-booking">
             <div class="hero-inner">
                 <div class="reveal">
-                    <h1>Your reliable partner for house cleaning services</h1>
-                    <p>We are your reliable partner for professional home care. Our solutions are designed to ensure a
-                        clean, comfortable, and welcoming environment for every household.</p>
-                    <a href="#" class="btn-blue"
-                        style="padding: 16px 40px; font-size: 1rem; display: inline-block;">Contact
-                        us today</a>
+                    <h1>Ready for a spotless home? Book now.</h1>
+                    <p>Experience the Gold Standard of hospitality cleaning. Our vetted professionals are ready to
+                        transform your space into a pristine sanctuary.</p>
+                    <div style="display: flex; gap: 24px; align-items: center;">
+                        <div
+                            style="display: flex; -webkit-mask-image: linear-gradient(to right, black 80%, transparent); mask-image: linear-gradient(to right, black 80%, transparent);">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100&h=100"
+                                style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; margin-right: -15px;">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=100&h=100"
+                                style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; margin-right: -15px;">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100&h=100"
+                                style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid white;">
+                        </div>
+                        <span style="font-weight: 600; font-size: 0.9rem; color: var(--secondary);">Joined by 2,000+
+                            happy homes</span>
+                    </div>
                 </div>
                 <div class="hero-image reveal">
-                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=1470"
-                        alt="Home Care">
+                    <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=80&w=1470"
+                        alt="Professional Maid">
                 </div>
             </div>
         </section>
 
-        <!-- Our Story, Mission, Difference -->
-        <section class="about-section">
-            <div class="content-container">
-                <div class="grid-3">
-                    <div class="about-card reveal">
-                        <div class="icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                <path d="M2 17l10 5 10-5"></path>
-                                <path d="M2 12l10 5 10-5"></path>
-                            </svg>
-                        </div>
-                        <h3>Our Story</h3>
-                        <p>Maid At Home was founded with a drive for excellence and a vision to make home services more
-                            accessible and hassle-free for everyone. We started as a small team dedicated to one simple
-                            idea: that every home deserves a 5-star hospitality standard clean.</p>
-                    </div>
-
-                    <div class="about-card reveal">
-                        <div class="icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                        </div>
-                        <h3>Our Mission</h3>
-                        <p>Our goal is straightforward: to provide homeowners with reliable, efficient solutions that
-                            make daily life easier and more enjoyable. We strive to restore your time so you can focus
-                            on what truly matters, while we handle the meticulous details.</p>
-                    </div>
-
-                    <div class="about-card reveal">
-                        <div class="icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                        </div>
-                        <h3>What Sets Us Apart</h3>
-                        <p>What makes us unique is our dedication to delivering excellence in every detail of our
-                            service. From our vetted cleaning specialists to our eco-friendly products, we don't just
-                            clean—we care. Precision is in our DNA.</p>
-                    </div>
-                </div>
+        <!-- Booking Form Section -->
+        <section class="booking-section">
+            <div class="booking-container reveal">
+                <iframe src="https://mah.bookingkoala.com/booknow/home_cleaning?embed=true&bar=false&banner=false"
+                    style="border:none;height:1000px" width="100%" scrolling="no"></iframe>
             </div>
         </section>
 
-        <!-- Core Values Section -->
-        <section class="about-section" style="background: var(--surface); padding: 160px 5%;">
-            <div class="content-container">
-                <div style="text-align: center; margin-bottom: 80px;">
-                    <span class="reveal"
-                        style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">Our
-                        Principles</span>
-                    <h2 class="reveal" style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px;">The values that
-                        drive us</h2>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
-                    <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <h4 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--secondary);">Integrity</h4>
-                        <p style="color: var(--text-muted); line-height: 1.6;">Transparent pricing and honest
-                            communication in every single interaction. We build relationships on trust.</p>
-                    </div>
-                    <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <h4 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--secondary);">Sustainability
-                        </h4>
-                        <p style="color: var(--text-muted); line-height: 1.6;">We exclusively use eco-friendly and
-                            non-toxic products to protect your home environment and our planet.</p>
-                    </div>
-                    <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <h4 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--secondary);">Quality First</h4>
-                        <p style="color: var(--text-muted); line-height: 1.6;">Our protocols are inspired by premium
-                            hospitality standards, ensuring no detail is ever overlooked.</p>
-                    </div>
-                    <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <h4 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--secondary);">Reliability</h4>
-                        <p style="color: var(--text-muted); line-height: 1.6;">When we say we'll be there, we'll be
-                            there. Consistent, high-quality results are our guarantee.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Our Promise Section -->
-        <section class="about-section">
-            <div class="content-container"
-                style="display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;">
-                <div class="reveal"
-                    style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.1);">
-                    <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80&w=1470"
-                        alt="Professional Clean" style="width: 100%; display: block;">
-                </div>
-                <div class="reveal">
-                    <h2 style="font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 32px;">Our Promise to You</h2>
-                    <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px;">We
-                        understand that your home is your sanctuary. Our promise is simple: to treat your space with the
-                        highest level of respect and to provide a clean that allows you to truly relax.</p>
-                    <div style="display: flex; flex-direction: column; gap: 20px;">
-                        <div
-                            style="display: flex; align-items: center; gap: 16px; font-weight: 700; color: var(--secondary);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                                style="color: var(--accent);">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            100% Satisfaction Guarantee
-                        </div>
-                        <div
-                            style="display: flex; align-items: center; gap: 16px; font-weight: 700; color: var(--secondary);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                                style="color: var(--accent);">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            Vetted and Trained Professionals
-                        </div>
-                        <div
-                            style="display: flex; align-items: center; gap: 16px; font-weight: 700; color: var(--secondary);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                                style="color: var(--accent);">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            Fully Insured & Reliable Service
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <script src="https://mah.bookingkoala.com/resources/embed.js" defer></script>
 
 
         <!-- Footer -->
@@ -513,20 +291,18 @@
                             Elevating the standard of home cleaning with a 5-star hospitality approach.
                         </p>
                         <div style="display: flex; gap: 16px;">
-                            <!-- Facebook -->
                             <a href="#"
                                 style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
-                                onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
-                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
+                                onmouseover="this.style.background='var(--accent)'; this.style.transform='scale(1.1)'"
+                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='scale(1)'">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                                 </svg>
                             </a>
-                            <!-- Instagram -->
                             <a href="#"
                                 style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
-                                onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
-                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
+                                onmouseover="this.style.background='var(--accent)'; this.style.transform='scale(1.1)'"
+                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='scale(1)'">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -813,25 +589,12 @@
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
-
-        // Header scroll effect
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) document.getElementById('header').classList.add('scrolled');
             else document.getElementById('header').classList.remove('scrolled');
         });
-
-        // Reveal animations
         gsap.utils.toArray('.reveal').forEach(el => {
-            gsap.to(el, {
-                opacity: 1,
-                y: 0,
-                duration: 1.2,
-                ease: "expo.out",
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 90%",
-                }
-            });
+            gsap.to(el, { opacity: 1, y: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 90%" } });
         });
     </script>
 </body>
