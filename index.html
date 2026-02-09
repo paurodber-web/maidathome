@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maid At Home - Airy Clean V2</title>
+    <!-- Same Typography & System -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #0f172a;
+            --accent: #2563eb;
+            --bg: #ffffff;
+            --surface: #f1f5f9;
+            --text: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--secondary);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 1000;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            top: 0;
+            width: 100%;
+            border-radius: 0;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0f172a;
+            text-decoration: none;
+            letter-spacing: -0.04em;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #0f172a;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #2563eb;
+        }
+
+        .btn-blue {
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .btn-blue:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* HERO V2: Centered Impact */
+        .hero-v2 {
+            padding-top: 200px;
+            padding-bottom: 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--surface) 0%, white 100%);
+        }
+
+        .hero-v2 h1 {
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            max-width: 1100px;
+            margin: 0 auto 30px;
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+        }
+
+        .hero-v2 p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .hero-img-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-img-wrap img {
+            width: 100%;
+            display: block;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Stats Flat */
+        .stats-section {
+            padding: 40px 5% 120px;
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--accent);
+        }
+
+        .stat-item p {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Excellence v2: Alternate Layout */
+        section {
+            padding: 160px 5% 120px;
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+            max-width: 800px;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+        }
+
+        /* Features Split Layout */
+        .features-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .features-grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .feature-card {
+            padding: 32px;
+            background: var(--surface);
+            border-radius: 24px;
+            transition: 0.4s;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .feature-card:hover {
+            background: white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            border-color: var(--accent);
+        }
+
+        .gsap-image-reveal {
+            border-radius: 40px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.15);
+        }
+
+        .gsap-image-reveal img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gsap-image-reveal:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Bento 2x3 - Mandatory requirement rearranged */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .bento-item {
+            background: white;
+            border-radius: 32px;
+            padding: 32px;
+            border: 1px solid #f1f5f9;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            transition: 0.4s;
+        }
+
+
+        .bento-item.cta-item {
+            background: var(--primary);
+            color: white;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .bento-item.cta-item h3 {
+            color: white;
+            font-size: 2rem;
+        }
+
+        .bento-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .bento-number {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 3rem;
+            font-family: 'Outfit';
+            font-weight: 900;
+            opacity: 0.03;
+        }
+
+        /* Process Waterfall */
+        .process-waterfall {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .step-info {
+            flex: 1;
+        }
+
+        .step-img {
+            flex: 1;
+            border-radius: 32px;
+            overflow: hidden;
+        }
+
+        .step-img img {
+            width: 100%;
+            display: block;
+        }
+
+        .step-num {
+            font-size: 4rem;
+            opacity: 0.1;
+            font-weight: 800;
+            font-family: 'Outfit';
+            margin-bottom: -20px;
+            display: block;
+        }
+
+        /* FAQ & Footer */
+        .faq-item {
+            border-bottom: 1px solid #f1f5f9;
+            padding: 30px 0;
+            cursor: pointer;
+        }
+
+        .faq-q {
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .faq-a {
+            padding-top: 20px;
+            color: var(--text-muted);
+            display: none;
+        }
+
+        .faq-item.active .faq-a {
+            display: block;
+        }
+
+        footer {
+            background: var(--secondary);
+            padding: 100px 5% 40px;
+            color: white;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        @media (max-width: 1024px) {
+
+            .features-split {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .bento-grid,
+            .stats-section {
+                grid-template-columns: 1fr;
+                display: block;
+            }
+
+            .process-step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .stat-item {
+                margin-bottom: 40px;
+            }
+        }
+
+        /* Revitalize Section - Exact match to Modern design */
+        .revitalize-section {
+            padding: 128px 0;
+            /* py-32 */
+            background: #0f172a;
+            /* bg-slate-900 */
+            border-radius: 48px;
+            /* rounded-[3rem] */
+            margin: 60px 24px 80px;
+            /* mx-6 */
+            color: #ffffff;
+        }
+
+        .revitalize-section .container {
+            max-width: 1280px;
+            /* max-w-7xl */
+            margin: 0 auto;
+            padding: 0 24px;
+            /* px-6 */
+        }
+
+        .section-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 80px;
+            /* mb-20 */
+            gap: 32px;
+            /* gap-8 */
+        }
+
+        .header-text {
+            max-width: 672px;
+            /* max-w-2xl */
+            text-align: left;
+        }
+
+        .header-text h2 {
+            font-size: clamp(2.25rem, 5vw, 3rem);
+            /* text-4xl md:text-5xl */
+            font-weight: 800;
+            /* font-extrabold */
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            /* mb-8 */
+            letter-spacing: -0.025em;
+            /* tracking-tight */
+        }
+
+        .header-text p {
+            color: #94a3b8;
+            /* text-slate-400 */
+            font-size: 1.125rem;
+            /* text-lg */
+            font-weight: 500;
+            /* font-medium */
+            line-height: 1.625;
+            /* leading-relaxed */
+            margin: 0;
+        }
+
+        .view-pricing {
+            color: #818cf8;
+            /* text-indigo-400 */
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .view-pricing:hover {
+            transform: translateX(8px);
+        }
+
+        .revitalize-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            /* gap-6 */
+        }
+
+        .rev-card {
+            background: rgba(255, 255, 255, 0.05);
+            /* bg-white/5 */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* border-white/10 */
+            padding: 32px;
+            /* p-8 */
+            border-radius: 32px;
+            /* rounded-[2rem] */
+            transition: all 0.3s ease;
+        }
+
+        .rev-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            /* hover:bg-white/10 */
+        }
+
+        .rev-card.featured {
+            background: #4f46e5;
+            /* bg-indigo-600 */
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.2), 0 10px 10px -5px rgba(79, 70, 229, 0.1);
+            border: none;
+        }
+
+        .rev-card h4 {
+            color: #ffffff;
+            font-size: 1.25rem;
+            /* text-xl */
+            font-weight: 700;
+            margin-bottom: 16px;
+            /* mb-4 */
+        }
+
+        .rev-desc {
+            color: #94a3b8;
+            /* text-slate-400 */
+            font-size: 0.875rem;
+            /* text-sm */
+            margin-bottom: 24px;
+            /* mb-6 */
+        }
+
+        .rev-card.featured .rev-desc {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .rev-price {
+            font-size: 1.5rem;
+            /* text-2xl */
+            font-weight: 700;
+            color: #22d3ee;
+            /* text-cyan-400 */
+        }
+
+        .rev-card.featured .rev-price {
+            color: #ffffff;
+        }
+
+        @media (max-width: 1024px) {
+            .revitalize-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-text h2 {
+                font-size: 2.25rem;
+            }
+
+            .section-header-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .revitalize-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <a href="airy-clean-v2.html" class="logo">MaidAtHome<span>.</span></a>
+        <nav class="nav-links">
+            <a href="airy-clean-v2.html" class="nav-link">Home</a>
+            <a href="airy-clean-about.html" class="nav-link">About us</a>
+            <a href="airy-clean-services.html" class="nav-link">Services</a>
+            <a href="airy-clean-pricing.html" class="nav-link">Pricing</a>
+            <a href="airy-clean-contact-html" class="nav-link">Contact</a>
+            <a href="#faq" class="nav-link">FAQS</a>
+            <a href="#" class="nav-link">Blog</a>
+        </nav>
+        <a href="#" class="btn-blue">Book Service</a>
+    </header>
+
+    <main>
+        <section class="hero-v2">
+            <h1 class="reveal">Professional house cleaning <span style="color: var(--accent)">in Melbourne.</span></h1>
+            <p class="reveal">Experience Melbourne's premier professional house cleaning service. Meticulous, reliable,
+                and tailored to the high standards of modern lifestyles.</p>
+            <div class="reveal" style="margin-bottom: 60px;"><a href="airy-clean-services.html" class="btn">Explore
+                    Services</a></div>
+        </section>
+
+        <div class="stats-section">
+            <div class="stat-item reveal">
+                <h3>5000+</h3>
+                <p>Services provided</p>
+            </div>
+            <div class="stat-item reveal">
+                <h3>100%</h3>
+                <p>Satisfaction guarantee</p>
+            </div>
+            <div class="stat-item reveal">
+                <h3>8+</h3>
+                <p>Years of experience</p>
+            </div>
+        </div>
+
+        <!-- Section: Services (Revitalize) - Exact match to Modern -->
+        <section id="services" class="revitalize-section reveal">
+            <div class="container text-white">
+                <div class="section-header-row">
+                    <div class="header-text">
+                        <h2>Select the perfect cleaning <br>for your home</h2>
+                        <p>Experience premium cleaning results with our meticulously defined service tiers, tailored to
+                            keep your Melbourne home in pristine condition.</p>
+                    </div>
+                    <a href="airy-clean-pricing.html" class="view-pricing">
+                        View Pricing Guide <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="revitalize-grid">
+                    <div class="rev-card">
+                        <h4>Standard Clean</h4>
+                        <div class="rev-desc">Essential care to keep your home fresh and tidy.</div>
+                        <div class="rev-price">From $155</div>
+                    </div>
+                    <div class="rev-card">
+                        <h4>Deep Clean</h4>
+                        <div class="rev-desc">Thorough detail tackling even the toughest spots.</div>
+                        <div class="rev-price">From $215</div>
+                    </div>
+                    <div class="rev-card">
+                        <h4>End of Lease</h4>
+                        <div class="rev-desc">Bond return guarantee with full sanitization.</div>
+                        <div class="rev-price">From $410</div>
+                    </div>
+                    <div class="rev-card featured">
+                        <h4>Recurring Clean</h4>
+                        <div class="rev-desc" style="color: rgba(255,255,255,0.8);">Save on weekly or fortnightly
+                            recurring cleaning.</div>
+                        <div class="rev-price" style="color: white;">Save 15%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" style="padding: 160px 5%; background: white;">
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <div style="text-align: center; margin-bottom: 80px;">
+                    <span class="reveal"
+                        style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">Why
+                        Choose Us</span>
+
+                    <h2 class="reveal"
+                        style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; line-height: 1.1;">
+                        Expert cleaning for health and comfort</h2>
+                    <p class="reveal"
+                        style="font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin: 0 auto;">
+                        Transform your living spaces with our specialised cleaning solutions designed for modern homes.
+                    </p>
+                </div>
+
+                <!-- Feature Cards Grid -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+                    <div class="feature-card reveal"
+                        style="display: flex; flex-direction: column; padding: 48px 40px; background: var(--surface); border-radius: 24px; transition: 0.3s; border: 1px solid rgba(0,0,0,0.05);">
+                        <div
+                            style="width: 70px; height: 70px; background: white; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 28px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+                            🌿
+                        </div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 16px; font-weight: 700;">Eco-friendly cleaning</h3>
+                        <p style="color: var(--text-muted); margin: 0; font-size: 1.05rem; line-height: 1.7;">Our
+                            environmentally-friendly products ensure your house stays fresh and safe for your family and
+                            the planet.</p>
+                    </div>
+
+                    <div class="feature-card reveal"
+                        style="display: flex; flex-direction: column; padding: 48px 40px; background: var(--surface); border-radius: 24px; transition: 0.3s; border: 1px solid rgba(0,0,0,0.05);">
+                        <div
+                            style="width: 70px; height: 70px; background: white; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 28px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+                            ✨
+                        </div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 16px; font-weight: 700;">Customised services</h3>
+                        <p style="color: var(--text-muted); margin: 0; font-size: 1.05rem; line-height: 1.7;">Tailored
+                            cleaning plans that adapt to your specific needs and schedule for maximum convenience.</p>
+                    </div>
+
+                    <div class="feature-card reveal"
+                        style="display: flex; flex-direction: column; padding: 48px 40px; background: var(--surface); border-radius: 24px; transition: 0.3s; border: 1px solid rgba(0,0,0,0.05);">
+                        <div
+                            style="width: 70px; height: 70px; background: white; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 28px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+                            🎯
+                        </div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 16px; font-weight: 700;">Attention to detail</h3>
+                        <p style="color: var(--text-muted); margin: 0; font-size: 1.05rem; line-height: 1.7;">Meticulous
+                            care in every corner ensures a thoroughly cleaned home that exceeds expectations.</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" style="padding: 160px 5%;">
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <div style="text-align: center; margin-bottom: 100px;">
+                    <p class="reveal"
+                        style="color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 16px;">
+                        How It Works</p>
+                    <h2 class="reveal" style="font-size: clamp(2.5rem, 5vw, 4rem);">Spotless results, simplified</h2>
+                    <p class="reveal"
+                        style="font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 24px auto 0;">We
+                        believe that a clean home should be easy to achieve. From booking to final touches, our
+                        streamlined process takes the hassle out of cleaning.</p>
+                </div>
+
+                <div class="process-step reveal"
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 120px;">
+                    <div>
+                        <span style="font-size: 5rem; font-weight: 900; color: var(--accent); opacity: 0.1;">1</span>
+                        <h3 style="font-size: 2rem; margin-bottom: 16px;">Select and book the cleaning service that best
+                            fits your needs</h3>
+                        <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 32px;">Customise your
+                            cleaning service to suit your specific needs and schedule it at a time that works best for
+                            you, ensuring a smooth, convenient, and stress-free experience every step of the way.</p>
+                        <a href="https://www.maidathome.com.au/contact-us" class="btn-blue"
+                            style="padding: 14px 32px; display: inline-block;">Contact Us</a>
+                    </div>
+                    <div
+                        style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15);">
+                        <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67d42b4440c92b6dd59be9d1_booking.webp"
+                            alt="Booking" style="width: 100%; display: block;">
+                    </div>
+                </div>
+
+                <div class="process-step reveal"
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 120px;">
+                    <div
+                        style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15); order: 1;">
+                        <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67d42b445881814723d0a82c_waiting.webp"
+                            alt="Confirmation" style="width: 100%; display: block;">
+                    </div>
+                    <div style="order: 2;">
+                        <span style="font-size: 5rem; font-weight: 900; color: var(--accent); opacity: 0.1;">2</span>
+                        <h3 style="font-size: 2rem; margin-bottom: 16px;">Check your email for your confirmation update
+                        </h3>
+                        <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 32px;">Once you've
+                            scheduled your service, simply wait for our confirmation. We'll review everything and ensure
+                            everything is set and ready to go, so you can relax knowing your cleaning is in good hands.
+                        </p>
+                        <a href="https://www.maidathome.com.au/contact-us" class="btn-blue"
+                            style="padding: 14px 32px; display: inline-block;">Contact Us</a>
+                    </div>
+                </div>
+
+                <div class="process-step reveal"
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+                    <div>
+                        <span style="font-size: 5rem; font-weight: 900; color: var(--accent); opacity: 0.1;">3</span>
+                        <h3 style="font-size: 2rem; margin-bottom: 16px;">Relax and revel in the fresh, spotless results
+                        </h3>
+                        <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 32px;">Take a moment to
+                            relax and enjoy the comfort of your freshly cleaned space. With every corner spotless and
+                            every detail carefully addressed, you can unwind knowing the job has been completed to
+                            perfection.</p>
+                        <a href="https://www.maidathome.com.au/contact-us" class="btn-blue"
+                            style="padding: 14px 32px; display: inline-block;">Contact Us</a>
+                    </div>
+                    <div
+                        style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15);">
+                        <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67d42b45720b0eb481558ea3_enjoying.webp"
+                            alt="Enjoying" style="width: 100%; display: block;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" style="padding: 160px 5%; background: var(--surface);">
+            <div style="max-width: 1400px; margin: 0 auto;">
+
+
+                <div class="bento-grid">
+                    <!-- Title Card -->
+                    <div class="bento-item reveal"
+                        style="background: transparent; padding: 40px; border-radius: 32px; display: flex; flex-direction: column; justify-content: center; border: none;">
+                        <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; line-height: 1.2;">
+                            The cleaning you deserve</h2>
+                        <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
+                            Customised
+                            plans,
+                            flexible scheduling, and specialized cleaning solutions.</p>
+                    </div>
+
+                    <a href="airy-clean-services.html#standard-cleaning" class="bento-item reveal"
+                        style="background: white; padding: 40px; border-radius: 32px; text-decoration: none; color: inherit; border: 1px solid #f1f5f9; transition: 0.4s; display: block;">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Standard Clean</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 24px;">Our standard cleaning services offer a
+                            quick and efficient clean for your living space, leaving every room tidy and refreshed.</p>
+                        <span style="color: var(--accent); font-weight: 700;">Contact Us →</span>
+                    </a>
+                    <a href="airy-clean-services.html#deep-cleaning" class="bento-item reveal"
+                        style="background: white; padding: 40px; border-radius: 32px; text-decoration: none; color: inherit; border: 1px solid #f1f5f9; transition: 0.4s; display: block;">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Deep Clean</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 24px;">Our deep cleaning services provide a
+                            thorough and reliable clean for your living space, ensuring every room is fresh.</p>
+                        <span style="color: var(--accent); font-weight: 700;">Contact Us →</span>
+                    </a>
+                    <a href="airy-clean-services.html#move-cleaning" class="bento-item reveal"
+                        style="background: white; padding: 40px; border-radius: 32px; text-decoration: none; color: inherit; border: 1px solid #f1f5f9; transition: 0.4s; display: block;">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Move In/Out Clean</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 24px;">Our move-in/move-out cleaning services
+                            ensure your space is spotless, making your transition smooth and hassle-free.</p>
+                        <span style="color: var(--accent); font-weight: 700;">Contact Us →</span>
+                    </a>
+                    <a href="airy-clean-services.html#steam-cleaning" class="bento-item reveal"
+                        style="background: white; padding: 40px; border-radius: 32px; text-decoration: none; color: inherit; border: 1px solid #f1f5f9; transition: 0.4s; display: block;">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Steam Clean</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 24px;">Our steam cleaning services deep clean
+                            carpets and upholstery, removing dirt and stains for a fresh and refreshed look.</p>
+                        <span style="color: var(--accent); font-weight: 700;">Contact Us →</span>
+                    </a>
+
+
+                    <!-- CTA Card -->
+                    <div class="bento-item reveal"
+                        style="background: linear-gradient(135deg, var(--accent) 0%, #1e40af 100%); padding: 40px; border-radius: 32px; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden;">
+                        <div
+                            style="position: absolute; top: -30px; right: -30px; width: 150px; height: 150px; background: rgba(255,255,255,0.1); border-radius: 50%;">
+                        </div>
+                        <div style="position: relative; z-index: 1;">
+                            <h3 style="font-size: 1.5rem; margin-bottom: 16px; color: white; font-weight: 700;">Ready to
+                                get started?</h3>
+                            <p style="margin-bottom: 28px; opacity: 0.95; line-height: 1.6;">Book your cleaning service
+                                today and experience the difference of a professionally cleaned home.</p>
+                            <a href="https://www.maidathome.com.au/contact-us"
+                                style="display: inline-block; background: white; color: var(--accent); padding: 14px 32px; border-radius: 12px; font-weight: 700; text-decoration: none; transition: 0.3s;">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" style="padding: 160px 5%; background: white;">
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <div style="text-align: center; margin-bottom: 80px;">
+                    <span class="reveal"
+                        style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">Testimonials</span>
+                    <h2 class="reveal"
+                        style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; line-height: 1.1;">What people
+                        say about us</h2>
+                    <p class="reveal"
+                        style="font-size: 1.2rem; color: var(--text-muted); max-width: 900px; margin: 0 auto;">We take
+                        pride in delivering exceptional cleaning services tailored to our clients needs. But don't just
+                        take our word for it—here's what our satisfied customers have to say about their experiences
+                        with us:</p>
+                </div>
+
+            </div>
+
+            <!-- Testimonials Carousel -->
+            <div id="testimonial-carousel"
+                style="overflow-x: hidden; overflow-y: hidden; margin: 0 -5%; padding: 0 5% 40px 5%;">
+                <div style="display: flex; gap: 24px; min-width: min-content;">
+                    <!-- Testimonial 1 -->
+                    <div class="reveal"
+                        style="min-width: 380px; max-width: 380px; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
+                        <div style="margin-bottom: 24px;">
+                            <div style="display: flex; gap: 4px; margin-bottom: 16px;">
+                                <span style="color: #fbbf24; font-size: 1.2rem;">★★★★★</span>
+                            </div>
+                            <h3 style="font-size: 1.3rem; margin-bottom: 12px; font-weight: 700;">Spotless every
+                                time!</h3>
+                            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 24px;">Maid At Home
+                                always leaves my place spotless! The team is friendly, reliable, and super thorough.
+                                It's such a relief to come home to a fresh and clean space. Highly recommend!</p>
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 12px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08);">
+                            <div
+                                style="width: 48px; height: 48px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">
+                                C</div>
+                            <div>
+                                <p style="font-weight: 700; margin: 0; font-size: 1rem;">Christine</p>
+                                <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Richmond</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="reveal"
+                        style="min-width: 380px; max-width: 380px; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
+                        <div style="margin-bottom: 24px;">
+                            <div style="display: flex; gap: 4px; margin-bottom: 16px;">
+                                <span style="color: #fbbf24; font-size: 1.2rem;">★★★★★</span>
+                            </div>
+                            <h3 style="font-size: 1.3rem; margin-bottom: 12px; font-weight: 700;">Attention to
+                                detail is amazing</h3>
+                            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 24px;">I've tried
+                                other cleaning services, but Maid At Home stands out. They actually pay attention to
+                                the little things! My home feels cleaner than ever. So happy I found them!</p>
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 12px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08);">
+                            <div
+                                style="width: 48px; height: 48px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">
+                                A</div>
+                            <div>
+                                <p style="font-weight: 700; margin: 0; font-size: 1rem;">Anna</p>
+                                <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">South Yarra</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="reveal"
+                        style="min-width: 380px; max-width: 380px; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
+                        <div style="margin-bottom: 24px;">
+                            <div style="display: flex; gap: 4px; margin-bottom: 16px;">
+                                <span style="color: #fbbf24; font-size: 1.2rem;">★★★★★</span>
+                            </div>
+                            <h3 style="font-size: 1.3rem; margin-bottom: 12px; font-weight: 700;">Reliable and
+                                hassle-free service</h3>
+                            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 24px;">Booking was
+                                easy, and the cleaners arrived on time. They did an amazing job, and I didn't have
+                                to worry about a thing. Great service from start to finish!</p>
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 12px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08);">
+                            <div
+                                style="width: 48px; height: 48px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">
+                                S</div>
+                            <div>
+                                <p style="font-weight: 700; margin: 0; font-size: 1rem;">Sasha</p>
+                                <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Caulfield</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div class="reveal"
+                        style="min-width: 380px; max-width: 380px; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
+                        <div style="margin-bottom: 24px;">
+                            <div style="display: flex; gap: 4px; margin-bottom: 16px;">
+                                <span style="color: #fbbf24; font-size: 1.2rem;">★★★★★</span>
+                            </div>
+                            <h3 style="font-size: 1.3rem; margin-bottom: 12px; font-weight: 700;">My home feels
+                                brand new</h3>
+                            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 24px;">I can't
+                                believe how fresh my place looks after every clean. The team is efficient and
+                                professional, and they really go the extra mile. Definitely sticking with them!</p>
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 12px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08);">
+                            <div
+                                style="width: 48px; height: 48px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">
+                                M</div>
+                            <div>
+                                <p style="font-weight: 700; margin: 0; font-size: 1rem;">Michelle</p>
+                                <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Collingwood</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 5 -->
+                    <div class="reveal"
+                        style="min-width: 380px; max-width: 380px; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
+                        <div style="margin-bottom: 24px;">
+                            <div style="display: flex; gap: 4px; margin-bottom: 16px;">
+                                <span style="color: #fbbf24; font-size: 1.2rem;">★★★★★</span>
+                            </div>
+                            <h3 style="font-size: 1.3rem; margin-bottom: 12px; font-weight: 700;">The best cleaners
+                                I've hired</h3>
+                            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 24px;">I was blown
+                                away by the quality of the clean. Everything was spotless, and the whole process was
+                                so smooth. Worth every dollar! Highly recommend them to anyone.</p>
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 12px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08);">
+                            <div
+                                style="width: 48px; height: 48px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">
+                                J</div>
+                            <div>
+                                <p style="font-weight: 700; margin: 0; font-size: 1rem;">James</p>
+                                <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Fitzroy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Dot Indicators -->
+            <div id="testimonial-dots" style="display: flex; justify-content: center; gap: 8px; margin-top: 40px;">
+                <button class="testimonial-dot" data-index="0"
+                    style="width: 32px; height: 8px; background: var(--accent); border-radius: 4px; cursor: pointer; transition: 0.3s; border: none; padding: 0;">
+                </button>
+                <button class="testimonial-dot" data-index="1"
+                    style="width: 8px; height: 8px; background: rgba(0,0,0,0.2); border-radius: 50%; cursor: pointer; transition: 0.3s; border: none; padding: 0;">
+                </button>
+                <button class="testimonial-dot" data-index="2"
+                    style="width: 8px; height: 8px; background: rgba(0,0,0,0.2); border-radius: 50%; cursor: pointer; transition: 0.3s; border: none; padding: 0;">
+                </button>
+                <button class="testimonial-dot" data-index="3"
+                    style="width: 8px; height: 8px; background: rgba(0,0,0,0.2); border-radius: 50%; cursor: pointer; transition: 0.3s; border: none; padding: 0;">
+                </button>
+                <button class="testimonial-dot" data-index="4"
+                    style="width: 8px; height: 8px; background: rgba(0,0,0,0.2); border-radius: 50%; cursor: pointer; transition: 0.3s; border: none; padding: 0;">
+                </button>
+            </div>
+            </div>
+        </section>
+
+        <!-- FAQs Section -->
+        <section id="faq" style="padding: 140px 5%; background: var(--surface);">
+            <div
+                style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 100px; align-items: start;">
+                <div class="reveal">
+                    <h2
+                        style="font-size: clamp(3rem, 6vw, 5rem); color: var(--secondary); margin-bottom: 24px; line-height: 1; letter-spacing: -0.05em; font-weight: 800;">
+                        Frequently<br>asked questions</h2>
+                    <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 400px; line-height: 1.6;">
+                        Everything you need to know about our cleaning services and billing.</p>
+
+                    <a href="https://www.maidathome.com.au/faqs" class="btn-blue"
+                        style="display: inline-block; margin-top: 48px; padding: 16px 40px;">View all faqs</a>
+                </div>
+
+                <div class="reveal" style="display: flex; flex-direction: column;">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item" style="border-top: 1px solid rgba(0,0,0,0.1);">
+                        <button class="faq-trigger"
+                            style="width: 100%; padding: 12px 0; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; outline: none; color: var(--secondary);">
+                            <span style="font-size: 1.25rem; font-weight: 700; padding-right: 40px;">What types of
+                                cleaning services do you offer?</span>
+                            <span class="faq-icon"
+                                style="width: 20px; height: 20px; position: relative; transition: 0.4s; flex-shrink: 0;">
+                                <span
+                                    style="position: absolute; top: 50%; left: 0; width: 100%; height: 1.5px; background: var(--accent); transform: translateY(-50%);"></span>
+                                <span class="v-line"
+                                    style="position: absolute; top: 0; left: 50%; width: 1.5px; height: 100%; background: var(--accent); transform: translateX(-50%); transition: 0.4s;"></span>
+                            </span>
+                        </button>
+                        <div class="faq-content"
+                            style="max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                            <p
+                                style="padding-bottom: 12px; color: var(--text-muted); line-height: 1.7; font-size: 1.1rem; margin: 0; max-width: 600px;">
+                                We offer a range of services, including residential cleaning, deep cleaning,
+                                move-in/move-out cleaning, and seasonal deep cleaning.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item" style="border-top: 1px solid rgba(0,0,0,0.1);">
+                        <button class="faq-trigger"
+                            style="width: 100%; padding: 12px 0; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; outline: none; color: var(--secondary);">
+                            <span style="font-size: 1.25rem; font-weight: 700; padding-right: 40px;">Are your cleaning
+                                products eco-friendly?</span>
+                            <span class="faq-icon"
+                                style="width: 20px; height: 20px; position: relative; transition: 0.4s; flex-shrink: 0;">
+                                <span
+                                    style="position: absolute; top: 50%; left: 0; width: 100%; height: 1.5px; background: var(--accent); transform: translateY(-50%);"></span>
+                                <span class="v-line"
+                                    style="position: absolute; top: 0; left: 50%; width: 1.5px; height: 100%; background: var(--accent); transform: translateX(-50%); transition: 0.4s;"></span>
+                            </span>
+                        </button>
+                        <div class="faq-content"
+                            style="max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                            <p
+                                style="padding-bottom: 12px; color: var(--text-muted); line-height: 1.7; font-size: 1.1rem; margin: 0; max-width: 600px;">
+                                Yes, we use eco-friendly and non-toxic cleaning products that are safe for your family,
+                                pets, and the environment. Our goal is to provide a clean home while minimizing our
+                                impact on the planet.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item" style="border-top: 1px solid rgba(0,0,0,0.1);">
+                        <button class="faq-trigger"
+                            style="width: 100%; padding: 12px 0; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; outline: none; color: var(--secondary);">
+                            <span style="font-size: 1.25rem; font-weight: 700; padding-right: 40px;">How do I schedule a
+                                cleaning service?</span>
+                            <span class="faq-icon"
+                                style="width: 20px; height: 20px; position: relative; transition: 0.4s; flex-shrink: 0;">
+                                <span
+                                    style="position: absolute; top: 50%; left: 0; width: 100%; height: 1.5px; background: var(--accent); transform: translateY(-50%);"></span>
+                                <span class="v-line"
+                                    style="position: absolute; top: 0; left: 50%; width: 1.5px; height: 100%; background: var(--accent); transform: translateX(-50%); transition: 0.4s;"></span>
+                            </span>
+                        </button>
+                        <div class="faq-content"
+                            style="max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                            <p
+                                style="padding-bottom: 12px; color: var(--text-muted); line-height: 1.7; font-size: 1.1rem; margin: 0; max-width: 600px;">
+                                Scheduling a cleaning service is easy! You can book through our website, or give us a
+                                call to choose a date and time that works best for you. Once you book, we'll match you
+                                with the right cleaner for the job.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item" style="border-top: 1px solid rgba(0,0,0,0.1);">
+                        <button class="faq-trigger"
+                            style="width: 100%; padding: 12px 0; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; outline: none; color: var(--secondary);">
+                            <span style="font-size: 1.25rem; font-weight: 700; padding-right: 40px;">Do I need to be
+                                home during the cleaning?</span>
+                            <span class="faq-icon"
+                                style="width: 20px; height: 20px; position: relative; transition: 0.4s; flex-shrink: 0;">
+                                <span
+                                    style="position: absolute; top: 50%; left: 0; width: 100%; height: 1.5px; background: var(--accent); transform: translateY(-50%);"></span>
+                                <span class="v-line"
+                                    style="position: absolute; top: 0; left: 50%; width: 1.5px; height: 100%; background: var(--accent); transform: translateX(-50%); transition: 0.4s;"></span>
+                            </span>
+                        </button>
+                        <div class="faq-content"
+                            style="max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                            <p
+                                style="padding-bottom: 12px; color: var(--text-muted); line-height: 1.7; font-size: 1.1rem; margin: 0; max-width: 600px;">
+                                No, you don't have to be home. Many of our clients provide us with access instructions
+                                so we can clean while they're away. However, if you prefer to be present, that's
+                                perfectly fine too!</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item"
+                        style="border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1);">
+                        <button class="faq-trigger"
+                            style="width: 100%; padding: 12px 0; display: flex; align-items: center; justify-content: space-between; background: none; border: none; cursor: pointer; text-align: left; outline: none; color: var(--secondary);">
+                            <span style="font-size: 1.25rem; font-weight: 700; padding-right: 40px;">What if I'm not
+                                satisfied with the cleaning?</span>
+                            <span class="faq-icon"
+                                style="width: 20px; height: 20px; position: relative; transition: 0.4s; flex-shrink: 0;">
+                                <span
+                                    style="position: absolute; top: 50%; left: 0; width: 100%; height: 1.5px; background: var(--accent); transform: translateY(-50%);"></span>
+                                <span class="v-line"
+                                    style="position: absolute; top: 0; left: 50%; width: 1.5px; height: 100%; background: var(--accent); transform: translateX(-50%); transition: 0.4s;"></span>
+                            </span>
+                        </button>
+                        <div class="faq-content"
+                            style="max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                            <p
+                                style="padding-bottom: 12px; color: var(--text-muted); line-height: 1.7; font-size: 1.1rem; margin: 0; max-width: 600px;">
+                                Your satisfaction is our priority. If you're not happy with the service, please let us
+                                know within 24 hours, and we'll arrange a re-clean at no extra cost.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            // FAQ Accordion
+            document.querySelectorAll('.faq-trigger').forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const item = trigger.parentElement;
+                    const content = trigger.nextElementSibling;
+                    const icon = trigger.querySelector('.v-line');
+                    const isActive = item.classList.contains('active');
+
+                    // Close all other items
+                    document.querySelectorAll('.faq-item').forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-content').style.maxHeight = '0';
+                            otherItem.querySelector('.v-line').style.transform = 'translateX(-50%) rotate(0deg)';
+                        }
+                    });
+
+                    // Toggle current item
+                    if (isActive) {
+                        item.classList.remove('active');
+                        content.style.maxHeight = '0';
+                        icon.style.transform = 'translateX(-50%) rotate(0deg)';
+                    } else {
+                        item.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.style.transform = 'translateX(-50%) rotate(90deg)';
+                    }
+                });
+            });
+
+            // Testimonials carousel navigation with dot indicators
+            const testimonialCarousel = document.getElementById('testimonial-carousel');
+            const dots = document.querySelectorAll('.testimonial-dot');
+            let currentIndex = 0;
+
+            if (testimonialCarousel && dots.length > 0) {
+                const scrollAmount = 404; // 380px card width + 24px gap
+
+                // Update active dot
+                function updateDots(index) {
+                    dots.forEach((dot, i) => {
+                        if (i === index) {
+                            dot.style.width = '32px';
+                            dot.style.background = 'var(--accent)';
+                            dot.style.borderRadius = '4px';
+                        } else {
+                            dot.style.width = '8px';
+                            dot.style.background = 'rgba(0,0,0,0.2)';
+                            dot.style.borderRadius = '50%';
+                        }
+                    });
+                }
+
+                // Dot click handlers
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        currentIndex = index;
+                        testimonialCarousel.scrollTo({
+                            left: scrollAmount * index,
+                            behavior: 'smooth'
+                        });
+                        updateDots(index);
+                    });
+                });
+
+                // Update dots on scroll
+                testimonialCarousel.addEventListener('scroll', () => {
+                    const scrollLeft = testimonialCarousel.scrollLeft;
+                    const newIndex = Math.round(scrollLeft / scrollAmount);
+                    if (newIndex !== currentIndex && newIndex >= 0 && newIndex < dots.length) {
+                        currentIndex = newIndex;
+                        updateDots(currentIndex);
+                    }
+                });
+            }
+        </script>
+
+        <!-- Footer -->
+        <footer>
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px;">
+                    <!-- Logo & Description -->
+                    <div class="reveal">
+                        <a href="#" class="logo"
+                            style="color: white; font-size: 1.8rem; margin-bottom: 24px; display: block;">Maid<span>.</span>At<span>.</span>Home</a>
+                        <p
+                            style="color: rgba(255,255,255,0.6); line-height: 1.8; font-size: 1.1rem; max-width: 320px; margin-bottom: 32px;">
+                            Elevating the standard of home cleaning with a 5-star hospitality approach.
+                        </p>
+                        <div style="display: flex; gap: 16px;">
+                            <!-- Facebook -->
+                            <a href="#"
+                                style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
+                                onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
+                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="#"
+                                style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
+                                onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
+                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Company Links -->
+                    <div class="reveal">
+                        <h4
+                            style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
+                            Company</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 16px;"><a href="airy-clean-about.html"
+                                    style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
+                                    onmouseover="this.style.color='white'"
+                                    onmouseout="this.style.color='rgba(255,255,255,0.6)'">About Us</a></li>
+                            <li style="margin-bottom: 16px;"><a href="airy-clean-services.html"
+                                    style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
+                                    onmouseover="this.style.color='white'"
+                                    onmouseout="this.style.color='rgba(255,255,255,0.6)'">Services</a></li>
+                            <li style="margin-bottom: 16px;"><a href="airy-clean-pricing.html"
+                                    style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
+                                    onmouseover="this.style.color='white'"
+                                    onmouseout="this.style.color='rgba(255,255,255,0.6)'">Pricing</a></li>
+                            <li style="margin-bottom: 16px;"><a href="#faq"
+                                    style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
+                                    onmouseover="this.style.color='white'"
+                                    onmouseout="this.style.color='rgba(255,255,255,0.6)'">Suppport</a></li>
+                            <li style="margin-bottom: 16px;"><a href="#"
+                                    style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
+                                    onmouseover="this.style.color='white'"
+                                    onmouseout="this.style.color='rgba(255,255,255,0.6)'">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Hours -->
+                    <div class="reveal">
+                        <h4
+                            style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
+                            Business Hours</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0; color: rgba(255,255,255,0.6);">
+                            <li
+                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                                <span>Mon - Fri</span>
+                                <span style="color: white; font-weight: 600;">8am - 6pm</span>
+                            </li>
+                            <li
+                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                                <span>Sat</span>
+                                <span style="color: white; font-weight: 600;">9am - 4pm</span>
+                            </li>
+                            <li
+                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                                <span>Sun</span>
+                                <span style="color: white; font-weight: 600;">Closed</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="reveal">
+                        <h4
+                            style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
+                            Newsletter</h4>
+                        <p
+                            style="color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 24px; font-size: 1rem;">
+                            Join our newsletter for exclusive tips and deals.
+                        </p>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="email" placeholder="Your email"
+                                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 12px; color: white; outline: none; flex-grow: 1; font-family: inherit;">
+                            <button
+                                style="background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;"
+                                onmouseover="this.style.background='#1d4ed8'; this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.background='var(--accent)'; this.style.transform='scale(1)'">Join</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suburbs SEO Section -->
+                <div style="border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 0;">
+                    <h5
+                        style="color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; font-weight: 700;">
+                        Service Areas</h5>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px 24px;">
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Melbourne CBD</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Southbank</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Docklands</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">St Kilda</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Prahran</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">South Yarra</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Toorak</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Richmond</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Collingwood</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Fitzroy</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Carlton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Brunswick</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Essendon</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Yarraville</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Footscray</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Williamstown</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Brighton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Hampton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Sandringham</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Caulfield</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Elsternwick</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Mentone</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Cheltenham</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Frankston</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Dandenong</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Box Hill</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Glen Waverley</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Camberwell</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Kew</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Balwyn</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Doncaster</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Epping</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Preston</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Northcote</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Moonee Ponds</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Abbotsford</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Windsor</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Armadale</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Malvern</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Hawthorn</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Newport</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Burwood</a>
+                    </div>
+                </div>
+
+                <!-- Bottom Footer -->
+                <div
+                    style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px;">
+                    <p style="color: rgba(255,255,255,0.4); font-size: 0.95rem;">© 2026 Maid At Home. Precision in every
+                        detail.</p>
+                    <div style="display: flex; gap: 32px;">
+                        <a href="#"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.9rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Privacy Policy</a>
+                        <a href="#"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.9rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) document.getElementById('header').classList.add('scrolled');
+            else document.getElementById('header').classList.remove('scrolled');
+        });
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.to(el, { opacity: 1, y: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 90%" } });
+        });
+    </script>
+</body>
+
+</html>
