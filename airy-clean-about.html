@@ -126,6 +126,9 @@
         .hero-about {
             padding: 200px 5% 100px;
             background: linear-gradient(180deg, var(--surface) 0%, white 100%);
+        }
+
+        .hero-inner {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
@@ -302,7 +305,7 @@
         }
 
         @media (max-width: 1024px) {
-            .hero-about {
+            .hero-inner {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
@@ -337,16 +340,19 @@
     <main>
         <!-- Hero Section -->
         <section class="hero-about">
-            <div class="reveal">
-                <h1>Your reliable partner for house cleaning services</h1>
-                <p>We are your reliable partner for professional home care. Our solutions are designed to ensure a
-                    clean, comfortable, and welcoming environment for every household.</p>
-                <a href="#" class="btn-blue" style="padding: 16px 40px; font-size: 1rem; display: inline-block;">Contact
-                    us today</a>
-            </div>
-            <div class="hero-image reveal">
-                <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=1470"
-                    alt="Home Care">
+            <div class="hero-inner">
+                <div class="reveal">
+                    <h1>Your reliable partner for house cleaning services</h1>
+                    <p>We are your reliable partner for professional home care. Our solutions are designed to ensure a
+                        clean, comfortable, and welcoming environment for every household.</p>
+                    <a href="#" class="btn-blue"
+                        style="padding: 16px 40px; font-size: 1rem; display: inline-block;">Contact
+                        us today</a>
+                </div>
+                <div class="hero-image reveal">
+                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=1470"
+                        alt="Home Care">
+                </div>
             </div>
         </section>
 

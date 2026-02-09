@@ -125,6 +125,9 @@
         .hero-services {
             padding: 200px 5% 100px;
             background: linear-gradient(180deg, var(--surface) 0%, white 100%);
+        }
+
+        .hero-inner {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
@@ -321,7 +324,7 @@
         }
 
         @media (max-width: 1024px) {
-            .hero-services {
+            .hero-inner {
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: 60px;
@@ -367,17 +370,19 @@
 
     <main>
         <section class="hero-services">
-            <div class="reveal">
-                <h1 class="reveal">Expert house cleaning tailored to your lifestyle</h1>
-                <p class="reveal">Experience meticulous cleaning tailored to your lifestyle. From routine care to
-                    deep sanitization, we ensure every corner of your home stays exceptionally fresh and perfectly
-                    inviting.</p>
-                <a href="#standard-cleaning" class="btn-blue"
-                    style="padding: 16px 40px; font-size: 1rem; display: inline-block;">Explore all services</a>
-            </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?auto=format&fit=crop&q=80&w=1470"
-                    alt="Premium Cleaning Services">
+            <div class="hero-inner">
+                <div class="reveal">
+                    <h1 class="reveal">Expert house cleaning tailored to your lifestyle</h1>
+                    <p class="reveal">Experience meticulous cleaning tailored to your lifestyle. From routine care to
+                        deep sanitization, we ensure every corner of your home stays exceptionally fresh and perfectly
+                        inviting.</p>
+                    <a href="#standard-cleaning" class="btn-blue"
+                        style="padding: 16px 40px; font-size: 1rem; display: inline-block;">Explore all services</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?auto=format&fit=crop&q=80&w=1470"
+                        alt="Premium Cleaning Services">
+                </div>
             </div>
         </section>
 

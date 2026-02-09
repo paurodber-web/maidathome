@@ -127,6 +127,9 @@
         .hero-pricing {
             padding: 200px 5% 100px;
             background: linear-gradient(180deg, var(--surface) 0%, white 100%);
+        }
+
+        .hero-inner {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
@@ -702,8 +705,11 @@
 
         @media (max-width: 1024px) {
             .hero-pricing {
-                grid-template-columns: 1fr;
                 text-align: center;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
             }
 
             .hero-content p {
@@ -740,15 +746,17 @@
     <main>
         <!-- Hero Section -->
         <section class="hero-pricing">
-            <div class="hero-content reveal">
-                <h1>Transparent pricing for your cleaning needs</h1>
-                <p>Discover clear pricing structures designed for the high standards of Melbourne living. Choose the
-                    exact level of care and frequency your home sanctuary requires to stay pristine.</p>
-                <a href="#plans" class="btn-blue" style="padding: 16px 40px; font-size: 1rem;">Choose the plan</a>
-            </div>
-            <div class="hero-image reveal">
-                <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67e0b5620bebcb031f3a8145_pricing.webp"
-                    alt="Happy family in clean home">
+            <div class="hero-inner">
+                <div class="hero-content reveal">
+                    <h1>Transparent pricing for your cleaning needs</h1>
+                    <p>Discover clear pricing structures designed for the high standards of Melbourne living. Choose the
+                        exact level of care and frequency your home sanctuary requires to stay pristine.</p>
+                    <a href="#plans" class="btn-blue" style="padding: 16px 40px; font-size: 1rem;">Choose the plan</a>
+                </div>
+                <div class="hero-image reveal">
+                    <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67e0b5620bebcb031f3a8145_pricing.webp"
+                        alt="Happy family in clean home">
+                </div>
             </div>
         </section>
 
