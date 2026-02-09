@@ -333,18 +333,11 @@
             color: white;
         }
 
-
         .service-content-wrap {
             max-width: 1400px;
             margin: 0 auto;
             background: transparent;
             padding: 20px 0;
-            position: relative;
-            min-height: 600px;
-        }
-
-        .service-content-wrap>div {
-            transition: opacity 0.4s ease;
         }
 
         .task-grid {
@@ -2091,26 +2084,10 @@
             sections.forEach(s => {
                 const el = document.getElementById(s + '-details');
                 if (s === service) {
-                    // Fade in the selected service
-                    gsap.to(el, {
-                        opacity: 1,
-                        duration: 0.4,
-                        ease: "power2.out",
-                        onStart: () => {
-                            el.style.display = 'block';
-                            el.style.position = 'relative';
-                        }
-                    });
+                    el.style.display = 'block';
+                    gsap.fromTo(el, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" });
                 } else {
-                    // Fade out the other services
-                    gsap.to(el, {
-                        opacity: 0,
-                        duration: 0.3,
-                        ease: "power2.in",
-                        onComplete: () => {
-                            el.style.display = 'none';
-                        }
-                    });
+                    el.style.display = 'none';
                 }
             });
         }
