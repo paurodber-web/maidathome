@@ -1990,6 +1990,7 @@ h1,
     <script src="js/gsap.min.js" defer></script>
     <script src="js/ScrollTrigger.min.js" defer></script>
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
         gsap.registerPlugin(ScrollTrigger);
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) document.getElementById('header').classList.add('scrolled');
@@ -1998,6 +1999,7 @@ h1,
         gsap.utils.toArray('.reveal').forEach(el => {
             gsap.to(el, { opacity: 1, y: 0, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 90%" } });
         });
+    });
 
         // Discount Popup Logic
         const popup = document.getElementById('discountPopup');
