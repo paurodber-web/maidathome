@@ -115,6 +115,112 @@
             color: #2563eb;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            width: 30px;
+            height: 20px;
+            flex-direction: column;
+            justify-content: space-between;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 2000;
+            padding: 0;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background: var(--secondary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-link {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .close-menu-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            font-size: 3rem;
+            line-height: 1;
+            color: var(--secondary);
+            cursor: pointer;
+            padding: 0;
+            transition: 0.3s;
+            z-index: 1501;
+        }
+
+        .close-menu-btn:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 1024px) {
+            header {
+                width: 100%;
+                top: 0;
+                border-radius: 0;
+            }
+
+            .nav-links,
+            .btn-blue:not(.mobile-menu .btn-blue) {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            /* Button in header should be hidden, but we need to target it specifically if it shares class */
+            header .btn-blue {
+                display: none;
+            }
+        }
+
         .btn-blue {
             background: #2563eb;
             color: white;
@@ -353,7 +459,7 @@
             border-radius: 24px;
             padding: 40px;
             height: 100%;
-            \n transition: all 0.3s ease;
+            transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
         }
 
@@ -682,12 +788,89 @@
             }
 
             .pricing-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .pricing-tabs {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .revitalize-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-text h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-header-row {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .task-grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .service-tabs {
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .service-tab-btn {
+            padding: 12px 24px;
+            font-size: 0.9rem;
+        }
+
+        .service-content-wrap {
+            padding: 30px 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-pricing {
+                padding: 140px 5% 60px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .pricing-section,
+            .comparison-section,
+            .extra-services {
+                padding: 60px 5%;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .extras-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                display: grid;
+            }
+
+            .revitalize-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .revitalize-section {
+                padding: 60px 24px;
+                margin: 0 5% 60px;
             }
         }
     </style>
@@ -705,7 +888,23 @@
             <a href="faqs.html" class="nav-link">FAQs</a>
         </nav>
         <a href="booking.html" class="btn-blue">Book Now</a>
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
+
+    <div class="mobile-menu">
+        <button class="close-menu-btn" aria-label="Close menu">&times;</button>
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="about.html" class="mobile-nav-link">About us</a>
+        <a href="services.html" class="mobile-nav-link">Services</a>
+        <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+        <a href="faqs.html" class="mobile-nav-link">FAQs</a>
+        <a href="booking.html" class="btn-blue" style="margin-top: 20px;">Book Now</a>
+    </div>
 
     <main>
         <!-- Hero Section -->
@@ -2067,6 +2266,36 @@
                 }
             });
         });
+
+        // Hamburger Menu
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const closeMenuBtn = document.querySelector('.close-menu-btn');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+
+            if (closeMenuBtn) {
+                closeMenuBtn.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
     </script>
 </body>
 

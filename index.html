@@ -115,6 +115,109 @@
             color: #2563eb;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            width: 30px;
+            height: 20px;
+            flex-direction: column;
+            justify-content: space-between;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 2000;
+            padding: 0;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background: var(--secondary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-link {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .close-menu-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            font-size: 3rem;
+            line-height: 1;
+            color: var(--secondary);
+            cursor: pointer;
+            padding: 0;
+            transition: 0.3s;
+            z-index: 1501;
+        }
+
+        .close-menu-btn:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 1024px) {
+            header {
+                width: 100%;
+                top: 0;
+                border-radius: 0;
+                padding: 0 24px;
+                background: rgba(255, 255, 255, 0.95);
+            }
+
+            .nav-links,
+            .btn-blue.header-btn {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
         .btn-blue {
             background: #2563eb;
             color: white;
@@ -545,24 +648,74 @@
 
         @media (max-width: 1024px) {
 
+            /* Tablet adjustments */
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bento-item.cta-item {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* Mobile adjustments - STRICT STACKING */
             .features-split {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
 
             .bento-grid,
-            .stats-section {
-                grid-template-columns: 1fr;
-                display: block;
+            .stats-section,
+            .revitalize-grid,
+            .features-grid-custom,
+            .process-step-grid {
+                grid-template-columns: 1fr !important;
+                display: grid !important;
             }
 
-            .process-step {
+            .stats-section {
                 flex-direction: column;
-                text-align: center;
+                display: flex !important;
+                align-items: center;
+                gap: 40px;
             }
 
             .stat-item {
-                margin-bottom: 40px;
+                margin-bottom: 0px;
+            }
+
+            .process-step,
+            .process-step-grid {
+                /* Force vertical stacking */
+                grid-template-columns: 1fr !important;
+                flex-direction: column;
+                text-align: center;
+                gap: 40px !important;
+                margin-bottom: 80px !important;
+            }
+
+            /* Reset order for consistency on mobile */
+            .process-step-grid>div,
+            .process-step>div {
+                order: unset !important;
+            }
+
+            /* Ensure images stack nicely */
+            .process-step-grid>div:has(img),
+            .process-step>div:has(img) {
+                margin-bottom: 20px;
+            }
+
+            .process-step-grid.mobile-reverse {
+                display: flex !important;
+                flex-direction: column-reverse;
+            }
+
+            .process-step-grid.mobile-reverse>div:has(img) {
+                margin-bottom: 0px;
+                margin-top: 20px;
             }
         }
 
@@ -728,6 +881,65 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Extracted Grid Styles */
+        .features-grid-custom {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .process-step-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+
+        .process-step-grid:last-of-type {
+            margin-bottom: 0;
+        }
+
+        /* Tablet Responsiveness (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .features-grid-custom {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-step-grid {
+                gap: 40px;
+            }
+
+            .stats-section {
+                gap: 30px;
+                padding-bottom: 60px;
+            }
+
+            .hero-v2 {
+                padding-top: 150px;
+            }
+
+            .hero-v2 h1 {
+                font-size: 3.5rem;
+                /* Manageable size for tablet */
+            }
+
+            section {
+                padding: 100px 5% 80px;
+            }
+
+            .process-step-grid h3 {
+                font-size: 1.75rem !important;
+                /* Slightly smaller headings */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-v2 {
+                padding-top: 120px;
+            }
+        }
     </style>
 </head>
 
@@ -742,8 +954,24 @@
             <a href="contact.html" class="nav-link">Contact</a>
             <a href="faqs.html" class="nav-link">FAQs</a>
         </nav>
-        <a href="booking.html" class="btn-blue">Book Now</a>
+        <a href="booking.html" class="btn-blue header-btn">Book Now</a>
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
+
+    <div class="mobile-menu">
+        <button class="close-menu-btn" aria-label="Close menu">&times;</button>
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="about.html" class="mobile-nav-link">About us</a>
+        <a href="services.html" class="mobile-nav-link">Services</a>
+        <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+        <a href="faqs.html" class="mobile-nav-link">FAQs</a>
+        <a href="booking.html" class="btn-blue" style="margin-top: 20px;">Book Now</a>
+    </div>
 
     <main>
         <section class="hero-v2">
@@ -831,7 +1059,7 @@
                 </div>
 
                 <!-- Feature Cards Grid -->
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+                <div class="features-grid-custom">
                     <div class="feature-card reveal"
                         style="display: flex; flex-direction: column; padding: 48px 40px; background: var(--surface); border-radius: 24px; transition: 0.3s; border: 1px solid rgba(0,0,0,0.05);">
                         <div
@@ -886,8 +1114,7 @@
                         streamlined process takes the hassle out of cleaning.</p>
                 </div>
 
-                <div class="process-step reveal"
-                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 120px;">
+                <div class="process-step-grid reveal">
                     <div>
                         <span style="font-size: 5rem; font-weight: 900; color: var(--accent); opacity: 0.1;">1</span>
                         <h3 style="font-size: 2rem; margin-bottom: 16px;">Select and book the cleaning service that best
@@ -905,14 +1132,13 @@
                     </div>
                 </div>
 
-                <div class="process-step reveal"
-                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 120px;">
+                <div class="process-step-grid reveal mobile-reverse">
                     <div
-                        style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15); order: 1;">
+                        style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15);">
                         <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67d42b445881814723d0a82c_waiting.webp"
                             alt="Confirmation" style="width: 100%; display: block;">
                     </div>
-                    <div style="order: 2;">
+                    <div>
                         <span style="font-size: 5rem; font-weight: 900; color: var(--accent); opacity: 0.1;">2</span>
                         <h3 style="font-size: 2rem; margin-bottom: 16px;">Check your email for your confirmation update
                         </h3>
@@ -925,8 +1151,7 @@
                     </div>
                 </div>
 
-                <div class="process-step reveal"
-                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+                <div class="process-step-grid reveal">
                     <div>
                         <span style="font-size: 5rem; font-weight: 900; color: var(--accent); opacity: 0.1;">3</span>
                         <h3 style="font-size: 2rem; margin-bottom: 16px;">Relax and revel in the fresh, spotless results
@@ -1398,6 +1623,36 @@
                         currentIndex = newIndex;
                         updateDots(currentIndex);
                     }
+                });
+            }
+
+            // Hamburger Menu
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const closeMenuBtn = document.querySelector('.close-menu-btn');
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+                });
+
+                if (closeMenuBtn) {
+                    closeMenuBtn.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                }
+
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
                 });
             }
         </script>
