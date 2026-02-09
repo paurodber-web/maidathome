@@ -35,6 +35,14 @@
             color: var(--text);
             overflow-x: hidden;
             line-height: 1.5;
+            text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        @media (min-width: 1400px) {
+            html {
+                font-size: 18px;
+            }
         }
 
         h1,
@@ -730,14 +738,14 @@
 
 <body>
     <header id="header">
-        <a href="airy-clean-v2.html" class="logo">MaidAtHome<span>.</span></a>
+        <a href="index.html" class="logo">MaidAtHome<span>.</span></a>
         <nav class="nav-links">
-            <a href="airy-clean-v2.html" class="nav-link">Home</a>
-            <a href="airy-clean-about.html" class="nav-link">About us</a>
-            <a href="airy-clean-services.html" class="nav-link">Services</a>
-            <a href="airy-clean-pricing.html" class="nav-link" style="color: var(--accent);">Pricing</a>
-            <a href="airy-clean-contact.html" class="nav-link">Contact</a>
-            <a href="airy-clean-v2.html#faq" class="nav-link">FAQS</a>
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About us</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="pricing.html" class="nav-link" style="color: var(--accent);">Pricing</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="index.html#faq" class="nav-link">FAQS</a>
             <a href="#" class="nav-link">Blog</a>
         </nav>
         <a href="#" class="btn-blue">Book Service</a>

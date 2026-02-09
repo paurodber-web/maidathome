@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans | Maid At Home - Airy Clean</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #0f172a;
+            --accent: #2563eb;
+            --bg: #ffffff;
+            --surface: #f1f5f9;
+            --text: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.5;
+            text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        @media (min-width: 1400px) {
+            html {
+                font-size: 18px;
+            }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--secondary);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 1000;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            top: 0;
+            width: 100%;
+            border-radius: 0;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0f172a;
+            text-decoration: none;
+            letter-spacing: -0.04em;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #0f172a;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #2563eb;
+        }
+
+        .btn-blue {
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .btn-blue:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Pricing */
+        .hero-pricing {
+            padding: 200px 5% 100px;
+            background: linear-gradient(180deg, var(--surface) 0%, white 100%);
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 32px;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .hero-image {
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.15);
+            aspect-ratio: 4 / 3;
+            background: #f8fafc;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 100px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 24px;
+        }
+
+        .pricing-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 60px;
+        }
+
+        .tab-btn {
+            background: var(--surface);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .pricing-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 48px;
+            border-radius: 32px;
+            transition: 0.4s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--primary);
+            background: #f8fafc;
+        }
+
+        .badge {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .plan-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: var(--secondary);
+            display: flex;
+            align-items: baseline;
+        }
+
+        .plan-price span {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-left: 8px;
+        }
+
+        .plan-desc {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .plan-features li svg {
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        /* Comparison Section Redesign */
+        .comparison-section {
+            padding: 120px 5%;
+            background: #f8fafc;
+        }
+
+        .service-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .service-tab-btn {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .service-tab-btn.active {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-content-wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: transparent;
+            padding: 20px 0;
+        }
+
+        .task-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .task-card {
+            border-radius: 32px;
+            padding: 40px;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .task-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        .task-card.kitchen {
+            background: #ede9fe;
+            border-color: #ddd6fe;
+        }
+
+        .task-card.bathrooms {
+            background: #e0f2fe;
+            border-color: #bae6fd;
+        }
+
+        .task-card.living {
+            background: #f1f5f9;
+            border-color: #e2e8f0;
+        }
+
+        .task-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .task-card-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+
+        .task-card-header i,
+        .task-card-header svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .kitchen .task-card-header svg {
+            color: #7c3aed;
+        }
+
+        .bathrooms .task-card-header svg {
+            color: #2563eb;
+        }
+
+        .living .task-card-header svg {
+            color: #64748b;
+        }
+
+        .task-list {
+            list-style: none;
+        }
+
+        .task-item {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .task-item.included {
+            color: var(--secondary);
+        }
+
+        .task-item.excluded {
+            color: #94a3b8;
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .task-item svg {
+            margin-top: 2px;
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+        }
+
+        .kitchen .task-item.included svg {
+            color: #7c3aed;
+        }
+
+        .bathrooms .task-item.included svg {
+            color: #2563eb;
+        }
+
+        .living .task-item.included svg {
+            color: #64748b;
+        }
+
+        .task-item i.plus {
+            font-style: normal;
+            font-weight: 800;
+            font-size: 1.2rem;
+            line-height: 1;
+            margin-top: -2px;
+        }
+
+        .kitchen .task-item i.plus {
+            color: #7c3aed;
+        }
+
+        .bathrooms .task-item i.plus {
+            color: #2563eb;
+        }
+
+        .living .task-item i.plus {
+            color: #64748b;
+        }
+
+        @media (max-width: 1024px) {
+            .task-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .service-tabs {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .service-tab-btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+
+            .service-content-wrap {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Revitalize Section */
+        .revitalize-section {
+            padding: 120px 24px;
+            background: #0f172a;
+            border-radius: 48px;
+            margin: 0 24px 80px;
+            color: #ffffff;
+        }
+
+        .revitalize-section .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 80px;
+            gap: 32px;
+        }
+
+        .header-text h2 {
+            font-size: 3.5rem;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 32px;
+        }
+
+        .header-text p {
+            color: #94a3b8;
+            font-size: 1.125rem;
+            max-width: 600px;
+            font-weight: 500;
+        }
+
+        .view-pricing {
+            color: #38bdf8;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .view-pricing:hover {
+            transform: translateX(8px);
+        }
+
+        .revitalize-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .rev-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 32px;
+            border-radius: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .rev-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .rev-card.featured {
+            background: #2563eb;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+        }
+
+        .rev-card h4 {
+            color: #ffffff;
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+        }
+
+        .rev-desc {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+
+        .rev-card.featured .rev-desc {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .rev-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #22d3ee;
+        }
+
+        .rev-card.featured .rev-price {
+            color: #ffffff;
+        }
+
+        @media (max-width: 1024px) {
+            .revitalize-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-text h2 {
+                font-size: 2.5rem;
+            }
+
+            .section-header-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .revitalize-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Extra Services */
+        .extra-services {
+            padding: 120px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .extra-card {
+            background: white;
+            padding: 24px 32px;
+            border-radius: 20px;
+            border: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .extra-card:hover {
+            border-color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .extra-name {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .extra-price {
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        footer {
+            background: var(--secondary);
+            padding: 100px 5% 40px;
+            color: white;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 24px;
+        }
+
+        .footer-logo span {
+            color: var(--primary);
+        }
+
+        .footer-col h4 {
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-pricing {
+                text-align: center;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content p {
+                margin: 0 auto 40px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <a href="index.html" class="logo">MaidAtHome<span>.</span></a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About us</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="pricing.html" class="nav-link" style="color: var(--accent);">Pricing</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="index.html#faq" class="nav-link">FAQS</a>
+            <a href="#" class="nav-link">Blog</a>
+        </nav>
+        <a href="#" class="btn-blue">Book Service</a>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-pricing">
+            <div class="hero-inner">
+                <div class="hero-content reveal">
+                    <h1>Transparent pricing for your cleaning needs</h1>
+                    <p>Discover clear pricing structures designed for the high standards of Melbourne living. Choose the
+                        exact level of care and frequency your home sanctuary requires to stay pristine.</p>
+                    <a href="#plans" class="btn-blue" style="padding: 16px 40px; font-size: 1rem;">Choose the plan</a>
+                </div>
+                <div class="hero-image reveal">
+                    <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67e0b5620bebcb031f3a8145_pricing.webp"
+                        alt="Happy family in clean home">
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Plans -->
+        <section id="plans" class="pricing-section">
+            <div class="section-header">
+                <span class="reveal"
+                    style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">Explore
+                    Our Pricing</span>
+                <h2 class="reveal">Choose the perfect plan for you</h2>
+                <div class="pricing-tabs reveal">
+                    <button class="tab-btn active" onclick="switchPricing('hourly')">Hourly Rate</button>
+                    <button class="tab-btn" onclick="switchPricing('flat')">Flat Rate</button>
+                </div>
+            </div>
+
+            <!-- Hourly Plans Container -->
+            <div id="hourly-plans" class="pricing-grid">
+                <div class="pricing-card reveal">
+                    <h3 class="plan-name">Once Off</h3>
+                    <div class="plan-price">$60<span>/ hour</span></div>
+                    <p class="plan-desc">Perfect for a deep refresh or a special occasion, our service provides a
+                        thorough clean without regular bookings.</p>
+                    <ul class="plan-features">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Minimum 2 hours</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Detailed Surface Clean</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Eco-Friendly Products</li>
+                    </ul>
+                    <a href="https://www.maidathome.com.au/booking" class="btn-blue"
+                        style="width: 100%; text-align: center;">Book now</a>
+                </div>
+
+                <div class="pricing-card featured reveal">
+                    <div class="badge">Best Value</div>
+                    <h3 class="plan-name">Weekly / Fortnightly</h3>
+                    <div class="plan-price">$54<span>/ hour</span></div>
+                    <p class="plan-desc">Designed for ongoing freshness, our regular service keeps your home spotless
+                        with consistent visits.</p>
+                    <ul class="plan-features">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Minimum 2 hours</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Regular Cleaning Slot</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Dedicated Team</li>
+                    </ul>
+                    <a href="https://www.maidathome.com.au/booking" class="btn-blue"
+                        style="width: 100%; text-align: center;">Book now</a>
+                </div>
+
+                <div class="pricing-card reveal">
+                    <h3 class="plan-name">3 Weekly / Monthly</h3>
+                    <div class="plan-price">$57<span>/ hour</span></div>
+                    <p class="plan-desc">Perfect for occasional upkeep, helping maintain a tidy home with less frequent
+                        but thorough visits.</p>
+                    <ul class="plan-features">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Minimum 2 hours</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Occasional Maintenance</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Fresh & Organized</li>
+                    </ul>
+                    <a href="https://www.maidathome.com.au/booking" class="btn-blue"
+                        style="width: 100%; text-align: center;">Book now</a>
+                </div>
+            </div>
+
+            <!-- Flat Rate Plans Container -->
+            <div id="flat-plans" class="pricing-grid" style="display: none;">
+                <div class="pricing-card reveal">
+                    <h3 class="plan-name">Standard Clean</h3>
+                    <div class="plan-price">$155<span>starting at</span></div>
+                    <p class="plan-desc">Ideal for a fast, efficient clean, this service covers all the essentials to
+                        keep your home fresh and tidy.</p>
+                    <ul class="plan-features">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Essential Areas</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Quick Refresh</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Spotless Basics</li>
+                    </ul>
+                    <a href="https://www.maidathome.com.au/booking" class="btn-blue"
+                        style="width: 100%; text-align: center;">Book now</a>
+                </div>
+
+                <div class="pricing-card featured reveal">
+                    <div class="badge">Recommended</div>
+                    <h3 class="plan-name">Deep Clean</h3>
+                    <div class="plan-price">$215<span>starting at</span></div>
+                    <p class="plan-desc">Ideal for a thorough refresh, this service dives into every detail, tackling
+                        even the toughest spots.</p>
+                    <ul class="plan-features">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Detailed Extraction</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Transformation Clean</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Bottom up Sanitization</li>
+                    </ul>
+                    <a href="https://www.maidathome.com.au/booking" class="btn-blue"
+                        style="width: 100%; text-align: center;">Book now</a>
+                </div>
+
+                <div class="pricing-card reveal">
+                    <h3 class="plan-name">Move In/Out</h3>
+                    <div class="plan-price">$410<span>starting at</span></div>
+                    <p class="plan-desc">Perfect for a fresh start or leaving a clean space behind, ensuring every
+                        corner is spotless and roady to enjoy.</p>
+                    <ul class="plan-features">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Full Property Prep</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Bond Return Ready</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Meticulous Detail</li>
+                    </ul>
+                    <a href="https://www.maidathome.com.au/booking" class="btn-blue"
+                        style="width: 100%; text-align: center;">Book now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section class="comparison-section">
+            <div class="section-header">
+                <span class="reveal"
+                    style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">What
+                    you get</span>
+                <h2 class="reveal">What’s covered in our services</h2>
+            </div>
+
+            <div class="service-tabs reveal">
+                <button class="service-tab-btn active" onclick="switchServiceTab('standard', this)">Standard
+                    Clean</button>
+                <button class="service-tab-btn" onclick="switchServiceTab('deep', this)">Deep Clean</button>
+                <button class="service-tab-btn" onclick="switchServiceTab('move', this)">Move In/Out</button>
+            </div>
+
+            <!-- Standard Clean Details -->
+            <div id="standard-details" class="service-content-wrap reveal">
+                <div class="task-grid">
+                    <div class="task-card kitchen">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21h-10"></path>
+                                <path
+                                    d="M18 14H6c-1.1 0-2 0.9-2 2v3c0 1.1 0.9 2 2 2h12c1.1 0 2-0.9 2-2v-3c0-1.1-0.9-2-2-2Z">
+                                </path>
+                                <path
+                                    d="M12 14c2.8 0 5-2.2 5-5V7c0-1.7-1.3-3-3-3-1.1 0-2.1 0.6-2.6 1.5C10.9 4.6 9.9 4 8.8 4 7.1 4 5.8 5.3 5.8 7v2c0 2.8 2.2 5 5 5Z">
+                                </path>
+                            </svg>
+                            <h3>Kitchen</h3>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean sink & taps</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Wipe countertops</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean exterior appliances</li>
+                        </ul>
+                    </div>
+                    <div class="task-card bathrooms">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z">
+                                </path>
+                            </svg>
+                            <h3>Bathrooms</h3>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Sanitize toilet & shower</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean mirrors & glass</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Mop floors</li>
+                        </ul>
+                    </div>
+                    <div class="task-card living">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"></path>
+                                <path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                                </path>
+                                <path d="M2 13h20"></path>
+                                <path d="M4 18v2"></path>
+                                <path d="M20 18v2"></path>
+                                <path d="M12 4v5"></path>
+                            </svg>
+                            <h3>Living Areas</h3>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Dust surfaces</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum all floors</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Mop hard floors</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deep Clean Details -->
+            <div id="deep-details" class="service-content-wrap reveal" style="display: none;">
+                <div class="task-grid">
+                    <div class="task-card kitchen">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21h-10"></path>
+                                <path
+                                    d="M18 14H6c-1.1 0-2 0.9-2 2v3c0 1.1 0.9 2 2 2h12c1.1 0 2-0.9 2-2v-3c0-1.1-0.9-2-2-2Z">
+                                </path>
+                                <path
+                                    d="M12 14c2.8 0 5-2.2 5-5V7c0-1.7-1.3-3-3-3-1.1 0-2.1 0.6-2.6 1.5C10.9 4.6 9.9 4 8.8 4 7.1 4 5.8 5.3 5.8 7v2c0 2.8 2.2 5 5 5Z">
+                                </path>
+                            </svg>
+                            <h3>Kitchen</h3>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Everything in Standard</li>
+                            <li class="task-item included"><i class="plus">+</i> Clean interior oven</li>
+                            <li class="task-item included"><i class="plus">+</i> Clean interior fridge</li>
+                            <li class="task-item included"><i class="plus">+</i> Clean rangehood & filters</li>
+                        </ul>
+                    </div>
+                    <div class="task-card bathrooms">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z">
+                                </path>
+                            </svg>
+                            <h3>Bathrooms</h3>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Everything in Standard</li>
+                            <li class="task-item included"><i class="plus">+</i> Scrub grout & tiles</li>
+                            <li class="task-item included"><i class="plus">+</i> Remove hard water stains</li>
+                        </ul>
+                    </div>
+                    <div class="task-card living">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"></path>
+                                <path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                                </path>
+                                <path d="M2 13h20"></path>
+                                <path d="M4 18v2"></path>
+                                <path d="M20 18v2"></path>
+                                <path d="M12 4v5"></path>
+                            </svg>
+                            <h3>Living Areas</h3>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Everything in Standard</li>
+                            <li class="task-item included"><i class="plus">+</i> Clean skirting boards</li>
+                            <li class="task-item included"><i class="plus">+</i> Clean windows & frames</li>
+                            <li class="task-item included"><i class="plus">+</i> Clean blinds & curtains</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Move In/Out Details -->
+            <div id="move-details" class="service-content-wrap reveal" style="display: none;">
+                <div class="task-grid">
+                    <div class="task-card kitchen">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21h-10"></path>
+                                <path
+                                    d="M18 14H6c-1.1 0-2 0.9-2 2v3c0 1.1 0.9 2 2 2h12c1.1 0 2-0.9 2-2v-3c0-1.1-0.9-2-2-2Z">
+                                </path>
+                                <path
+                                    d="M12 14c2.8 0 5-2.2 5-5V7c0-1.7-1.3-3-3-3-1.1 0-2.1 0.6-2.6 1.5C10.9 4.6 9.9 4 8.8 4 7.1 4 5.8 5.3 5.8 7v2c0 2.8 2.2 5 5 5Z">
+                                </path>
+                            </svg>
+                            <h3>Kitchen</h3>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Everything in Deep Clean</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                    </polygon>
+                                </svg> Bond guarantee included</li>
+                        </ul>
+                    </div>
+                    <div class="task-card bathrooms">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z">
+                                </path>
+                            </svg>
+                            <h3>Bathrooms</h3>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Everything in Deep Clean</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                    </polygon>
+                                </svg> Professional grade finish</li>
+                        </ul>
+                    </div>
+                    <div class="task-card living">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"></path>
+                                <path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                                </path>
+                                <path d="M2 13h20"></path>
+                                <path d="M4 18v2"></path>
+                                <path d="M20 18v2"></path>
+                                <path d="M12 4v5"></path>
+                            </svg>
+                            <h3>Living Areas</h3>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Everything in Deep Clean</li>
+                            <li class="task-item included"><i class="plus">+</i> Steam clean carpets</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                    </polygon>
+                                </svg> Full property detail</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Extra Services -->
+        <section class="extra-services">
+            <div class="section-header">
+                <span class="reveal"
+                    style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">Custom
+                    Add-ons</span>
+                <h2 class="reveal">Extra services for your home</h2>
+            </div>
+            <div class="extras-grid reveal">
+                <div class="extra-card"><span class="extra-name">Deep clean add-on</span><span class="extra-price">$60 -
+                        $100</span></div>
+                <div class="extra-card"><span class="extra-name">Move in / out clean</span><span
+                        class="extra-price">$255 - $395</span></div>
+                <div class="extra-card"><span class="extra-name">Inside oven</span><span class="extra-price">$65</span>
+                </div>
+                <div class="extra-card"><span class="extra-name">Inside fridge</span><span
+                        class="extra-price">$30</span></div>
+                <div class="extra-card"><span class="extra-name">Inside drawers / cabinets</span><span
+                        class="extra-price">$40 - $60</span></div>
+                <div class="extra-card"><span class="extra-name">Balcony clean</span><span
+                        class="extra-price">$35</span></div>
+                <div class="extra-card"><span class="extra-name">Inside windows</span><span class="extra-price">$70 -
+                        $130</span></div>
+                <div class="extra-card"><span class="extra-name">Bed changing</span><span class="extra-price">$10 /
+                        bed</span></div>
+                <div class="extra-card"><span class="extra-name">Wall cleaning</span><span class="extra-price">$25 /
+                        wall</span></div>
+                <div class="extra-card"><span class="extra-name">Steam clean</span><span class="extra-price">$55 /
+                        room</span></div>
+                <div class="extra-card"><span class="extra-name">Dish washing</span><span class="extra-price">$30</span>
+                </div>
+                <div class="extra-card"><span class="extra-name">Wet wiping blinds</span><span class="extra-price">$20 /
+                        blind</span></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <!-- Footer -->
+        <footer>
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px;">
+                    <!-- Logo & Description -->
+                    <div class="reveal">
+                        <a href="airy-clean-v2.html" class="logo"
+                            style="color: white; font-size: 1.8rem; margin-bottom: 24px; display: block;">Maid<span>.</span>At<span>.</span>Home</a>
+                        <p
+                            style="color: rgba(255,255,255,0.6); line-height: 1.8; font-size: 1.1rem; max-width: 320px; margin-bottom: 32px;">
+                            Elevating the standard of home cleaning with a 5-star hospitality approach.
+                        </p>
+                        <div style="display: flex; gap: 16px;">
+                            <!-- Facebook -->
+                            <a href="#"
+                                style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
+                                onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
+                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="#"
+                                style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
+                                onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
+                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Company Links -->
+                    <div class="reveal">
+                        <h4
+                            style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
+                            Company</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 16px;"><a href="airy-clean-about.html"
+                                    style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
+                                    onmouseover="this.style.color='white'"
+                                    onmouseout="this.style.color='rgba(255,255,255,0.6)'">About Us</a></li>
+                            <li style="margin-bottom: 16px;"><a href="airy-clean-services.html"
+                                    style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
+                                    onmouseover="this.style.color='white'"
+                                    onmouseout="this.style.color='rgba(255,255,255,0.6)'">Services</a></li>
+                            <li style="margin-bottom: 16px;"><a href="airy-clean-pricing.html"
+                                    style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
+                                    onmouseover="this.style.color='white'"
+                                    onmouseout="this.style.color='rgba(255,255,255,0.6)'">Pricing</a></li>
+                            <li style="margin-bottom: 16px;"><a href="airy-clean-v2.html#faq"
+                                    style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
+                                    onmouseover="this.style.color='white'"
+                                    onmouseout="this.style.color='rgba(255,255,255,0.6)'">Suppport</a></li>
+                            <li style="margin-bottom: 16px;"><a href="#"
+                                    style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
+                                    onmouseover="this.style.color='white'"
+                                    onmouseout="this.style.color='rgba(255,255,255,0.6)'">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Hours -->
+                    <div class="reveal">
+                        <h4
+                            style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
+                            Business Hours</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0; color: rgba(255,255,255,0.6);">
+                            <li
+                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                                <span>Mon - Fri</span>
+                                <span style="color: white; font-weight: 600;">8am - 6pm</span>
+                            </li>
+                            <li
+                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                                <span>Sat</span>
+                                <span style="color: white; font-weight: 600;">9am - 4pm</span>
+                            </li>
+                            <li
+                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                                <span>Sun</span>
+                                <span style="color: white; font-weight: 600;">Closed</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="reveal">
+                        <h4
+                            style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
+                            Newsletter</h4>
+                        <p
+                            style="color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 24px; font-size: 1rem;">
+                            Join our newsletter for exclusive tips and deals.
+                        </p>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="email" placeholder="Your email"
+                                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 12px; color: white; outline: none; flex-grow: 1; font-family: inherit;">
+                            <button
+                                style="background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;"
+                                onmouseover="this.style.background='#1d4ed8'; this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.background='var(--accent)'; this.style.transform='scale(1)'">Join</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suburbs SEO Section -->
+                <div style="border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 0;">
+                    <h5
+                        style="color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; font-weight: 700;">
+                        Service Areas</h5>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px 24px;">
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Melbourne CBD</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Southbank</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Docklands</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">St Kilda</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Prahran</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">South Yarra</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Toorak</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Richmond</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Collingwood</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Fitzroy</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Carlton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Brunswick</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Essendon</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Yarraville</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Footscray</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Williamstown</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Brighton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Hampton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Sandringham</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Caulfield</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Elsternwick</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Mentone</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Cheltenham</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Frankston</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Dandenong</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Box Hill</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Glen Waverley</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Camberwell</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Kew</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Balwyn</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Doncaster</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Epping</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Preston</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Northcote</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Moonee Ponds</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Abbotsford</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Windsor</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Armadale</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Malvern</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Hawthorn</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Newport</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Burwood</a>
+                    </div>
+                </div>
+
+                <!-- Bottom Footer -->
+                <div
+                    style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px;">
+                    <p style="color: rgba(255,255,255,0.4); font-size: 0.95rem;">© 2026 Maid At Home. Precision in every
+                        detail.</p>
+                    <div style="display: flex; gap: 32px;">
+                        <a href="#"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.9rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Privacy Policy</a>
+                        <a href="#"
+                            style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.9rem; transition: 0.3s;"
+                            onmouseover="this.style.color='white'"
+                            onmouseout="this.style.color='rgba(255,255,255,0.4)'">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) document.getElementById('header').classList.add('scrolled');
+            else document.getElementById('header').classList.remove('scrolled');
+        });
+
+        // Pricing Toggle Logic
+        function switchPricing(type) {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(btn => btn.classList.remove('active'));
+            if (type === 'hourly') {
+                tabs[0].classList.add('active');
+                gsap.to('#flat-plans', {
+                    opacity: 0, y: 10, duration: 0.2, onComplete: () => {
+                        document.getElementById('flat-plans').style.display = 'none';
+                        document.getElementById('hourly-plans').style.display = 'grid';
+                        gsap.fromTo('#hourly-plans', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 });
+                    }
+                });
+            } else {
+                tabs[1].classList.add('active');
+                gsap.to('#hourly-plans', {
+                    opacity: 0, y: 10, duration: 0.2, onComplete: () => {
+                        document.getElementById('hourly-plans').style.display = 'none';
+                        document.getElementById('flat-plans').style.display = 'grid';
+                        gsap.fromTo('#flat-plans', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 });
+                    }
+                });
+            }
+        }
+
+        // Service Details Tabs Logic
+        function switchServiceTab(service, btn) {
+            const btns = document.querySelectorAll('.service-tab-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const sections = ['standard', 'deep', 'move'];
+            sections.forEach(s => {
+                const el = document.getElementById(s + '-details');
+                if (s === service) {
+                    el.style.display = 'block';
+                    gsap.fromTo(el, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" });
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+
+        // Reveal animations
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "expo.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%",
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

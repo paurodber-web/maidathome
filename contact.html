@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services | Maid At Home - Airy Clean</title>
+    <title>Contact Us | Maid At Home - Airy Clean</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -35,6 +35,14 @@
             color: var(--text);
             overflow-x: hidden;
             line-height: 1.5;
+            text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        @media (min-width: 1400px) {
+            html {
+                font-size: 18px;
+            }
         }
 
         h1,
@@ -115,6 +123,8 @@
             font-weight: 700;
             font-size: 0.85rem;
             transition: 0.3s;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-blue:hover {
@@ -122,7 +132,8 @@
             transform: translateY(-2px);
         }
 
-        .hero-services {
+        /* Hero Contact */
+        .hero-contact {
             padding: 200px 5% 100px;
             background: linear-gradient(180deg, var(--surface) 0%, white 100%);
         }
@@ -136,19 +147,17 @@
             margin: 0 auto;
         }
 
-        .hero-services h1 {
+        .hero-contact h1 {
             font-size: clamp(3rem, 6vw, 4.5rem);
             line-height: 1.1;
             margin-bottom: 32px;
-            text-align: left;
         }
 
-        .hero-services p {
+        .hero-contact p {
             font-size: 1.25rem;
             color: var(--text-muted);
             line-height: 1.7;
             max-width: 600px;
-            text-align: left;
             margin-bottom: 40px;
         }
 
@@ -167,412 +176,335 @@
             display: block;
         }
 
-        .service-detail-section {
+        /* Contact Form Section */
+        .contact-section {
             padding: 120px 5%;
+            background: white;
         }
 
-        .service-container {
+        .content-container {
             max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            align-items: center;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: start;
         }
 
-        .service-content h2 {
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            margin-bottom: 32px;
-            line-height: 1.1;
-        }
-
-        .service-content p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-
-        .feature-list {
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 48px;
-        }
-
-        .feature-list li {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 600;
-            color: var(--secondary);
-        }
-
-        .feature-list li svg {
-            color: var(--accent);
-            flex-shrink: 0;
-        }
-
-        .service-image {
-            border-radius: 40px;
-            overflow: hidden;
-            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Alternate layout for even sections */
-        .service-detail-section:nth-child(even) .service-container {
-            direction: rtl;
-        }
-
-        .service-detail-section:nth-child(even) .service-content {
-            direction: ltr;
-        }
-
-        .cta-section {
-            padding: 140px 5%;
-            background: var(--surface);
-            text-align: center;
-        }
-
-        .cta-box {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            padding: 80px 40px;
-            border-radius: 40px;
-            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.05);
-        }
-
-        .cta-box h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+        .contact-info h2 {
+            font-size: 2.5rem;
             margin-bottom: 24px;
         }
 
-        .cta-box p {
-            font-size: 1.2rem;
+        .contact-info p {
+            font-size: 1.1rem;
             color: var(--text-muted);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            line-height: 1.8;
+            margin-bottom: 48px;
         }
 
+        .info-item {
+            display: flex;
+            align-items: start;
+            gap: 20px;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: var(--surface);
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .info-item:hover {
+            background: white;
+            box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.08);
+            transform: translateX(10px);
+        }
+
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .info-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .info-content p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--surface);
+            padding: 48px;
+            border-radius: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            transition: 0.3s;
+            background: white;
+            color: var(--text);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px 32px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 12px;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 20px 60px -10px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Footer */
         footer {
             background: var(--secondary);
             padding: 100px 5% 40px;
             color: white;
         }
 
-        .footer-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 60px;
-            margin-bottom: 80px;
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: white;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 24px;
-        }
-
-        .footer-logo span {
-            color: var(--primary);
-        }
-
-        .footer-col h4 {
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 32px;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 16px;
-        }
-
-        .footer-col ul li a {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .footer-col ul li a:hover {
-            color: white;
-        }
-
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
         }
 
-        @media (max-width: 1024px) {
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-contact {
+                padding: 150px 5% 80px;
+            }
+
             .hero-inner {
                 grid-template-columns: 1fr;
-                text-align: center;
                 gap: 60px;
             }
 
-            .hero-services h1,
-            .hero-services p {
-                text-align: center;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .service-container {
+            .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 60px;
             }
 
-            .feature-list {
+            .form-row {
                 grid-template-columns: 1fr;
             }
 
-            .service-detail-section:nth-child(even) .service-container {
-                direction: ltr;
+            .contact-form {
+                padding: 32px 24px;
+            }
+
+            .nav-links {
+                display: none;
             }
         }
     </style>
 </head>
 
 <body>
-    <header id="header">
-        <a href="airy-clean-v2.html" class="logo">MaidAtHome<span>.</span></a>
-        <nav class="nav-links">
-            <a href="airy-clean-v2.html" class="nav-link">Home</a>
-            <a href="airy-clean-about.html" class="nav-link">About us</a>
-            <a href="airy-clean-services.html" class="nav-link">Services</a>
-            <a href="airy-clean-pricing.html" class="nav-link">Pricing</a>
-            <a href="airy-clean-contact.html" class="nav-link">Contact</a>
-            <a href="airy-clean-v2.html#faq" class="nav-link">FAQS</a>
-            <a href="#" class="nav-link">Blog</a>
-        </nav>
-        <a href="#" class="btn-blue">Book Service</a>
-    </header>
-
     <main>
-        <section class="hero-services">
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="logo">Maid<span>.</span>At<span>.</span>Home</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <a href="#contact-form" class="btn-blue">Get in Touch</a>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-contact">
             <div class="hero-inner">
-                <div class="reveal">
-                    <h1 class="reveal">Expert house cleaning tailored to your lifestyle</h1>
-                    <p class="reveal">Experience meticulous cleaning tailored to your lifestyle. From routine care to
-                        deep sanitization, we ensure every corner of your home stays exceptionally fresh and perfectly
-                        inviting.</p>
-                    <a href="#standard-cleaning" class="btn-blue"
-                        style="padding: 16px 40px; font-size: 1rem; display: inline-block;">Explore all services</a>
+                <div>
+                    <h1>Let's Transform Your Space Together</h1>
+                    <p>Ready to experience the difference? Reach out to us today and discover how our premium cleaning
+                        services can elevate your home or office to new heights of cleanliness and comfort.</p>
+                    <a href="#contact-form" class="btn-blue" style="padding: 20px 50px; font-size: 1.1rem;">Start Your
+                        Journey</a>
                 </div>
                 <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?auto=format&fit=crop&q=80&w=1470"
-                        alt="Premium Cleaning Services">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop"
+                        alt="Contact Maid At Home">
                 </div>
             </div>
         </section>
 
-        <!-- Standard Cleaning -->
-        <section id="standard-cleaning" class="service-detail-section">
-            <div class="service-container">
-                <div class="service-content reveal">
-                    <h2>Standard Clean</h2>
-                    <p>Our standard cleaning is perfect for maintaining a fresh, healthy environment on a regular basis.
-                        We focus on high-traffic areas and surface-level meticulously to ensure your day-to-day living
-                        remains effortless.</p>
-                    <ul class="feature-list">
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Dusting & Polishing</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Vacuuming & Mopping</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Kitchen Surfaces</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Bathroom Sanitising</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Tidying & Organization</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Bin Disposal</li>
-                    </ul>
-                    <a href="https://www.maidathome.com.au/contact-us" class="btn-blue"
-                        style="padding: 16px 40px; font-size: 1rem;">Book Now</a>
-                </div>
-                <div class="service-image reveal">
-                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1470"
-                        alt="Standard House Cleaning">
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact-form">
+            <div class="content-container">
+                <div class="contact-grid">
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <h2>Get in Touch</h2>
+                        <p>We're here to answer your questions and provide you with a personalized cleaning solution
+                            that fits your needs perfectly.</p>
+
+                        <div class="info-item reveal">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="info-content">
+                                <h3>Phone</h3>
+                                <p>+61 3 9876 5432</p>
+                                <p style="font-size: 0.9rem; margin-top: 4px;">Mon-Fri: 8am - 6pm, Sat: 9am - 4pm</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item reveal">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                    </path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="info-content">
+                                <h3>Email</h3>
+                                <p>hello@maidathome.com.au</p>
+                                <p style="font-size: 0.9rem; margin-top: 4px;">We'll respond within 24 hours</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item reveal">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div class="info-content">
+                                <h3>Service Area</h3>
+                                <p>Greater Melbourne Area</p>
+                                <p style="font-size: 0.9rem; margin-top: 4px;">Covering 40+ suburbs across Melbourne
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form reveal">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="service">Service Type *</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Select a service</option>
+                                    <option value="regular">Regular Cleaning</option>
+                                    <option value="deep">Deep Cleaning</option>
+                                    <option value="move">Move In/Out Cleaning</option>
+                                    <option value="office">Office Cleaning</option>
+                                    <option value="carpet">Carpet Cleaning</option>
+                                    <option value="window">Window Cleaning</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" required
+                                    placeholder="Tell us about your cleaning needs..."></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Deep Cleaning -->
-        <section id="deep-cleaning" class="service-detail-section" style="background: var(--surface);">
-            <div class="service-container">
-                <div class="service-content reveal">
-                    <h2>Deep Clean</h2>
-                    <p>Designed for homes that need extra attention. Our deep cleaning service goes beneath the surface,
-                        reaching the hidden areas that are often missed during regular maintenance. Ideal for seasonal
-                        refreshes or first-time appointments.</p>
-                    <ul class="feature-list">
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Inside Cabinets</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Baseboard Scrubbing</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Oven & Fridge Deep Clean</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Window Tracks & Sills</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Door Frames & Handles</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Tile Grout Detail</li>
-                    </ul>
-                    <a href="https://www.maidathome.com.au/contact-us" class="btn-blue"
-                        style="padding: 16px 40px; font-size: 1rem;">Go Deep</a>
-                </div>
-                <div class="service-image reveal">
-                    <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=80&w=1471"
-                        alt="Deep Cleaning">
-                </div>
-            </div>
-        </section>
-
-        <!-- Move In/Out -->
-        <section id="move-cleaning" class="service-detail-section">
-            <div class="service-container">
-                <div class="service-content reveal">
-                    <h2>Move In / Out Clean</h2>
-                    <p>Transitioning to a new home should be a joy, not a chore. We provide a complete, empty-house
-                        cleaning that meets bond return standards, ensuring the property is pristine for the next
-                        occupants or ready for your furniture.</p>
-                    <ul class="feature-list">
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Bond Return Guarantee</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Exhaust Fan Detail</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Full Property Sanitation</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Wall Marks Removal</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Closet & Drawer Detail</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Light Fixtures Cleaning</li>
-                    </ul>
-                    <a href="https://www.maidathome.com.au/contact-us" class="btn-blue"
-                        style="padding: 16px 40px; font-size: 1rem;">Get Moving</a>
-                </div>
-                <div class="service-image reveal">
-                    <img src="https://images.unsplash.com/photo-1603614486387-276f74fcbe2a?auto=format&fit=crop&q=80&w=1470"
-                        alt="Move In Out Cleaning">
-                </div>
-            </div>
-        </section>
-
-        <!-- Steam Cleaning -->
-        <section id="steam-cleaning" class="service-detail-section" style="background: var(--surface);">
-            <div class="service-container">
-                <div class="service-content reveal">
-                    <h2>Steam Clean</h2>
-                    <p>Revitalize your carpets and upholstery with our industrial-strength steam cleaning. Using heat
-                        and specialized solutions, we eliminate allergens, stains, and bacteria trapped deep within the
-                        fibers.</p>
-                    <ul class="feature-list">
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Hot Water Extraction</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Eco-Friendly Solutions</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Allergen Removal</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Stain Treatment</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Odour Elimination</li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>Quick Drying Time</li>
-                    </ul>
-                    <a href="https://www.maidathome.com.au/contact-us" class="btn-blue"
-                        style="padding: 16px 40px; font-size: 1rem;">Steam Now</a>
-                </div>
-                <div class="service-image reveal">
-                    <img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&q=80&w=1470"
-                        alt="Steam Cleaning">
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Box -->
-        <section class="cta-section">
-            <div class="cta-box reveal">
-                <h2>Ready for a pristine home?</h2>
-                <p>Join thousands of happy Australian homeowners who trust Maid At Home for their weekly sanctuary.</p>
-                <a href="https://www.maidathome.com.au/contact-us" class="btn-blue"
-                    style="padding: 20px 50px; font-size: 1.1rem;">Request Your Quote</a>
-            </div>
-        </section>
-
-        <!-- Footer (Replicated for Consistency) -->
         <!-- Footer -->
         <footer>
             <div style="max-width: 1400px; margin: 0 auto;">
@@ -580,7 +512,7 @@
                     style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px;">
                     <!-- Logo & Description -->
                     <div class="reveal">
-                        <a href="airy-clean-v2.html" class="logo"
+                        <a href="index.html" class="logo"
                             style="color: white; font-size: 1.8rem; margin-bottom: 24px; display: block;">Maid<span>.</span>At<span>.</span>Home</a>
                         <p
                             style="color: rgba(255,255,255,0.6); line-height: 1.8; font-size: 1.1rem; max-width: 320px; margin-bottom: 32px;">
@@ -617,23 +549,23 @@
                             style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
                             Company</h4>
                         <ul style="list-style: none; padding: 0; margin: 0;">
-                            <li style="margin-bottom: 16px;"><a href="airy-clean-about.html"
+                            <li style="margin-bottom: 16px;"><a href="about.html"
                                     style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
                                     onmouseover="this.style.color='white'"
                                     onmouseout="this.style.color='rgba(255,255,255,0.6)'">About Us</a></li>
-                            <li style="margin-bottom: 16px;"><a href="airy-clean-services.html"
+                            <li style="margin-bottom: 16px;"><a href="services.html"
                                     style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
                                     onmouseover="this.style.color='white'"
                                     onmouseout="this.style.color='rgba(255,255,255,0.6)'">Services</a></li>
-                            <li style="margin-bottom: 16px;"><a href="airy-clean-pricing.html"
+                            <li style="margin-bottom: 16px;"><a href="pricing.html"
                                     style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
                                     onmouseover="this.style.color='white'"
                                     onmouseout="this.style.color='rgba(255,255,255,0.6)'">Pricing</a></li>
-                            <li style="margin-bottom: 16px;"><a href="airy-clean-v2.html#faq"
+                            <li style="margin-bottom: 16px;"><a href="index.html#faq"
                                     style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
                                     onmouseover="this.style.color='white'"
                                     onmouseout="this.style.color='rgba(255,255,255,0.6)'">Suppport</a></li>
-                            <li style="margin-bottom: 16px;"><a href="#"
+                            <li style="margin-bottom: 16px;"><a href="contact.html"
                                     style="color: rgba(255,255,255,0.6); text-decoration: none; transition: 0.3s; font-size: 1.05rem;"
                                     onmouseover="this.style.color='white'"
                                     onmouseout="this.style.color='rgba(255,255,255,0.6)'">Contact</a></li>
