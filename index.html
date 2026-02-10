@@ -1917,6 +1917,15 @@
             const popup = document.getElementById('discountPopup');
             let popupShown = false;
 
+            // Detect mobile for performance optimization
+            const isMobile = window.innerWidth < 768;
+
+            // Configure ScrollTrigger for better performance
+            ScrollTrigger.config({
+                limitCallbacks: true,
+                syncInterval: isMobile ? 150 : 0 // Reduce update frequency on mobile
+            });
+
             // Optimized Header Scroll
             ScrollTrigger.create({
                 start: "top -50",
@@ -1938,20 +1947,28 @@
                 }
             });
 
-            // Reveal animations
-            gsap.utils.toArray('.reveal').forEach(el => {
-                gsap.to(el, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.2,
-                    ease: "expo.out",
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 90%",
-                        once: true
-                    }
+            // Reveal animations - simplified on mobile
+            if (!isMobile) {
+                gsap.utils.toArray('.reveal').forEach(el => {
+                    gsap.to(el, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.2,
+                        ease: "expo.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 90%",
+                            once: true
+                        }
+                    });
                 });
-            });
+            } else {
+                // On mobile, just show elements without animation
+                document.querySelectorAll('.reveal').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+            }
 
         });
 
