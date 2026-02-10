@@ -608,6 +608,7 @@
                 display: grid;
             }
         }
+    .suburb-link:hover { color: white !important; }
     </style>
 </head>
 
@@ -1330,13 +1331,15 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
         gsap.registerPlugin(ScrollTrigger);
+            // Optimized Header Scroll (Prevents Forced Reflow)
+            ScrollTrigger.create({
+                start: "top -50",
+                onEnter: () => document.getElementById('header').classList.add('scrolled'),
+                onLeaveBack: () => document.getElementById('header').classList.remove('scrolled')
+            });
 
         // Header Scroll Effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
-        });
+        
 
         // Accordion Logic
         document.querySelectorAll('.faq-header').forEach(header => {
@@ -1362,13 +1365,21 @@
         const sections = document.querySelectorAll('.faq-section');
         const navLinks = document.querySelectorAll('.faq-nav-link');
 
-        window.addEventListener('scroll', () => {
-            let current = sections[0].getAttribute('id');
+        // Optimized Active Nav Link on Scroll (Prevents Forced Reflow)
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top 300px",
+                    end: "bottom 300px",
+                    onToggle: self => {
+                        if (self.isActive) {
+                            const currentId = section.getAttribute('id');
+                            navLinks.forEach(link => {
+                                link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
+                            });
+                        }
+                    }
+                });
             });
 
             navLinks.forEach(link => {
@@ -1388,13 +1399,13 @@
                 ease: "expo.out",
                 scrollTrigger: {
                     trigger: el,
-                    start: "top 90%",
+                    start: "top 90%", once: true, once: true,
                 }
             });
         });
 
         // Trigger scroll on load
-        window.dispatchEvent(new Event('scroll'));
+        
     </script>
     <script>
         // Hamburger Menu
