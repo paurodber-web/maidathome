@@ -262,11 +262,8 @@
             }
         }
     </style>
-    <!-- Load non-critical CSS asynchronously -->
-    <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="css/main.css">
-    </noscript>
+    <!-- Load CSS synchronously to prevent FOUC -->
+    <link rel="stylesheet" href="css/main.css">
     <style>
         /* Page specific styles */
         .hero-v2 {
