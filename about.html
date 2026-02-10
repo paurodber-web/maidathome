@@ -468,12 +468,14 @@
         .gsap-image-reveal {
             clip-path: inset(0 100% 0 0);
             transform: scale(1.2);
-            transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s expo.out;
         }
 
         .gsap-image-reveal.active {
             clip-path: inset(0 0 0 0);
             transform: scale(1);
+            opacity: 1;
         }
 
         .banner-wrap img {
@@ -601,7 +603,7 @@
                         style="padding: 16px 40px; font-size: 1rem; display: inline-block;">Contact
                         us today</a>
                 </div>
-                <div class="hero-image reveal gsap-image-reveal">
+                <div class="hero-image gsap-image-reveal">
                     <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=1470"
                         alt="Home Care">
                 </div>
@@ -699,7 +701,7 @@
         <section class="about-section">
             <div class="content-container"
                 style="display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;">
-                <div class="reveal gsap-image-reveal"
+                <div class="gsap-image-reveal"
                     style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.1);">
                     <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80&w=1470"
                         alt="Professional Clean" style="width: 100%; display: block;">

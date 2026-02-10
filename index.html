@@ -178,12 +178,14 @@
         .gsap-image-reveal {
             clip-path: inset(0 100% 0 0);
             transform: scale(1.2);
-            transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s expo.out;
         }
 
         .gsap-image-reveal.active {
             clip-path: inset(0 0 0 0);
             transform: scale(1);
+            opacity: 1;
         }
 
         header {
@@ -1250,15 +1252,16 @@
                 <div class="process-step-grid reveal">
                     <div>
                         <span style="font-size: 5rem; font-weight: 900; color: var(--accent); opacity: 0.1;">1</span>
-                        <h3 style="font-size: 2rem; margin-bottom: 16px;">Select and book the cleaning service that best
-                            fits your needs</h3>
+                        <div class="pseudo-h3" style="font-size: 2rem; margin-bottom: 16px;">Select and book the
+                            cleaning service that best
+                            fits your needs</div>
                         <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 32px;">Customise your
                             cleaning service to suit your specific needs and schedule it at a time that works best for
                             you, ensuring a smooth, convenient, and stress-free experience every step of the way.</p>
                         <a href="https://www.maidathome.com.au/contact-us" class="btn-blue"
                             style="padding: 14px 32px; display: inline-block;">Get a Quote</a>
                     </div>
-                    <div class="reveal gsap-image-reveal"
+                    <div class="gsap-image-reveal"
                         style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15);">
                         <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67d42b4440c92b6dd59be9d1_booking.webp"
                             alt="Booking" width="800" height="600" style="width: 100%; height: auto; display: block;"
@@ -1267,7 +1270,7 @@
                 </div>
 
                 <div class="process-step-grid reveal mobile-reverse">
-                    <div class="reveal gsap-image-reveal"
+                    <div class="gsap-image-reveal"
                         style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15);">
                         <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67d42b445881814723d0a82c_waiting.webp"
                             alt="Confirmation" width="800" height="600"
@@ -1275,8 +1278,9 @@
                     </div>
                     <div>
                         <span style="font-size: 5rem; font-weight: 900; color: var(--accent); opacity: 0.1;">2</span>
-                        <h3 style="font-size: 2rem; margin-bottom: 16px;">Check your email for your confirmation update
-                        </h3>
+                        <div class="pseudo-h3" style="font-size: 2rem; margin-bottom: 16px;">Check your email for your
+                            confirmation update
+                        </div>
                         <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 32px;">Once you've
                             scheduled your service, simply wait for our confirmation. We'll review everything and ensure
                             everything is set and ready to go, so you can relax knowing your cleaning is in good hands.
@@ -1289,8 +1293,9 @@
                 <div class="process-step-grid reveal">
                     <div>
                         <span style="font-size: 5rem; font-weight: 900; color: var(--accent); opacity: 0.1;">3</span>
-                        <h3 style="font-size: 2rem; margin-bottom: 16px;">Relax and revel in the fresh, spotless results
-                        </h3>
+                        <div class="pseudo-h3" style="font-size: 2rem; margin-bottom: 16px;">Relax and revel in the
+                            fresh, spotless results
+                        </div>
                         <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 32px;">Take a moment to
                             relax and enjoy the comfort of your freshly cleaned space. With every corner spotless and
                             every detail carefully addressed, you can unwind knowing the job has been completed to
@@ -1298,7 +1303,7 @@
                         <a href="https://www.maidathome.com.au/contact-us" class="btn-blue"
                             style="padding: 14px 32px; display: inline-block;">Connect with Us</a>
                     </div>
-                    <div class="reveal gsap-image-reveal"
+                    <div class="gsap-image-reveal"
                         style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15);">
                         <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67d42b45720b0eb481558ea3_enjoying.webp"
                             alt="Enjoying" width="800" height="600" style="width: 100%; height: auto; display: block;"
