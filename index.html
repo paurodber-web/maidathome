@@ -935,6 +935,77 @@
                 transform: none !important;
             }
         }
+
+        /* CRITICAL MOBILE MENU STYLES (Moved from main.css to prevent FOUC) */
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background: var(--secondary);
+            border-radius: 2px;
+            transition: all .3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .4s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-link {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .close-menu-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            font-size: 3rem;
+            line-height: 1;
+            color: var(--secondary);
+            cursor: pointer;
+            padding: 0;
+            transition: .3s;
+            z-index: 1501;
+        }
+
+        .close-menu-btn:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
     </style>
 </head>
 
