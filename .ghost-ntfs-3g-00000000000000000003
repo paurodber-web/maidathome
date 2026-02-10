@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleaning Service Pricing Melbourne | Maid At Home</title>
+    <meta name="description"
+        content="View our transparent pricing for Melbourne house cleaning. From standard cleans to end-of-lease services, get professional results at competitive rates.">
+    <link rel="canonical" href="https://www.maidathome.com.au/pricing.html">
+    <link rel="apple-touch-icon" href="assets/logo Pequeño.png">
+    <link rel="preload" href="fonts/Outfit-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
+    <link rel="preload" href="fonts/PlusJakartaSans-400.woff2" as="font" type="font/woff2" crossorigin
+        fetchpriority="high">
+    <link rel="preload" href="fonts/PlusJakartaSans-500.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/PlusJakartaSans-600.woff2" as="font" type="font/woff2" crossorigin
+        fetchpriority="high">
+    <link rel="preload" href="fonts/PlusJakartaSans-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/PlusJakartaSans-800.woff2" as="font" type="font/woff2" crossorigin
+        fetchpriority="high">
+
+
+
+
+
+    <script src="js/gsap.min.js" defer></script>
+    <script src="js/ScrollTrigger.min.js" defer></script>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js" defer></script>
+    <style>
+        /* Page specific styles */
+        .hero-pricing {
+            padding: 200px 5% 100px;
+            background: linear-gradient(180deg, var(--surface) 0%, white 100%);
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 32px;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .hero-image {
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.15);
+            aspect-ratio: 4 / 3;
+            background: #f8fafc;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .pricing-section {
+            padding: 100px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header .pseudo-h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 24px;
+        }
+
+        .pricing-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 60px;
+        }
+
+        .tab-btn {
+            background: var(--surface);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .pricing-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 48px;
+            border-radius: 32px;
+            transition: 0.4s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--primary);
+            background: #f8fafc;
+        }
+
+        .badge {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .plan-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: var(--secondary);
+            display: flex;
+            align-items: baseline;
+        }
+
+        .plan-price span {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-left: 8px;
+        }
+
+        .plan-desc {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .plan-features li svg {
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .comparison-section {
+            padding: 120px 5%;
+            background: #f8fafc;
+        }
+
+        .service-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 60px;
+        }
+
+        .service-tab-btn {
+            background: var(--surface);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .service-tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .service-content-wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: transparent;
+            padding: 20px 0;
+        }
+
+        .task-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .task-card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 24px;
+            padding: 40px;
+            height: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .task-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+
+        .task-card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .task-card-header .pseudo-h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.03em;
+            color: var(--secondary);
+        }
+
+        .task-card-header svg {
+            width: 32px;
+            height: 32px;
+            padding: 8px;
+            background: #eff6ff;
+            border-radius: 12px;
+            color: var(--primary);
+        }
+
+        .task-list {
+            list-style: none;
+        }
+
+        .task-item {
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.5;
+            font-weight: 500;
+            padding: 8px 0;
+        }
+
+        .task-item.included {
+            color: var(--secondary);
+        }
+
+        .task-item.excluded {
+            color: #94a3b8;
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .task-item svg {
+            margin-top: 3px;
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+        }
+
+        .task-item.included svg {
+            color: #10b981;
+        }
+
+        .task-item.excluded svg {
+            color: #ef4444;
+        }
+
+        @media (max-width:1024px) {
+            .task-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .service-tabs {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .service-tab-btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+
+            .service-content-wrap {
+                padding: 30px 20px;
+            }
+        }
+
+        .revitalize-section {
+            padding: 120px 24px;
+            background: #0f172a;
+            border-radius: 48px;
+            margin: 0 24px 80px;
+            color: #ffffff;
+        }
+
+        .revitalize-section .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 80px;
+            gap: 32px;
+        }
+
+        .header-text h2 {
+            font-size: 3.5rem;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 32px;
+        }
+
+        .header-text p {
+            color: #94a3b8;
+            font-size: 1.125rem;
+            max-width: 600px;
+            font-weight: 500;
+        }
+
+        .view-pricing {
+            color: #38bdf8;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .view-pricing:hover {
+            transform: translateX(8px);
+        }
+
+        .revitalize-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .rev-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 32px;
+            border-radius: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .rev-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .rev-card.featured {
+            background: #2563eb;
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+        }
+
+        .rev-card h4 {
+            color: #ffffff;
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+        }
+
+        .rev-desc {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+
+        .rev-card.featured .rev-desc {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .rev-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #22d3ee;
+        }
+
+        .rev-card.featured .rev-price {
+            color: #ffffff;
+        }
+
+        @media (max-width:1024px) {
+            .revitalize-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-text h2 {
+                font-size: 2.5rem;
+            }
+
+            .section-header-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width:640px) {
+            .revitalize-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .extra-services {
+            padding: 120px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .extra-card {
+            background: white;
+            padding: 24px 32px;
+            border-radius: 20px;
+            border: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .extra-card:hover {
+            border-color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .extra-name {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .extra-price {
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        footer {
+            background: var(--secondary);
+            padding: 100px 5% 40px;
+            color: white;
+        }
+
+        .footer-logo span {
+            color: var(--primary);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @media (max-width:1024px) {
+            .hero-pricing {
+                text-align: center;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content p {
+                margin: 0 auto 40px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .revitalize-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-text h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width:768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width:768px) {
+            .hero-pricing {
+                padding: 140px 5% 60px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .task-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .pricing-section,
+            .comparison-section,
+            .extra-services {
+                padding: 60px 5%;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .extras-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .revitalize-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .revitalize-section {
+                padding: 60px 24px;
+                margin: 0 5% 60px;
+            }
+        }
+
+        .suburb-link:hover {
+            color: white !important;
+        }
+
+        footer h2,
+        footer h3 {
+            color: white !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+            <img src="assets/logo Pequeño.png" alt="Maid At Home Logo"
+                style="height: 45px; width: auto; display: block;">
+        </a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About us</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="pricing.html" class="nav-link" style="color: var(--accent);">Pricing</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="faqs.html" class="nav-link">FAQs</a>
+        </nav>
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a href="booking.html" class="btn-blue">Book Now</a>
+    </header>
+
+    <div class="mobile-menu">
+        <button class="close-menu-btn" aria-label="Close menu">&times;</button>
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="about.html" class="mobile-nav-link">About us</a>
+        <a href="services.html" class="mobile-nav-link">Services</a>
+        <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+        <a href="faqs.html" class="mobile-nav-link">FAQs</a>
+        <a href="booking.html" class="btn-blue" style="margin-top: 20px;">Book Now</a>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-pricing">
+            <div class="hero-inner">
+                <div class="hero-content reveal">
+                    <h1>Transparent pricing for your cleaning needs</h1>
+                    <p>Discover clear pricing structures designed for the high standards of Melbourne living. Choose the
+                        exact level of care and frequency your home sanctuary requires to stay pristine.</p>
+                    <a href="#plans" class="btn-blue" style="padding: 16px 40px; font-size: 1rem;">Choose the plan</a>
+                </div>
+                <div class="hero-image reveal">
+                    <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67e0b5620bebcb031f3a8145_pricing.webp"
+                        alt="Happy family in clean home">
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Plans -->
+        <section id="plans" class="pricing-section">
+            <div class="section-header">
+                <span class="reveal"
+                    style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">Explore
+                    Our Pricing</span>
+                <div class="pseudo-h2 reveal">Choose the perfect plan for you</div>
+                <div class="pricing-tabs reveal">
+                    <button class="tab-btn active" onclick="switchPricing('hourly')">Hourly Rate</button>
+                    <button class="tab-btn" onclick="switchPricing('flat')">Flat Rate</button>
+                </div>
+            </div>
+
+            <!-- Hourly Plans Container -->
+            <div id="hourly-plans" class="pricing-grid">
+                <div class="pricing-card reveal">
+                    <div class="pseudo-h3 plan-name">Once Off</div>
+                    <div class="plan-price">$60<span>/ hour</span></div>
+                    <p class="plan-desc">Perfect for a deep refresh or a special occasion, our service provides a
+                        thorough clean without regular bookings.</p>
+                    <ul class="plan-features">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Minimum 2 hours</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Detailed Surface Clean</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Eco-Friendly Products</li>
+                    </ul>
+                    <a href="https://www.maidathome.com.au/booking" class="btn-blue"
+                        style="width: 100%; text-align: center;">Book now</a>
+                </div>
+
+                <div class="pricing-card featured reveal">
+                    <div class="badge">Best Value</div>
+                    <div class="pseudo-h3 plan-name">Weekly / Fortnightly</div>
+                    <div class="plan-price">$54<span>/ hour</span></div>
+                    <p class="plan-desc">Designed for ongoing freshness, our regular service keeps your home spotless
+                        with consistent visits.</p>
+                    <ul class="plan-features">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Minimum 2 hours</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Regular Cleaning Slot</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Dedicated Team</li>
+                    </ul>
+                    <a href="https://www.maidathome.com.au/booking" class="btn-blue"
+                        style="width: 100%; text-align: center;">Book now</a>
+                </div>
+
+                <div class="pricing-card reveal">
+                    <div class="pseudo-h3 plan-name">3 Weekly / Monthly</div>
+                    <div class="plan-price">$57<span>/ hour</span></div>
+                    <p class="plan-desc">Perfect for occasional upkeep, helping maintain a tidy home with less frequent
+                        but thorough visits.</p>
+                    <ul class="plan-features">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Minimum 2 hours</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Occasional Maintenance</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Fresh & Organized</li>
+                    </ul>
+                    <a href="https://www.maidathome.com.au/booking" class="btn-blue"
+                        style="width: 100%; text-align: center;">Book now</a>
+                </div>
+            </div>
+
+            <!-- Flat Rate Plans Container -->
+            <div id="flat-plans" class="pricing-grid" style="display: none;">
+                <div class="pricing-card reveal">
+                    <div class="pseudo-h3 plan-name">Standard Clean</div>
+                    <div class="plan-price">$155<span>starting at</span></div>
+                    <p class="plan-desc">Ideal for a fast, efficient clean, this service covers all the essentials to
+                        keep your home fresh and tidy.</p>
+                    <ul class="plan-features">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Essential Areas</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Quick Refresh</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Spotless Basics</li>
+                    </ul>
+                    <a href="https://www.maidathome.com.au/booking" class="btn-blue"
+                        style="width: 100%; text-align: center;">Book now</a>
+                </div>
+
+                <div class="pricing-card featured reveal">
+                    <div class="badge">Recommended</div>
+                    <div class="pseudo-h3 plan-name">Deep Clean</div>
+                    <div class="plan-price">$215<span>starting at</span></div>
+                    <p class="plan-desc">Ideal for a thorough refresh, this service dives into every detail, tackling
+                        even the toughest spots.</p>
+                    <ul class="plan-features">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Detailed Extraction</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Transformation Clean</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Bottom up Sanitization</li>
+                    </ul>
+                    <a href="https://www.maidathome.com.au/booking" class="btn-blue"
+                        style="width: 100%; text-align: center;">Book now</a>
+                </div>
+
+                <div class="pricing-card reveal">
+                    <div class="pseudo-h3 plan-name">Move In/Out</div>
+                    <div class="plan-price">$410<span>starting at</span></div>
+                    <p class="plan-desc">Perfect for a fresh start or leaving a clean space behind, ensuring every
+                        corner is spotless and roady to enjoy.</p>
+                    <ul class="plan-features">
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Full Property Prep</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Bond Return Ready</li>
+                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>Meticulous Detail</li>
+                    </ul>
+                    <a href="https://www.maidathome.com.au/booking" class="btn-blue"
+                        style="width: 100%; text-align: center;">Book now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section class="comparison-section">
+            <div class="section-header">
+                <span class="reveal"
+                    style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">What
+                    you get</span>
+                <div class="pseudo-h2 reveal">What’s covered in our services</div>
+            </div>
+
+            <div class="service-tabs reveal">
+                <button class="service-tab-btn active" onclick="switchServiceTab('standard', this)">Standard
+                    Clean</button>
+                <button class="service-tab-btn" onclick="switchServiceTab('deep', this)">Deep Clean</button>
+                <button class="service-tab-btn" onclick="switchServiceTab('move', this)">Move In/Out</button>
+            </div>
+
+            <!-- Standard Clean Details -->
+            <div id="standard-details" class="service-content-wrap reveal">
+                <div class="task-grid">
+                    <div class="task-card kitchen">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21h-10"></path>
+                                <path
+                                    d="M18 14H6c-1.1 0-2 0.9-2 2v3c0 1.1 0.9 2 2 2h12c1.1 0 2-0.9 2-2v-3c0-1.1-0.9-2-2-2Z">
+                                </path>
+                                <path
+                                    d="M12 14c2.8 0 5-2.2 5-5V7c0-1.7-1.3-3-3-3-1.1 0-2.1 0.6-2.6 1.5C10.9 4.6 9.9 4 8.8 4 7.1 4 5.8 5.3 5.8 7v2c0 2.8 2.2 5 5 5Z">
+                                </path>
+                            </svg>
+                            <div class="pseudo-h3">Kitchen</div>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean stovetop</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean rangehood (exterior)</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Clean underside of range hood</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Clean exhaust fans & filters</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Wipe bench tops</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean visible appliances</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean splash back</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean / polish tap ware</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub / clean sink</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean inside & outside of microwave</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean cupboards (exterior)</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Polish stainless steel surfaces</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Dust all surfaces</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Remove food & wipe inside dishwasher</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Inside oven</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Inside all drawers / cabinets</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum & mop all floors</li>
+                        </ul>
+                    </div>
+                    <div class="task-card bathrooms">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z">
+                                </path>
+                            </svg>
+                            <div class="pseudo-h3">Bathrooms</div>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub / clean bath</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub / clean shower</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub / clean sinks</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Scrub shower floor & wall</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Wipe down benches</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean mirrors</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean / polish tapware & chrome</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Wipe down cupboards (exterior)</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Empty bins</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean / disinfect toilet</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Floor grout</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Clean ceiling exhaust fans</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Inside all drawers / cabinets</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum & mop all floors</li>
+                        </ul>
+                    </div>
+                    <div class="task-card living">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"></path>
+                                <path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                                </path>
+                                <path d="M2 13h20"></path>
+                                <path d="M4 18v2"></path>
+                                <path d="M20 18v2"></path>
+                                <path d="M12 4v5"></path>
+                            </svg>
+                            <div class="pseudo-h3">All Areas</div>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Light tidy up</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Extensive tidy up</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Cobweb removal</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Empty bins</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Dust skirting boards / window sills / doors</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Wipe skirting boards / window sills / doors</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean accessible light switches & power points</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Dust reachable surfaces</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean mirrors</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum / clean soft furnishing</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum under beds / furniture / couches</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Clean ceilings</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Dust blinds</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Inside all drawers / cabinets</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum & mop all floors</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Garage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deep Clean Details -->
+            <div id="deep-details" class="service-content-wrap reveal" style="display: none;">
+                <div class="task-grid">
+                    <div class="task-card kitchen">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21h-10"></path>
+                                <path
+                                    d="M18 14H6c-1.1 0-2 0.9-2 2v3c0 1.1 0.9 2 2 2h12c1.1 0 2-0.9 2-2v-3c0-1.1-0.9-2-2-2Z">
+                                </path>
+                                <path
+                                    d="M12 14c2.8 0 5-2.2 5-5V7c0-1.7-1.3-3-3-3-1.1 0-2.1 0.6-2.6 1.5C10.9 4.6 9.9 4 8.8 4 7.1 4 5.8 5.3 5.8 7v2c0 2.8 2.2 5 5 5Z">
+                                </path>
+                            </svg>
+                            <div class="pseudo-h3">Kitchen</div>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean stovetop</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean rangehood (exterior)</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean underside of range hood</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Clean exhaust fans & filters</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Wipe bench tops</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean visible appliances</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean splash back</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean / polish tap ware</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub / clean sink</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean inside & outside of microwave</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean cupboards (exterior)</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Polish stainless steel surfaces</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Dust all surfaces</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Remove food & wipe inside dishwasher</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Inside oven</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Inside all drawers / cabinets</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum & mop all floors</li>
+                        </ul>
+                    </div>
+                    <div class="task-card bathrooms">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z">
+                                </path>
+                            </svg>
+                            <div class="pseudo-h3">Bathrooms</div>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub / clean bath</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub / clean shower</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub / clean sinks</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub shower floor & wall</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Wipe down benches</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean mirrors</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean / polish tapware & chrome</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Wipe down cupboards (exterior)</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Empty bins</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean / disinfect toilet</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Floor grout</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Clean ceiling exhaust fans</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Inside all drawers / cabinets</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum & mop all floors</li>
+                        </ul>
+                    </div>
+                    <div class="task-card living">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"></path>
+                                <path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                                </path>
+                                <path d="M2 13h20"></path>
+                                <path d="M4 18v2"></path>
+                                <path d="M20 18v2"></path>
+                                <path d="M12 4v5"></path>
+                            </svg>
+                            <div class="pseudo-h3">All Areas</div>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Light tidy up</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Extensive tidy up</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Cobweb removal</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Empty bins</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Dust skirting boards / window sills / doors</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Wipe skirting boards / window sills / doors</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean accessible light switches & power points</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Dust reachable surfaces</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean mirrors</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum / clean soft furnishing</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum under beds / furniture / couches</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Clean ceilings</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Dust blinds</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Inside all drawers / cabinets</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum & mop all floors</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Garage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Move In/Out Details -->
+            <div id="move-details" class="service-content-wrap reveal" style="display: none;">
+                <div class="task-grid">
+                    <div class="task-card kitchen">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21h-10"></path>
+                                <path
+                                    d="M18 14H6c-1.1 0-2 0.9-2 2v3c0 1.1 0.9 2 2 2h12c1.1 0 2-0.9 2-2v-3c0-1.1-0.9-2-2-2Z">
+                                </path>
+                                <path
+                                    d="M12 14c2.8 0 5-2.2 5-5V7c0-1.7-1.3-3-3-3-1.1 0-2.1 0.6-2.6 1.5C10.9 4.6 9.9 4 8.8 4 7.1 4 5.8 5.3 5.8 7v2c0 2.8 2.2 5 5 5Z">
+                                </path>
+                            </svg>
+                            <div class="pseudo-h3">Kitchen</div>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean stovetop</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean rangehood (exterior)</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean underside of range hood</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean exhaust fans & filters</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Wipe bench tops</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean visible appliances</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean splash back</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean / polish tap ware</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub / clean sink</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean inside & outside of microwave</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean cupboards (exterior)</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Polish stainless steel surfaces</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Dust all surfaces</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Remove food & wipe inside dishwasher</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Inside oven</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Inside all drawers / cabinets</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum & mop all floors</li>
+                        </ul>
+                    </div>
+                    <div class="task-card bathrooms">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z">
+                                </path>
+                            </svg>
+                            <div class="pseudo-h3">Bathrooms</div>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub / clean bath</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub / clean shower</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub / clean sinks</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Scrub shower floor & wall</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Wipe down benches</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean mirrors</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean / polish tapware & chrome</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Wipe down cupboards (exterior)</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Empty bins</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean / disinfect toilet</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Floor grout</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean ceiling exhaust fans</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Inside all drawers / cabinets</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum & mop all floors</li>
+                        </ul>
+                    </div>
+                    <div class="task-card living">
+                        <div class="task-card-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"></path>
+                                <path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                                </path>
+                                <path d="M2 13h20"></path>
+                                <path d="M4 18v2"></path>
+                                <path d="M20 18v2"></path>
+                                <path d="M12 4v5"></path>
+                            </svg>
+                            <div class="pseudo-h3">All Areas</div>
+                        </div>
+                        <ul class="task-list">
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Light tidy up</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Extensive tidy up</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Cobweb removal</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Empty bins</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Dust skirting boards / window sills / doors</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Wipe skirting boards / window sills / doors</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean accessible light switches & power points</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Dust reachable surfaces</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Clean mirrors</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum / clean soft furnishing</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum under beds / furniture / couches</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Clean ceilings</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Dust blinds</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Inside all drawers / cabinets</li>
+                            <li class="task-item included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>Vacuum & mop all floors</li>
+                            <li class="task-item excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>Garage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Extra Services -->
+        <section class="extra-services">
+            <div class="section-header">
+                <span class="reveal"
+                    style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">Custom
+                    Add-ons</span>
+                <div class="pseudo-h2 reveal">Extra services for your home</div>
+            </div>
+            <div class="extras-grid reveal">
+                <div class="extra-card"><span class="extra-name">Deep clean add-on</span><span class="extra-price">$60 -
+                        $100</span></div>
+                <div class="extra-card"><span class="extra-name">Move in / out clean</span><span
+                        class="extra-price">$255 - $395</span></div>
+                <div class="extra-card"><span class="extra-name">Inside oven</span><span class="extra-price">$65</span>
+                </div>
+                <div class="extra-card"><span class="extra-name">Inside fridge</span><span
+                        class="extra-price">$30</span></div>
+                <div class="extra-card"><span class="extra-name">Inside drawers / cabinets</span><span
+                        class="extra-price">$40 - $60</span></div>
+                <div class="extra-card"><span class="extra-name">Balcony clean</span><span
+                        class="extra-price">$35</span></div>
+                <div class="extra-card"><span class="extra-name">Inside windows</span><span class="extra-price">$70 -
+                        $130</span></div>
+                <div class="extra-card"><span class="extra-name">Bed changing</span><span class="extra-price">$10 /
+                        bed</span></div>
+                <div class="extra-card"><span class="extra-name">Wall cleaning</span><span class="extra-price">$25 /
+                        wall</span></div>
+                <div class="extra-card"><span class="extra-name">Steam clean</span><span class="extra-price">$55 /
+                        room</span></div>
+                <div class="extra-card"><span class="extra-name">Dish washing</span><span class="extra-price">$30</span>
+                </div>
+                <div class="extra-card"><span class="extra-name">Wet wiping blinds</span><span class="extra-price">$20 /
+                        blind</span></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <!-- Footer -->
+        <!-- Footer -->
+        <!-- Footer -->
+        <footer>
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px;">
+                    <!-- Logo & Description -->
+                    <div class="reveal">
+                        <a href="index.html" class="logo"
+                            style="display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 24px;">
+                            <img src="assets/logo-white.png" alt="Maid At Home Logo"
+                                style="height: 50px; width: auto; display: block;">
+                        </a>
+                        <p
+                            style="color: rgba(255,255,255,0.75); line-height: 1.8; font-size: 1.1rem; max-width: 320px; margin-bottom: 32px;">
+                            Elevating the standard of home cleaning with a 5-star hospitality approach.
+                        </p>
+                        <div style="display: flex; gap: 16px;">
+                            <!-- Facebook -->
+                            <a href="#" aria-label="Follow us on Facebook"
+                                style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
+                                onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
+                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="#" aria-label="Follow us on Instagram"
+                                style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
+                                onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
+                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="reveal">
+                        <div class="pseudo-h4"
+                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
+                            Company</div>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 16px;"><a href="about.html"
+                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">About
+                                    Us</a></li>
+                            <li style="margin-bottom: 16px;"><a href="services.html"
+                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Services</a>
+                            </li>
+                            <li style="margin-bottom: 16px;"><a href="pricing.html"
+                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Pricing</a>
+                            </li>
+                            <li style="margin-bottom: 16px;"><a href="faqs.html"
+                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">FAQs</a>
+                            </li>
+                            <li style="margin-bottom: 16px;"><a href="contact.html"
+                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Contact</a>
+                            </li>
+                            <li style="margin-bottom: 16px;"><a href="booking.html"
+                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Book
+                                    Now</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="reveal">
+                        <div class="pseudo-h4"
+                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
+                            Business Hours</div>
+                        <ul style="list-style: none; padding: 0; margin: 0; color: rgba(255,255,255,0.75);">
+                            <li
+                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                                <span>Mon - Fri</span>
+                                <span style="color: white; font-weight: 600;">8am - 6pm</span>
+                            </li>
+                            <li
+                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                                <span>Sat</span>
+                                <span style="color: white; font-weight: 600;">9am - 4pm</span>
+                            </li>
+                            <li
+                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                                <span>Sun</span>
+                                <span style="color: white; font-weight: 600;">Closed</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="reveal">
+                        <div class="pseudo-h4"
+                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
+                            Newsletter</div>
+                        <p
+                            style="color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 24px; font-size: 1rem;">
+                            Join our newsletter for exclusive tips and deals.
+                        </p>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="email" placeholder="Your email"
+                                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 12px; color: white; outline: none; flex-grow: 1; font-family: inherit;">
+                            <button
+                                style="background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;"
+                                onmouseover="this.style.background='#1d4ed8'; this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.background='var(--accent)'; this.style.transform='scale(1)'">Join</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suburbs SEO Section -->
+                <div style="border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 0;">
+                    <div class="pseudo-h3"
+                        style="color: white !important; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; font-weight: 700;">
+                        Service Areas</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px 24px;">
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Abbotsford</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Armadale</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Balwyn</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Box
+                            Hill</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brighton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brunswick</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Burwood</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Camberwell</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Carlton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Caulfield</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Cheltenham</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Collingwood</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Dandenong</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Docklands</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Doncaster</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Elsternwick</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Epping</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Essendon</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Fitzroy</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Footscray</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Frankston</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Glen
+                            Waverley</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Hampton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Hawthorn</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Kew</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Malvern</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Melbourne
+                            CBD</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Mentone</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Moonee
+                            Ponds</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Newport</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Northcote</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Prahran</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Preston</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Richmond</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Sandringham</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">South
+                            Yarra</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Southbank</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">St
+                            Kilda</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Toorak</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Williamstown</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Windsor</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Yarraville</a>
+                    </div>
+                </div>
+
+                <!-- Bottom Footer -->
+                <div
+                    style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px;">
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">© 2026 Maid At Home. Precision in every
+                        detail.</p>
+                    <div style="display: flex; gap: 32px;">
+                        <a href="privacy-policy.html"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Privacy
+                            Policy</a>
+                        <a href="terms-conditions.html"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Terms
+                            of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Pricing Toggle Logic
+        function switchPricing(type) {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(btn => btn.classList.remove('active'));
+            if (type === 'hourly') {
+                tabs[0].classList.add('active');
+                gsap.to('#flat-plans', {
+                    opacity: 0, y: 10, duration: 0.2, onComplete: () => {
+                        document.getElementById('flat-plans').style.display = 'none';
+                        document.getElementById('hourly-plans').style.display = 'grid';
+                        gsap.fromTo('#hourly-plans', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 });
+                    }
+                });
+            } else {
+                tabs[1].classList.add('active');
+                gsap.to('#hourly-plans', {
+                    opacity: 0, y: 10, duration: 0.2, onComplete: () => {
+                        document.getElementById('hourly-plans').style.display = 'none';
+                        document.getElementById('flat-plans').style.display = 'grid';
+                        gsap.fromTo('#flat-plans', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 });
+                    }
+                });
+            }
+        }
+
+        // Service Details Tabs Logic
+        function switchServiceTab(service, btn) {
+            const btns = document.querySelectorAll('.service-tab-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const sections = ['standard', 'deep', 'move'];
+            sections.forEach(s => {
+                const el = document.getElementById(s + '-details');
+                if (s === service) {
+                    el.style.display = 'block';
+                    gsap.fromTo(el, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" });
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
