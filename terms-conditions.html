@@ -25,303 +25,10 @@
 
     <script src="js/gsap.min.js" defer></script>
     <script src="js/ScrollTrigger.min.js" defer></script>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js" defer></script>
     <style>
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 300;
-            font-display: block;
-            src: url('fonts/Inter-300.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
-            font-display: block;
-            src: url('fonts/Inter-400.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Outfit';
-            font-style: normal;
-            font-weight: 300;
-            font-display: block;
-            src: url('fonts/Outfit-300.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Outfit';
-            font-style: normal;
-            font-weight: 400;
-            font-display: block;
-            src: url('fonts/Outfit-400.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Outfit';
-            font-style: normal;
-            font-weight: 600;
-            font-display: block;
-            src: url('fonts/Outfit-600.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Outfit';
-            font-style: normal;
-            font-weight: 800;
-            font-display: block;
-            src: url('fonts/Outfit-800.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Plus Jakarta Sans';
-            font-style: normal;
-            font-weight: 400;
-            font-display: block;
-            src: url('fonts/PlusJakartaSans-400.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Plus Jakarta Sans';
-            font-style: normal;
-            font-weight: 500;
-            font-display: block;
-            src: url('fonts/PlusJakartaSans-500.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Plus Jakarta Sans';
-            font-style: normal;
-            font-weight: 600;
-            font-display: block;
-            src: url('fonts/PlusJakartaSans-600.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Plus Jakarta Sans';
-            font-style: normal;
-            font-weight: 700;
-            font-display: block;
-            src: url('fonts/PlusJakartaSans-700.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Plus Jakarta Sans';
-            font-style: normal;
-            font-weight: 800;
-            font-display: block;
-            src: url('fonts/PlusJakartaSans-800.woff2') format('woff2');
-        }
-
-        :root {
-            --primary: #2563eb;
-            --secondary: #0f172a;
-            --accent: #2563eb;
-            --bg: #ffffff;
-            --surface: #f8fafc;
-            --text: #1e293b;
-            --text-muted: #64748b;
-            --border: #f1f5f9;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            line-height: 1.5;
-            text-size-adjust: 100%;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        header {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            height: 70px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-            z-index: 1000;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            top: 0;
-            width: 100%;
-            border-radius: 0;
-            background: rgba(255, 255, 255, 0.98);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #0f172a;
-            text-decoration: none;
-            letter-spacing: -0.04em;
-        }
-
-        .logo span {
-            color: #2563eb;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #0f172a;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #2563eb;
-        }
-
-        .btn-blue {
-            background: #2563eb;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 0.85rem;
-            line-height: 20.4px;
-            transition: 0.3s;
-        }
-
-        .btn-blue:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        .hamburger {
-            display: none;
-            width: 30px;
-            height: 20px;
-            flex-direction: column;
-            justify-content: space-between;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 2000;
-            padding: 0;
-        }
-
-        .hamburger span {
-            width: 100%;
-            height: 2px;
-            background: var(--secondary);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -6px);
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: white;
-            z-index: 1500;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 32px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .mobile-menu.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-nav-link {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--secondary);
-            text-decoration: none;
-        }
-
-        .close-menu-btn {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            background: none;
-            border: none;
-            font-size: 3rem;
-            line-height: 1;
-            color: var(--secondary);
-            cursor: pointer;
-            padding: 0;
-            transition: 0.3s;
-            z-index: 1501;
-        }
-
-        .close-menu-btn:hover {
-            color: var(--primary);
-            transform: rotate(90deg);
-        }
-
-        @media (max-width:1024px) {
-            header {
-                width: 100%;
-                top: 0;
-                border-radius: 0;
-            }
-
-            .nav-links,
-            .btn-blue:not(.mobile-menu .btn-blue) {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            header .btn-blue {
-                display: none;
-            }
-        }
-
+        /* Page specific styles */
         .terms-hero {
             padding: 220px 5% 100px;
             background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
@@ -438,48 +145,6 @@
             color: var(--secondary);
         }
 
-        footer {
-            background: var(--secondary);
-            padding: 100px 5% 60px;
-            color: white;
-        }
-
-        .footer-logo span {
-            color: var(--primary);
-        }
-
-        .footer-sub {
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-
-        .sub-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .sub-link {
-            color: inherit;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .sub-link:hover {
-            color: white;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
         @media (max-width:768px) {
             .terms-card {
                 padding: 40px 24px;
@@ -488,15 +153,6 @@
             .terms-hero {
                 padding-top: 160px;
             }
-        }
-
-        .suburb-link:hover {
-            color: white !important;
-        }
-
-        footer h2,
-        footer h3 {
-            color: white !important;
         }
     </style>
 </head>
@@ -515,12 +171,12 @@
             <a href="contact.html" class="nav-link">Contact</a>
             <a href="faqs.html" class="nav-link">FAQs</a>
         </nav>
-        <a href="booking.html" class="btn-blue">Book Now</a>
         <button class="hamburger" aria-label="Toggle menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
+        <a href="booking.html" class="btn-blue">Book Now</a>
     </header>
 
     <div class="mobile-menu">
@@ -538,7 +194,8 @@
         <section class="terms-hero">
             <h1 class="reveal">Know your rights and responsibilities for a <span style="color: var(--primary)">smooth
                     cleaning experience.</span></h1>
-            <p class="reveal">Understanding your rights and responsibilities ensures a seamless cleaning service with
+            <p class="reveal">Understanding your rights and responsibilities ensures a seamless cleaning service
+                with
                 Maid At Home.</p>
         </section>
 
@@ -546,15 +203,19 @@
             <div class="terms-card reveal">
                 <div class="term-section">
                     <h2><span>1</span> Introduction</h2>
-                    <p>By using Maid At Home’s cleaning services, you agree to these Terms and Conditions. These terms
-                        ensure clarity and fairness for both parties. If you do not accept these terms, please do not
+                    <p>By using Maid At Home’s cleaning services, you agree to these Terms and Conditions. These
+                        terms
+                        ensure clarity and fairness for both parties. If you do not accept these terms, please
+                        do not
                         proceed with our services.</p>
                 </div>
 
                 <div class="term-section">
                     <h2><span>2</span> Services provided</h2>
-                    <p>Maid At Home offers residential cleaning services, including but not limited to regular cleaning,
-                        spring cleaning, and move-out cleaning. Detailed service descriptions are available on our
+                    <p>Maid At Home offers residential cleaning services, including but not limited to regular
+                        cleaning,
+                        spring cleaning, and move-out cleaning. Detailed service descriptions are available on
+                        our
                         website.</p>
                 </div>
 
@@ -563,31 +224,39 @@
                     <ul>
                         <li>Bookings can be made via our website or customer service team.</li>
                         <li>A confirmation email will be sent upon booking with details of the service.</li>
-                        <li>Service availability is subject to change, and we reserve the right to decline or reschedule
+                        <li>Service availability is subject to change, and we reserve the right to decline or
+                            reschedule
                             bookings.</li>
                     </ul>
                 </div>
 
                 <div class="term-section">
                     <h2><span>4</span> Arrival times</h2>
-                    <p>Our cleaning team will strive to arrive on time for your service. However, unexpected traffic or
-                        other unforeseen factors may occasionally affect the arrival time. Typically, our cleaners
+                    <p>Our cleaning team will strive to arrive on time for your service. However, unexpected
+                        traffic or
+                        other unforeseen factors may occasionally affect the arrival time. Typically, our
+                        cleaners
                         service homes between 9:00 a.m. and 5:00 p.m.</p>
-                    <p>The cleaning team will have an arrival window of up to 30 minutes. When booking your service, you
-                        will be asked to choose how you'd like us to proceed if the team is later than 30 minutes. This
+                    <p>The cleaning team will have an arrival window of up to 30 minutes. When booking your
+                        service, you
+                        will be asked to choose how you'd like us to proceed if the team is later than 30
+                        minutes. This
                         ensures we can address any delays in a way that suits you.</p>
                 </div>
 
                 <div class="term-section">
                     <h2><span>5</span> Team size</h2>
-                    <p>If multiple cleaners are assigned to your service, the total hours booked will be divided by the
-                        size of the team. This ensures that each cleaner contributes equally to the service, allowing
+                    <p>If multiple cleaners are assigned to your service, the total hours booked will be divided
+                        by the
+                        size of the team. This ensures that each cleaner contributes equally to the service,
+                        allowing
                         for a more efficient and effective cleaning experience.</p>
                 </div>
 
                 <div class="term-section">
                     <h2><span>6</span> Right of refusal</h2>
-                    <p>Maid At Home reserves the right to refuse service for various reasons, including but not limited
+                    <p>Maid At Home reserves the right to refuse service for various reasons, including but not
+                        limited
                         to:</p>
                     <ul>
                         <li>Inability to gain entry to the property;</li>
@@ -603,24 +272,32 @@
 
                 <div class="term-section">
                     <h2><span>7</span> Cleaner safety - Hot weather</h2>
-                    <p>To protect the well-being of our cleaning team on hot days (35°C or higher), we request that you
-                        have air conditioning turned on. If air conditioning is unavailable, please notify our office
-                        beforehand to discuss other options. If no arrangements are made and the temperature exceeds
-                        35°C without air conditioning, we may need to cancel the service and a cancellation fee may
+                    <p>To protect the well-being of our cleaning team on hot days (35°C or higher), we request
+                        that you
+                        have air conditioning turned on. If air conditioning is unavailable, please notify our
+                        office
+                        beforehand to discuss other options. If no arrangements are made and the temperature
+                        exceeds
+                        35°C without air conditioning, we may need to cancel the service and a cancellation fee
+                        may
                         apply.</p>
                 </div>
 
                 <div class="term-section">
                     <h2><span>8</span> Cleaner solicitations</h2>
-                    <p>Maid At Home refers clients to independent cleaning professionals who have agreed to our terms,
-                        including a non-solicitation policy. If you wish to hire a cleaner directly, you must wait 12
-                        months after their agreement with us ends. Breaching this policy may lead to the termination of
+                    <p>Maid At Home refers clients to independent cleaning professionals who have agreed to our
+                        terms,
+                        including a non-solicitation policy. If you wish to hire a cleaner directly, you must
+                        wait 12
+                        months after their agreement with us ends. Breaching this policy may lead to the
+                        termination of
                         our services. We appreciate your understanding and cooperation.</p>
                 </div>
 
                 <div class="term-section">
                     <h2><span>9</span> The agency</h2>
-                    <p>We connect clients with independent cleaning professionals who operate on their own. They are not
+                    <p>We connect clients with independent cleaning professionals who operate on their own. They
+                        are not
                         our employees but pay a fee for our referral service.</p>
                 </div>
 
@@ -630,8 +307,10 @@
                         <li>Prices are available on our website and are subject to change.</li>
                         <li>Payment is processed through Stripe and must be made via credit/debit card.</li>
                         <li>Credit/debit card details must be provided in the booking form.</li>
-                        <li>A pre-authorization hold will be placed on the card two days before the service. If the
-                            booking is made less than two days before the service, the hold will be placed immediately.
+                        <li>A pre-authorization hold will be placed on the card two days before the service. If
+                            the
+                            booking is made less than two days before the service, the hold will be placed
+                            immediately.
                         </li>
                         <li>The final payment will be processed after the service has been completed.</li>
                         <li>Additional fees may apply for extra tasks requested on the day of service.</li>
@@ -640,21 +319,27 @@
 
                 <div class="term-section">
                     <h2><span>11</span> Discounts</h2>
-                    <p>For recurring services, the discount applies from the second service onward. The first service
+                    <p>For recurring services, the discount applies from the second service onward. The first
+                        service
                         will be charged at the full rate.</p>
                 </div>
 
                 <div class="term-section">
                     <h2><span>12</span> Cancellations & Rescheduling</h2>
                     <ul>
-                        <li>Cancellations or rescheduling must be requested at least 24 hours before the service time.
+                        <li>Cancellations or rescheduling must be requested at least 24 hours before the service
+                            time.
                         </li>
-                        <li>Services postponed more than once will incur a cancellation fee. This policy is in place to
+                        <li>Services postponed more than once will incur a cancellation fee. This policy is in
+                            place to
                             prevent indefinite postponements that could be used to avoid cancellation fees.</li>
-                        <li>If a service needs to be rescheduled, it must be completed within a maximum of 7 days from
-                            the original booking date. Failure to do so may result in a cancellation fee of 50% of the
+                        <li>If a service needs to be rescheduled, it must be completed within a maximum of 7
+                            days from
+                            the original booking date. Failure to do so may result in a cancellation fee of 50%
+                            of the
                             service.</li>
-                        <li>If a service is cancelled on the spot, when cleaning team is already at the premises, a
+                        <li>If a service is cancelled on the spot, when cleaning team is already at the
+                            premises, a
                             cancellation fee of 100% of the service cost (+ extras) will apply.</li>
                         <li>Failure to provide access to the property at the scheduled time will result in a
                             cancellation fee. Our cleaning team will wait up to 15 minutes.</li>
@@ -664,7 +349,8 @@
                 <div class="term-section">
                     <h2><span>13</span> Unpaid services</h2>
                     <p>If payment for services is not received within the agreed timeframe, the client will be
-                        responsible for all fees associated with the collection process, including any charges from debt
+                        responsible for all fees associated with the collection process, including any charges
+                        from debt
                         collectors.</p>
                     <p>We reserve the right to take necessary steps to recover outstanding payments, and these
                         additional fees will be added to the total balance due.</p>
@@ -672,22 +358,34 @@
 
                 <div class="term-section">
                     <h2><span>14</span> Service guarantee & Complaints</h2>
-                    <p><strong>General Guarantee:</strong> If you're unhappy with the service, let us know within 48
-                        hours, and please provide photos to help us assess the issue. We’ll do everything we can to fix
-                        it with a re-clean. If the issue persists, a full refund will be considered depending on the
+                    <p><strong>General Guarantee:</strong> If you're unhappy with the service, let us know
+                        within 48
+                        hours, and please provide photos to help us assess the issue. We’ll do everything we can
+                        to fix
+                        it with a re-clean. If the issue persists, a full refund will be considered depending on
+                        the
                         situation. Re-cleans are available on weekdays, except in exceptional cases.</p>
-                    <p><strong>Flat Rate Services:</strong> For flat rate services, our guarantee applies only to the
-                        tasks and extras that are included in the flat rate service. Any additional services or tasks
+                    <p><strong>Flat Rate Services:</strong> For flat rate services, our guarantee applies only
+                        to the
+                        tasks and extras that are included in the flat rate service. Any additional services or
+                        tasks
                         outside of the agreed scope are not covered by the guarantee.</p>
-                    <p><strong>Hourly Services:</strong> For hourly services, our guarantee covers the quality of
-                        cleaning, not the number of areas cleaned. If you're moving out, we recommend not choosing
-                        hourly services as it’s hard to estimate the time required for such a big task. In these cases,
+                    <p><strong>Hourly Services:</strong> For hourly services, our guarantee covers the quality
+                        of
+                        cleaning, not the number of areas cleaned. If you're moving out, we recommend not
+                        choosing
+                        hourly services as it’s hard to estimate the time required for such a big task. In these
+                        cases,
                         our guarantee won't apply.</p>
-                    <p><strong>Move Out Services:</strong> For move-out cleanings, you have up to 7 days to contact our
-                        support team if you're unsatisfied. We’ll review your concerns and, if needed, arrange for a
+                    <p><strong>Move Out Services:</strong> For move-out cleanings, you have up to 7 days to
+                        contact our
+                        support team if you're unsatisfied. We’ll review your concerns and, if needed, arrange
+                        for a
                         re-clean, which will be completed within 7 days.</p>
-                    <p><strong>Steam Cleaning:</strong> While our team uses high-tech equipment to clean your carpets
-                        and upholstery, we can't guarantee removal of permanent stains or marks. If we’ve done our best
+                    <p><strong>Steam Cleaning:</strong> While our team uses high-tech equipment to clean your
+                        carpets
+                        and upholstery, we can't guarantee removal of permanent stains or marks. If we’ve done
+                        our best
                         with the service, we won’t be able to return for the same issue. However, if there are
                         exceptional circumstances, we’ll be happy to review the situation.</p>
                 </div>
@@ -697,7 +395,8 @@
                     <ul>
                         <li>Clients must provide access to the property at the agreed time.</li>
                         <li>Clients must ensure pets do not interfere with cleaning services.</li>
-                        <li>Clients must provide a mop and vacuum, unless pre-arranged for the cleaner to bring their
+                        <li>Clients must provide a mop and vacuum, unless pre-arranged for the cleaner to bring
+                            their
                             own.</li>
                         <li>The environment should be safe for cleaning staff.</li>
                     </ul>
@@ -705,16 +404,20 @@
 
                 <div class="term-section">
                     <h2><span>16</span> Access to premises</h2>
-                    <p>For security reasons, our cleaners do not keep keys to your property. The client is responsible
-                        for providing access to the premises. This can be done by securely hiding a key or using a
+                    <p>For security reasons, our cleaners do not keep keys to your property. The client is
+                        responsible
+                        for providing access to the premises. This can be done by securely hiding a key or using
+                        a
                         lockbox, for example.</p>
-                    <p>If you have any specific instructions on how to grant access, please make sure to provide them
+                    <p>If you have any specific instructions on how to grant access, please make sure to provide
+                        them
                         ahead of time to ensure a smooth and timely service.</p>
                 </div>
 
                 <div class="term-section">
                     <h2><span>17</span> Limitations & Exclusions</h2>
-                    <p>Please note that the following tasks are excluded from all bookings and are not completed by Maid
+                    <p>Please note that the following tasks are excluded from all bookings and are not completed
+                        by Maid
                         At Home:</p>
                     <ul>
                         <li>Moving of heavy/large items of furniture</li>
@@ -739,21 +442,28 @@
                 <div class="term-section">
                     <h2><span>18</span> Damages & Liabilities</h2>
                     <p>Maid At Home is a referral service that connects clients with independent cleaners. These
-                        cleaners are not our employees but operate under their own terms. Our role is to facilitate the
+                        cleaners are not our employees but operate under their own terms. Our role is to
+                        facilitate the
                         connection and ensure a smooth process for both clients and cleaners.</p>
-                    <p>Because cleaners operate independently, they are fully responsible for their work, including any
-                        damages or issues that may arise. Maid At Home cannot be held liable for any losses, problems,
+                    <p>Because cleaners operate independently, they are fully responsible for their work,
+                        including any
+                        damages or issues that may arise. Maid At Home cannot be held liable for any losses,
+                        problems,
                         or failures related to their service.</p>
                 </div>
 
                 <div class="term-section">
                     <h2><span>19</span> Insurance</h2>
                     <ul>
-                        <li>Our cleaning team carries public liability insurance to cover any accidental damage caused
-                            during service. The cleaning team is liable for any damage and will be covered by their own
+                        <li>Our cleaning team carries public liability insurance to cover any accidental damage
+                            caused
+                            during service. The cleaning team is liable for any damage and will be covered by
+                            their own
                             insurance.</li>
-                        <li>We ensure that all cleaners are fully insured before selecting them to work with us.</li>
-                        <li>We are not liable for damage to items that are improperly secured or areas not previously
+                        <li>We ensure that all cleaners are fully insured before selecting them to work with us.
+                        </li>
+                        <li>We are not liable for damage to items that are improperly secured or areas not
+                            previously
                             disclosed as fragile.</li>
                         <li>Clients must report any damage within 24 hours of the service completion.</li>
                     </ul>
@@ -762,7 +472,8 @@
                 <div class="term-section">
                     <h2><span>20</span> Privacy policy</h2>
                     <ul>
-                        <li>Client information is collected solely for booking and service purposes and will not be
+                        <li>Client information is collected solely for booking and service purposes and will not
+                            be
                             shared with third parties.</li>
                         <li>We use secure systems to store personal data.</li>
                     </ul>
@@ -770,16 +481,20 @@
 
                 <div class="term-section">
                     <h2><span>21</span> Governing law & Jurisdiction</h2>
-                    <p>These Terms of Service, along with any separate agreements through which we provide services,
-                        shall be governed by and construed in accordance with the laws in force in Australia. Both
-                        parties irrevocably and unconditionally submit to the exclusive jurisdiction of the courts of
+                    <p>These Terms of Service, along with any separate agreements through which we provide
+                        services,
+                        shall be governed by and construed in accordance with the laws in force in Australia.
+                        Both
+                        parties irrevocably and unconditionally submit to the exclusive jurisdiction of the
+                        courts of
                         Australia.</p>
                 </div>
 
                 <div class="term-section">
                     <h2><span>22</span> Changes to terms</h2>
                     <ul>
-                        <li>Maid At Home reserves the right to update these Terms & Conditions at any time without prior
+                        <li>Maid At Home reserves the right to update these Terms & Conditions at any time
+                            without prior
                             notification.</li>
                         <li>Continued use of our services constitutes acceptance of the updated terms.</li>
                     </ul>
@@ -836,7 +551,8 @@
                                 onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
                                 onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z">
+                                    </path>
                                 </svg>
                             </a>
                             <!-- Instagram -->
@@ -1027,7 +743,8 @@
                 <!-- Bottom Footer -->
                 <div
                     style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px;">
-                    <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">© 2026 Maid At Home. Precision in every
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">© 2026 Maid At Home. Precision
+                        in every
                         detail.</p>
                     <div style="display: flex; gap: 32px;">
                         <a href="privacy-policy.html"
@@ -1042,63 +759,7 @@
         </footer>
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            gsap.registerPlugin(ScrollTrigger);
-
-            // Optimized Header Scroll
-            ScrollTrigger.create({
-                start: "top -50",
-                onEnter: () => document.getElementById('header').classList.add('scrolled'),
-                onLeaveBack: () => document.getElementById('header').classList.remove('scrolled')
-            });
-
-            // Reveal Animations
-            gsap.utils.toArray('.reveal').forEach(el => {
-                gsap.to(el, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.2,
-                    ease: "expo.out",
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 90%",
-                        once: true
-                    }
-                });
-            });
-        });
-
-        // Hamburger Menu
-        const hamburger = document.querySelector('.hamburger');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const closeMenuBtn = document.querySelector('.close-menu-btn');
-        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                mobileMenu.classList.toggle('active');
-                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-            });
-
-            if (closeMenuBtn) {
-                closeMenuBtn.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            }
-
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
-        }
-    </script>
+    <!-- Bottom scripts handled by main.js in head -->
 </body>
 
 </html>

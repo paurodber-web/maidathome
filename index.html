@@ -30,479 +30,9 @@
     <!-- Local Fonts (PageSpeed Optimized) -->
 
     <!-- GSAP scripts moved to footer for performance -->
+    <link rel="stylesheet" href="css/main.css">
     <style>
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 300;
-            font-display: block;
-            src: url('fonts/Inter-300.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
-            font-display: block;
-            src: url('fonts/Inter-400.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Outfit';
-            font-style: normal;
-            font-weight: 300;
-            font-display: block;
-            src: url('fonts/Outfit-300.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Outfit';
-            font-style: normal;
-            font-weight: 400;
-            font-display: block;
-            src: url('fonts/Outfit-400.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Outfit';
-            font-style: normal;
-            font-weight: 600;
-            font-display: block;
-            src: url('fonts/Outfit-600.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Outfit';
-            font-style: normal;
-            font-weight: 800;
-            font-display: block;
-            src: url('fonts/Outfit-800.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Plus Jakarta Sans';
-            font-style: normal;
-            font-weight: 400;
-            font-display: block;
-            src: url('fonts/PlusJakartaSans-400.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Plus Jakarta Sans';
-            font-style: normal;
-            font-weight: 500;
-            font-display: block;
-            src: url('fonts/PlusJakartaSans-500.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Plus Jakarta Sans';
-            font-style: normal;
-            font-weight: 600;
-            font-display: block;
-            src: url('fonts/PlusJakartaSans-600.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Plus Jakarta Sans';
-            font-style: normal;
-            font-weight: 700;
-            font-display: block;
-            src: url('fonts/PlusJakartaSans-700.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Plus Jakarta Sans';
-            font-style: normal;
-            font-weight: 800;
-            font-display: block;
-            src: url('fonts/PlusJakartaSans-800.woff2') format('woff2');
-        }
-
-        :root {
-            --primary: #2563eb;
-            --secondary: #0f172a;
-            --accent: #2563eb;
-            --bg: #ffffff;
-            --surface: #f1f5f9;
-            --text: #1e293b;
-            --text-muted: #64748b;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            line-height: 1.5;
-            text-size-adjust: 100%;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        h1,
-        h2,
-        h3 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--secondary);
-            font-weight: 800;
-            letter-spacing: -0.04em;
-        }
-
-        .pseudo-h2 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--secondary);
-            font-weight: 800;
-            letter-spacing: -0.04em;
-        }
-
-        .pseudo-h3 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--secondary);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-
-        .pseudo-h4 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--secondary);
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-
-
-        header {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            height: 70px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-            z-index: 1000;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            top: 0;
-            width: 100%;
-            border-radius: 0;
-            background: rgba(255, 255, 255, 0.98);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #0f172a;
-            text-decoration: none;
-            letter-spacing: -0.04em;
-        }
-
-        .logo span {
-            color: #2563eb;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #0f172a;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #2563eb;
-        }
-
-        .hamburger {
-            display: none;
-            width: 30px;
-            height: 20px;
-            flex-direction: column;
-            justify-content: space-between;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 2000;
-            padding: 0;
-        }
-
-        .hamburger span {
-            width: 100%;
-            height: 2px;
-            background: var(--secondary);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -6px);
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: white;
-            z-index: 1500;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 32px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .mobile-menu.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-nav-link {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--secondary);
-            text-decoration: none;
-        }
-
-        .close-menu-btn {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            background: none;
-            border: none;
-            font-size: 3rem;
-            line-height: 1;
-            color: var(--secondary);
-            cursor: pointer;
-            padding: 0;
-            transition: 0.3s;
-            z-index: 1501;
-        }
-
-        .close-menu-btn:hover {
-            color: var(--primary);
-            transform: rotate(90deg);
-        }
-
-        @media (max-width:1024px) {
-            header {
-                width: 100%;
-                top: 0;
-                border-radius: 0;
-                padding: 0 24px;
-                background: rgba(255, 255, 255, 0.95);
-            }
-
-            .nav-links,
-            .btn-blue.header-btn {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-        }
-
-        .btn-blue {
-            background: #2563eb;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 0.85rem;
-            line-height: 20.4px;
-            transition: 0.3s;
-        }
-
-        .btn-blue:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .popup-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .popup-card {
-            background: white;
-            width: 90%;
-            max-width: 500px;
-            padding: 60px 40px;
-            border-radius: 40px;
-            position: relative;
-            text-align: center;
-            transform: scale(0.9) translateY(40px);
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 40px 100px -20px rgba(15, 23, 42, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .popup-overlay.active .popup-card {
-            transform: scale(1) translateY(0);
-        }
-
-        .popup-close {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            width: 40px;
-            height: 40px;
-            border: none;
-            background: #f8fafc;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-            color: var(--text-muted);
-        }
-
-        .popup-close:hover {
-            background: #f1f5f9;
-            color: var(--text);
-            transform: rotate(90deg);
-        }
-
-        .popup-tag {
-            background: #eff6ff;
-            color: #2563eb;
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 24px;
-            display: inline-block;
-        }
-
-        .popup-title {
-            font-size: 2.5rem;
-            line-height: 1.1;
-            margin-bottom: 16px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 800;
-            color: var(--secondary);
-            letter-spacing: -0.04em;
-        }
-
-        .popup-desc {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            margin-bottom: 32px;
-            line-height: 1.6;
-        }
-
-        .promo-code-box {
-            background: #f8fafc;
-            border: 2px dashed #cbd5e1;
-            padding: 20px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 32px;
-        }
-
-        .promo-code-text {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--secondary);
-            letter-spacing: 2px;
-        }
-
-        .copy-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .copy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.3);
-        }
-
-        .copy-btn.copied {
-            background: #10b981;
-        }
-
-        .btn-decline {
-            display: block;
-            margin-top: 24px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .btn-decline:hover {
-            color: var(--text);
-        }
-
+        /* Page specific styles */
         .hero-v2 {
             padding-top: 200px;
             padding-bottom: 0;
@@ -566,9 +96,10 @@
             text-align: center;
         }
 
-        .stat-item h2 {
+        .stat-item .pseudo-h3 {
             font-size: 3rem;
             color: var(--accent);
+            margin-bottom: 8px;
         }
 
         .stat-item p {
@@ -576,10 +107,7 @@
             letter-spacing: 2px;
             font-size: 0.8rem;
             color: var(--text-muted);
-        }
-
-        section {
-            padding: 160px 5% 120px;
+            margin: 0;
         }
 
         .section-header {
@@ -785,85 +313,8 @@
             display: none;
         }
 
-        .faq-item.active .faq-a {
+        .faq-item.active .faq-header .pseudo-h3 {
             display: block;
-        }
-
-        footer {
-            background: var(--secondary);
-            padding: 100px 5% 40px;
-            color: white;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-        }
-
-        @media (max-width:1024px) {
-            .bento-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .bento-item.cta-item {
-                grid-column: span 2;
-            }
-        }
-
-        @media (max-width:768px) {
-            .features-split {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .bento-grid,
-            .stats-section,
-            .revitalize-grid,
-            .features-grid-custom,
-            .process-step-grid {
-                grid-template-columns: 1fr !important;
-                display: grid !important;
-            }
-
-            .stats-section {
-                flex-direction: column;
-                display: flex !important;
-                align-items: center;
-                gap: 40px;
-            }
-
-            .stat-item {
-                margin-bottom: 0px;
-            }
-
-            .process-step,
-            .process-step-grid {
-                grid-template-columns: 1fr !important;
-                flex-direction: column;
-                text-align: center;
-                gap: 40px !important;
-                margin-bottom: 80px !important;
-            }
-
-            .process-step-grid>div,
-            .process-step>div {
-                order: unset !important;
-            }
-
-            .process-step-grid>div:has(img),
-            .process-step>div:has(img) {
-                margin-bottom: 20px;
-            }
-
-            .process-step-grid.mobile-reverse {
-                display: flex !important;
-                flex-direction: column-reverse;
-            }
-
-            .process-step-grid.mobile-reverse>div:has(img) {
-                margin-bottom: 0px;
-                margin-top: 20px;
-            }
         }
 
         .revitalize-section {
@@ -893,7 +344,7 @@
             text-align: left;
         }
 
-        .header-text h2 {
+        .header-text .pseudo-h2 {
             font-size: clamp(2.25rem, 5vw, 3rem);
             font-weight: 800;
             color: #ffffff;
@@ -948,7 +399,7 @@
             border: none;
         }
 
-        .rev-card h3 {
+        .rev-card .pseudo-h3 {
             color: #ffffff;
             font-size: 1.25rem;
             font-weight: 700;
@@ -975,27 +426,6 @@
             color: #ffffff;
         }
 
-        @media (max-width:1024px) {
-            .revitalize-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .header-text h2 {
-                font-size: 2.25rem;
-            }
-
-            .section-header-row {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        @media (max-width:640px) {
-            .revitalize-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .features-grid-custom {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1014,7 +444,176 @@
             margin-bottom: 0;
         }
 
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-card {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            padding: 60px 40px;
+            border-radius: 40px;
+            position: relative;
+            text-align: center;
+            transform: scale(0.9) translateY(40px);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 40px 100px -20px rgba(15, 23, 42, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .popup-overlay.active .popup-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: #f8fafc;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            color: var(--text-muted);
+        }
+
+        .popup-close:hover {
+            background: #f1f5f9;
+            color: var(--text);
+            transform: rotate(90deg);
+        }
+
+        .popup-tag {
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .popup-title {
+            font-size: 2.5rem;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            color: var(--secondary);
+            letter-spacing: -0.04em;
+        }
+
+        .popup-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .promo-code-box {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .promo-code-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            letter-spacing: 2px;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.3);
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+        }
+
+        .btn-decline {
+            display: block;
+            margin-top: 24px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-decline:hover {
+            color: var(--text);
+        }
+
         @media (max-width:1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bento-item.cta-item {
+                grid-column: span 2;
+            }
+
+            .revitalize-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-text .pseudo-h2 {
+                font-size: 2.25rem;
+            }
+
+            .section-header-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
             .features-grid-custom {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1023,21 +622,12 @@
                 gap: 40px;
             }
 
-            .stats-section {
-                gap: 30px;
-                padding-bottom: 60px;
-            }
-
             .hero-v2 {
                 padding-top: 150px;
             }
 
             .hero-v2 h1 {
                 font-size: 3.5rem;
-            }
-
-            section {
-                padding: 100px 5% 80px;
             }
 
             .process-step-grid h3 {
@@ -1049,15 +639,58 @@
             .hero-v2 {
                 padding-top: 120px;
             }
+
+            .features-split {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .bento-grid,
+            .stats-section,
+            .revitalize-grid,
+            .features-grid-custom,
+            .process-step-grid {
+                grid-template-columns: 1fr !important;
+                display: grid !important;
+            }
+
+            .stats-section {
+                flex-direction: column;
+                display: flex !important;
+                align-items: center;
+                gap: 40px;
+            }
+
+            .stat-item {
+                margin-bottom: 0px;
+            }
+
+            .process-step-grid {
+                grid-template-columns: 1fr !important;
+                text-align: center;
+                gap: 40px !important;
+                margin-bottom: 80px !important;
+            }
+
+            .process-step-grid>div:has(img) {
+                margin-bottom: 20px;
+            }
+
+            .process-step-grid.mobile-reverse {
+                display: flex !important;
+                flex-direction: column-reverse;
+            }
+
+            .process-step-grid.mobile-reverse>div:has(img) {
+                margin-bottom: 0px;
+                margin-top: 20px;
+            }
         }
 
-        .suburb-link:hover {
-            color: white !important;
-        }
-
-        footer h2,
-        footer h3 {
-            color: white !important;
+        @media (max-width:640px) {
+            .revitalize-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -1076,12 +709,12 @@
             <a href="contact.html" class="nav-link">Contact</a>
             <a href="faqs.html" class="nav-link">FAQs</a>
         </nav>
-        <a href="booking.html" class="btn-blue header-btn">Book Now</a>
         <button class="hamburger" aria-label="Toggle menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
+        <a href="booking.html" class="btn-blue">Book Now</a>
     </header>
 
     <div class="mobile-menu">
@@ -1106,15 +739,15 @@
 
         <div class="stats-section">
             <div class="stat-item reveal">
-                <div class="pseudo-h2" style="font-size: 3rem; margin-bottom: 8px; color: var(--accent);">5000+</div>
+                <div class="pseudo-h3">5000+</div>
                 <p>Services provided</p>
             </div>
             <div class="stat-item reveal">
-                <div class="pseudo-h2" style="font-size: 3rem; margin-bottom: 8px; color: var(--accent);">100%</div>
+                <div class="pseudo-h3">100%</div>
                 <p>Satisfaction guarantee</p>
             </div>
             <div class="stat-item reveal">
-                <div class="pseudo-h2" style="font-size: 3rem; margin-bottom: 8px; color: var(--accent);">8+</div>
+                <div class="pseudo-h3">8+</div>
                 <p>Years of experience</p>
             </div>
         </div>
@@ -1124,7 +757,7 @@
             <div class="container text-white">
                 <div class="section-header-row">
                     <div class="header-text">
-                        <h2>Select the perfect cleaning <br>for your home</h2>
+                        <div class="pseudo-h2">Select the perfect cleaning <br>for your home</div>
                         <p>Experience premium cleaning results with our meticulously defined service tiers, tailored to
                             keep your Melbourne home in pristine condition.</p>
                     </div>
@@ -1139,22 +772,22 @@
 
                 <div class="revitalize-grid">
                     <div class="rev-card">
-                        <h3>Standard Clean</h3>
+                        <div class="pseudo-h3">Standard Clean</div>
                         <div class="rev-desc">Essential care to keep your home fresh and tidy.</div>
                         <div class="rev-price">From $155</div>
                     </div>
                     <div class="rev-card">
-                        <h3>Deep Clean</h3>
+                        <div class="pseudo-h3">Deep Clean</div>
                         <div class="rev-desc">Thorough detail tackling even the toughest spots.</div>
                         <div class="rev-price">From $215</div>
                     </div>
                     <div class="rev-card">
-                        <h3>End of Lease</h3>
+                        <div class="pseudo-h3">End of Lease</div>
                         <div class="rev-desc">Bond return guarantee with full sanitization.</div>
                         <div class="rev-price">From $410</div>
                     </div>
                     <div class="rev-card featured">
-                        <h3 style="color: white;">Recurring Clean</h3>
+                        <div class="pseudo-h3" style="color: white;">Recurring Clean</div>
                         <div class="rev-desc" style="color: rgba(255,255,255,0.8);">Save on weekly or fortnightly
                             recurring cleaning.</div>
                         <div class="rev-price" style="color: white;">Save 15%</div>
@@ -1171,9 +804,9 @@
                         style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">Why
                         Choose Us</span>
 
-                    <h2 class="reveal"
+                    <div class="pseudo-h2 reveal"
                         style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; line-height: 1.1;">
-                        Expert cleaning for health and comfort</h2>
+                        Expert cleaning for health and comfort</div>
                     <p class="reveal"
                         style="font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin: 0 auto;">
                         Transform your living spaces with our specialised cleaning solutions designed for modern homes.
@@ -1219,7 +852,6 @@
                             care in every corner ensures a thoroughly cleaned home that exceeds expectations.</p>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -1230,7 +862,8 @@
                     <p class="reveal"
                         style="color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 16px;">
                         How It Works</p>
-                    <h2 class="reveal" style="font-size: clamp(2.5rem, 5vw, 4rem);">Spotless results, simplified</h2>
+                    <div class="pseudo-h2 reveal" style="font-size: clamp(2.5rem, 5vw, 4rem);">Spotless results,
+                        simplified</div>
                     <p class="reveal"
                         style="font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 24px auto 0;">We
                         believe that a clean home should be easy to achieve. From booking to final touches, our
@@ -1306,8 +939,9 @@
                     <!-- Title Card -->
                     <div class="bento-item reveal"
                         style="background: transparent; padding: 40px; border-radius: 32px; display: flex; flex-direction: column; justify-content: center; border: none;">
-                        <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; line-height: 1.2;">
-                            The cleaning you deserve</h2>
+                        <div class="pseudo-h2"
+                            style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; line-height: 1.2;">
+                            The cleaning you deserve</div>
                         <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
                             Customised
                             plans,
@@ -1316,29 +950,34 @@
 
                     <a href="services.html#standard-cleaning" class="bento-item reveal"
                         style="background: white; padding: 40px; border-radius: 32px; text-decoration: none; color: inherit; border: 1px solid #f1f5f9; transition: 0.4s; display: block;">
-                        <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Standard Clean</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 24px;">Our standard cleaning services offer a
-                            quick and efficient clean for your living space, leaving every room tidy and refreshed.</p>
+                        <div class="pseudo-h3" style="font-size: 1.5rem; margin-bottom: 16px;">Standard Clean</div>
+                        <p style="color: var(--text-muted); margin-bottom: 24px;">Our standard cleaning services
+                            offer a
+                            quick and efficient clean for your living space, leaving every room tidy and refreshed.
+                        </p>
                         <span style="color: var(--accent); font-weight: 700;">Contact Us →</span>
                     </a>
                     <a href="services.html#deep-cleaning" class="bento-item reveal"
                         style="background: white; padding: 40px; border-radius: 32px; text-decoration: none; color: inherit; border: 1px solid #f1f5f9; transition: 0.4s; display: block;">
-                        <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Deep Clean</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 24px;">Our deep cleaning services provide a
+                        <div class="pseudo-h3" style="font-size: 1.5rem; margin-bottom: 16px;">Deep Clean</div>
+                        <p style="color: var(--text-muted); margin-bottom: 24px;">Our deep cleaning services provide
+                            a
                             thorough and reliable clean for your living space, ensuring every room is fresh.</p>
                         <span style="color: var(--accent); font-weight: 700;">Contact Us →</span>
                     </a>
                     <a href="services.html#move-cleaning" class="bento-item reveal"
                         style="background: white; padding: 40px; border-radius: 32px; text-decoration: none; color: inherit; border: 1px solid #f1f5f9; transition: 0.4s; display: block;">
-                        <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Move In/Out Clean</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 24px;">Our move-in/move-out cleaning services
+                        <div class="pseudo-h3" style="font-size: 1.5rem; margin-bottom: 16px;">Move In/Out Clean</div>
+                        <p style="color: var(--text-muted); margin-bottom: 24px;">Our move-in/move-out cleaning
+                            services
                             ensure your space is spotless, making your transition smooth and hassle-free.</p>
                         <span style="color: var(--accent); font-weight: 700;">Contact Us →</span>
                     </a>
                     <a href="services.html#steam-cleaning" class="bento-item reveal"
                         style="background: white; padding: 40px; border-radius: 32px; text-decoration: none; color: inherit; border: 1px solid #f1f5f9; transition: 0.4s; display: block;">
-                        <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Steam Clean</h3>
-                        <p style="color: var(--text-muted); margin-bottom: 24px;">Our steam cleaning services deep clean
+                        <div class="pseudo-h3" style="font-size: 1.5rem; margin-bottom: 16px;">Steam Clean</div>
+                        <p style="color: var(--text-muted); margin-bottom: 24px;">Our steam cleaning services deep
+                            clean
                             carpets and upholstery, removing dirt and stains for a fresh and refreshed look.</p>
                         <span style="color: var(--accent); font-weight: 700;">View Details →</span>
                     </a>
@@ -1350,9 +989,12 @@
                             style="position: absolute; top: -30px; right: -30px; width: 150px; height: 150px; background: rgba(255,255,255,0.1); border-radius: 50%;">
                         </div>
                         <div style="position: relative; z-index: 1;">
-                            <h3 style="font-size: 1.5rem; margin-bottom: 16px; color: white; font-weight: 700;">Ready to
-                                get started?</h3>
-                            <p style="margin-bottom: 28px; opacity: 0.95; line-height: 1.6;">Book your cleaning service
+                            <div class="pseudo-h3"
+                                style="font-size: 1.5rem; margin-bottom: 16px; color: white; font-weight: 700;">
+                                Ready to
+                                get started?</div>
+                            <p style="margin-bottom: 28px; opacity: 0.95; line-height: 1.6;">Book your cleaning
+                                service
                                 today and experience the difference of a professionally cleaned home.</p>
                             <a href="https://www.maidathome.com.au/contact-us"
                                 style="display: inline-block; background: white; color: var(--accent); padding: 14px 32px; border-radius: 12px; font-weight: 700; text-decoration: none; transition: 0.3s;">
@@ -1370,12 +1012,14 @@
                 <div style="text-align: center; margin-bottom: 80px;">
                     <span class="reveal"
                         style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">Testimonials</span>
-                    <h2 class="reveal"
+                    <div class="pseudo-h2 reveal"
                         style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; line-height: 1.1;">What people
-                        say about us</h2>
+                        say about us</div>
                     <p class="reveal"
-                        style="font-size: 1.2rem; color: var(--text-muted); max-width: 900px; margin: 0 auto;">We take
-                        pride in delivering exceptional cleaning services tailored to our clients needs. But don't just
+                        style="font-size: 1.2rem; color: var(--text-muted); max-width: 900px; margin: 0 auto;">We
+                        take
+                        pride in delivering exceptional cleaning services tailored to our clients needs. But don't
+                        just
                         take our word for it—here's what our satisfied customers have to say about their experiences
                         with us:</p>
                 </div>
@@ -1516,7 +1160,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- Dot Indicators - Accessibility Optimized -->
@@ -1527,7 +1170,6 @@
                 <button class="testimonial-dot" aria-label="Go to testimonial 4" data-index="3"></button>
                 <button class="testimonial-dot" aria-label="Go to testimonial 5" data-index="4"></button>
             </div>
-            </div>
         </section>
 
         <!-- FAQs Section -->
@@ -1535,9 +1177,9 @@
             <div
                 style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 100px; align-items: start;">
                 <div class="reveal">
-                    <h2
+                    <div class="pseudo-h2"
                         style="font-size: clamp(3rem, 6vw, 5rem); color: var(--secondary); margin-bottom: 24px; line-height: 1; letter-spacing: -0.05em; font-weight: 800;">
-                        Frequently<br>asked questions</h2>
+                        Frequently<br>asked questions</div>
                     <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 400px; line-height: 1.6;">
                         Everything you need to know about our cleaning services and billing.</p>
 
@@ -1800,7 +1442,6 @@
             }
         </script>
 
-        <!-- Footer -->
         <!-- Footer -->
         <footer>
             <div style="max-width: 1400px; margin: 0 auto;">
@@ -2159,6 +1800,7 @@
                 copyBtn.classList.remove('copied');
             }, 2000);
         }
+
     </script>
 </body>
 
