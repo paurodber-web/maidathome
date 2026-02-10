@@ -1930,16 +1930,8 @@
     <script src="js/gsap.min.js" defer></script>
     <script src="js/ScrollTrigger.min.js" defer></script>
     <script src="js/main.js" defer></script>
-    <script>
-        // Logic moved to js/main.js for better performance and maintenance
-    </script>
-    <!-- Load non-critical CSS via JS Injection for zero blocking -->
-    <script>
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'css/main.css';
-        document.head.appendChild(link);
-    </script>
+    <!-- Load non-critical CSS using print-media hack (Restored for Score 97) -->
+    <link rel="stylesheet" href="css/main.css" media="print" onload="this.media='all'">
     <noscript>
         <link rel="stylesheet" href="css/main.css">
     </noscript>
