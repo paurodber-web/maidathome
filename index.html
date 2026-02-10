@@ -1408,9 +1408,9 @@
 
             </div>
 
-            <!-- Testimonials Carousel - Optimized Smooth Scroll -->
+            <!-- Testimonials Carousel - Edge-to-Edge "Bleeding" Style -->
             <div id="testimonial-carousel"
-                style="overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; margin: 0; padding: 0 0 40px 0; scrollbar-width: none; -ms-overflow-style: none;">
+                style="overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; margin: 0 -5vw; padding: 0 5vw 40px 5vw; scrollbar-width: none; -ms-overflow-style: none;">
                 <div style="display: flex; gap: 24px; min-width: min-content;">
                     <!-- Testimonial 1 -->
                     <div class="reveal"
@@ -1746,16 +1746,19 @@
                         clearTimeout(scrollTimeout);
 
                         currentIndex = index;
-                        const cardWidth = testimonialCarousel.querySelector('div > div').offsetWidth;
-                        const gap = 24;
-                        testimonialCarousel.scrollTo({
-                            left: (cardWidth + gap) * index,
-                            behavior: 'smooth'
-                        });
+                        const cards = testimonialCarousel.querySelectorAll('div > div[style*="width"]');
+                        const targetCard = cards[index];
+
+                        if (targetCard) {
+                            const paddingLeft = parseFloat(window.getComputedStyle(testimonialCarousel).paddingLeft);
+                            testimonialCarousel.scrollTo({
+                                left: targetCard.offsetLeft - paddingLeft,
+                                behavior: 'smooth'
+                            });
+                        }
 
                         updateDots(index);
 
-                        // Re-enable scroll listener after animation
                         scrollTimeout = setTimeout(() => {
                             isManualScroll = false;
                         }, 600);
@@ -1767,12 +1770,22 @@
                     if (isManualScroll) return;
 
                     const scrollLeft = testimonialCarousel.scrollLeft;
-                    const cardWidth = testimonialCarousel.querySelector('div > div').offsetWidth;
-                    const gap = 24;
-                    const newIndex = Math.round(scrollLeft / (cardWidth + gap));
+                    const cards = testimonialCarousel.querySelectorAll('div > div[style*="width"]');
+                    const paddingLeft = parseFloat(window.getComputedStyle(testimonialCarousel).paddingLeft);
 
-                    if (newIndex !== currentIndex && newIndex >= 0 && newIndex < dots.length) {
-                        currentIndex = newIndex;
+                    let closestIndex = currentIndex;
+                    let minDiff = Infinity;
+
+                    cards.forEach((card, i) => {
+                        const diff = Math.abs((card.offsetLeft - paddingLeft) - scrollLeft);
+                        if (diff < minDiff) {
+                            minDiff = diff;
+                            closestIndex = i;
+                        }
+                    });
+
+                    if (closestIndex !== currentIndex) {
+                        currentIndex = closestIndex;
                         updateDots(currentIndex);
                     }
                 });
