@@ -261,10 +261,7 @@
                 padding: 80px 5% 60px;
             }
         }
-    </style>
-    <!-- Load CSS synchronously to prevent FOUC -->
-    <link rel="stylesheet" href="css/main.css">
-    <style>
+
         /* Page specific styles */
         .hero-v2 {
             padding-top: 200px;
@@ -926,6 +923,11 @@
             }
         }
     </style>
+    <!-- Load non-critical CSS asynchronously -->
+    <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="css/main.css">
+    </noscript>
 </head>
 
 <body>
