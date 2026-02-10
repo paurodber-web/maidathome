@@ -1746,13 +1746,13 @@
                         clearTimeout(scrollTimeout);
 
                         currentIndex = index;
-                        const cards = testimonialCarousel.querySelectorAll('div > div[style*="width"]');
+                        const cards = testimonialCarousel.querySelectorAll('div > .reveal');
                         const targetCard = cards[index];
 
                         if (targetCard) {
-                            const paddingLeft = parseFloat(window.getComputedStyle(testimonialCarousel).paddingLeft);
+                            // Scroll to the card's position. scroll-padding handles the 5% offset.
                             testimonialCarousel.scrollTo({
-                                left: targetCard.offsetLeft - paddingLeft,
+                                left: targetCard.offsetLeft,
                                 behavior: 'smooth'
                             });
                         }
@@ -1761,7 +1761,7 @@
 
                         scrollTimeout = setTimeout(() => {
                             isManualScroll = false;
-                        }, 600);
+                        }, 800);
                     });
                 });
 
@@ -1770,14 +1770,13 @@
                     if (isManualScroll) return;
 
                     const scrollLeft = testimonialCarousel.scrollLeft;
-                    const cards = testimonialCarousel.querySelectorAll('div > div[style*="width"]');
-                    const paddingLeft = parseFloat(window.getComputedStyle(testimonialCarousel).paddingLeft);
+                    const cards = testimonialCarousel.querySelectorAll('div > .reveal');
 
                     let closestIndex = currentIndex;
                     let minDiff = Infinity;
 
                     cards.forEach((card, i) => {
-                        const diff = Math.abs((card.offsetLeft - paddingLeft) - scrollLeft);
+                        const diff = Math.abs(card.offsetLeft - scrollLeft);
                         if (diff < minDiff) {
                             minDiff = diff;
                             closestIndex = i;
