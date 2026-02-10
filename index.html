@@ -1408,13 +1408,13 @@
 
             </div>
 
-            <!-- Testimonials Carousel -->
+            <!-- Testimonials Carousel - Optimized Smooth Scroll -->
             <div id="testimonial-carousel"
-                style="overflow-x: hidden; overflow-y: hidden; margin: 0 -5%; padding: 0 5% 40px 5%;">
+                style="overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; margin: 0 -5%; padding: 0 5% 40px 5%; scrollbar-width: none; -ms-overflow-style: none;">
                 <div style="display: flex; gap: 24px; min-width: min-content;">
                     <!-- Testimonial 1 -->
                     <div class="reveal"
-                        style="min-width: 380px; max-width: 380px; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
+                        style="min-width: 320px; width: 380px; scroll-snap-align: start; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
                         <div style="margin-bottom: 24px;">
                             <div style="display: flex; gap: 4px; margin-bottom: 16px;">
                                 <span style="color: #fbbf24; font-size: 1.2rem;">★★★★★</span>
@@ -1439,7 +1439,7 @@
 
                     <!-- Testimonial 2 -->
                     <div class="reveal"
-                        style="min-width: 380px; max-width: 380px; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
+                        style="min-width: 320px; width: 380px; scroll-snap-align: start; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
                         <div style="margin-bottom: 24px;">
                             <div style="display: flex; gap: 4px; margin-bottom: 16px;">
                                 <span style="color: #fbbf24; font-size: 1.2rem;">★★★★★</span>
@@ -1464,7 +1464,7 @@
 
                     <!-- Testimonial 3 -->
                     <div class="reveal"
-                        style="min-width: 380px; max-width: 380px; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
+                        style="min-width: 320px; width: 380px; scroll-snap-align: start; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
                         <div style="margin-bottom: 24px;">
                             <div style="display: flex; gap: 4px; margin-bottom: 16px;">
                                 <span style="color: #fbbf24; font-size: 1.2rem;">★★★★★</span>
@@ -1489,7 +1489,7 @@
 
                     <!-- Testimonial 4 -->
                     <div class="reveal"
-                        style="min-width: 380px; max-width: 380px; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
+                        style="min-width: 320px; width: 380px; scroll-snap-align: start; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
                         <div style="margin-bottom: 24px;">
                             <div style="display: flex; gap: 4px; margin-bottom: 16px;">
                                 <span style="color: #fbbf24; font-size: 1.2rem;">★★★★★</span>
@@ -1514,7 +1514,7 @@
 
                     <!-- Testimonial 5 -->
                     <div class="reveal"
-                        style="min-width: 380px; max-width: 380px; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
+                        style="min-width: 320px; width: 380px; scroll-snap-align: start; background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);">
                         <div style="margin-bottom: 24px;">
                             <div style="display: flex; gap: 4px; margin-bottom: 16px;">
                                 <span style="color: #fbbf24; font-size: 1.2rem;">★★★★★</span>
@@ -1726,9 +1726,6 @@
             let currentIndex = 0;
 
             if (testimonialCarousel && dots.length > 0) {
-                const scrollAmount = 404; // 380px card width + 24px gap
-
-                // Update active dot
                 function updateDots(index) {
                     dots.forEach((dot, i) => {
                         if (i === index) {
@@ -1739,22 +1736,41 @@
                     });
                 }
 
+                let isManualScroll = false;
+                let scrollTimeout;
+
                 // Dot click handlers
                 dots.forEach((dot, index) => {
                     dot.addEventListener('click', () => {
+                        isManualScroll = true;
+                        clearTimeout(scrollTimeout);
+
                         currentIndex = index;
+                        const cardWidth = testimonialCarousel.querySelector('div > div').offsetWidth;
+                        const gap = 24;
                         testimonialCarousel.scrollTo({
-                            left: scrollAmount * index,
+                            left: (cardWidth + gap) * index,
                             behavior: 'smooth'
                         });
+
                         updateDots(index);
+
+                        // Re-enable scroll listener after animation
+                        scrollTimeout = setTimeout(() => {
+                            isManualScroll = false;
+                        }, 600);
                     });
                 });
 
                 // Update dots on scroll
                 testimonialCarousel.addEventListener('scroll', () => {
+                    if (isManualScroll) return;
+
                     const scrollLeft = testimonialCarousel.scrollLeft;
-                    const newIndex = Math.round(scrollLeft / scrollAmount);
+                    const cardWidth = testimonialCarousel.querySelector('div > div').offsetWidth;
+                    const gap = 24;
+                    const newIndex = Math.round(scrollLeft / (cardWidth + gap));
+
                     if (newIndex !== currentIndex && newIndex >= 0 && newIndex < dots.length) {
                         currentIndex = newIndex;
                         updateDots(currentIndex);
