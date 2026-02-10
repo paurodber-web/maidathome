@@ -149,6 +149,27 @@
             letter-spacing: -0.04em;
         }
 
+        .pseudo-h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--secondary);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+
+        .pseudo-h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--secondary);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .pseudo-h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--secondary);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
         header {
             position: fixed;
             top: 20px;
@@ -444,6 +465,17 @@
             box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.15);
         }
 
+        .gsap-image-reveal {
+            clip-path: inset(0 100% 0 0);
+            transform: scale(1.2);
+            transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gsap-image-reveal.active {
+            clip-path: inset(0 0 0 0);
+            transform: scale(1);
+        }
+
         .banner-wrap img {
             width: 100%;
             height: 100%;
@@ -569,7 +601,7 @@
                         style="padding: 16px 40px; font-size: 1rem; display: inline-block;">Contact
                         us today</a>
                 </div>
-                <div class="hero-image reveal">
+                <div class="hero-image reveal gsap-image-reveal">
                     <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=1470"
                         alt="Home Care">
                 </div>
@@ -589,7 +621,7 @@
                                 <path d="M2 12l10 5 10-5"></path>
                             </svg>
                         </div>
-                        <h3>Our Story</h3>
+                        <div class="pseudo-h3">Our Story</div>
                         <p>Maid At Home was founded with a drive for excellence and a vision to make home services more
                             accessible and hassle-free for everyone. We started as a small team dedicated to one simple
                             idea: that every home deserves a 5-star hospitality standard clean.</p>
@@ -603,7 +635,7 @@
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
                         </div>
-                        <h3>Our Mission</h3>
+                        <div class="pseudo-h3">Our Mission</div>
                         <p>Our goal is straightforward: to provide homeowners with reliable, efficient solutions that
                             make daily life easier and more enjoyable. We strive to restore your time so you can focus
                             on what truly matters, while we handle the meticulous details.</p>
@@ -618,7 +650,7 @@
                                 </polygon>
                             </svg>
                         </div>
-                        <h3>What Sets Us Apart</h3>
+                        <div class="pseudo-h3">What Sets Us Apart</div>
                         <p>What makes us unique is our dedication to delivering excellence in every detail of our
                             service. From our vetted cleaning specialists to our eco-friendly products, we don't just
                             clean—we care. Precision is in our DNA.</p>
@@ -639,23 +671,23 @@
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
                     <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <h4 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--secondary);">Integrity</h4>
+                        <div class="pseudo-h4" style="font-size: 1.25rem; margin-bottom: 16px;">Integrity</div>
                         <p style="color: var(--text-muted); line-height: 1.6;">Transparent pricing and honest
                             communication in every single interaction. We build relationships on trust.</p>
                     </div>
                     <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <h4 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--secondary);">Sustainability
-                        </h4>
+                        <div class="pseudo-h4" style="font-size: 1.25rem; margin-bottom: 16px;">Sustainability
+                        </div>
                         <p style="color: var(--text-muted); line-height: 1.6;">We exclusively use eco-friendly and
                             non-toxic products to protect your home environment and our planet.</p>
                     </div>
                     <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <h4 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--secondary);">Quality First</h4>
+                        <div class="pseudo-h4" style="font-size: 1.25rem; margin-bottom: 16px;">Quality First</div>
                         <p style="color: var(--text-muted); line-height: 1.6;">Our protocols are inspired by premium
                             hospitality standards, ensuring no detail is ever overlooked.</p>
                     </div>
                     <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <h4 style="font-size: 1.25rem; margin-bottom: 16px; color: var(--secondary);">Reliability</h4>
+                        <div class="pseudo-h4" style="font-size: 1.25rem; margin-bottom: 16px;">Reliability</div>
                         <p style="color: var(--text-muted); line-height: 1.6;">When we say we'll be there, we'll be
                             there. Consistent, high-quality results are our guarantee.</p>
                     </div>
@@ -667,7 +699,7 @@
         <section class="about-section">
             <div class="content-container"
                 style="display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;">
-                <div class="reveal"
+                <div class="reveal gsap-image-reveal"
                     style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.1);">
                     <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80&w=1470"
                         alt="Professional Clean" style="width: 100%; display: block;">
@@ -755,9 +787,9 @@
 
                     <!-- Company Links -->
                     <div class="reveal">
-                        <h2
-                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
-                            Company</h2>
+                        <div class="pseudo-h4"
+                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px;">
+                            Company</div>
                         <ul style="list-style: none; padding: 0; margin: 0;">
                             <li style="margin-bottom: 16px;"><a href="about.html"
                                     style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">About
@@ -782,9 +814,9 @@
 
                     <!-- Hours -->
                     <div class="reveal">
-                        <h2
-                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
-                            Business Hours</h2>
+                        <div class="pseudo-h4"
+                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px;">
+                            Business Hours</div>
                         <ul style="list-style: none; padding: 0; margin: 0; color: rgba(255,255,255,0.75);">
                             <li
                                 style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
@@ -806,9 +838,9 @@
 
                     <!-- Newsletter -->
                     <div class="reveal">
-                        <h2
-                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
-                            Newsletter</h2>
+                        <div class="pseudo-h4"
+                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px;">
+                            Newsletter</div>
                         <p
                             style="color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 24px; font-size: 1rem;">
                             Join our newsletter for exclusive tips and deals.
@@ -826,9 +858,9 @@
 
                 <!-- Suburbs SEO Section -->
                 <div style="border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 0;">
-                    <h3
-                        style="color: white !important; color: white; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; font-weight: 700;">
-                        Service Areas</h3>
+                    <div class="pseudo-h4"
+                        style="color: white !important; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px;">
+                        Service Areas</div>
                     <div style="display: flex; flex-wrap: wrap; gap: 12px 24px;">
                         <a href="#" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Abbotsford</a>
@@ -964,6 +996,16 @@
                         start: "top 90%",
                         once: true
                     }
+                });
+            });
+
+            // Image Reveal Animations
+            gsap.utils.toArray('.gsap-image-reveal').forEach(el => {
+                ScrollTrigger.create({
+                    trigger: el,
+                    start: "top 85%",
+                    onEnter: () => el.classList.add('active'),
+                    once: true
                 });
             });
         });
