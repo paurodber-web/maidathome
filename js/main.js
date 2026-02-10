@@ -71,9 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // --- Copy Logic (Robust) ---
+        // --- Copy Logic (Robust) ---
         if (copyCodeBtn) {
-            const codeText = promoCode ? promoCode.innerText : "FIRST15";
-
             const updateButtonState = () => {
                 const originalText = copyCodeBtn.innerText;
                 copyCodeBtn.innerText = 'Copied!';
@@ -103,6 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             copyCodeBtn.addEventListener('click', () => {
+                // Read text ONLY on click to avoid forced reflow on page load
+                // Use textContent instead of innerText for better performance
+                const codeText = promoCode ? promoCode.textContent.trim() : "FIRST15";
+
                 if (navigator.clipboard && window.isSecureContext) {
                     navigator.clipboard.writeText(codeText).then(updateButtonState).catch(() => fallbackCopy(codeText));
                 } else {
