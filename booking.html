@@ -136,389 +136,277 @@
     </div>
 
     <main>
-
-        .booking-container {
-        max-width: 100%;
-        margin: 0 auto;
-        background: white;
-        border-radius: 32px;
-        }
-
-        .suburb-link {
-        color: rgba(255, 255, 255, 0.7);
-        text-decoration: none;
-        font-size: 0.85rem;
-        transition: 0.3s;
-        }
-
-        .suburb-link:hover {
-        color: white;
-        }
-
-        .reveal {
-        opacity: 0;
-        transform: translateY(30px);
-        }
-
-        footer {
-        background: var(--secondary);
-        padding: 100px 5% 40px;
-        color: white;
-        }
-
-        @media (max-width:1024px) {
-        .hero-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-        }
-
-        .hero-booking p {
-        margin-left: auto;
-        margin-right: auto;
-        }
-
-        .booking-container {
-        padding: 20px;
-        }
-        }
-
-        @media (max-width:768px) {
-        .hero-booking {
-        padding: 140px 5% 60px;
-        }
-
-        .hero-booking h1 {
-        font-size: 2.5rem;
-        }
-
-        .booking-section {
-        padding: 40px 0 80px;
-        }
-
-        footer {
-        padding: 60px 5% 40px;
-        }
-        }
-
-        .suburb-link:hover {
-        color: white !important;
-        }
-
-        footer h2,
-        footer h3 {
-        color: white !important;
-        }
-        </style>
-        </head>
-
-        <body>
-            <header id="header">
-                <a href="index.html" class="logo"
-                    style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
-                    <img src="assets/logo-pequeno.png" alt="Maid At Home Logo"
-                        style="height: 45px; width: auto; display: block;">
-                </a>
-                <nav class="nav-links">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="about.html" class="nav-link">About us</a>
-                    <a href="services.html" class="nav-link">Services</a>
-                    <a href="pricing.html" class="nav-link">Pricing</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                    <a href="faqs.html" class="nav-link">FAQs</a>
-                </nav>
-                <a href="booking.html" class="btn-blue">Book Now</a>
-                <button class="hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </header>
-
-            <div class="mobile-menu">
-                <button class="close-menu-btn" aria-label="Close menu">&times;</button>
-                <a href="index.html" class="mobile-nav-link">Home</a>
-                <a href="about.html" class="mobile-nav-link">About us</a>
-                <a href="services.html" class="mobile-nav-link">Services</a>
-                <a href="pricing.html" class="mobile-nav-link">Pricing</a>
-                <a href="contact.html" class="mobile-nav-link">Contact</a>
-                <a href="faqs.html" class="mobile-nav-link">FAQs</a>
-                <a href="booking.html" class="btn-blue" style="margin-top: 20px;">Book Now</a>
+        <!-- Hero Section -->
+        <section class="hero-booking">
+            <div class="hero-inner">
+                <div class="reveal">
+                    <h1>Ready for a spotless home? Book now.</h1>
+                    <p>Experience the Gold Standard of hospitality cleaning. Our vetted professionals are ready
+                        to
+                        transform your space into a pristine sanctuary.</p>
+                    <div style="display: flex; gap: 24px; align-items: center;">
+                        <div
+                            style="display: flex; -webkit-mask-image: linear-gradient(to right, black 80%, transparent); mask-image: linear-gradient(to right, black 80%, transparent);">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100&h=100"
+                                style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; margin-right: -15px;">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=100&h=100"
+                                style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; margin-right: -15px;">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100&h=100"
+                                style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid white;">
+                        </div>
+                        <span style="font-weight: 600; font-size: 0.9rem; color: var(--secondary);">Joined by
+                            2,000+
+                            happy homes</span>
+                    </div>
+                </div>
+                <div class="hero-image reveal">
+                    <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=80&w=1470"
+                        alt="Professional Maid">
+                </div>
             </div>
+        </section>
 
-            <main>
-                <!-- Hero Section -->
-                <section class="hero-booking">
-                    <div class="hero-inner">
-                        <div class="reveal">
-                            <h1>Ready for a spotless home? Book now.</h1>
-                            <p>Experience the Gold Standard of hospitality cleaning. Our vetted professionals are ready
-                                to
-                                transform your space into a pristine sanctuary.</p>
-                            <div style="display: flex; gap: 24px; align-items: center;">
-                                <div
-                                    style="display: flex; -webkit-mask-image: linear-gradient(to right, black 80%, transparent); mask-image: linear-gradient(to right, black 80%, transparent);">
-                                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100&h=100"
-                                        style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; margin-right: -15px;">
-                                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=100&h=100"
-                                        style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; margin-right: -15px;">
-                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100&h=100"
-                                        style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid white;">
-                                </div>
-                                <span style="font-weight: 600; font-size: 0.9rem; color: var(--secondary);">Joined by
-                                    2,000+
-                                    happy homes</span>
-                            </div>
-                        </div>
-                        <div class="hero-image reveal">
-                            <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&q=80&w=1470"
-                                alt="Professional Maid">
-                        </div>
-                    </div>
-                </section>
+        <!-- Booking Form Section -->
+        <section class="booking-section">
+            <div class="booking-container reveal">
+                <iframe src="https://mah.bookingkoala.com/booknow/home_cleaning?embed=true&bar=false&banner=false"
+                    style="border:none;height:1000px" width="100%" scrolling="no"></iframe>
+            </div>
+        </section>
 
-                <!-- Booking Form Section -->
-                <section class="booking-section">
-                    <div class="booking-container reveal">
-                        <iframe
-                            src="https://mah.bookingkoala.com/booknow/home_cleaning?embed=true&bar=false&banner=false"
-                            style="border:none;height:1000px" width="100%" scrolling="no"></iframe>
-                    </div>
-                </section>
+        <script src="https://mah.bookingkoala.com/resources/embed.js" defer></script>
 
-                <script src="https://mah.bookingkoala.com/resources/embed.js" defer></script>
-
-                <!-- Footer -->
-                <!-- Footer -->
-                <!-- Footer -->
-                <footer>
-                    <div style="max-width: 1400px; margin: 0 auto;">
-                        <div
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px;">
-                            <!-- Logo & Description -->
-                            <div class="reveal">
-                                <a href="index.html" class="logo"
-                                    style="display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 24px;">
-                                    <img src="assets/logo-white.png" alt="Maid At Home Logo"
-                                        style="height: 50px; width: auto; display: block;">
-                                </a>
-                                <p
-                                    style="color: rgba(255,255,255,0.75); line-height: 1.8; font-size: 1.1rem; max-width: 320px; margin-bottom: 32px;">
-                                    Elevating the standard of home cleaning with a 5-star hospitality approach.
-                                </p>
-                                <div style="display: flex; gap: 16px;">
-                                    <!-- Facebook -->
-                                    <a href="#" aria-label="Follow us on Facebook"
-                                        style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
-                                        onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
-                                        onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                    <!-- Instagram -->
-                                    <a href="#" aria-label="Follow us on Instagram"
-                                        style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
-                                        onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
-                                        onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="reveal">
-                                <div class="pseudo-h4"
-                                    style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
-                                    Company</div>
-                                <ul style="list-style: none; padding: 0; margin: 0;">
-                                    <li style="margin-bottom: 16px;"><a href="about.html"
-                                            style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">About
-                                            Us</a></li>
-                                    <li style="margin-bottom: 16px;"><a href="services.html"
-                                            style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Services</a>
-                                    </li>
-                                    <li style="margin-bottom: 16px;"><a href="pricing.html"
-                                            style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Pricing</a>
-                                    </li>
-                                    <li style="margin-bottom: 16px;"><a href="faqs.html"
-                                            style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">FAQs</a>
-                                    </li>
-                                    <li style="margin-bottom: 16px;"><a href="contact.html"
-                                            style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Contact</a>
-                                    </li>
-                                    <li style="margin-bottom: 16px;"><a href="booking.html"
-                                            style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Book
-                                            Now</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="reveal">
-                                <div class="pseudo-h4"
-                                    style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
-                                    Business Hours</div>
-                                <ul style="list-style: none; padding: 0; margin: 0; color: rgba(255,255,255,0.75);">
-                                    <li
-                                        style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
-                                        <span>Mon - Fri</span>
-                                        <span style="color: white; font-weight: 600;">8am - 6pm</span>
-                                    </li>
-                                    <li
-                                        style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
-                                        <span>Sat</span>
-                                        <span style="color: white; font-weight: 600;">9am - 4pm</span>
-                                    </li>
-                                    <li
-                                        style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
-                                        <span>Sun</span>
-                                        <span style="color: white; font-weight: 600;">Closed</span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="reveal">
-                                <div class="pseudo-h4"
-                                    style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
-                                    Newsletter</div>
-                                <p
-                                    style="color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 24px; font-size: 1rem;">
-                                    Join our newsletter for exclusive tips and deals.
-                                </p>
-                                <div style="display: flex; gap: 8px;">
-                                    <input type="email" placeholder="Your email"
-                                        style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 12px; color: white; outline: none; flex-grow: 1; font-family: inherit;">
-                                    <button
-                                        style="background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;"
-                                        onmouseover="this.style.background='#1d4ed8'; this.style.transform='scale(1.05)'"
-                                        onmouseout="this.style.background='var(--accent)'; this.style.transform='scale(1)'">Join</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Suburbs SEO Section -->
-                        <div style="border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 0;">
-                            <div class="pseudo-h3"
-                                style="color: white !important; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; font-weight: 700;">
-                                Service Areas</div>
-                            <div style="display: flex; flex-wrap: wrap; gap: 12px 24px;">
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Abbotsford</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Armadale</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Balwyn</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Box
-                                    Hill</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brighton</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brunswick</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Burwood</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Camberwell</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Carlton</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Caulfield</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Cheltenham</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Collingwood</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Dandenong</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Docklands</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Doncaster</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Elsternwick</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Epping</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Essendon</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Fitzroy</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Footscray</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Frankston</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Glen
-                                    Waverley</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Hampton</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Hawthorn</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Kew</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Malvern</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Melbourne
-                                    CBD</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Mentone</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Moonee
-                                    Ponds</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Newport</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Northcote</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Prahran</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Preston</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Richmond</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Sandringham</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">South
-                                    Yarra</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Southbank</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">St
-                                    Kilda</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Toorak</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Williamstown</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Windsor</a>
-                                <a href="#" class="suburb-link"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Yarraville</a>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Footer -->
-                        <div
-                            style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px;">
-                            <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">© 2026 Maid At Home. Precision
-                                in every
-                                detail.</p>
-                            <div style="display: flex; gap: 32px;">
-                                <a href="privacy-policy.html"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Privacy
-                                    Policy</a>
-                                <a href="terms-conditions.html"
-                                    style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Terms
-                                    of Service</a>
-                            </div>
+        <!-- Footer -->
+        <!-- Footer -->
+        <!-- Footer -->
+        <footer>
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px;">
+                    <!-- Logo & Description -->
+                    <div class="reveal">
+                        <a href="index.html" class="logo"
+                            style="display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 24px;">
+                            <img src="assets/logo-white.png" alt="Maid At Home Logo"
+                                style="height: 50px; width: auto; display: block;">
+                        </a>
+                        <p
+                            style="color: rgba(255,255,255,0.75); line-height: 1.8; font-size: 1.1rem; max-width: 320px; margin-bottom: 32px;">
+                            Elevating the standard of home cleaning with a 5-star hospitality approach.
+                        </p>
+                        <div style="display: flex; gap: 16px;">
+                            <!-- Facebook -->
+                            <a href="#" aria-label="Follow us on Facebook"
+                                style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
+                                onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
+                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z">
+                                    </path>
+                                </svg>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="#" aria-label="Follow us on Instagram"
+                                style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
+                                onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
+                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
                         </div>
                     </div>
-                </footer>
-            </main>
 
-            <!-- Bottom scripts handled by main.js in head -->
-        </body>
+                    <div class="reveal">
+                        <div class="pseudo-h4"
+                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
+                            Company</div>
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 16px;"><a href="about.html"
+                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">About
+                                    Us</a></li>
+                            <li style="margin-bottom: 16px;"><a href="services.html"
+                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Services</a>
+                            </li>
+                            <li style="margin-bottom: 16px;"><a href="pricing.html"
+                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Pricing</a>
+                            </li>
+                            <li style="margin-bottom: 16px;"><a href="faqs.html"
+                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">FAQs</a>
+                            </li>
+                            <li style="margin-bottom: 16px;"><a href="contact.html"
+                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Contact</a>
+                            </li>
+                            <li style="margin-bottom: 16px;"><a href="booking.html"
+                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Book
+                                    Now</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="reveal">
+                        <div class="pseudo-h4"
+                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
+                            Business Hours</div>
+                        <ul style="list-style: none; padding: 0; margin: 0; color: rgba(255,255,255,0.75);">
+                            <li
+                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                                <span>Mon - Fri</span>
+                                <span style="color: white; font-weight: 600;">8am - 6pm</span>
+                            </li>
+                            <li
+                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                                <span>Sat</span>
+                                <span style="color: white; font-weight: 600;">9am - 4pm</span>
+                            </li>
+                            <li
+                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                                <span>Sun</span>
+                                <span style="color: white; font-weight: 600;">Closed</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="reveal">
+                        <div class="pseudo-h4"
+                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; font-weight: 700;">
+                            Newsletter</div>
+                        <p
+                            style="color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 24px; font-size: 1rem;">
+                            Join our newsletter for exclusive tips and deals.
+                        </p>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="email" placeholder="Your email"
+                                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 12px; color: white; outline: none; flex-grow: 1; font-family: inherit;">
+                            <button
+                                style="background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;"
+                                onmouseover="this.style.background='#1d4ed8'; this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.background='var(--accent)'; this.style.transform='scale(1)'">Join</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suburbs SEO Section -->
+                <div style="border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 0;">
+                    <div class="pseudo-h3"
+                        style="color: white !important; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; font-weight: 700;">
+                        Service Areas</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px 24px;">
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Abbotsford</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Armadale</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Balwyn</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Box
+                            Hill</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brighton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brunswick</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Burwood</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Camberwell</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Carlton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Caulfield</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Cheltenham</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Collingwood</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Dandenong</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Docklands</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Doncaster</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Elsternwick</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Epping</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Essendon</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Fitzroy</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Footscray</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Frankston</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Glen
+                            Waverley</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Hampton</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Hawthorn</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Kew</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Malvern</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Melbourne
+                            CBD</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Mentone</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Moonee
+                            Ponds</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Newport</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Northcote</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Prahran</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Preston</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Richmond</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Sandringham</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">South
+                            Yarra</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Southbank</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">St
+                            Kilda</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Toorak</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Williamstown</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Windsor</a>
+                        <a href="#" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Yarraville</a>
+                    </div>
+                </div>
+
+                <!-- Bottom Footer -->
+                <div
+                    style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px;">
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">© 2026 Maid At Home. Precision
+                        in every
+                        detail.</p>
+                    <div style="display: flex; gap: 32px;">
+                        <a href="privacy-policy.html"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Privacy
+                            Policy</a>
+                        <a href="terms-conditions.html"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Terms
+                            of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Bottom scripts handled by main.js in head -->
+</body>
 
 </html>
