@@ -232,6 +232,35 @@
         section {
             padding: 160px 5% 120px
         }
+
+        @media (max-width:1024px) {
+            header {
+                width: 100%;
+                top: 0;
+                border-radius: 0;
+                padding: 0 24px;
+                background: rgba(255, 255, 255, 0.95);
+            }
+
+            .nav-links,
+            header .btn-blue {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            section {
+                padding: 100px 5% 80px;
+            }
+        }
+
+        @media (max-width:768px) {
+            section {
+                padding: 80px 5% 60px;
+            }
+        }
     </style>
     <!-- Load non-critical CSS asynchronously -->
     <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
