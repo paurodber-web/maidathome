@@ -1933,8 +1933,11 @@
     <script>
         // Logic moved to js/main.js for better performance and maintenance
     </script>
-    <!-- Load non-critical CSS at end of body -->
-    <link rel="stylesheet" href="css/main.css">
+    <!-- Load non-critical CSS using print-media hack to completely unblock rendering -->
+    <link rel="stylesheet" href="css/main.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="css/main.css">
+    </noscript>
 </body>
 
 </html>
