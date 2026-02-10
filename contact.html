@@ -1017,63 +1017,6 @@
             });
         }
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            gsap.registerPlugin(ScrollTrigger);
-
-            // Optimized Header Scroll
-            ScrollTrigger.create({
-                start: "top -50",
-                onEnter: () => document.getElementById('header').classList.add('scrolled'),
-                onLeaveBack: () => document.getElementById('header').classList.remove('scrolled')
-            });
-
-            // Reveal Animations
-            gsap.utils.toArray('.reveal').forEach(el => {
-                gsap.to(el, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.2,
-                    ease: "expo.out",
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 90%",
-                        once: true
-                    }
-                });
-            });
-        });
-
-        // Hamburger Menu
-        const hamburger = document.querySelector('.hamburger');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const closeMenuBtn = document.querySelector('.close-menu-btn');
-        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                mobileMenu.classList.toggle('active');
-                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-            });
-
-            if (closeMenuBtn) {
-                closeMenuBtn.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            }
-
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
-        }
-    </script>
 </body>
 
 </html>
