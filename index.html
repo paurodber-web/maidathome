@@ -175,27 +175,6 @@
             letter-spacing: -0.01em;
         }
 
-        .gsap-image-reveal {
-            clip-path: inset(0 100% 0 0 round 40px);
-            opacity: 0;
-            transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease-out;
-            will-change: clip-path, opacity;
-        }
-
-        .gsap-image-reveal.active {
-            clip-path: inset(0 0 0 0 round 40px);
-            opacity: 1;
-        }
-
-        .gsap-image-reveal img {
-            transform: scale(1.3);
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform;
-        }
-
-        .gsap-image-reveal.active img {
-            transform: scale(1);
-        }
 
         header {
             position: fixed;
@@ -1270,20 +1249,18 @@
                         <a href="https://www.maidathome.com.au/contact-us" class="btn-blue"
                             style="padding: 14px 32px; display: inline-block;">Get a Quote</a>
                     </div>
-                    <div class="gsap-image-reveal"
+                    <div
                         style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15);">
                         <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67d42b4440c92b6dd59be9d1_booking.webp"
-                            alt="Booking" width="800" height="600" style="width: 100%; height: auto; display: block;"
-                            loading="lazy">
+                            alt="Booking" style="width: 100%; display: block;">
                     </div>
                 </div>
 
                 <div class="process-step-grid reveal mobile-reverse">
-                    <div class="gsap-image-reveal"
+                    <div
                         style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15);">
                         <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67d42b445881814723d0a82c_waiting.webp"
-                            alt="Confirmation" width="800" height="600"
-                            style="width: 100%; height: auto; display: block;" loading="lazy">
+                            alt="Confirmation" style="width: 100%; display: block;">
                     </div>
                     <div>
                         <span style="font-size: 5rem; font-weight: 900; color: var(--accent); opacity: 0.1;">2</span>
@@ -1312,11 +1289,10 @@
                         <a href="https://www.maidathome.com.au/contact-us" class="btn-blue"
                             style="padding: 14px 32px; display: inline-block;">Connect with Us</a>
                     </div>
-                    <div class="gsap-image-reveal"
+                    <div
                         style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.15);">
                         <img src="https://cdn.prod.website-files.com/67d3ba651b288e2e96341039/67d42b45720b0eb481558ea3_enjoying.webp"
-                            alt="Enjoying" width="800" height="600" style="width: 100%; height: auto; display: block;"
-                            loading="lazy">
+                            alt="Enjoying" style="width: 100%; display: block;">
                     </div>
                 </div>
             </div>
@@ -2125,15 +2101,6 @@
                 });
             });
 
-            // Image Reveal Animations
-            gsap.utils.toArray('.gsap-image-reveal').forEach(el => {
-                ScrollTrigger.create({
-                    trigger: el,
-                    start: "top 85%",
-                    onEnter: () => el.classList.add('active'),
-                    once: true
-                });
-            });
         });
 
         // Popup Actions (Non-scroll)
