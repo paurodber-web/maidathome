@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Detect mobile devices
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
 
     // ==========================================
     // 1. INTERACTION LOGIC (Immediate - No Layout Trashing)
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === popup) closePopup();
         });
 
-        // Copy Code Logic (Optimized for No Reflow)
+        // Copy Code Logic
         if (copyCodeBtn) {
             const updateButtonState = () => {
                 const originalText = copyCodeBtn.innerText;
@@ -83,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             copyCodeBtn.addEventListener('click', () => {
-                // Read textContent only on click
                 const codeText = promoCode ? promoCode.textContent.trim() : "FIRST15";
 
                 if (navigator.clipboard && window.isSecureContext) {
@@ -96,17 +94,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 2. MOBILE SPECIFIC LOGIC (Immediate & Lightweight)
+    // 2. MOBILE SPECIFIC LOGIC (Lightweight)
     // ==========================================
     if (isMobile) {
-        // Instant Reveal (No Animation)
+        // Instant Reveal
         const revealElements = document.querySelectorAll('.reveal');
         revealElements.forEach(el => {
             el.style.opacity = '1';
             el.style.transform = 'translateY(0)';
         });
 
-        // Popup Scroll Trigger (Native Event)
+        // Popup Scroll Trigger (Native)
         if (popup && !localStorage.getItem('maidAtHomePopupShown')) {
             const checkScrollMobile = () => {
                 if (window.scrollY > 500) {
@@ -117,65 +115,84 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             window.addEventListener('scroll', checkScrollMobile, { passive: true });
         }
-
-        // Stop here for mobile - No GSAP loaded
         return;
     }
 
     // ==========================================
-    // 3. DESKTOP ANIMATIONS (GSAP - Deferred)
+    // 3. DESKTOP LOGIC (Lazy Load GSAP)
     // ==========================================
-    // Defer initialization to avoid blocking main thread / forced reflow during load
-    if (hasGsap) {
-        setTimeout(() => {
-            gsap.registerPlugin(ScrollTrigger);
 
-            const header = document.getElementById('header');
+    const loadScript = (src) => {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.body.appendChild(script);
+        });
+    };
 
-            // Header Scroll Effect
-            if (header) {
-                ScrollTrigger.create({
-                    trigger: document.body,
-                    start: "top -50",
-                    onEnter: () => header.classList.add('scrolled'),
-                    onLeaveBack: () => header.classList.remove('scrolled')
-                });
+    // Load GSAP only on Desktop and after a delay to unblock main thread
+    setTimeout(async () => {
+        if (typeof gsap === 'undefined') {
+            try {
+                await loadScript('js/gsap.min.js');
+                await loadScript('js/ScrollTrigger.min.js');
+                initDesktopAnimations();
+            } catch (e) {
+                console.error("Failed to load GSAP", e);
             }
+        } else {
+            initDesktopAnimations();
+        }
+    }, 200);
 
-            // Popup Scroll Effect
-            if (popup && !localStorage.getItem('maidAtHomePopupShown')) {
-                const showPopup = () => {
-                    popup.classList.add('active');
-                    try { localStorage.setItem('maidAtHomePopupShown', 'true'); } catch (e) { }
-                };
+    function initDesktopAnimations() {
+        gsap.registerPlugin(ScrollTrigger);
 
-                ScrollTrigger.create({
-                    trigger: document.body,
-                    start: "800px top",
-                    onEnter: showPopup,
-                    once: true
-                });
-            }
+        const header = document.getElementById('header');
 
-            // Section Reveal Animations
-            const revealElements = document.querySelectorAll('.reveal');
-            gsap.utils.toArray(revealElements).forEach(el => {
-                gsap.to(el, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.2,
-                    ease: "expo.out",
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 90%", // Trigger when element is near bottom of viewport
-                        once: true
-                    }
-                });
+        // Header Scroll Effect
+        if (header) {
+            ScrollTrigger.create({
+                trigger: document.body,
+                start: "top -50",
+                onEnter: () => header.classList.add('scrolled'),
+                onLeaveBack: () => header.classList.remove('scrolled')
             });
+        }
 
-            // Force recalculation after delay to ensure correct positions
-            ScrollTrigger.refresh();
+        // Popup Scroll Effect
+        if (popup && !localStorage.getItem('maidAtHomePopupShown')) {
+            const showPopup = () => {
+                popup.classList.add('active');
+                try { localStorage.setItem('maidAtHomePopupShown', 'true'); } catch (e) { }
+            };
 
-        }, 200); // 200ms delay allows browser layout to settle first
+            ScrollTrigger.create({
+                trigger: document.body,
+                start: "800px top",
+                onEnter: showPopup,
+                once: true
+            });
+        }
+
+        // Section Reveal Animations
+        const revealElements = document.querySelectorAll('.reveal');
+        gsap.utils.toArray(revealElements).forEach(el => {
+            gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "expo.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%",
+                    once: true
+                }
+            });
+        });
+
+        ScrollTrigger.refresh();
     }
 });
