@@ -30,7 +30,214 @@
     <!-- Local Fonts (PageSpeed Optimized) -->
 
     <!-- GSAP scripts moved to footer for performance -->
-    <link rel="stylesheet" href="css/main.css">
+    <!-- Critical CSS inlined for faster initial render -->
+    <style>
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            font-display: block;
+            src: url('../fonts/Inter-300.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url('../fonts/Inter-400.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Outfit';
+            font-style: normal;
+            font-weight: 300;
+            font-display: block;
+            src: url('../fonts/Outfit-300.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Outfit';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url('../fonts/Outfit-400.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Outfit';
+            font-style: normal;
+            font-weight: 600;
+            font-display: block;
+            src: url('../fonts/Outfit-600.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Outfit';
+            font-style: normal;
+            font-weight: 800;
+            font-display: block;
+            src: url('../fonts/Outfit-800.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Plus Jakarta Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url('../fonts/PlusJakartaSans-400.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Plus Jakarta Sans';
+            font-style: normal;
+            font-weight: 500;
+            font-display: block;
+            src: url('../fonts/PlusJakartaSans-500.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Plus Jakarta Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-display: block;
+            src: url('../fonts/PlusJakartaSans-600.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Plus Jakarta Sans';
+            font-style: normal;
+            font-weight: 700;
+            font-display: block;
+            src: url('../fonts/PlusJakartaSans-700.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Plus Jakarta Sans';
+            font-style: normal;
+            font-weight: 800;
+            font-display: block;
+            src: url('../fonts/PlusJakartaSans-800.woff2') format('woff2')
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #0f172a;
+            --accent: #2563eb;
+            --bg: #ffffff;
+            --surface: #f1f5f9;
+            --text: #1e293b;
+            --text-muted: #64748b
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.5
+        }
+
+        h1,
+        h2,
+        h3,
+        .pseudo-h2,
+        .pseudo-h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--secondary);
+            font-weight: 800;
+            letter-spacing: -0.04em
+        }
+
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 1000;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all .3s ease
+        }
+
+        header.scrolled {
+            top: 0;
+            width: 100%;
+            border-radius: 0;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05)
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%)
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #0f172a;
+            font-weight: 600;
+            font-size: .9rem;
+            transition: .3s
+        }
+
+        .btn-blue {
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: .85rem;
+            line-height: 20.4px;
+            transition: .3s
+        }
+
+        header .btn-blue {
+            margin-left: auto
+        }
+
+        .hamburger {
+            display: none;
+            width: 30px;
+            height: 20px;
+            flex-direction: column;
+            justify-content: space-between;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 2000;
+            padding: 0;
+            margin-left: auto
+        }
+
+        section {
+            padding: 160px 5% 120px
+        }
+    </style>
+    <!-- Load non-critical CSS asynchronously -->
+    <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="css/main.css">
+    </noscript>
     <style>
         /* Page specific styles */
         .hero-v2 {
@@ -1698,6 +1905,7 @@
 
     <script src="js/gsap.min.js" defer></script>
     <script src="js/ScrollTrigger.min.js" defer></script>
+    <script src="js/main.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             gsap.registerPlugin(ScrollTrigger);
