@@ -35,49 +35,41 @@ for i in "${!SUBURBS[@]}"; do
     # Selection of specific content to ensure uniqueness
     case "$suburb" in
         "Docklands")
-            HERO="Experience elite modern cleaning solutions tailored specifically for Docklands residents. We provide precision care for urban waterfront living, ensuring your apartment remains a pristine sanctuary amidst the city skyline."
-            WHY="Modern apartments in {{SUBURB}} demand expert care for contemporary surfaces and glass. We specialize in maintaining the pristine, high-end aesthetic of your city home, letting you enjoy the views without the chore of cleaning."
+            HERO="Professional cleaning services for Docklands apartments. Keep your home spotless and comfortable with our trusted local team."
+            WHY="We specialize in apartment cleaning, ensuring your home is always tidy and welcoming. Spend more time enjoying the waterfront and less time cleaning."
             ;;
         "Southbank")
-            HERO="Premier high-rise cleaning services designed for Southbank apartments. We deliver elite standards for busy city professionals who demand nothing less than perfection in their living space."
-            WHY="Your high-rise home in {{SUBURB}} deserves to be a flawless sanctuary. We bring the meticulous attention to detail required for modern apartment living, ensuring every corner reflects the luxury of your location."
+            HERO="Top-quality cleaning for Southbank residents. From regular maintenance to deep cleans, we help you keep your apartment looking its best."
+            WHY="We understand the needs of high-rise living. Our reliable cleaners ensure your home is consistently clean, giving you one less thing to worry about."
             ;;
         "Melbourne-CBD")
-            HERO="Elite residential cleaning specifically for luxury Melbourne CBD apartments. We offer professional, hotel-grade care tailored to the fast-paced lifestyle of city-center living."
-            WHY="Living in the heart of {{SUBURB}} means embracing a vibrant, fast-paced lifestyle. We provide the reliable, high-standard cleaning you need to keep your urban sanctuary pristine and welcoming after a busy day."
+            HERO="Reliable and professional apartment cleaning for Melbourne CBD residents. We handle the cleaning so you can make the most of city living."
+            WHY="Living in the city is busy enough without worrying about housework. Our team provides efficient, thorough cleaning that keeps your apartment fresh and organized."
             ;;
         "South-Yarra")
-            HERO="Sophisticated, high-end cleaning for South Yarra's luxury apartments and prestigious street addresses. We match the elegance of your suburb with our meticulous housekeeping standards."
-            WHY="In a suburb defined by its style and sophistication, our {{SUBURB}} cleaning service delivers the meticulous detail required to maintain elite standards. We ensure your home is as impeccable as your lifestyle."
+            HERO="Detailed home cleaning for South Yarra. We offer a dependable service that keeps your home fresh, tidy, and perfectly maintained."
+            WHY="Whether you're in an apartment or a house, our team delivers a consistent, high-quality clean that fits around your schedule and lifestyle."
             ;;
         "Prahran")
-            HERO="Fashionable home care for all of Prahran, from stylish modern apartments to hidden terrace gems. We provide a cleaning service that perfectly complements your vibrant local lifestyle."
-            WHY="Step back into a perfectly staged sanctuary after a day exploring {{SUBURB}}. We go beyond basic cleaning to ensure every local home is refreshed, organized, and ready for pure relaxation."
+             HERO="Great home cleaning for Prahran residents. We provide a reliable service that perfectly complements your busy local lifestyle."
+            WHY="Come home to a perfectly clean space after a long day. We go beyond basic cleaning to ensure your home is refreshed and ready for you to relax."
             ;;
         "Brighton")
-            HERO="Professional, detail-oriented cleaning for all Brighton residents, from expansive coastal homes to boutique bayside apartments. We bring a breath of fresh air to your prestigious address."
-            WHY="Every household in {{SUBURB}} deserves a fresh, healthy living space that reflects the coastal beauty nearby. We bring our meticulous standards to every local home, ensuring a pristine coastal sanctuary."
+            HERO="Professional, detail-oriented cleaning for all Brighton homes. We help you maintain a beautiful, fresh living space without the effort."
+            WHY="Every home in {{SUBURB}} deserves to be clean and welcoming. We bring our high standards to every job, ensuring your home is always at its best."
             ;;
         "St-Kilda")
-            HERO="Versatile, high-quality house cleaning for the St Kilda community, covering everything from historic seaside residences to contemporary urban apartments."
-            WHY="Coastal environments require regular, professional care to combat salt and sand. We ensure every {{SUBURB}} home stays fresh, healthy, and perfectly maintained for you to enjoy the beachside lifestyle."
+            HERO="Versatile, high-quality house cleaning for the St Kilda community. We cover everything from apartments to larger family homes."
+            WHY="We ensure every {{SUBURB}} home stays fresh, healthy, and perfectly maintained, giving you more time to enjoy the beachside lifestyle."
             ;;
         "Richmond")
-            HERO="Energetic and thorough home care for Richmond's diverse mix of heritage cottages, townhouses, and modern warehouse conversions. We adapt to your home's unique character."
-            WHY="Residents across {{SUBURB}} lead busy, dynamic lives. We provide a dependable, high-quality clean that ensures your home remains a peaceful, organized retreat amidst the urban buzz."
-            ;;
-        "Hawthorn")
-            HERO="Superior cleaning services for all Hawthorn homes, catering to grand heritage estates and chic modern apartments alike. We treat your residence with the respect and care it deserves."
-            WHY="Every resident in {{SUBURB}} deserves the best in home care. Our teams deliver a premium experience that ensures your home is always clean, healthy, and inviting for family and guests."
-            ;;
-        "Abbotsford")
-            HERO="Meticulous cleaning for every home in {{SUBURB}}, from charm-filled riverside cottages to modern urban apartments. We ensure your home is a perfect reflection of this vibrant community."
-            WHY="We understand the diverse architectural mix of {{SUBURB}}. Our team is trained to provide a high-standard clean that respects your unique local residence, leaving it spotless and refreshed."
+            HERO="Thorough home care for Richmond's diverse mix of homes. Whether it's a cottage or an apartment, we adapt to your needs."
+            WHY="Residents in {{SUBURB}} lead busy lives. We provide a dependable clean that ensures your home remains a peaceful, organized retreat."
             ;;
         *)
             # Robust fallback for all other suburbs
-            HERO="Experience professional house cleaning tailored to the unique lifestyle and high standards of the {{SUBURB}} community. We transform your home into a spotless haven with our meticulous cleaning methods."
-            WHY="Every resident in {{SUBURB}} deserves a home that feels like a true sanctuary. We provide the meticulous care, unwavering reliability, and attention to detail you need to live your best local life without the stress of chores."
+            HERO="Professional house cleaning services in {{SUBURB}}. We take care of the chores so you can come home to a clean, relaxing space."
+            WHY="Our local team is dedicated to providing a reliable, thorough clean every time. Enjoy a spotless home and more free time to do what you love in {{SUBURB}}."
             ;;
     esac
 
