@@ -103,6 +103,7 @@
             }
         }
 
+
         .hero-about {
             padding: 200px 5% 100px;
             background: linear-gradient(180deg, var(--surface) 0%, white 100%);
@@ -125,6 +126,7 @@
             letter-spacing: -0.04em;
             color: var(--secondary);
             margin-bottom: 32px;
+            min-height: 110px;
         }
 
         .hero-about p {
@@ -133,6 +135,7 @@
             line-height: 1.7;
             max-width: 600px;
             margin-bottom: 40px;
+            min-height: 85px;
         }
 
         .hero-image {
@@ -176,8 +179,15 @@
                 text-align: center;
             }
 
+            h1 {
+                min-height: 165px;
+                font-size: 2.5rem;
+            }
+
             .hero-about p {
                 margin: 0 auto 40px;
+                min-height: 130px;
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -388,8 +398,8 @@
         <section class="hero-about">
             <div class="hero-inner">
                 <div class="reveal">
-                    <h1 style="min-height: calc(2 * 1.1em);">Premium house cleaning services in {{SUBURB}}</h1>
-                    <p style="min-height: calc(3 * 1.7em);">{{SUBURB_DESC}}</p>
+                    <h1>Premium house cleaning services in {{SUBURB}}</h1>
+                    <p>{{SUBURB_DESC}}</p>
                     <a href="../booking.html" class="btn-blue"
                         style="padding: 16px 40px; font-size: 1rem; display: inline-block;">Book Now</a>
                 </div>
