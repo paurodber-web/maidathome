@@ -2,7 +2,7 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
-    font-display: block;
+    font-display: swap;
     src: url('../fonts/Inter-300.woff2') format('woff2')
 }
 
@@ -10,7 +10,7 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-display: block;
+    font-display: swap;
     src: url('../fonts/Inter-400.woff2') format('woff2')
 }
 
@@ -18,7 +18,7 @@
     font-family: 'Outfit';
     font-style: normal;
     font-weight: 300;
-    font-display: block;
+    font-display: swap;
     src: url('../fonts/Outfit-300.woff2') format('woff2')
 }
 
@@ -26,7 +26,7 @@
     font-family: 'Outfit';
     font-style: normal;
     font-weight: 400;
-    font-display: block;
+    font-display: swap;
     src: url('../fonts/Outfit-400.woff2') format('woff2')
 }
 
@@ -34,7 +34,7 @@
     font-family: 'Outfit';
     font-style: normal;
     font-weight: 600;
-    font-display: block;
+    font-display: swap;
     src: url('../fonts/Outfit-600.woff2') format('woff2')
 }
 
@@ -42,7 +42,7 @@
     font-family: 'Outfit';
     font-style: normal;
     font-weight: 800;
-    font-display: block;
+    font-display: swap;
     src: url('../fonts/Outfit-800.woff2') format('woff2')
 }
 
@@ -50,7 +50,7 @@
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 400;
-    font-display: block;
+    font-display: swap;
     src: url('../fonts/PlusJakartaSans-400.woff2') format('woff2')
 }
 
@@ -58,7 +58,7 @@
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 500;
-    font-display: block;
+    font-display: swap;
     src: url('../fonts/PlusJakartaSans-500.woff2') format('woff2')
 }
 
@@ -66,7 +66,7 @@
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 600;
-    font-display: block;
+    font-display: swap;
     src: url('../fonts/PlusJakartaSans-600.woff2') format('woff2')
 }
 
@@ -74,7 +74,7 @@
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 700;
-    font-display: block;
+    font-display: swap;
     src: url('../fonts/PlusJakartaSans-700.woff2') format('woff2')
 }
 
@@ -82,7 +82,7 @@
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 800;
-    font-display: block;
+    font-display: swap;
     src: url('../fonts/PlusJakartaSans-800.woff2') format('woff2')
 }
 
@@ -103,7 +103,7 @@
 }
 
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     background-color: var(--bg);
     color: var(--text);
     overflow-x: hidden;
@@ -117,7 +117,7 @@ h2,
 h3,
 .pseudo-h2,
 .pseudo-h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     color: var(--secondary);
     font-weight: 800;
     letter-spacing: -0.04em
@@ -163,7 +163,18 @@ header.scrolled {
     font-weight: 800;
     color: #0f172a;
     text-decoration: none;
-    letter-spacing: -.04em
+    letter-spacing: -.04em;
+    min-width: 144px;
+    height: 45px;
+    display: flex;
+    align-items: center
+}
+
+.logo img {
+    aspect-ratio: 144 / 45;
+    height: 45px;
+    width: auto;
+    display: block
 }
 
 .logo span {
@@ -232,17 +243,18 @@ header.scrolled {
     height: 100vh;
     background: white;
     z-index: 1500;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 32px;
     opacity: 0;
     visibility: hidden;
-    transition: all .4s ease
+    transition: opacity .4s ease
 }
 
 .mobile-menu.active {
+    display: flex;
     opacity: 1;
     visibility: visible
 }
@@ -282,8 +294,10 @@ header.scrolled {
     text-decoration: none;
     font-weight: 800;
     font-size: .85rem;
-    line-height: 20.4px;
-    transition: .3s
+    line-height: 1.2;
+    transition: .3s;
+    display: inline-block;
+    min-height: 44.4px
 }
 
 header .btn-blue {
@@ -346,6 +360,12 @@ footer .pseudo-h4 {
 @media (max-width:768px) {
     section {
         padding: 80px 5% 60px
+    }
+
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important
     }
 }
 
