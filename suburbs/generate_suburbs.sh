@@ -101,5 +101,6 @@ for i in "${!SUBURBS[@]}"; do
     W_DESC=$(echo "$WHY" | sed "s/{{SUBURB}}/$DISPLAY_NAME/g")
     SAFE_IMAGE=$(echo "$IMAGE" | sed 's/&/\\\&/g')
 
-    sed "s/{{SUBURB}}/$DISPLAY_NAME/g; s/{{SUBURB_DESC}}/$H_DESC/g; s/{{WHY_CHOOSE_DESC}}/$W_DESC/g; s|{{SUBURB_IMAGE}}|$SAFE_IMAGE|g" "$TEMPLATE" > "$FILENAME"
+    # Replace variables and also swap the placeholder src for the real one
+    sed "s/{{SUBURB}}/$DISPLAY_NAME/g; s/{{SUBURB_DESC}}/$H_DESC/g; s/{{WHY_CHOOSE_DESC}}/$W_DESC/g; s|src=\"\.\./assets/logo-pequeno\.webp\" data-suburb-img=\"{{SUBURB_IMAGE}}\"|src=\"$SAFE_IMAGE\"|g" "$TEMPLATE" > "$FILENAME"
 done
