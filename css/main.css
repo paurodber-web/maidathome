@@ -331,7 +331,7 @@ footer .pseudo-h4 {
 
 .reveal {
     opacity: 0;
-    transform: translateY(40px)
+    transform: none
 }
 
 @media (max-width:1024px) {

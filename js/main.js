@@ -197,17 +197,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Section Reveal Animations
         const revealElements = document.querySelectorAll('.reveal');
         gsap.utils.toArray(revealElements).forEach(el => {
-            gsap.to(el, {
-                opacity: 1,
-                y: 0,
-                duration: 1.2,
-                ease: "expo.out",
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 90%",
-                    once: true
+            gsap.fromTo(el,
+                { opacity: 0, y: 40 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "expo.out",
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 90%",
+                        once: true
+                    }
                 }
-            });
+            );
         });
 
         ScrollTrigger.refresh();
