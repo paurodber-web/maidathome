@@ -1815,48 +1815,7 @@ input:checked+.slider:before {
         </footer>
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Accordion Logic
-            document.querySelectorAll('.faq-header').forEach(header => {
-                header.addEventListener('click', () => {
-                    const item = header.parentElement;
-                    const isActive = item.classList.contains('active');
-
-                    document.querySelectorAll('.faq-item').forEach(otherItem => {
-                        otherItem.classList.remove('active');
-                        otherItem.querySelector('.faq-body').style.maxHeight = null;
-                    });
-
-                    if (!isActive) {
-                        item.classList.add('active');
-                        const body = item.querySelector('.faq-body');
-                        body.style.maxHeight = body.scrollHeight + "px";
-                    }
-                });
-            });
-
-            // Active Nav Link on Scroll
-            const sections = document.querySelectorAll('.faq-section');
-            const navLinks = document.querySelectorAll('.faq-nav-link');
-
-            sections.forEach(section => {
-                ScrollTrigger.create({
-                    trigger: section,
-                    start: "top 300px",
-                    end: "bottom 300px",
-                    onToggle: self => {
-                        if (self.isActive) {
-                            const currentId = section.getAttribute('id');
-                            navLinks.forEach(link => {
-                                link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
-                            });
-                        }
-                    }
-                });
-            });
-        });
-    </script>
+    
     <!-- Cookie Banner -->
     <div id="cookieBanner" class="cookie-banner">
         <div class="cookie-content">

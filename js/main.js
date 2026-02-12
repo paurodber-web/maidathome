@@ -93,6 +93,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
+    // --- FAQ Accordion Logic ---
+    const faqHeaders = document.querySelectorAll('.faq-header');
+    if (faqHeaders.length > 0) {
+        faqHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-body').style.maxHeight = null;
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                    const body = item.querySelector('.faq-body');
+                    body.style.maxHeight = body.scrollHeight + "px";
+                }
+            });
+        });
+    }
+
     // ==========================================
     // 2. MOBILE SPECIFIC LOGIC (Lightweight)
     // ==========================================
@@ -212,6 +235,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             );
         });
+
+        
+        // FAQ ScrollSpy
+        if (document.querySelector('.faq-section')) {
+             const sections = document.querySelectorAll('.faq-section');
+             const navLinks = document.querySelectorAll('.faq-nav-link');
+
+             sections.forEach(section => {
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top 300px",
+                    end: "bottom 300px",
+                    onToggle: self => {
+                        if (self.isActive) {
+                            const currentId = section.getAttribute('id');
+                            navLinks.forEach(link => {
+                                link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
+                            });
+                        }
+                    }
+                });
+            });
+        }
 
         ScrollTrigger.refresh();
     }
