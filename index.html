@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    
+
+
+
     <title>Professional House Cleaning Melbourne | Maid At Home</title>
     <!-- Adaptive Favicons -->
     <link rel="icon" href="assets/favicon-dark.webp" media="(prefers-color-scheme: light)">
     <link rel="icon" href="assets/favicon-white.webp" media="(prefers-color-scheme: dark)">
     <link rel="shortcut icon" href="assets/favicon-dark.webp">
-    
+
     <link rel="canonical" href="https://www.maidathome.com.au/">
     <link rel="preload" href="fonts/Outfit-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
     <link rel="preload" href="fonts/PlusJakartaSans-400.woff2" as="font" type="font/woff2" crossorigin
@@ -1030,8 +1030,7 @@
 </head>
 
 <body>
-    <header id="header"><a href="index.html" class="logo"><img
-                src="assets/logo_dark.webp" alt="Maid at Home Logo"
+    <header id="header"><a href="index.html" class="logo"><img src="assets/logo_dark.webp" alt="Maid at Home Logo"
                 style="display: block; width: auto; height: 46px;"></a>
         <nav class="nav-links"><a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About
                 us</a><a href="services.html" class="nav-link">Services</a><a href="pricing.html"
@@ -1598,145 +1597,7 @@
                 </div>
             </div>
         </section>
-        <script> // FAQ Accordion
 
-            document.querySelectorAll('.faq-trigger').forEach(trigger => {
-                trigger.addEventListener('click', () => {
-                    const item = trigger.parentElement;
-                    const content = trigger.nextElementSibling;
-                    const icon = trigger.querySelector('.v-line');
-                    const isActive = item.classList.contains('active');
-
-                    // Close all other items
-                    document.querySelectorAll('.faq-item').forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                            otherItem.querySelector('.faq-content').style.maxHeight = '0';
-                            otherItem.querySelector('.v-line').style.transform = 'translateX(-50%) rotate(0deg)';
-                        }
-                    });
-
-                    // Toggle current item
-                    if (isActive) {
-                        item.classList.remove('active');
-                        content.style.maxHeight = '0';
-                        icon.style.transform = 'translateX(-50%) rotate(0deg)';
-                    }
-
-                    else {
-                        item.classList.add('active');
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                        icon.style.transform = 'translateX(-50%) rotate(90deg)';
-                    }
-                });
-            });
-
-            // Testimonials carousel navigation with dot indicators
-            const testimonialCarousel = document.getElementById('testimonial-carousel');
-            const dots = document.querySelectorAll('.testimonial-dot');
-            let currentIndex = 0;
-
-            if (testimonialCarousel && dots.length > 0) {
-                function updateDots(index) {
-                    dots.forEach((dot, i) => {
-                        if (i === index) {
-                            dot.classList.add('active');
-                        }
-
-                        else {
-                            dot.classList.remove('active');
-                        }
-                    });
-                }
-
-                let isManualScroll = false;
-                let scrollTimeout;
-
-                // Dot click handlers
-                dots.forEach((dot, index) => {
-                    dot.addEventListener('click', () => {
-                        isManualScroll = true;
-                        clearTimeout(scrollTimeout);
-
-                        currentIndex = index;
-                        const cards = testimonialCarousel.querySelectorAll('div > .reveal');
-                        const targetCard = cards[index];
-
-                        if (targetCard) {
-
-                            // Scroll to the card's position. scroll-padding handles the 5% offset.
-                            testimonialCarousel.scrollTo({
-                                left: targetCard.offsetLeft,
-                                behavior: 'smooth'
-                            });
-                        }
-
-                        updateDots(index);
-
-                        scrollTimeout = setTimeout(() => {
-                            isManualScroll = false;
-                        }
-
-                            , 800);
-                    });
-                });
-
-                // Update dots on scroll
-                testimonialCarousel.addEventListener('scroll', () => {
-                    if (isManualScroll) return;
-
-                    const scrollLeft = testimonialCarousel.scrollLeft;
-                    const cards = testimonialCarousel.querySelectorAll('div > .reveal');
-
-                    let closestIndex = currentIndex;
-                    let minDiff = Infinity;
-
-                    cards.forEach((card, i) => {
-                        const diff = Math.abs(card.offsetLeft - scrollLeft);
-
-                        if (diff < minDiff) {
-                            minDiff = diff;
-                            closestIndex = i;
-                        }
-                    });
-
-                    if (closestIndex !== currentIndex) {
-                        currentIndex = closestIndex;
-                        updateDots(currentIndex);
-                    }
-                });
-            }
-
-            // Hamburger Menu
-            const hamburger = document.querySelector('.hamburger');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const closeMenuBtn = document.querySelector('.close-menu-btn');
-            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-
-            if (hamburger) {
-                hamburger.addEventListener('click', () => {
-                    hamburger.classList.toggle('active');
-                    mobileMenu.classList.toggle('active');
-                    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-                });
-
-                if (closeMenuBtn) {
-                    closeMenuBtn.addEventListener('click', () => {
-                        hamburger.classList.remove('active');
-                        mobileMenu.classList.remove('active');
-                        document.body.style.overflow = '';
-                    });
-                }
-
-                mobileLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        hamburger.classList.remove('active');
-                        mobileMenu.classList.remove('active');
-                        document.body.style.overflow = '';
-                    });
-                });
-            }
-        </script>
         <!-- Footer -->
         <footer>
             <div style="max-width: 1400px; margin: 0 auto;">

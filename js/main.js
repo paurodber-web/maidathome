@@ -95,25 +95,96 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- FAQ Accordion Logic ---
-    const faqHeaders = document.querySelectorAll('.faq-header');
-    if (faqHeaders.length > 0) {
-        faqHeaders.forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                const isActive = item.classList.contains('active');
+    const faqElements = document.querySelectorAll('.faq-header, .faq-trigger');
+    if (faqElements.length > 0) {
+        faqElements.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const item = trigger.closest('.faq-item');
+                if (!item) return;
 
-                document.querySelectorAll('.faq-item').forEach(otherItem => {
-                    otherItem.classList.remove('active');
-                    otherItem.querySelector('.faq-body').style.maxHeight = null;
+                const isActive = item.classList.contains('active');
+                const content = item.querySelector('.faq-body, .faq-content');
+                const icon = trigger.querySelector('.v-line'); // For index.html variant
+
+                // Close all other items in the same container
+                const container = item.closest('.faq-grid, .faq-list') || document;
+                container.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        const otherContent = otherItem.querySelector('.faq-body, .faq-content');
+                        if (otherContent) otherContent.style.maxHeight = null;
+
+                        const otherIcon = otherItem.querySelector('.v-line');
+                        if (otherIcon) otherIcon.style.transform = 'translateX(-50%) rotate(0deg)';
+                    }
                 });
 
-                if (!isActive) {
+                // Toggle current item
+                if (isActive) {
+                    item.classList.remove('active');
+                    if (content) content.style.maxHeight = null;
+                    if (icon) icon.style.transform = 'translateX(-50%) rotate(0deg)';
+                } else {
                     item.classList.add('active');
-                    const body = item.querySelector('.faq-body');
-                    body.style.maxHeight = body.scrollHeight + "px";
+                    if (content) content.style.maxHeight = content.scrollHeight + "px";
+                    if (icon) icon.style.transform = 'translateX(-50%) rotate(90deg)';
                 }
             });
         });
+    }
+
+    // --- Testimonial Carousel Logic ---
+    const testimonialCarousel = document.getElementById('testimonial-carousel');
+    const dots = document.querySelectorAll('.testimonial-dot');
+    if (testimonialCarousel && dots.length > 0) {
+        let currentIndex = 0;
+        let isManualScroll = false;
+        let scrollTimeout;
+
+        const updateDots = (index) => {
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        };
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                isManualScroll = true;
+                clearTimeout(scrollTimeout);
+                currentIndex = index;
+
+                const cards = testimonialCarousel.querySelectorAll('div > .reveal');
+                const targetCard = cards[index];
+
+                if (targetCard) {
+                    testimonialCarousel.scrollTo({
+                        left: targetCard.offsetLeft,
+                        behavior: 'smooth'
+                    });
+                }
+                updateDots(index);
+                scrollTimeout = setTimeout(() => { isManualScroll = false; }, 800);
+            });
+        });
+
+        testimonialCarousel.addEventListener('scroll', () => {
+            if (isManualScroll) return;
+            const scrollLeft = testimonialCarousel.scrollLeft;
+            const cards = testimonialCarousel.querySelectorAll('div > .reveal');
+            let closestIndex = currentIndex;
+            let minDiff = Infinity;
+
+            cards.forEach((card, i) => {
+                const diff = Math.abs(card.offsetLeft - scrollLeft);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestIndex = i;
+                }
+            });
+
+            if (closestIndex !== currentIndex) {
+                currentIndex = closestIndex;
+                updateDots(currentIndex);
+            }
+        }, { passive: true });
     }
 
     // ==========================================
@@ -236,13 +307,13 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         });
 
-        
+
         // FAQ ScrollSpy
         if (document.querySelector('.faq-section')) {
-             const sections = document.querySelectorAll('.faq-section');
-             const navLinks = document.querySelectorAll('.faq-nav-link');
+            const sections = document.querySelectorAll('.faq-section');
+            const navLinks = document.querySelectorAll('.faq-nav-link');
 
-             sections.forEach(section => {
+            sections.forEach(section => {
                 ScrollTrigger.create({
                     trigger: section,
                     start: "top 300px",
