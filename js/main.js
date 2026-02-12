@@ -119,63 +119,67 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 3. DESKTOP LOGIC (Lazy Load GSAP)
+    // 3. DESKTOP LOGIC (Lazy Load GSAP with Fallback)
     // ==========================================
+
+    // Native Header Scroll (More reliable than ScrollTrigger for this)
+    const header = document.getElementById('header');
+    if (header) {
+        const handleHeaderScroll = () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        };
+        window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+        handleHeaderScroll(); // Check initial state
+    }
+
+    // Safety Fallback: Show all reveal elements if GSAP doesn't load
+    const safetyTimeout = setTimeout(() => {
+        if (typeof gsap === 'undefined') {
+            console.warn("GSAP loading timeout - triggering fallback visibility");
+            document.querySelectorAll('.reveal').forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            });
+        }
+    }, 2500);
 
     const loadScript = (src) => {
         return new Promise((resolve, reject) => {
             const script = document.createElement('script');
             script.src = src;
+            script.async = true;
             script.onload = resolve;
             script.onerror = reject;
             document.body.appendChild(script);
         });
     };
 
-    // Load GSAP only on Desktop and after a delay to unblock main thread
     setTimeout(async () => {
         if (typeof gsap === 'undefined') {
             try {
-                await loadScript('js/gsap.min.js');
-                await loadScript('js/ScrollTrigger.min.js');
+                const scriptTag = document.querySelector('script[src*="main.js"]');
+                const scriptPath = scriptTag ? scriptTag.getAttribute('src').replace('main.js', '') : 'js/';
+
+                await loadScript(scriptPath + 'gsap.min.js');
+                await loadScript(scriptPath + 'ScrollTrigger.min.js');
+
+                clearTimeout(safetyTimeout);
                 initDesktopAnimations();
             } catch (e) {
                 console.error("Failed to load GSAP", e);
             }
         } else {
+            clearTimeout(safetyTimeout);
             initDesktopAnimations();
         }
     }, 200);
 
     function initDesktopAnimations() {
         gsap.registerPlugin(ScrollTrigger);
-
-        const header = document.getElementById('header');
-
-        // Header Scroll Effect
-        if (header) {
-            ScrollTrigger.create({
-                trigger: document.body,
-                start: "top -50",
-                onEnter: () => header.classList.add('scrolled'),
-                onLeaveBack: () => header.classList.remove('scrolled')
-            });
-        }
-
-        // Popup Scroll Effect
-        if (popup && !localStorage.getItem('maidAtHomePopupShown')) {
-            const showPopup = () => {
-                popup.classList.add('active');
-                try { localStorage.setItem('maidAtHomePopupShown', 'true'); } catch (e) { }
-            };
-
-            ScrollTrigger.create({
-                trigger: document.body,
-                start: "800px top",
-                onEnter: showPopup,
-                once: true
-            });
-        }
 
         // Section Reveal Animations
         const revealElements = document.querySelectorAll('.reveal');

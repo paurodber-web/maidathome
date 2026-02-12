@@ -4,27 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/webp" href="../assets/favicon-dark.webp">
+    <link rel="icon" type="image/webp" href="../assets/favicon-white.webp" media="(prefers-color-scheme: dark)">
+    <link rel="apple-touch-icon" href="../assets/favicon-dark.webp">
+    <title>Professional House Cleaning Services in Kew East | Maid At Home</title>
     <meta name="description"
-        content="Learn about Maid At Home, Melbourne's trusted house cleaning experts. We combine 5-star hospitality with meticulous cleaning standards for your home.">
-    <link rel="canonical" href="https://www.maidathome.com.au/about.html">
-    <link rel="preload" href="fonts/Outfit-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
-    <link rel="preload" href="fonts/PlusJakartaSans-400.woff2" as="font" type="font/woff2" crossorigin
+        content="Looking for the best house cleaning in Kew East? Maid At Home offers premium, 5-star hospitality cleaning services tailored to your Kew East home. Book online today!">
+
+    <link rel="preload" href="../fonts/Outfit-800.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
+    <link rel="preload" href="../fonts/PlusJakartaSans-400.woff2" as="font" type="font/woff2" crossorigin
         fetchpriority="high">
-    <link rel="preload" href="fonts/PlusJakartaSans-500.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/PlusJakartaSans-600.woff2" as="font" type="font/woff2" crossorigin
+    <link rel="preload" href="../fonts/PlusJakartaSans-500.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/PlusJakartaSans-600.woff2" as="font" type="font/woff2" crossorigin
         fetchpriority="high">
-    <link rel="preload" href="fonts/PlusJakartaSans-700.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/PlusJakartaSans-800.woff2" as="font" type="font/woff2" crossorigin
+    <link rel="preload" href="../fonts/PlusJakartaSans-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/PlusJakartaSans-800.woff2" as="font" type="font/woff2" crossorigin
         fetchpriority="high">
+    <link rel="preload" href="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1470" as="image" fetchpriority="high">
 
-
-
-
-
-    <script src="js/gsap.min.js" defer></script>
-    <script src="js/ScrollTrigger.min.js" defer></script>
-    <link rel="stylesheet" href="css/main.css">
-    <script src="js/main.js" defer></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/main.js" defer></script>
     <style>
         /* Page specific styles */
         .hero-about {
@@ -146,139 +145,123 @@
             }
         }
 
-        .about-card {
-            background: white;
-            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.08);
-            transform: translateY(-10px);
+        /* Header Z-Index and Scroll Support */
+        header {
+            z-index: 2000 !important;
         }
 
-        .about-card .pseudo-h3 {
-            font-size: 1.75rem;
-            margin-bottom: 24px;
+        .reveal {
+            transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1), transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* Unique SEO Section Styles */
+        .local-context {
+            background: #ffffff;
+            padding: 80px 0;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .features-grid-custom {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .feature-card {
+            padding: 48px 40px;
+            background: var(--surface);
+            border-radius: 24px;
+            transition: 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.05);
             display: flex;
-            align-items: center;
-            gap: 16px;
+            flex-direction: column;
         }
 
-        .about-card p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1.7;
+        .feature-card:hover {
+            background: white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            border-color: var(--accent);
+            transform: translateY(-5px);
         }
 
-        .icon-box {
-            width: 48px;
-            height: 48px;
-            background: var(--primary);
-            color: white;
-            border-radius: 12px;
+        .icon-box-feature {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 32px;
+            font-size: 2rem;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
         }
 
-        .image-banner {
-            padding: 0 5%;
-            margin: 60px 0;
-        }
-
-        .banner-wrap {
-            max-width: 1400px;
-            margin: 0 auto;
-            border-radius: 40px;
-            overflow: hidden;
-            height: 500px;
-            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.15);
-        }
-
-        .banner-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        @media (max-width:1024px) {
-            .hero-inner {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-about p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .grid-3 {
-                grid-template-columns: 1fr;
+        @media (max-width: 1024px) {
+            .features-grid-custom {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width:768px) {
-
-            .hero-inner,
-            .grid-3,
-            .about-section,
-            .footer-grid,
-            .content-container,
-            .hero-about {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .hero-about h1 {
-                font-size: 2.5rem;
-            }
-
-            .grid-3 {
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .content-container {
-                display: block;
-            }
-
-            .content-container[style*="grid-template-columns"] {
+        @media (max-width: 768px) {
+            .features-grid-custom {
                 grid-template-columns: 1fr !important;
-                gap: 60px !important;
             }
         }
     </style>
+
+    <!-- Local Business Schema for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CleaningService",
+      "name": "Maid At Home Kew East",
+      "description": "Premium house cleaning services in Kew East, Melbourne.",
+      "areaServed": {
+        "@type": "City",
+        "name": "Kew East"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Maid At Home",
+        "url": "https://maidathome.com.au"
+      }
+    }
+    </script>
 </head>
 
 <body>
     <header id="header">
-        <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
-            <img src="assets/logo-pequeno.webp" alt="Maid At Home Logo"
+        <a href="../index.html" class="logo"
+            style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+            <img src="../assets/logo-pequeno.webp" alt="Maid At Home Logo"
                 style="height: 45px; width: auto; display: block;">
         </a>
         <nav class="nav-links">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About us</a>
-            <a href="services.html" class="nav-link">Services</a>
-            <a href="pricing.html" class="nav-link">Pricing</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-            <a href="faqs.html" class="nav-link">FAQs</a>
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../about.html" class="nav-link">About us</a>
+            <a href="../services.html" class="nav-link">Services</a>
+            <a href="../pricing.html" class="nav-link">Pricing</a>
+            <a href="../contact.html" class="nav-link">Contact</a>
+            <a href="../faqs.html" class="nav-link">FAQs</a>
         </nav>
         <button class="hamburger" aria-label="Toggle menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
-        <a href="booking.html" class="btn-blue">Book Now</a>
+        <a href="../booking.html" class="btn-blue">Book Now</a>
     </header>
 
     <div class="mobile-menu">
         <button class="close-menu-btn" aria-label="Close menu">&times;</button>
-        <a href="index.html" class="mobile-nav-link">Home</a>
-        <a href="about.html" class="mobile-nav-link">About us</a>
-        <a href="services.html" class="mobile-nav-link">Services</a>
-        <a href="pricing.html" class="mobile-nav-link">Pricing</a>
-        <a href="contact.html" class="mobile-nav-link">Contact</a>
-        <a href="faqs.html" class="mobile-nav-link">FAQs</a>
-        <a href="booking.html" class="btn-blue" style="margin-top: 20px;">Book Now</a>
+        <a href="../index.html" class="mobile-nav-link">Home</a>
+        <a href="../about.html" class="mobile-nav-link">About us</a>
+        <a href="../services.html" class="mobile-nav-link">Services</a>
+        <a href="../pricing.html" class="mobile-nav-link">Pricing</a>
+        <a href="../contact.html" class="mobile-nav-link">Contact</a>
+        <a href="../faqs.html" class="mobile-nav-link">FAQs</a>
+        <a href="../booking.html" class="btn-blue" style="margin-top: 20px;">Book Now</a>
     </div>
 
     <main>
@@ -286,158 +269,108 @@
         <section class="hero-about">
             <div class="hero-inner">
                 <div class="reveal">
-                    <h1>Your reliable partner for house cleaning services</h1>
-                    <p>We are your reliable partner for professional home care. Our solutions are designed to ensure a
-                        clean, comfortable, and welcoming environment for every household.</p>
-                    <a href="#" class="btn-blue"
-                        style="padding: 16px 40px; font-size: 1rem; display: inline-block;">Contact
-                        us today</a>
+                    <h1>Premium house cleaning services in Kew East</h1>
+                    <p>Professional house cleaning tailored to the unique lifestyle and elite standards of the Kew East community.</p>
+                    <a href="../booking.html" class="btn-blue"
+                        style="padding: 16px 40px; font-size: 1rem; display: inline-block;">Book Now</a>
                 </div>
                 <div class="hero-image reveal">
-                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=1470"
-                        alt="Home Care">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1470" width="735" height="500" alt="Professional house cleaning in Kew East"
+                        fetchpriority="high">
                 </div>
             </div>
         </section>
 
-        <!-- Our Story, Mission, Difference -->
+        <!-- Specific Benefits for Suburb -->
         <section class="about-section">
-            <div class="content-container">
-                <div class="grid-3">
-                    <div class="about-card reveal">
-                        <div class="icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                <path d="M2 17l10 5 10-5"></path>
-                                <path d="M2 12l10 5 10-5"></path>
-                            </svg>
-                        </div>
-                        <div class="pseudo-h3">Our Story</div>
-                        <p>Maid At Home was founded with a drive for excellence and a vision to make home services more
-                            accessible and hassle-free for everyone. We started as a small team dedicated to one simple
-                            idea: that every home deserves elite housekeeping standards.</p>
-                    </div>
-
-                    <div class="about-card reveal">
-                        <div class="icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                        </div>
-                        <div class="pseudo-h3">Our Mission</div>
-                        <p>Our goal is straightforward: to provide homeowners with reliable, efficient solutions that
-                            make daily life easier and more enjoyable. We strive to restore your time so you can focus
-                            on what truly matters, while we handle the meticulous details.</p>
-                    </div>
-
-                    <div class="about-card reveal">
-                        <div class="icon-box">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg>
-                        </div>
-                        <div class="pseudo-h3">What Sets Us Apart</div>
-                        <p>What makes us unique is our dedication to delivering excellence in every detail of our
-                            service. From our vetted cleaning specialists to our eco-friendly products, we don't just
-                            clean—we care. Precision is in our DNA.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Core Values Section -->
-        <section class="about-section" style="background: var(--surface); padding: 160px 5%;">
             <div class="content-container">
                 <div style="text-align: center; margin-bottom: 80px;">
                     <span class="reveal"
-                        style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">Our
-                        Principles</span>
-                    <div class="pseudo-h2 reveal" style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px;">The
-                        values that
-                        drive us</div>
+                        style="display: inline-block; background: #eff6ff; color: var(--accent); padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">Local
+                        service</span>
+                    <div class="pseudo-h2 reveal" style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px;">Why
+                        Kew East chooses Maid At Home</div>
+                    <p class="reveal"
+                        style="max-width: 800px; margin: 0 auto; color: var(--text-muted); font-size: 1.2rem; line-height: 1.7;">
+                        Every resident in Kew East deserves a home that feels like a sanctuary. We provide the meticulous care and reliability you need to live your best local life.</p>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
-                    <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <div class="pseudo-h4" style="font-size: 1.25rem; margin-bottom: 16px;">Integrity</div>
-                        <p style="color: var(--text-muted); line-height: 1.6;">Transparent pricing and honest
-                            communication in every single interaction. We build relationships on trust.</p>
+
+                <div class="features-grid-custom">
+                    <div class="feature-card reveal">
+                        <div class="icon-box-feature">
+                            👤 </div>
+                        <div class="pseudo-h3" style="font-size: 1.5rem; margin-bottom: 16px;">Elite local teams</div>
+                        <p style="color: #1e293b; margin: 0; font-size: 1.05rem; line-height: 1.7;">Hospitality-trained
+                            professionals vetted for Kew East. We bring elite standards and local reliability to every
+                            home we touch.</p>
                     </div>
-                    <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <div class="pseudo-h4" style="font-size: 1.25rem; margin-bottom: 16px;">Sustainability
+
+                    <div class="feature-card reveal">
+                        <div class="icon-box-feature">
+                            🧤 </div>
+                        <div class="pseudo-h3" style="font-size: 1.5rem; margin-bottom: 16px;">White glove precision
                         </div>
-                        <p style="color: var(--text-muted); line-height: 1.6;">We exclusively use eco-friendly and
-                            non-toxic products to protect your home environment and our planet.</p>
+                        <p style="color: #1e293b; margin: 0; font-size: 1.05rem; line-height: 1.7;">We
+                            cultivate hospitality-grade environments in Kew East, ensuring every surface is polished
+                            and meticulously staged.</p>
                     </div>
-                    <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <div class="pseudo-h4" style="font-size: 1.25rem; margin-bottom: 16px;">Quality First</div>
-                        <p style="color: var(--text-muted); line-height: 1.6;">Our protocols are inspired by premium
-                            hospitality standards, ensuring no detail is ever overlooked.</p>
-                    </div>
-                    <div class="reveal" style="background: white; padding: 40px; border-radius: 24px;">
-                        <div class="pseudo-h4" style="font-size: 1.25rem; margin-bottom: 16px;">Reliability</div>
-                        <p style="color: var(--text-muted); line-height: 1.6;">When we say we'll be there, we'll be
-                            there. Consistent, high-quality results are our guarantee.</p>
+
+                    <div class="feature-card reveal">
+                        <div class="icon-box-feature">
+                            🎯 </div>
+                        <div class="pseudo-h3" style="font-size: 1.5rem; margin-bottom: 16px;">5-star guarantee</div>
+                        <p style="color: #1e293b; margin: 0; font-size: 1.05rem; line-height: 1.7;">Not 100% satisfied
+                            with your clean in Kew East? We will return and redo it for free. That is our 5-star
+                            hospitality promise.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Our Promise Section -->
-        <section class="about-section">
-            <div class="content-container"
-                style="display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;">
-                <div class="reveal"
-                    style="border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.1);">
-                    <img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80&w=1470"
-                        alt="Professional Clean" style="width: 100%; display: block;">
-                </div>
-                <div class="reveal">
-                    <div class="pseudo-h2" style="font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 32px;">Our Promise
-                        to You</div>
-                    <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px;">We
-                        understand that your home is your sanctuary. Our promise is simple: to treat your space with the
-                        highest level of respect and to provide a clean that allows you to truly relax.</p>
-                    <div style="display: flex; flex-direction: column; gap: 20px;">
-                        <div
-                            style="display: flex; align-items: center; gap: 16px; font-weight: 700; color: var(--secondary);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                                style="color: var(--accent);">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            100% Satisfaction Guarantee
-                        </div>
-                        <div
-                            style="display: flex; align-items: center; gap: 16px; font-weight: 700; color: var(--secondary);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                                style="color: var(--accent);">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            Vetted and Trained Professionals
-                        </div>
-                        <div
-                            style="display: flex; align-items: center; gap: 16px; font-weight: 700; color: var(--secondary);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                                style="color: var(--accent);">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            Fully Insured & Reliable Service
+        <!-- Stats Grid (Substituted for SEO Text) -->
+        <section class="about-section" style="background: var(--surface); padding: 120px 5%;">
+            <div class="content-container">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+                    <div class="reveal">
+                        <div class="pseudo-h2" style="font-size: 2.5rem; margin-bottom: 32px;">The best house cleaning
+                            in Kew East</div>
+                        <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">
+                            At Maid At Home, we believe Kew East residents deserve the absolute best. Our professional
+                            cleaning specialists go through rigorous screening and training to ensure they meet our
+                            elite housekeeping standards.</p>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 16px;">
+                            <li style="display: flex; align-items: center; gap: 12px; font-weight: 600;">
+                                <span
+                                    style="width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">✓</span>
+                                Professional standard cleans
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 12px; font-weight: 600;">
+                                <span
+                                    style="width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">✓</span>
+                                Specialized deep cleaning
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 12px; font-weight: 600;">
+                                <span
+                                    style="width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">✓</span>
+                                Move-in / move-out services
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="reveal"
+                        style="background: white; padding: 60px; border-radius: 40px; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.05);">
+                        <div style="text-align: center;">
+                            <div style="font-size: 4rem; font-weight: 800; color: var(--primary); margin-bottom: 12px;">
+                                4.9/5</div>
+                            <div style="font-size: 1.25rem; font-weight: 700; margin-bottom: 32px;">Client Satisfaction
+                                in Kew East</div>
+                            <a href="../booking.html" class="btn-blue"
+                                style="width: 100%; display: block; padding: 20px;">Book Your Kew East Clean</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
-        <!-- Footer -->
         <!-- Footer -->
         <footer>
             <div style="max-width: 1400px; margin: 0 auto;">
@@ -445,9 +378,9 @@
                     style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px;">
                     <!-- Logo & Description -->
                     <div class="reveal">
-                        <a href="index.html" class="logo"
+                        <a href="../index.html" class="logo"
                             style="display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 24px;">
-                            <img src="assets/logo-white.webp" alt="Maid At Home Logo"
+                            <img src="../assets/logo-white.webp" alt="Maid At Home Logo"
                                 style="height: 50px; width: auto; display: block;">
                         </a>
                         <p
@@ -485,22 +418,22 @@
                             style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px;">
                             Company</div>
                         <ul style="list-style: none; padding: 0; margin: 0;">
-                            <li style="margin-bottom: 16px;"><a href="about.html"
+                            <li style="margin-bottom: 16px;"><a href="../about.html"
                                     style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">About
                                     Us</a></li>
-                            <li style="margin-bottom: 16px;"><a href="services.html"
+                            <li style="margin-bottom: 16px;"><a href="../services.html"
                                     style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Services</a>
                             </li>
-                            <li style="margin-bottom: 16px;"><a href="pricing.html"
+                            <li style="margin-bottom: 16px;"><a href="../pricing.html"
                                     style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Pricing</a>
                             </li>
-                            <li style="margin-bottom: 16px;"><a href="faqs.html"
+                            <li style="margin-bottom: 16px;"><a href="../faqs.html"
                                     style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">FAQs</a>
                             </li>
-                            <li style="margin-bottom: 16px;"><a href="contact.html"
+                            <li style="margin-bottom: 16px;"><a href="../contact.html"
                                     style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Contact</a>
                             </li>
-                            <li style="margin-bottom: 16px;"><a href="booking.html"
+                            <li style="margin-bottom: 16px;"><a href="../booking.html"
                                     style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Book
                                     Now</a></li>
                         </ul>
@@ -556,140 +489,149 @@
                         style="color: white !important; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px;">
                         Service Areas</div>
                     <div style="display: flex; flex-wrap: wrap; gap: 12px 24px;">
-                        <a href="suburbs/abbotsford.html" class="suburb-link"
+                        <a href="abbotsford.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Abbotsford</a>
-                        <a href="suburbs/albert-park.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Albert
-                            Park</a>
-                        <a href="suburbs/altona.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Altona</a>
-                        <a href="suburbs/ascot-vale.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Ascot
-                            Vale</a>
-                        <a href="suburbs/balaclava.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Balaclava</a>
-                        <a href="suburbs/balwyn.html" class="suburb-link"
+                        <a href="armadale.html" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Armadale</a>
+                        <a href="balwyn.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Balwyn</a>
-                        <a href="suburbs/balwyn-north.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Balwyn
-                            North</a>
-                        <a href="suburbs/box-hill.html" class="suburb-link"
+                        <a href="box-hill.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Box
                             Hill</a>
-                        <a href="suburbs/brighton.html" class="suburb-link"
+                        <a href="abbotsford.html" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Abbotsford</a>
+                        <a href="albert-park.html" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Albert
+                            Park</a>
+                        <a href="altona.html" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Altona</a>
+                        <a href="ascot-vale.html" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Ascot
+                            Vale</a>
+                        <a href="balaclava.html" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Balaclava</a>
+                        <a href="balwyn.html" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Balwyn</a>
+                        <a href="balwyn-north.html" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Balwyn
+                            North</a>
+                        <a href="box-hill.html" class="suburb-link"
+                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Box
+                            Hill</a>
+                        <a href="brighton.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brighton</a>
-                        <a href="suburbs/brunswick.html" class="suburb-link"
+                        <a href="brunswick.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brunswick</a>
-                        <a href="suburbs/brunswick-east.html" class="suburb-link"
+                        <a href="brunswick-east.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brunswick
                             East</a>
-                        <a href="suburbs/brunswick-west.html" class="suburb-link"
+                        <a href="brunswick-west.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brunswick
                             West</a>
-                        <a href="suburbs/burnley.html" class="suburb-link"
+                        <a href="burnley.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Burnley</a>
-                        <a href="suburbs/camberwell.html" class="suburb-link"
+                        <a href="camberwell.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Camberwell</a>
-                        <a href="suburbs/carlton.html" class="suburb-link"
+                        <a href="carlton.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Carlton</a>
-                        <a href="suburbs/carlton-north.html" class="suburb-link"
+                        <a href="carlton-north.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Carlton
                             North</a>
-                        <a href="suburbs/coburg.html" class="suburb-link"
+                        <a href="coburg.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Coburg</a>
-                        <a href="suburbs/coburg-north.html" class="suburb-link"
+                        <a href="coburg-north.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Coburg
                             North</a>
-                        <a href="suburbs/collingwood.html" class="suburb-link"
+                        <a href="collingwood.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Collingwood</a>
-                        <a href="suburbs/docklands.html" class="suburb-link"
+                        <a href="docklands.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Docklands</a>
-                        <a href="suburbs/east-melbourne.html" class="suburb-link"
+                        <a href="east-melbourne.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">East
                             Melbourne</a>
-                        <a href="suburbs/elwood.html" class="suburb-link"
+                        <a href="elwood.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Elwood</a>
-                        <a href="suburbs/essendon.html" class="suburb-link"
+                        <a href="essendon.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Essendon</a>
-                        <a href="suburbs/fitzroy.html" class="suburb-link"
+                        <a href="fitzroy.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Fitzroy</a>
-                        <a href="suburbs/fitzroy-north.html" class="suburb-link"
+                        <a href="fitzroy-north.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Fitzroy
                             North</a>
-                        <a href="suburbs/flemington.html" class="suburb-link"
+                        <a href="flemington.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Flemington</a>
-                        <a href="suburbs/footscray.html" class="suburb-link"
+                        <a href="footscray.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Footscray</a>
-                        <a href="suburbs/hampton.html" class="suburb-link"
+                        <a href="hampton.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Hampton</a>
-                        <a href="suburbs/hawthorn.html" class="suburb-link"
+                        <a href="hawthorn.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Hawthorn</a>
-                        <a href="suburbs/hawthorn-east.html" class="suburb-link"
+                        <a href="hawthorn-east.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Hawthorn
                             East</a>
-                        <a href="suburbs/keilor-east.html" class="suburb-link"
+                        <a href="keilor-east.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Keilor
                             East</a>
-                        <a href="suburbs/kensington.html" class="suburb-link"
+                        <a href="kensington.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Kensington</a>
-                        <a href="suburbs/kew.html" class="suburb-link"
+                        <a href="kew.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Kew</a>
-                        <a href="suburbs/kew-east.html" class="suburb-link"
+                        <a href="kew-east.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Kew
                             East</a>
-                        <a href="suburbs/maidstone.html" class="suburb-link"
+                        <a href="maidstone.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Maidstone</a>
-                        <a href="suburbs/maribyrnong.html" class="suburb-link"
+                        <a href="maribyrnong.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Maribyrnong</a>
-                        <a href="suburbs/melbourne.html" class="suburb-link"
+                        <a href="melbourne.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Melbourne</a>
-                        <a href="suburbs/middle-park.html" class="suburb-link"
+                        <a href="middle-park.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Middle
                             Park</a>
-                        <a href="suburbs/moonee-ponds.html" class="suburb-link"
+                        <a href="moonee-ponds.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Moonee
                             Ponds</a>
-                        <a href="suburbs/northcote.html" class="suburb-link"
+                        <a href="northcote.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Northcote</a>
-                        <a href="suburbs/pascoe-vale.html" class="suburb-link"
+                        <a href="pascoe-vale.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Pascoe
                             Vale</a>
-                        <a href="suburbs/pascoe-vale-south.html" class="suburb-link"
+                        <a href="pascoe-vale-south.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Pascoe
                             Vale South</a>
-                        <a href="suburbs/prahran.html" class="suburb-link"
+                        <a href="prahran.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Prahran</a>
-                        <a href="suburbs/preston.html" class="suburb-link"
+                        <a href="preston.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Preston</a>
-                        <a href="suburbs/reservoir.html" class="suburb-link"
+                        <a href="reservoir.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Reservoir</a>
-                        <a href="suburbs/richmond.html" class="suburb-link"
+                        <a href="richmond.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Richmond</a>
-                        <a href="suburbs/ripponlea.html" class="suburb-link"
+                        <a href="ripponlea.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Ripponlea</a>
-                        <a href="suburbs/seddon.html" class="suburb-link"
+                        <a href="seddon.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Seddon</a>
-                        <a href="suburbs/south-yarra.html" class="suburb-link"
+                        <a href="south-yarra.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">South
                             Yarra</a>
-                        <a href="suburbs/southbank.html" class="suburb-link"
+                        <a href="southbank.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Southbank</a>
-                        <a href="suburbs/st-kilda.html" class="suburb-link"
+                        <a href="st-kilda.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">St
                             Kilda</a>
-                        <a href="suburbs/st-kilda-east.html" class="suburb-link"
+                        <a href="st-kilda-east.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">St
                             Kilda East</a>
-                        <a href="suburbs/sunshine.html" class="suburb-link"
+                        <a href="sunshine.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Sunshine</a>
-                        <a href="suburbs/thornbury.html" class="suburb-link"
+                        <a href="thornbury.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Thornbury</a>
-                        <a href="suburbs/west-melbourne.html" class="suburb-link"
+                        <a href="west-melbourne.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">West
                             Melbourne</a>
-                        <a href="suburbs/windsor.html" class="suburb-link"
+                        <a href="windsor.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Windsor</a>
-                        <a href="suburbs/yarraville.html" class="suburb-link"
+                        <a href="yarraville.html" class="suburb-link"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Yarraville</a>
                     </div>
                 </div>
@@ -700,10 +642,10 @@
                     <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">© 2026 Maid At Home. Precision in every
                         detail.</p>
                     <div style="display: flex; gap: 32px;">
-                        <a href="privacy-policy.html"
+                        <a href="../privacy-policy.html"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Privacy
                             Policy</a>
-                        <a href="terms-conditions.html"
+                        <a href="../terms-conditions.html"
                             style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Terms
                             of Service</a>
                     </div>
