@@ -86,6 +86,17 @@
             overflow-x: hidden;
         }
 
+        h1,
+        h2,
+        h3,
+        .pseudo-h2,
+        .pseudo-h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--secondary);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+
         header {
             position: fixed;
             top: 20px;
@@ -175,6 +186,10 @@
             margin-left: auto;
         }
 
+        section {
+            padding: 160px 5% 120px;
+        }
+
         @media (max-width: 1024px) {
             header {
                 width: 100%;
@@ -191,6 +206,16 @@
 
             .hamburger {
                 display: flex;
+            }
+
+            section {
+                padding: 100px 5% 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 5% 60px;
             }
         }
 
