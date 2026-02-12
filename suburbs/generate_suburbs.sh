@@ -1,5 +1,5 @@
 #!/bin/bash
-TEMPLATE="suburb-template.html"
+TEMPLATE="_suburb-template.html"
 
 # Official List of 58 Suburbs (Excluding "Melbourne" alone)
 SUBURBS=(
