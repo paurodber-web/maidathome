@@ -1012,40 +1012,7 @@
             transform: rotate(90deg);
         }
     </style>
-    <script> // GLOBAL MENU CONTROLLER (Robust Manual Toggle)
 
-        window.toggleMobileMenu = function () {
-            var menu = document.querySelector('.mobile-menu');
-            var ham = document.querySelector('.hamburger');
-
-            if (!menu || !ham) return;
-
-            var isActive = menu.classList.contains('active');
-
-            if (!isActive) {
-                // OPEN
-                menu.classList.add('active');
-                ham.classList.add('active');
-                // Force inline styles to override any CSS issues
-                menu.style.opacity = '1';
-                menu.style.visibility = 'visible';
-                menu.style.pointerEvents = 'auto';
-                document.body.style.overflow = 'hidden';
-            }
-
-            else {
-                // CLOSE
-                menu.classList.remove('active');
-                ham.classList.remove('active');
-                // Reset inline styles
-                menu.style.opacity = '';
-                menu.style.visibility = '';
-                menu.style.pointerEvents = '';
-                document.body.style.overflow = '';
-            }
-        }
-
-    </script>
     <script src="js/main.js" defer></script>
 </head>
 
@@ -1055,11 +1022,11 @@
         <nav class="nav-links"><a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About
                 us</a><a href="services.html" class="nav-link">Services</a><a href="pricing.html"
                 class="nav-link">Pricing</a><a href="contact.html" class="nav-link">Contact</a><a href="faqs.html"
-                class="nav-link">FAQs</a></nav><button class="hamburger" aria-label="Toggle menu"
-            onclick="toggleMobileMenu()"><span></span><span></span><span></span></button><a href="booking.html"
+                class="nav-link">FAQs</a></nav><button class="hamburger"
+            aria-label="Toggle menu"><span></span><span></span><span></span></button><a href="booking.html"
             class="btn-blue">Book Now</a>
     </header>
-    <div class="mobile-menu"><button class="close-menu-btn" aria-label="Close menu" onclick="toggleMobileMenu()">&times;
+    <div class="mobile-menu"><button class="close-menu-btn" aria-label="Close menu">&times;
         </button><a href="index.html" class="mobile-nav-link">Home</a><a href="about.html" class="mobile-nav-link">About
             us</a><a href="services.html" class="mobile-nav-link">Services</a><a href="pricing.html"
             class="mobile-nav-link">Pricing</a><a href="contact.html" class="mobile-nav-link">Contact</a><a
@@ -1758,7 +1725,6 @@
                     });
                 });
             }
-
         </script>
         <!-- Footer -->
         <footer>
