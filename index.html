@@ -147,6 +147,14 @@
             line-height: 1.5
         }
 
+        /* Critical: Hide Cookie Banner initially to prevent FOUC */
+        .cookie-banner,
+        .cookie-modal-overlay {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
         h1,
         h2,
         h3,
@@ -2020,7 +2028,7 @@
     <!-- Cookie Banner -->
     <div id="cookieBanner" class="cookie-banner">
         <div class="cookie-content">
-            <h4>🍪 Our Cookies</h4>
+            <div class="cookie-title">🍪 Our Cookies</div>
             <p>We use cookies to personalize content and analyze traffic. By clicking "Accept All", you
                 help us provide a better experience.</p>
         </div>
@@ -2034,9 +2042,9 @@
         <div class="cookie-modal">
             <button id="closeCookieModal" class="close-modal-btn">&times;</button>
             <div class="modal-header">
-                <h3>Privacy Preferences</h3>
-                <p>Configura quines cookies vols permetre. Les cookies necessàries no es poden desactivar ja que són
-                    essencials per al funcionament de la web.</p>
+                <div class="modal-title">Privacy Preferences</div>
+                <p>Configure which cookies you want to allow. Necessary cookies cannot be disabled as they are
+                    essential for the website to function.</p>
             </div>
 
             <div class="cookie-options">

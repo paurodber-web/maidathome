@@ -8,6 +8,7 @@
     <link rel="icon" type="image/webp" href="../assets/favicon-white.webp" media="(prefers-color-scheme: dark)">
     <link rel="apple-touch-icon" href="../assets/favicon-dark.webp">
     <title>Professional House Cleaning Services in {{SUBURB}} | Maid At Home</title>
+    <link rel="canonical" href="https://www.maidathome.com.au/suburbs/{{SUBURB_SLUG}}.html">
     <meta name="description"
         content="Looking for the best house cleaning in {{SUBURB}}? Maid At Home offers premium, 5-star hospitality cleaning services tailored to your {{SUBURB}} home. Book online today!">
 
@@ -20,36 +21,53 @@
     <link rel="preload" href="../fonts/PlusJakartaSans-700.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../fonts/PlusJakartaSans-800.woff2" as="font" type="font/woff2" crossorigin
         fetchpriority="high">
-    <link rel="preload" href="../assets/logo_dark.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="../css/main.css" as="style">
-    <link rel="stylesheet" href="../css/main.css" media="print" onload="this.media='all'">
-    <noscript>
-        <link rel="stylesheet" href="../css/main.css">
-    </noscript>
+
+    <meta property="og:title" content="Professional House Cleaning in {{SUBURB}} | Maid At Home">
+    <meta property="og:description"
+        content="Experience Melbourne's premier professional house cleaning service in {{SUBURB}}. Meticulous, reliable, and tailored to your lifestyle.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.maidathome.com.au/suburbs/{{SUBURB_SLUG}}.html">
+
+    <!-- Critical CSS inlined for faster initial render -->
     <style>
-        /* CRITICAL CSS - HEADER & HERO & BASE */
         @font-face {
-            font-family: 'Plus Jakarta Sans';
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            font-display: block;
+            src: url('../fonts/Inter-300.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Inter';
             font-style: normal;
             font-weight: 400;
             font-display: block;
-            src: url('../fonts/PlusJakartaSans-400.woff2') format('woff2');
+            src: url('../fonts/Inter-400.woff2') format('woff2')
         }
 
         @font-face {
-            font-family: 'Plus Jakarta Sans';
+            font-family: 'Outfit';
+            font-style: normal;
+            font-weight: 300;
+            font-display: block;
+            src: url('../fonts/Outfit-300.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Outfit';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url('../fonts/Outfit-400.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Outfit';
             font-style: normal;
             font-weight: 600;
             font-display: block;
-            src: url('../fonts/PlusJakartaSans-600.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Plus Jakarta Sans';
-            font-style: normal;
-            font-weight: 800;
-            font-display: block;
-            src: url('../fonts/PlusJakartaSans-800.woff2') format('woff2');
+            src: url('../fonts/Outfit-600.woff2') format('woff2')
         }
 
         @font-face {
@@ -57,44 +75,91 @@
             font-style: normal;
             font-weight: 800;
             font-display: block;
-            src: url('../fonts/Outfit-800.woff2') format('woff2');
+            src: url('../fonts/Outfit-800.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Plus Jakarta Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url('../fonts/PlusJakartaSans-400.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Plus Jakarta Sans';
+            font-style: normal;
+            font-weight: 500;
+            font-display: block;
+            src: url('../fonts/PlusJakartaSans-500.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Plus Jakarta Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-display: block;
+            src: url('../fonts/PlusJakartaSans-600.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Plus Jakarta Sans';
+            font-style: normal;
+            font-weight: 700;
+            font-display: block;
+            src: url('../fonts/PlusJakartaSans-700.woff2') format('woff2')
+        }
+
+        @font-face {
+            font-family: 'Plus Jakarta Sans';
+            font-style: normal;
+            font-weight: 800;
+            font-display: block;
+            src: url('../fonts/PlusJakartaSans-800.woff2') format('woff2')
         }
 
         :root {
             --primary: #2563eb;
             --secondary: #0f172a;
-            --accent: #2563eb;
+            --accent: #1d4ed8;
             --bg: #ffffff;
             --surface: #f1f5f9;
-            --text: #1e293b;
-            --text-muted: #1e293b;
+            --text: #0f172a;
+            --text-muted: #334155
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
+            line-height: 1.5
+        }
+
+        /* Critical: Hide Cookie Banner initially to prevent FOUC */
+        .cookie-banner,
+        .cookie-modal-overlay {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
         h1,
         h2,
         h3,
         .pseudo-h2,
-        .pseudo-h3 {
+        .pseudo-h3,
+        .pseudo-h4 {
             font-family: 'Plus Jakarta Sans', sans-serif;
             color: var(--secondary);
             font-weight: 800;
-            letter-spacing: -0.04em;
+            letter-spacing: -0.04em
         }
 
         header {
@@ -114,7 +179,7 @@
             padding: 0 40px;
             z-index: 1000;
             border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all .3s ease;
+            transition: all .3s ease
         }
 
         header.scrolled {
@@ -122,22 +187,7 @@
             width: 100%;
             border-radius: 0;
             background: rgba(255, 255, 255, 0.98);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            min-width: 144px;
-            height: 46px;
-        }
-
-        .logo img {
-            width: 144px;
-            height: 46px;
-            display: block;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05)
         }
 
         .nav-links {
@@ -145,7 +195,7 @@
             gap: 32px;
             position: absolute;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%)
         }
 
         .nav-link {
@@ -153,7 +203,7 @@
             color: #0f172a;
             font-weight: 600;
             font-size: .9rem;
-            transition: .3s;
+            transition: .3s
         }
 
         .btn-blue {
@@ -165,11 +215,11 @@
             font-weight: 800;
             font-size: .85rem;
             line-height: 20.4px;
-            transition: .3s;
+            transition: .3s
         }
 
         header .btn-blue {
-            margin-left: auto;
+            margin-left: auto
         }
 
         .hamburger {
@@ -183,22 +233,14 @@
             cursor: pointer;
             z-index: 10001;
             padding: 0;
-            margin-left: auto;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: #0f172a;
-            transition: all 0.3s ease;
+            margin-left: auto
         }
 
         section {
-            padding: 160px 5% 120px;
+            padding: 160px 5% 120px
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width:1024px) {
             header {
                 width: 100%;
                 top: 0;
@@ -221,18 +263,89 @@
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width:768px) {
             section {
                 padding: 80px 5% 60px;
             }
         }
 
+        /* CRITICAL MOBILE MENU STYLES */
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background: var(--secondary);
+            border-radius: 2px;
+            transition: all .3s ease;
+        }
 
-        .hero-about {
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all .4s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .mobile-nav-link {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .close-menu-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            font-size: 3rem;
+            line-height: 1;
+            color: var(--secondary);
+            cursor: pointer;
+            padding: 0;
+            transition: .3s;
+            z-index: 1501;
+        }
+
+        .close-menu-btn:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        /* Page specific styles */
+        .hero-suburb {
             padding: 200px 5% 100px;
             background: linear-gradient(180deg, var(--surface) 0%, white 100%);
-            min-height: 100vh;
-            padding-top: 110px;
         }
 
         .hero-inner {
@@ -244,23 +357,18 @@
             margin: 0 auto;
         }
 
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
+        .hero-suburb h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
             line-height: 1.1;
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            color: var(--secondary);
             margin-bottom: 32px;
-            min-height: 110px;
         }
 
-        .hero-about p {
+        .hero-suburb p {
             font-size: 1.25rem;
             color: var(--text-muted);
             line-height: 1.7;
             max-width: 600px;
             margin-bottom: 40px;
-            min-height: 85px;
         }
 
         .hero-image {
@@ -278,141 +386,13 @@
             display: block;
         }
 
-        .btn-blue {
-            background: #2563eb;
-            color: white;
-            padding: 16px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1rem;
-            display: inline-block;
-        }
-
-        .reveal {
-            opacity: 1 !important;
-            transform: none !important;
-        }
-
-        @media (max-width: 768px) {
-            .hero-about {
-                padding: 140px 5% 60px;
-            }
-
-            .hero-inner {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            h1 {
-                min-height: 165px;
-                font-size: 2.5rem;
-            }
-
-            .hero-about p {
-                margin: 0 auto 40px;
-                min-height: 130px;
-                font-size: 1.1rem;
-            }
-        }
-    </style>
-    <script src="../js/main.js" defer></script>
-    <style>
-        /* Unique Page Sections Styles */
-        .about-section {
-            padding: 120px 5%;
-        }
-
-        .about-section {
+        .content-section {
             padding: 120px 5%;
         }
 
         .content-container {
             max-width: 1400px;
             margin: 0 auto;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 60px;
-        }
-
-        .about-card {
-            padding: 48px;
-            background: var(--surface);
-            border-radius: 32px;
-            transition: 0.4s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .about-card:hover {
-            background: white;
-            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.1);
-            transform: translateY(-10px);
-        }
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            margin-top: 120px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            padding-top: 80px;
-        }
-
-        @media (max-width:1024px) {
-            .hero-inner {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-about p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .grid-3 {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .stat-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width:768px) {
-            .hero-about {
-                padding: 140px 5% 60px;
-            }
-
-            .hero-about h1 {
-                font-size: 2.5rem;
-            }
-
-            .stat-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
-
-        /* Header Z-Index and Scroll Support */
-        header {
-            z-index: 2000 !important;
-        }
-
-        .reveal {
-            transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1), transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        /* Unique SEO Section Styles */
-        .local-context {
-            background: #ffffff;
-            padding: 80px 0;
-            border-top: 1px solid #f1f5f9;
         }
 
         .features-grid-custom {
@@ -451,18 +431,60 @@
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
         }
 
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 80px 5% 40px;
+        }
+
         @media (max-width: 1024px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-suburb p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
             .features-grid-custom {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 768px) {
+            .hero-suburb {
+                padding: 140px 5% 60px;
+            }
+
+            .hero-suburb h1 {
+                font-size: 2.5rem;
+            }
+
             .features-grid-custom {
                 grid-template-columns: 1fr !important;
             }
         }
+
+        /* Critical Animation Styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        @media (max-width: 768px) {
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
     </style>
+
+    <link rel="stylesheet" href="../css/main.css" media="print" onload="this.media='all'"><noscript>
+        <link rel="stylesheet" href="../css/main.css">
+    </noscript>
+    <script src="../js/main.js" defer></script>
 
     <!-- Local Business Schema for SEO -->
     <script type="application/ld+json">
@@ -486,10 +508,9 @@
 
 <body>
     <header id="header">
-        <a href="../index.html" class="logo"
-            style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
-            <img src="../assets/logo_dark.webp" alt="Maid At Home Logo" width="144" height="46" fetchpriority="high"
-                style="display: block;">
+        <a href="../index.html" class="logo">
+            <img src="../assets/logo_dark.webp" alt="Maid at Home Logo"
+                style="display: block; width: auto; height: 46px;">
         </a>
         <nav class="nav-links">
             <a href="../index.html" class="nav-link">Home</a>
@@ -520,7 +541,7 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero-about">
+        <section class="hero-suburb">
             <div class="hero-inner">
                 <div class="reveal">
                     <h1>Premium house cleaning services in {{SUBURB}}</h1>
@@ -529,16 +550,13 @@
                         style="padding: 16px 40px; font-size: 1rem; display: inline-block;">Book Now</a>
                 </div>
                 <div class="hero-image reveal">
-                    <img src="../assets/logo_dark.webp" data-suburb-img="{{SUBURB_IMAGE}}" width="600" height="450"
-                        alt="Professional house cleaning in {{SUBURB}}"
-                        style="width: 100%; height: 100%; object-fit: cover; display: block;"
-                        onerror="this.src='../assets/logo_dark.webp'; this.style.objectFit='contain';">
+                    <img src="{{SUBURB_IMAGE}}" alt="Professional house cleaning in {{SUBURB}}" fetchpriority="high">
                 </div>
             </div>
         </section>
 
-        <!-- Specific Benefits for Suburb -->
-        <section class="about-section">
+        <!-- Why Choose Us Section -->
+        <section class="content-section">
             <div class="content-container">
                 <div style="text-align: center; margin-bottom: 80px;">
                     <span class="reveal"
@@ -553,8 +571,7 @@
 
                 <div class="features-grid-custom">
                     <div class="feature-card reveal">
-                        <div class="icon-box-feature">
-                            👤 </div>
+                        <div class="icon-box-feature">👤</div>
                         <div class="pseudo-h3" style="font-size: 1.5rem; margin-bottom: 16px;">Elite local teams</div>
                         <p style="color: #1e293b; margin: 0; font-size: 1.05rem; line-height: 1.7;">Hospitality-trained
                             professionals vetted for {{SUBURB}}. We bring elite standards and local reliability to every
@@ -562,8 +579,7 @@
                     </div>
 
                     <div class="feature-card reveal">
-                        <div class="icon-box-feature">
-                            🧤 </div>
+                        <div class="icon-box-feature">🧤</div>
                         <div class="pseudo-h3" style="font-size: 1.5rem; margin-bottom: 16px;">White glove precision
                         </div>
                         <p style="color: #1e293b; margin: 0; font-size: 1.05rem; line-height: 1.7;">We
@@ -572,8 +588,7 @@
                     </div>
 
                     <div class="feature-card reveal">
-                        <div class="icon-box-feature">
-                            🎯 </div>
+                        <div class="icon-box-feature">🎯</div>
                         <div class="pseudo-h3" style="font-size: 1.5rem; margin-bottom: 16px;">5-star guarantee</div>
                         <p style="color: #1e293b; margin: 0; font-size: 1.05rem; line-height: 1.7;">Not 100% satisfied
                             with your clean in {{SUBURB}}? We will return and redo it for free. That is our 5-star
@@ -583,8 +598,8 @@
             </div>
         </section>
 
-        <!-- Stats Grid (Substituted for SEO Text) -->
-        <section class="about-section" style="background: var(--surface); padding: 120px 5%;">
+        <!-- CTA Section -->
+        <section class="content-section" style="background: var(--surface); padding: 120px 5%;">
             <div class="content-container">
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
                     <div class="reveal">
@@ -626,286 +641,111 @@
                 </div>
             </div>
         </section>
+    </main>
 
-        <!-- Footer -->
-        <footer>
-            <div style="max-width: 1400px; margin: 0 auto;">
-                <div
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px;">
-                    <!-- Logo & Description -->
-                    <div class="reveal">
-                        <a href="../index.html" class="logo"
-                            style="display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 24px;">
-                            <img src="../assets/logo-white.webp" alt="Maid At Home Logo" width="252" height="81"
-                                loading="lazy" style="display: block;">
-                        </a>
-                        <p
-                            style="color: rgba(255,255,255,0.75); line-height: 1.8; font-size: 1.1rem; max-width: 320px; margin-bottom: 32px;">
-                            Elevating the standard of home cleaning with a 5-star hospitality approach.
-                        </p>
-                        <div style="display: flex; gap: 16px;">
-                            <!-- Facebook -->
-                            <a href="#" aria-label="Follow us on Facebook"
-                                style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
-                                onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
-                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                                </svg>
-                            </a>
-                            <!-- Instagram -->
-                            <a href="#" aria-label="Follow us on Instagram"
-                                style="width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; text-decoration: none;"
-                                onmouseover="this.style.background='var(--primary)'; this.style.transform='translateY(-3px)'"
-                                onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='translateY(0)'">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Company Links -->
-                    <div class="reveal">
-                        <div class="pseudo-h4"
-                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px;">
-                            Company</div>
-                        <ul style="list-style: none; padding: 0; margin: 0;">
-                            <li style="margin-bottom: 16px;"><a href="../about.html"
-                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">About
-                                    Us</a></li>
-                            <li style="margin-bottom: 16px;"><a href="../services.html"
-                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Services</a>
-                            </li>
-                            <li style="margin-bottom: 16px;"><a href="../pricing.html"
-                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Pricing</a>
-                            </li>
-                            <li style="margin-bottom: 16px;"><a href="../faqs.html"
-                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">FAQs</a>
-                            </li>
-                            <li style="margin-bottom: 16px;"><a href="../contact.html"
-                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Contact</a>
-                            </li>
-                            <li style="margin-bottom: 16px;"><a href="../booking.html"
-                                    style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Book
-                                    Now</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Hours -->
-                    <div class="reveal">
-                        <div class="pseudo-h4"
-                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px;">
-                            Business Hours</div>
-                        <ul style="list-style: none; padding: 0; margin: 0; color: rgba(255,255,255,0.75);">
-                            <li
-                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
-                                <span>Mon - Fri</span>
-                                <span style="color: white; font-weight: 600;">8am - 6pm</span>
-                            </li>
-                            <li
-                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
-                                <span>Sat</span>
-                                <span style="color: white; font-weight: 600;">9am - 4pm</span>
-                            </li>
-                            <li
-                                style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
-                                <span>Sun</span>
-                                <span style="color: white; font-weight: 600;">Closed</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Newsletter -->
-                    <div class="reveal">
-                        <div class="pseudo-h4"
-                            style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px;">
-                            Newsletter</div>
-                        <p
-                            style="color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 24px; font-size: 1rem;">
-                            Join our newsletter for exclusive tips and deals.
-                        </p>
-                        <div style="display: flex; gap: 8px;">
-                            <input type="email" placeholder="Your email"
-                                style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 12px; color: white; outline: none; flex-grow: 1; font-family: inherit;">
-                            <button
-                                style="background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;"
-                                onmouseover="this.style.background='#1d4ed8'; this.style.transform='scale(1.05)'"
-                                onmouseout="this.style.background='var(--accent)'; this.style.transform='scale(1)'">Join</button>
-                        </div>
-                    </div>
+    <!-- Footer -->
+    <footer>
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px;">
+                <!-- Logo & Description -->
+                <div class="reveal">
+                    <a href="../index.html" class="logo"
+                        style="display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 24px;">
+                        <img src="../assets/logo-white.webp" alt="Maid At Home Logo"
+                            style="height: 50px; width: auto; display: block;">
+                    </a>
+                    <p
+                        style="color: rgba(255,255,255,0.75); line-height: 1.8; font-size: 1.1rem; max-width: 320px; margin-bottom: 32px;">
+                        Elevating the standard of home cleaning with a 5-star hospitality approach.
+                    </p>
                 </div>
 
-                <!-- Suburbs SEO Section -->
-                <div style="border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 0;">
+                <!-- Company Links -->
+                <div class="reveal">
                     <div class="pseudo-h4"
-                        style="color: white !important; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px;">
-                        Service Areas</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 12px 24px;">
-                        <a href="abbotsford.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Abbotsford</a>
-                        <a href="albert-park.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Albert
-                            Park</a>
-                        <a href="altona.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Altona</a>
-                        <a href="ascot-vale.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Ascot
-                            Vale</a>
-                        <a href="balaclava.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Balaclava</a>
-                        <a href="balwyn.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Balwyn</a>
-                        <a href="balwyn-north.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Balwyn
-                            North</a>
-                        <a href="box-hill.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Box
-                            Hill</a>
-                        <a href="brighton.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brighton</a>
-                        <a href="brunswick.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brunswick</a>
-                        <a href="brunswick-east.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brunswick
-                            East</a>
-                        <a href="brunswick-west.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Brunswick
-                            West</a>
-                        <a href="burnley.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Burnley</a>
-                        <a href="camberwell.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Camberwell</a>
-                        <a href="carlton.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Carlton</a>
-                        <a href="carlton-north.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Carlton
-                            North</a>
-                        <a href="coburg.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Coburg</a>
-                        <a href="coburg-north.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Coburg
-                            North</a>
-                        <a href="collingwood.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Collingwood</a>
-                        <a href="docklands.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Docklands</a>
-                        <a href="east-melbourne.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">East
-                            Melbourne</a>
-                        <a href="elwood.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Elwood</a>
-                        <a href="essendon.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Essendon</a>
-                        <a href="fitzroy.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Fitzroy</a>
-                        <a href="fitzroy-north.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Fitzroy
-                            North</a>
-                        <a href="flemington.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Flemington</a>
-                        <a href="footscray.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Footscray</a>
-                        <a href="hampton.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Hampton</a>
-                        <a href="hawthorn.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Hawthorn</a>
-                        <a href="hawthorn-east.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Hawthorn
-                            East</a>
-                        <a href="keilor-east.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Keilor
-                            East</a>
-                        <a href="kensington.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Kensington</a>
-                        <a href="kew.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Kew</a>
-                        <a href="kew-east.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Kew
-                            East</a>
-                        <a href="maidstone.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Maidstone</a>
-                        <a href="maribyrnong.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Maribyrnong</a>
-                        <a href="melbourne-cbd.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Melbourne
-                            CBD</a>
-                        <a href="middle-park.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Middle
-                            Park</a>
-                        <a href="moonee-ponds.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Moonee
-                            Ponds</a>
-                        <a href="northcote.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Northcote</a>
-                        <a href="north-melbourne.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">North
-                            Melbourne</a>
-                        <a href="pascoe-vale.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Pascoe
-                            Vale</a>
-                        <a href="pascoe-vale-south.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Pascoe
-                            Vale South</a>
-                        <a href="prahran.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Prahran</a>
-                        <a href="preston.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Preston</a>
-                        <a href="reservoir.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Reservoir</a>
-                        <a href="richmond.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Richmond</a>
-                        <a href="ripponlea.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Ripponlea</a>
-                        <a href="seddon.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Seddon</a>
-                        <a href="south-yarra.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">South
-                            Yarra</a>
-                        <a href="southbank.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Southbank</a>
-                        <a href="st-kilda.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">St
-                            Kilda</a>
-                        <a href="st-kilda-east.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">St
-                            Kilda East</a>
-                        <a href="sunshine.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Sunshine</a>
-                        <a href="thornbury.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Thornbury</a>
-                        <a href="west-melbourne.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">West
-                            Melbourne</a>
-                        <a href="windsor.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Windsor</a>
-                        <a href="yarraville.html" class="suburb-link"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: 0.3s;">Yarraville</a>
-                    </div>
+                        style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px;">
+                        Company</div>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 16px;"><a href="../about.html"
+                                style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">About
+                                Us</a></li>
+                        <li style="margin-bottom: 16px;"><a href="../services.html"
+                                style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Services</a>
+                        </li>
+                        <li style="margin-bottom: 16px;"><a href="../pricing.html"
+                                style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Pricing</a>
+                        </li>
+                        <li style="margin-bottom: 16px;"><a href="../faqs.html"
+                                style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">FAQs</a>
+                        </li>
+                        <li style="margin-bottom: 16px;"><a href="../contact.html"
+                                style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Contact</a>
+                        </li>
+                        <li style="margin-bottom: 16px;"><a href="../booking.html"
+                                style="color: rgba(255,255,255,0.75); text-decoration: none; transition: 0.3s; font-size: 1.05rem;">Book
+                                Now</a></li>
+                    </ul>
                 </div>
 
-                <!-- Bottom Footer -->
-                <div
-                    style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px;">
-                    <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">© 2026 Maid At Home. Precision in every
-                        detail.</p>
-                    <div style="display: flex; gap: 32px;">
-                        <a href="../privacy-policy.html"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Privacy
-                            Policy</a>
-                        <a href="../terms-conditions.html"
-                            style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Terms
-                            of Service</a>
+                <!-- Business Hours -->
+                <div class="reveal">
+                    <div class="pseudo-h4"
+                        style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px;">
+                        Business Hours</div>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: rgba(255,255,255,0.75);">
+                        <li
+                            style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                            <span>Mon - Fri</span>
+                            <span style="color: white; font-weight: 600;">8am - 6pm</span>
+                        </li>
+                        <li
+                            style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                            <span>Sat</span>
+                            <span style="color: white; font-weight: 600;">9am - 4pm</span>
+                        </li>
+                        <li
+                            style="margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 1.05rem;">
+                            <span>Sun</span>
+                            <span style="color: white; font-weight: 600;">Closed</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="reveal">
+                    <div class="pseudo-h4"
+                        style="color: white !important; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px;">
+                        Newsletter</div>
+                    <p style="color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 24px; font-size: 1rem;">
+                        Join our newsletter for exclusive tips and deals.
+                    </p>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="email" placeholder="Your email"
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 12px; color: white; outline: none; flex-grow: 1; font-family: inherit;">
+                        <button
+                            style="background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s;">Join</button>
                     </div>
                 </div>
             </div>
-        </footer>
-    </main>
 
-    <!-- Bottom scripts handled by main.js in head -->
+            <!-- Bottom Footer -->
+            <div
+                style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px;">
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">© 2026 Maid At Home. Precision in every
+                    detail.</p>
+                <div style="display: flex; gap: 32px;">
+                    <a href="../privacy-policy.html"
+                        style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Privacy
+                        Policy</a>
+                    <a href="../terms-conditions.html"
+                        style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: 0.3s;">Terms
+                        of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <!-- Cookie Banner -->
     <div id="cookieBanner" class="cookie-banner">
         <div class="cookie-content">
@@ -918,14 +758,15 @@
             <button id="cookieSettings" class="btn-cookie-settings">Customize</button>
         </div>
     </div>
+
     <!-- Cookie Settings Modal -->
     <div id="cookieModal" class="cookie-modal-overlay">
         <div class="cookie-modal">
             <button id="closeCookieModal" class="close-modal-btn">&times;</button>
             <div class="modal-header">
                 <div class="modal-title">Privacy Preferences</div>
-                <p>Configura quines cookies vols permetre. Les cookies necessàries no es poden desactivar ja que són
-                    essencials per al funcionament de la web.</p>
+                <p>Configure which cookies you want to allow. Necessary cookies cannot be disabled as they are
+                    essential for the website to function.</p>
             </div>
 
             <div class="cookie-options">
