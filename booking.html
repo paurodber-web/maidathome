@@ -846,7 +846,7 @@ input:checked+.slider:before {
             </div>
         </section>
 
-        <script src="https://mah.bookingkoala.com/resources/embed.js" defer></script>
+        
 
         <!-- Footer -->
         <!-- Footer -->
@@ -1166,6 +1166,42 @@ input:checked+.slider:before {
             </div>
         </div>
     </div>
+
+    <script>
+        // Intelligent Loader for BookingKoala (PageSpeed Optimization)
+        (function() {
+            let loaded = false;
+            const loadBooking = () => {
+                if (loaded) return;
+                loaded = true;
+                const iframe = document.getElementById('booking-iframe');
+                if (iframe) {
+                    iframe.src = iframe.getAttribute('data-src');
+                    // Inject the external script only now
+                    const script = document.createElement('script');
+                    script.src = "https://mah.bookingkoala.com/resources/embed.js";
+                    document.body.appendChild(script);
+                }
+                // Cleanup listeners
+                window.removeEventListener('scroll', handleScroll);
+                window.removeEventListener('mousemove', loadBooking);
+                window.removeEventListener('touchstart', loadBooking);
+            };
+
+            const handleScroll = () => {
+                if (window.scrollY > 100) loadBooking();
+            };
+
+            // Load after 3 seconds anyway if no interaction
+            window.addEventListener('load', () => setTimeout(loadBooking, 3000));
+            
+            // Or sooner if user interacts
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            window.addEventListener('mousemove', loadBooking, { once: true });
+            window.addEventListener('touchstart', loadBooking, { once: true });
+        })();
+    </script>
+
 </body>
 
 </html>
