@@ -26,7 +26,23 @@
         <link rel="stylesheet" href="../css/main.css">
     </noscript>
     <style>
-        /* Critical CSS for Header to avoid FOUC */
+        /* CRITICAL CSS - HEADER & HERO */
+        :root {
+            --primary: #2563eb;
+            --secondary: #0f172a;
+            --accent: #2563eb;
+            --bg: #ffffff;
+            --surface: #f1f5f9;
+            --text: #1e293b;
+            --text-muted: #1e293b;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            background-color: var(--bg);
+        }
+
         header {
             position: fixed;
             top: 20px;
@@ -44,6 +60,7 @@
             padding: 0 40px;
             z-index: 2000;
             border: 1px solid rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
         }
 
         @media (max-width: 1024px) {
@@ -52,6 +69,30 @@
                 top: 0;
                 border-radius: 0;
             }
+        }
+
+        .hero-about {
+            padding: 200px 5% 100px;
+            background: linear-gradient(180deg, var(--surface) 0%, white 100%);
+            box-sizing: border-box;
+        }
+
+        .reveal {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Default visible for first screen */
+
+        .btn-blue {
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: .85rem;
+            display: inline-block;
         }
     </style>
     <script src="../js/main.js" defer></script>
