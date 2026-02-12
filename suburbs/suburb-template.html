@@ -25,6 +25,35 @@
     <noscript>
         <link rel="stylesheet" href="../css/main.css">
     </noscript>
+    <style>
+        /* Critical CSS for Header to avoid FOUC */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 2000;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 1024px) {
+            header {
+                width: 100%;
+                top: 0;
+                border-radius: 0;
+            }
+        }
+    </style>
     <script src="../js/main.js" defer></script>
     <style>
         /* Page specific styles */
