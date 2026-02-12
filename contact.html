@@ -646,6 +646,68 @@
     </main>
 
     <!-- Bottom scripts handled by main.js in head -->
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-content">
+            <h4>🍪 Les nostres cookies</h4>
+            <p>Utilitzem cookies per personalitzar el contingut i analitzar el trànsit. Fent clic a "Acceptar tot", ens
+                ajudes a oferir-te una millor experiència.</p>
+        </div>
+        <div class="cookie-actions">
+            <button id="acceptCookies" class="btn-cookie-accept">Acceptar tot</button>
+            <button id="cookieSettings" class="btn-cookie-settings">Personalitzar</button>
+        </div>
+    </div>
+    <!-- Cookie Settings Modal -->
+    <div id="cookieModal" class="cookie-modal-overlay">
+        <div class="cookie-modal">
+            <button id="closeCookieModal" class="close-modal-btn">&times;</button>
+            <div class="modal-header">
+                <h3>Preferències de Privacitat</h3>
+                <p>Configura quines cookies vols permetre. Les cookies necessàries no es poden desactivar ja que són
+                    essencials per al funcionament de la web.</p>
+            </div>
+
+            <div class="cookie-options">
+                <div class="cookie-option">
+                    <div class="option-info">
+                        <span class="option-title">Necessàries</span>
+                        <span class="option-desc">Essencials per a la navegació i funcions bàsiques.</span>
+                    </div>
+                    <div class="toggle-switch disabled">
+                        <input type="checkbox" checked disabled>
+                        <span class="slider"></span>
+                    </div>
+                </div>
+
+                <div class="cookie-option">
+                    <div class="option-info">
+                        <span class="option-title">Analítica</span>
+                        <span class="option-desc">Ens ajuden a entendre com interactuen els usuaris amb la web.</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="analyticsCookies" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="cookie-option">
+                    <div class="option-info">
+                        <span class="option-title">Màrqueting</span>
+                        <span class="option-desc">S'utilitzen per mostrar anuncis rellevants.</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="marketingCookies">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button id="saveCookieSettings" class="btn-save-settings">Guardar preferències</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
