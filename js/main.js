@@ -125,13 +125,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Native Header Scroll (More reliable than ScrollTrigger for this)
     const header = document.getElementById('header');
     if (header) {
-        const handleHeaderScroll = () => {
-            if (window.scrollY > 50) {
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        const updateHeader = () => {
+            if (lastScrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
+            ticking = false;
         };
+
+        const handleHeaderScroll = () => {
+            lastScrollY = window.scrollY;
+            if (!ticking) {
+                window.requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
+        };
+
         window.addEventListener('scroll', handleHeaderScroll, { passive: true });
         handleHeaderScroll(); // Check initial state
     }
