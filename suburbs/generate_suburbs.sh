@@ -103,6 +103,6 @@ for i in "${!SUBURBS[@]}"; do
     W_DESC=$(echo "$WHY" | sed "s/{{SUBURB}}/$DISPLAY_NAME/g")
     SAFE_IMAGE=$(echo "$IMAGE" | sed 's/&/\\\&/g')
 
-    # Replace variables including the simple image placeholder and slug
-    sed "s/{{SUBURB}}/$DISPLAY_NAME/g; s/{{SUBURB_DESC}}/$H_DESC/g; s/{{WHY_CHOOSE_DESC}}/$W_DESC/g; s|{{SUBURB_IMAGE}}|$SAFE_IMAGE|g; s/{{SUBURB_SLUG}}/$SLUG/g" "$TEMPLATE" > "$FILENAME"
+    # Replace variables including the image placeholder fix to clear console errors
+    sed "s/{{SUBURB}}/$DISPLAY_NAME/g; s/{{SUBURB_DESC}}/$H_DESC/g; s/{{WHY_CHOOSE_DESC}}/$W_DESC/g; s|src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\" data-replace-src=\"{{SUBURB_IMAGE}}\"|src=\"$SAFE_IMAGE\"|g; s/{{SUBURB_SLUG}}/$SLUG/g" "$TEMPLATE" > "$FILENAME"
 done
