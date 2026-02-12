@@ -1696,35 +1696,6 @@
                 });
             }
 
-            // Hamburger Menu
-            const hamburger = document.querySelector('.hamburger');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const closeMenuBtn = document.querySelector('.close-menu-btn');
-            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-
-            if (hamburger) {
-                hamburger.addEventListener('click', () => {
-                    hamburger.classList.toggle('active');
-                    mobileMenu.classList.toggle('active');
-                    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-                });
-
-                if (closeMenuBtn) {
-                    closeMenuBtn.addEventListener('click', () => {
-                        hamburger.classList.remove('active');
-                        mobileMenu.classList.remove('active');
-                        document.body.style.overflow = '';
-                    });
-                }
-
-                mobileLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        hamburger.classList.remove('active');
-                        mobileMenu.classList.remove('active');
-                        document.body.style.overflow = '';
-                    });
-                });
-            }
         </script>
         <!-- Footer -->
         <footer>
@@ -2005,10 +1976,6 @@
             </div>
         </div>
     </main>
-    <!-- Load non-critical CSS using print-media hack (Restored for Score 97) -->
-    <link rel="stylesheet" href="css/main.css" media="print" onload="this.media='all'"><noscript>
-        <link rel="stylesheet" href="css/main.css">
-    </noscript>
     <!-- Load non-critical CSS using print-media hack (Restored for Score 97) -->
     <link rel="stylesheet" href="css/main.css" media="print" onload="this.media='all'"><noscript>
         <link rel="stylesheet" href="css/main.css">
