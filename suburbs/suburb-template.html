@@ -21,9 +21,13 @@
     <link rel="preload" href="../fonts/PlusJakartaSans-800.woff2" as="font" type="font/woff2" crossorigin
         fetchpriority="high">
     <link rel="preload" href="../assets/logo-pequeno.webp" as="image" fetchpriority="high">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preload" href="../css/main.css" as="style">
+    <link rel="stylesheet" href="../css/main.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="../css/main.css">
+    </noscript>
     <style>
-        /* CRITICAL CSS - HEADER & HERO */
+        /* CRITICAL CSS - HEADER & HERO & BASE */
         :root {
             --primary: #2563eb;
             --secondary: #0f172a;
@@ -34,6 +38,12 @@
             --text-muted: #1e293b;
         }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
             margin: 0;
@@ -41,12 +51,7 @@
             color: var(--text);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            overflow-x: hidden;
         }
 
         header {
@@ -66,6 +71,21 @@
             padding: 0 40px;
             z-index: 2000;
             border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            min-width: 144px;
+            height: 45px;
+        }
+
+        .logo img {
+            width: 144px;
+            height: 45px;
+            display: block;
         }
 
         @media (max-width: 1024px) {
@@ -98,49 +118,11 @@
         }
 
         h1 {
-            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             line-height: 1.1;
             font-weight: 800;
             letter-spacing: -0.04em;
             color: var(--secondary);
-        }
-
-        .btn-blue {
-            background: #2563eb;
-            color: white;
-            padding: 16px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1rem;
-            display: inline-block;
-        }
-
-        .reveal {
-            opacity: 1 !important;
-            transform: none !important;
-        }
-    </style>
-    <script src="../js/main.js" defer></script>
-    <style>
-        /* Page specific styles */
-        .hero-about {
-            padding: 200px 5% 100px;
-            background: linear-gradient(180deg, var(--surface) 0%, white 100%);
-        }
-
-        .hero-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .hero-about h1 {
-            font-size: clamp(3rem, 6vw, 4.5rem);
-            line-height: 1.1;
             margin-bottom: 32px;
         }
 
@@ -165,6 +147,44 @@
             height: 100%;
             object-fit: cover;
             display: block;
+        }
+
+        .btn-blue {
+            background: #2563eb;
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        .reveal {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .hero-about {
+                padding: 140px 5% 60px;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-about p {
+                margin: 0 auto 40px;
+            }
+        }
+    </style>
+    <script src="../js/main.js" defer></script>
+    <style>
+        /* Unique Page Sections Styles */
+        .about-section {
+            padding: 120px 5%;
         }
 
         .about-section {
