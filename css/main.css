@@ -165,14 +165,14 @@ header.scrolled {
     text-decoration: none;
     letter-spacing: -.04em;
     min-width: 144px;
-    height: 45px;
+    height: 46px;
     display: flex;
     align-items: center
 }
 
 .logo img {
-    aspect-ratio: 144 / 45;
-    height: 45px;
+    aspect-ratio: 144 / 46;
+    height: 46px;
     width: auto;
     display: block
 }
