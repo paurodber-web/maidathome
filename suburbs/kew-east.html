@@ -93,7 +93,7 @@
             transform: translateX(-50%);
             width: 90%;
             height: 70px;
-            background: rgb(255, 255, 255);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-radius: 20px;
@@ -101,9 +101,17 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 40px;
-            z-index: 10000;
+            z-index: 1000;
             border: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all .3s ease;
+        }
+
+        header.scrolled {
+            top: 0;
+            width: 100%;
+            border-radius: 0;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .logo {
