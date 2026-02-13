@@ -209,8 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             window.addEventListener('scroll', checkScrollMobile, { passive: true });
         }
-        return;
     }
+
 
     // ==========================================
     // 3. DESKTOP LOGIC (Lazy Load GSAP with Fallback)
@@ -286,6 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 200);
 
     function initDesktopAnimations() {
+        if (isMobile) return;
         gsap.registerPlugin(ScrollTrigger);
 
         // Section Reveal Animations
