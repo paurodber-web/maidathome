@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Detect mobile devices
+    // 0. INITIAL READS (Grouped to avoid layout thrashing)
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    let lastScrollY = window.pageYOffset || window.scrollY;
+
 
     // ==========================================
     // 1. INTERACTION LOGIC (Immediate - No Layout Trashing)
@@ -165,25 +167,31 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        let isTicking = false;
         testimonialCarousel.addEventListener('scroll', () => {
-            if (isManualScroll) return;
-            const scrollLeft = testimonialCarousel.scrollLeft;
-            const cards = testimonialCarousel.querySelectorAll('div > .reveal');
-            let closestIndex = currentIndex;
-            let minDiff = Infinity;
+            if (isManualScroll || isTicking) return;
 
-            cards.forEach((card, i) => {
-                const diff = Math.abs(card.offsetLeft - scrollLeft);
-                if (diff < minDiff) {
-                    minDiff = diff;
-                    closestIndex = i;
+            isTicking = true;
+            window.requestAnimationFrame(() => {
+                const scrollLeft = testimonialCarousel.scrollLeft;
+                const cards = testimonialCarousel.querySelectorAll('div > .reveal');
+                let closestIndex = currentIndex;
+                let minDiff = Infinity;
+
+                cards.forEach((card, i) => {
+                    const diff = Math.abs(card.offsetLeft - scrollLeft);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        closestIndex = i;
+                    }
+                });
+
+                if (closestIndex !== currentIndex) {
+                    currentIndex = closestIndex;
+                    updateDots(currentIndex);
                 }
+                isTicking = false;
             });
-
-            if (closestIndex !== currentIndex) {
-                currentIndex = closestIndex;
-                updateDots(currentIndex);
-            }
         }, { passive: true });
     }
 
@@ -191,17 +199,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. MOBILE SPECIFIC LOGIC (Lightweight)
     // ==========================================
     if (isMobile) {
-        // Instant Reveal
-        const revealElements = document.querySelectorAll('.reveal');
-        revealElements.forEach(el => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
+        // Instant Reveal (Deferred to next frame to avoid initial reflow)
+        window.requestAnimationFrame(() => {
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            });
         });
 
         // Popup Scroll Trigger (Native)
         if (popup && !localStorage.getItem('maidAtHomePopupShown')) {
             const checkScrollMobile = () => {
-                if (window.scrollY > 500) {
+                const currentScroll = window.pageYOffset || window.scrollY;
+                if (currentScroll > 500) {
                     popup.classList.add('active');
                     try { localStorage.setItem('maidAtHomePopupShown', 'true'); } catch (e) { }
                     window.removeEventListener('scroll', checkScrollMobile);
@@ -219,7 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Native Header Scroll (More reliable than ScrollTrigger for this)
     const header = document.getElementById('header');
     if (header) {
-        let lastScrollY = window.scrollY;
         let ticking = false;
 
         const updateHeader = () => {
@@ -232,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const handleHeaderScroll = () => {
-            lastScrollY = window.scrollY;
+            lastScrollY = window.pageYOffset || window.scrollY;
             if (!ticking) {
                 window.requestAnimationFrame(updateHeader);
                 ticking = true;
@@ -240,7 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         window.addEventListener('scroll', handleHeaderScroll, { passive: true });
-        handleHeaderScroll(); // Check initial state
+
+        // Initial check deferred to avoid render blocking
+        window.requestAnimationFrame(updateHeader);
     }
 
     // Safety Fallback: Show all reveal elements if GSAP doesn't load
