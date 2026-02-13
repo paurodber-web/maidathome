@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-    
+
+
+
     <title>Professional House Cleaning Services in Reservoir | Maid At Home</title>
     <!-- Adaptive Favicons -->
     <link rel="icon" href="../assets/favicon-dark.webp" media="(prefers-color-scheme: light)">
     <link rel="icon" href="../assets/favicon-white.webp" media="(prefers-color-scheme: dark)">
     <link rel="shortcut icon" href="../assets/favicon-dark.webp">
-    
+
     <link rel="canonical" href="https://www.maidathome.com.au/suburbs/reservoir.html">
     <meta name="description"
         content="Looking for the best house cleaning in Reservoir? Maid At Home offers premium, meticulous cleaning services tailored to your Reservoir home. Book online today!">
@@ -442,6 +442,20 @@
             padding: 80px 5% 40px;
         }
 
+        .cta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .satisfaction-box {
+            background: white;
+            padding: 60px;
+            border-radius: 40px;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.05);
+        }
+
         @media (max-width: 1024px) {
             .hero-inner {
                 grid-template-columns: 1fr;
@@ -456,6 +470,16 @@
             .features-grid-custom {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .cta-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .cta-grid ul {
+                align-items: center;
+            }
         }
 
         @media (max-width: 768px) {
@@ -469,6 +493,10 @@
 
             .features-grid-custom {
                 grid-template-columns: 1fr !important;
+            }
+
+            .satisfaction-box {
+                padding: 40px 24px;
             }
         }
 
@@ -608,7 +636,7 @@
         <!-- CTA Section -->
         <section class="content-section" style="background: var(--surface); padding: 120px 5%;">
             <div class="content-container">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+                <div class="cta-grid">
                     <div class="reveal">
                         <div class="pseudo-h2" style="font-size: 2.5rem; margin-bottom: 32px;">The best house cleaning
                             in Reservoir</div>
@@ -634,8 +662,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="reveal"
-                        style="background: white; padding: 60px; border-radius: 40px; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.05);">
+                    <div class="reveal satisfaction-box">
                         <div style="text-align: center;">
                             <div style="font-size: 4rem; font-weight: 800; color: var(--primary); margin-bottom: 12px;">
                                 4.9/5</div>
