@@ -694,6 +694,8 @@ const withBase = (path: string) => {
       <a href={withBase("booking")} class="mob6-cta">Book Now →</a>
     </nav>
 
+    <main id="main-content">
+
     <!-- ─ PAGE HERO ──────────────────────────────── -->
     <section id="contact-hero" aria-labelledby="contact-h1">
       <div class="contact-hero-sun" aria-hidden="true"></div>
@@ -829,46 +831,10 @@ const withBase = (path: string) => {
 
 
     <!-- ─ FOOTER ────────────────────────────────── -->
-    <footer id="ft6">
-      <div class="ft6-inner">
-        <div class="ft6-brand">
-          <div class="ft6-logo">Maid at Home</div>
-          <p>
-            Melbourne's trusted professional cleaning service. Trained, insured,
-            and committed to consistent quality since 2019.
-          </p>
-        </div>
-        <div class="ft6-col">
-          <div class="ft6-col-title">Services</div>
-          <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
-          <a href={withBase("services") + "#deep"}>Deep Cleaning</a>
-          <a href={withBase("services") + "#eol"}>End of Lease Clean</a>
-          <a href={withBase("services") + "#movein"}>Move In Cleaning</a>
-        </div>
-        <div class="ft6-col">
-          <div class="ft6-col-title">Company</div>
-          <a href={withBase("about")}>About Us</a>
-          <a href={withBase("careers")}>Work with Us</a>
-        <a href={withBase("blog")}>Blog</a>
-          <a href={withBase("areas")}>Areas We Serve</a>
-          <a href={withBase("pricing")}>Pricing</a>
-          <a href={withBase("contact")}>Contact Us</a>
-        </div>
-        <div class="ft6-col">
-          <div class="ft6-col-title">Contact</div>
-          <a href="tel:+61399990000">(03) 9999 0000</a>
-          <a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a>
-          <span style="display:block;font-size:0.88rem;color:rgba(255,255,255,0.4);margin-top:0.5rem;">Melbourne, VIC</span>
-        </div>
-      </div>
-      <div class="ft6-bottom">
-        <span>© 2026 Maid at Home. All rights reserved.</span>
-        <div>
-          <a href="#" style="margin-right:1.5rem">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-        </div>
-      </div>
-    </footer>
+
+    </main>
+
+    <SiteFooter baseUrl={baseUrl} />
 
     <script is:inline>
       /* ─ HEADER ────────────────────────────────────── */

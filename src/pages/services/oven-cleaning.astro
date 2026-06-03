@@ -1,4 +1,5 @@
----
+﻿---
+import SiteFooter from "../components/SiteFooter.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import ResponsiveImage from "../../components/ResponsiveImage.astro";
 import { brightCleanLivingRoom } from "../../data/site-images";
@@ -15,7 +16,7 @@ const withBase = (path: string) => {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Professional Oven Cleaning Melbourne — Maid at Home</title>
+    <title>Professional Oven Cleaning Melbourne â€” Maid at Home</title>
     <meta name="description" content="Deep oven cleaning services in Melbourne. Non-toxic, odourless cleaning that removes burnt grease and carbon build-up. Safe for families & pets. Book online." />
     <link
       rel="preload"
@@ -33,7 +34,7 @@ const withBase = (path: string) => {
         src: url("../fonts/plus-jakarta-sans-latin-normal.woff2") format("woff2");
       }
 
-      /* ─── TOKENS ──────────────────────────────── */
+      /* â”€â”€â”€ TOKENS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       :root {
         --navy:    #0a1d33;
         --blue-d:  #142d4c;
@@ -78,13 +79,13 @@ const withBase = (path: string) => {
       }
       img { display: block; max-width: 100%; }
 
-      /* ─── KEYFRAMES ───────────────────────────── */
+      /* â”€â”€â”€ KEYFRAMES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       @keyframes fadeUp {
         from { opacity: 0; transform: translateY(20px); }
         to   { opacity: 1; transform: none; }
       }
 
-      /* ─── STAGGER SYSTEM ──────────────────────── */
+      /* â”€â”€â”€ STAGGER SYSTEM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       .si {
         opacity: 0;
         transform: translateY(20px);
@@ -94,13 +95,13 @@ const withBase = (path: string) => {
       .si[data-d="r"] { transform: translateX(24px); }
       .si.in { opacity: 1; transform: none; }
 
-      /* ─── LAYOUT ──────────────────────────────── */
+      /* â”€â”€â”€ LAYOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       .c6     { max-width: 1180px; margin: 0 auto; padding: 0 2.5rem; }
       .pad    { padding: 6.5rem 0; }
       .pad-sm { padding: 4.5rem 0; }
       #service-nav + #benefits-section { padding-top: 8rem; }
 
-      /* ─── SHARED TYPOGRAPHY ───────────────────── */
+      /* â”€â”€â”€ SHARED TYPOGRAPHY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       .eyebrow6 {
         display: inline-flex; align-items: center; gap: 0.5rem;
         font-size: 0.72rem; font-weight: 800;
@@ -123,7 +124,7 @@ const withBase = (path: string) => {
         margin-top: 0.75rem;
       }
 
-      /* ─── BUTTONS ─────────────────────────────── */
+      /* â”€â”€â”€ BUTTONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       .btn6-primary {
         display: inline-flex; align-items: center; gap: 0.5rem;
         background: var(--yellow); color: var(--navy);
@@ -145,7 +146,7 @@ const withBase = (path: string) => {
       }
       .btn6-outline:hover { border-color: var(--navy); background: var(--sky); }
 
-      /* ─── HEADER ──────────────────────────────── */
+      /* â”€â”€â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #hd6 {
         position: fixed; inset: 0 0 auto; z-index: 200;
         height: 72px; display: flex; align-items: center; justify-content: space-between;
@@ -272,7 +273,7 @@ const withBase = (path: string) => {
       #hd6-mob a { font-size: 1.2rem; font-weight: 600; color: var(--navy); text-decoration: none; padding: 0.95rem 0; border-bottom: 1px solid var(--grey-l); }
       .mob6-cta { background: var(--yellow); color: var(--navy); text-align: center; border-radius: var(--r); padding: 1.1rem; margin-top: 1rem; font-size: 1rem; font-weight: 700; text-decoration: none; display: block; }
 
-      /* ─── PAGE HERO ───────────────────────────── */
+      /* â”€â”€â”€ PAGE HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #std-hero { background: var(--sky); padding-top: 72px; position: relative; overflow: hidden; }
       .std-hero-sun {
         position: absolute; top: -120px; right: -100px;
@@ -327,12 +328,12 @@ const withBase = (path: string) => {
       .book-divider { height: 1px; background: var(--border-subtle); margin: 1.75rem 0; }
       .book-includes { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
       .book-inc { display: flex; align-items: center; gap: 0.65rem; font-size: 0.9rem; color: var(--grey-d); font-weight: 500; }
-      .book-inc::before { content: "✓"; color: var(--green); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
+      .book-inc::before { content: "âœ“"; color: var(--green); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
       .book-cta { display: block; text-align: center; background: var(--yellow); color: var(--navy); font-weight: 700; font-size: 0.95rem; padding: 0.95rem; border-radius: 100px; text-decoration: none; transition: background 0.25s, transform 0.2s, box-shadow 0.25s; margin-bottom: 0.85rem; box-shadow: 0 4px 14px rgba(246,193,51,0.25); }
       .book-cta:hover { background: var(--yellow-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(246,193,51,0.4); }
       .book-cta-sub { text-align: center; font-size: 0.76rem; color: var(--grey); }
 
-      /* ─── BENEFITS SECTION ─────────────────────── */
+      /* â”€â”€â”€ BENEFITS SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #benefits-section { background: var(--white); }
       .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
       .benefit-card {
@@ -345,7 +346,7 @@ const withBase = (path: string) => {
       .benefit-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
       .benefit-card p { font-size: 0.9rem; color: var(--grey); line-height: 1.6; }
 
-      /* ─── FAQ ─────────────────────────────────── */
+      /* â”€â”€â”€ FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #faq6 { background: var(--sky); border-top: 1px solid var(--border-subtle); }
       .faq6-layout { display: grid; grid-template-columns: 4fr 8fr; gap: 5rem; align-items: start; }
       .compact-contact-card {
@@ -396,7 +397,7 @@ const withBase = (path: string) => {
       .faq6-a { font-size: 0.9rem; color: var(--grey); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease), padding 0.3s; }
       .faq6-item.open .faq6-a { max-height: 280px; padding-bottom: 1.35rem; }
 
-      /* ─── FINAL CTA ────────────────────────────── */
+      /* â”€â”€â”€ FINAL CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #cta6.cta-sky {
         background: var(--sky);
         padding: 6.5rem 0;
@@ -450,7 +451,7 @@ const withBase = (path: string) => {
         color: var(--grey-d);
       }
       .cta6-trust-item::before {
-        content: "✓";
+        content: "âœ“";
         color: var(--green);
         font-weight: 800;
       }
@@ -468,7 +469,7 @@ const withBase = (path: string) => {
         object-fit: cover;
       }
 
-      /* ─── FOOTER ──────────────────────────────── */
+      /* â”€â”€â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #ft6 { background: var(--navy); padding: 4.5rem 2.5rem 2.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
       .ft6-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
       .ft6-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 0.85rem; max-width: 280px; }
@@ -480,7 +481,7 @@ const withBase = (path: string) => {
       .ft6-bottom span, .ft6-bottom a { font-size: 0.78rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
       .ft6-bottom a:hover { color: rgba(255,255,255,0.6); }
 
-      /* ─── RESPONSIVE ──────────────────────────── */
+      /* â”€â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       @media (max-width: 1024px) {
         .hd6-nav { display: none; }
         .hd6-toggle { display: flex; }
@@ -530,7 +531,7 @@ const withBase = (path: string) => {
       .mob6-sub-menu a:hover { color: var(--blue) !important; }
       .hd6-mob-section-title { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--grey); letter-spacing: 0.08em; margin-top: 0.75rem; margin-bottom: 0.25rem; }
     
-      /* ─── STICKY SECTION NAV ─────────────────── */
+      /* â”€â”€â”€ STICKY SECTION NAV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #service-nav {
         position: sticky;
         top: 64px;
@@ -618,7 +619,7 @@ const withBase = (path: string) => {
   </head>
 
   <body>
-    <!-- ─ HEADER ─────────────────────────────────── -->
+    <!-- â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <header id="hd6" aria-label="Site header">
       <a href={withBase("index")} class="hd6-logo" aria-label="Maid at Home">
         <div class="hd6-mark" aria-hidden="true">
@@ -717,19 +718,21 @@ const withBase = (path: string) => {
       </div>
 
       <a href={withBase("blog")}>Blog</a>
-      <a href={withBase("booking")} class="mob6-cta">Book Now →</a>
+      <a href={withBase("booking")} class="mob6-cta">Book Now â†’</a>
     </nav>
 
-    <!-- ─ PAGE HERO ──────────────────────────────── -->
+    <main id="main-content">
+
+    <!-- â”€ PAGE HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="std-hero" aria-labelledby="std-hero-h1">
       <div class="std-hero-sun" aria-hidden="true"></div>
       <div class="std-hero-body">
         <div class="std-hero-left">
           <nav class="ph-breadcrumb" aria-label="Breadcrumb">
             <a href={withBase("index")}>Home</a>
-            <span class="sep" aria-hidden="true">→</span>
+            <span class="sep" aria-hidden="true">â†’</span>
             <a href={withBase("services")}>House Cleaning</a>
-            <span class="sep" aria-hidden="true">→</span>
+            <span class="sep" aria-hidden="true">â†’</span>
             <span class="current" aria-current="page" style="color: var(--grey-d)">Oven Cleaning</span>
           </nav>
           
@@ -765,7 +768,7 @@ const withBase = (path: string) => {
             <div class="book-price-row">
               <div class="book-price"><sup>$</sup>79</div>
             </div>
-            <div class="book-price-note">Single Oven: $79 · Double Oven: $119 · Racks & trays included</div>
+            <div class="book-price-note">Single Oven: $79 Â· Double Oven: $119 Â· Racks & trays included</div>
             <div class="book-divider"></div>
             <div class="book-includes">
               <div class="book-inc">Eco-safe, odourless products</div>
@@ -774,50 +777,51 @@ const withBase = (path: string) => {
               <div class="book-inc">Exterior polished & degreased</div>
               <div class="book-inc">Ready to use immediately</div>
             </div>
-            <a href={withBase("pricing")} class="book-cta">Book Oven Cleaning →</a>
+            <a href={withBase("pricing")} class="book-cta">Book Oven Cleaning â†’</a>
             <div class="book-cta-sub">Available as single service or add-on</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ─ STICKY SECTION NAV ────────────────────── -->
+    <!-- â”€ STICKY SECTION NAV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <nav id="service-nav" aria-label="Service sections">
       <div class="pnav-inner">
-        <a href="#benefits-section" class="pnav-link active"><span class="snav-icon">✨</span> Benefits</a>
-        <a href="#faq6" class="pnav-link"><span class="snav-icon">❓</span> FAQ</a>
+        <a href="#benefits-section" class="pnav-link active"><span class="snav-icon">âœ¨</span> Benefits</a>
+        <a href="#faq6" class="pnav-link"><span class="snav-icon">â“</span> FAQ</a>
       </div>
     </nav>
 
-    <!-- ─ BENEFITS SECTION ─────────────────────── -->
+
+    <!-- â”€ BENEFITS SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="benefits-section" class="pad" aria-labelledby="benefits-h2">
       <div class="c6">
         <div class="sg" style="text-align: center; margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto;">
           <p class="eyebrow6">Our Standards</p>
           <h2 class="h6" id="benefits-h2">Why choose professional oven cleaning?</h2>
           <p class="lead6" style="margin-top: 0.75rem;">
-            It is more than just removing grease — it restores your kitchen's key appliance to top condition.
+            It is more than just removing grease â€” it restores your kitchen's key appliance to top condition.
           </p>
         </div>
 
         <div class="benefits-grid sg">
           <!-- Benefit 1 -->
           <div class="benefit-card si">
-            <div class="benefit-icon">🌿</div>
+            <div class="benefit-icon">ðŸŒ¿</div>
             <h3>100% Non-Toxic & Odourless</h3>
             <p>We do not use harsh caustic chemicals or sprays. Our specialized formulas are odourless, safe for your family, pets, and food prep, allowing you to use your oven immediately.</p>
           </div>
 
           <!-- Benefit 2 -->
           <div class="benefit-card si">
-            <div class="benefit-icon">⚡</div>
+            <div class="benefit-icon">âš¡</div>
             <h3>Improved Heat Efficiency</h3>
             <p>Removing baked-on grease and carbon deposits from heating elements and interior walls helps your oven heat faster, distribute temperature evenly, and consume less electricity.</p>
           </div>
 
           <!-- Benefit 3 -->
           <div class="benefit-card si">
-            <div class="benefit-icon">🔍</div>
+            <div class="benefit-icon">ðŸ”</div>
             <h3>Door Disassembly Included</h3>
             <p>Grease often drips and builds up inside the double-glazed glass panels of your oven door. We carefully disassemble the door to clean the inner glass panes, leaving them fully transparent.</p>
           </div>
@@ -825,7 +829,7 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ FAQ ─────────────────────────────────────── -->
+    <!-- â”€ FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="faq6" class="pad" aria-labelledby="faq6-h2">
       <div class="c6">
         <div class="faq6-layout">
@@ -881,7 +885,7 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ FINAL CTA ───────────────────────────────── -->
+    <!-- â”€ FINAL CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="cta6" class="cta-white" aria-labelledby="cta6-h2">
       <div class="c6">
         <div class="cta6-grid sg">
@@ -915,12 +919,14 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ FOOTER ──────────────────────────────────── -->
+    <!-- â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+
+    </main>
 
     <SiteFooter baseUrl={baseUrl} />
 
     <script is:inline>
-      /* ─ HEADER ───────────────────────────────────── */
+      /* â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const hd6 = document.getElementById("hd6");
       let headerScrollTicking6 = false;
       const updateHeaderScroll6 = () => {
@@ -937,7 +943,7 @@ const withBase = (path: string) => {
       window.addEventListener("scroll", onScroll6, { passive: true });
       updateHeaderScroll6();
 
-            /* ─ MOBILE NAV / MENU ────────────────────────── */
+            /* â”€ MOBILE NAV / MENU â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const tog6 = document.getElementById("hd6Toggle");
       const mob6 = document.getElementById("hd6-mob");
       const cls6 = document.getElementById("hd6MobClose");
@@ -968,7 +974,7 @@ const withBase = (path: string) => {
         });
       }
 
-      /* ─ MOBILE DROPDOWN ACCORDION ────────────────── */
+      /* â”€ MOBILE DROPDOWN ACCORDION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       if (mob6) {
         mob6.querySelectorAll('.mob6-dropdown-toggle').forEach(btn => {
           btn.addEventListener('click', (e) => {
@@ -992,7 +998,7 @@ const withBase = (path: string) => {
         });
       }
 
-      /* ─ STAGGER OBSERVER ─────────────────────────── */
+      /* â”€ STAGGER OBSERVER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const sObs6 = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
@@ -1003,7 +1009,7 @@ const withBase = (path: string) => {
       }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
       document.querySelectorAll(".sg").forEach(g => sObs6.observe(g));
 
-      /* ─ FAQ ──────────────────────────────────────── */
+      /* â”€ FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       document.querySelectorAll(".faq6-item").forEach(item => {
         item.querySelector(".faq6-q").addEventListener("click", () => {
           const open = item.classList.contains("open");
@@ -1012,7 +1018,7 @@ const withBase = (path: string) => {
         });
       });
     
-      /* ─ ACTIVE NAV LINK ON SCROLL ────────────────── */
+      /* â”€ ACTIVE NAV LINK ON SCROLL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const pnavLinks = document.querySelectorAll('.pnav-link');
       const pnavSections = ['benefits-section', 'faq6'].map(id => document.getElementById(id));
       let pnavSectionsOffsets = [];

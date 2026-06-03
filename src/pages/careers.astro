@@ -1,4 +1,4 @@
----
+﻿---
 import SiteFooter from "../components/SiteFooter.astro";
 import ResponsiveImage from "../components/ResponsiveImage.astro";
 import { brightCleanLivingRoom } from "../data/site-images";
@@ -15,7 +15,7 @@ const withBase = (path: string) => {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join Our Team — Maid at Home Melbourne</title>
+    <title>Join Our Team â€” Maid at Home Melbourne</title>
     <meta name="description" content="Work with Melbourne's premier home cleaning team. Industry-leading pay rates, fully flexible schedules, and supportive management. Apply online today." />
     <link
       rel="preload"
@@ -33,7 +33,7 @@ const withBase = (path: string) => {
         src: url("../fonts/plus-jakarta-sans-latin-normal.woff2") format("woff2");
       }
 
-      /* ─── TOKENS ──────────────────────────────── */
+      /* â”€â”€â”€ TOKENS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       :root {
         --navy:    #0a1d33;
         --blue-d:  #142d4c;
@@ -78,13 +78,13 @@ const withBase = (path: string) => {
       }
       img { display: block; max-width: 100%; }
 
-      /* ─── KEYFRAMES ───────────────────────────── */
+      /* â”€â”€â”€ KEYFRAMES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       @keyframes fadeUp {
         from { opacity: 0; transform: translateY(20px); }
         to   { opacity: 1; transform: none; }
       }
 
-      /* ─── STAGGER SYSTEM ──────────────────────── */
+      /* â”€â”€â”€ STAGGER SYSTEM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       .si {
         opacity: 0;
         transform: translateY(20px);
@@ -94,13 +94,13 @@ const withBase = (path: string) => {
       .si[data-d="r"] { transform: translateX(24px); }
       .si.in { opacity: 1; transform: none; }
 
-      /* ─── LAYOUT ──────────────────────────────── */
+      /* â”€â”€â”€ LAYOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       .c6     { max-width: 1180px; margin: 0 auto; padding: 0 2.5rem; }
       .pad    { padding: 6.5rem 0; }
       .pad-sm { padding: 4.5rem 0; }
       #service-nav + #why-us { padding-top: 8rem; }
 
-      /* ─── SHARED TYPOGRAPHY ───────────────────── */
+      /* â”€â”€â”€ SHARED TYPOGRAPHY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       .eyebrow6 {
         display: inline-flex; align-items: center; gap: 0.5rem;
         font-size: 0.72rem; font-weight: 800;
@@ -123,7 +123,7 @@ const withBase = (path: string) => {
         margin-top: 0.75rem;
       }
 
-      /* ─── BUTTONS ─────────────────────────────── */
+      /* â”€â”€â”€ BUTTONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       .btn6-primary {
         display: inline-flex; align-items: center; gap: 0.5rem;
         background: var(--yellow); color: var(--navy);
@@ -145,7 +145,7 @@ const withBase = (path: string) => {
       }
       .btn6-outline:hover { border-color: var(--navy); background: var(--sky); }
 
-      /* ─── HEADER ──────────────────────────────── */
+      /* â”€â”€â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #hd6 {
         position: fixed; inset: 0 0 auto; z-index: 200;
         height: 72px; display: flex; align-items: center; justify-content: space-between;
@@ -272,7 +272,7 @@ const withBase = (path: string) => {
       #hd6-mob a { font-size: 1.2rem; font-weight: 600; color: var(--navy); text-decoration: none; padding: 0.95rem 0; border-bottom: 1px solid var(--grey-l); }
       .mob6-cta { background: var(--yellow); color: var(--navy); text-align: center; border-radius: var(--r); padding: 1.1rem; margin-top: 1rem; font-size: 1rem; font-weight: 700; text-decoration: none; display: block; }
 
-      /* ─── PAGE HERO ───────────────────────────── */
+      /* â”€â”€â”€ PAGE HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #std-hero { background: var(--sky); padding-top: 72px; position: relative; overflow: hidden; }
       .std-hero-sun {
         position: absolute; top: -120px; right: -100px;
@@ -495,7 +495,7 @@ const withBase = (path: string) => {
         box-shadow: 0 8px 24px rgba(246, 193, 51, 0.4);
       }
 
-      /* ─── BENEFITS SECTION ─────────────────────── */
+      /* â”€â”€â”€ BENEFITS SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #why-us { background: var(--white) !important; }
       .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
       .benefit-card {
@@ -508,14 +508,14 @@ const withBase = (path: string) => {
       .benefit-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
       .benefit-card p { font-size: 0.9rem; color: var(--grey); line-height: 1.6; }
 
-      /* ─── REQUIREMENTS SECTION ─────────────────── */
+      /* â”€â”€â”€ REQUIREMENTS SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #requirements { background: var(--sky) !important; border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
       .req-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
       .req-list { display: flex; flex-direction: column; gap: 1.15rem; margin-top: 1.5rem; }
       .req-item { display: flex; align-items: flex-start; gap: 0.85rem; font-size: 0.95rem; color: var(--grey-d); line-height: 1.6; }
-      .req-item::before { content: "✓"; color: var(--blue); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; width: 20px; height: 20px; background: var(--white); border: 1px solid var(--border-subtle); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-top: 2px; }
+      .req-item::before { content: "âœ“"; color: var(--blue); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; width: 20px; height: 20px; background: var(--white); border: 1px solid var(--border-subtle); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-top: 2px; }
 
-      /* ─── APPLICATION FORM SECTION ────────────── */
+      /* â”€â”€â”€ APPLICATION FORM SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #apply-section { background: var(--white) !important; }
       .apply-layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 5rem; align-items: start; }
       .apply-form-card {
@@ -545,7 +545,7 @@ const withBase = (path: string) => {
       }
       .form-submit-btn:hover { background: var(--yellow-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(246,193,51,0.4); }
 
-      /* ─── FAQ ─────────────────────────────────── */
+      /* â”€â”€â”€ FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #faq6 { background: var(--sky) !important; border-top: 1px solid var(--border-subtle); }
       .faq6-layout { display: grid; grid-template-columns: 4fr 8fr; gap: 5rem; align-items: start; }
       .compact-contact-card {
@@ -591,7 +591,7 @@ const withBase = (path: string) => {
       .faq6-a { font-size: 0.9rem; color: var(--grey); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease), padding 0.3s; }
       .faq6-item.open .faq6-a { max-height: 280px; padding-bottom: 1.35rem; }
 
-      /* ─── FINAL CTA ────────────────────────────── */
+      /* â”€â”€â”€ FINAL CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #cta6.cta-sky {
         background: var(--sky) !important;
         padding: 6.5rem 0;
@@ -643,7 +643,7 @@ const withBase = (path: string) => {
         object-fit: cover;
       }
 
-      /* ─── FOOTER ──────────────────────────────── */
+      /* â”€â”€â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #ft6 { background: var(--navy); padding: 4.5rem 2.5rem 2.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
       .ft6-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
       .ft6-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 0.85rem; max-width: 280px; }
@@ -655,7 +655,7 @@ const withBase = (path: string) => {
       .ft6-bottom span, .ft6-bottom a { font-size: 0.78rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
       .ft6-bottom a:hover { color: rgba(255,255,255,0.6); }
 
-      /* ─── RESPONSIVE ──────────────────────────── */
+      /* â”€â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       @media (max-width: 1024px) {
         .hd6-nav { display: none; }
         .hd6-toggle { display: flex; }
@@ -707,7 +707,7 @@ const withBase = (path: string) => {
       .mob6-sub-menu a:hover { color: var(--blue) !important; }
       .hd6-mob-section-title { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--grey); letter-spacing: 0.08em; margin-top: 0.75rem; margin-bottom: 0.25rem; }
     
-      /* ─── STICKY SECTION NAV ─────────────────── */
+      /* â”€â”€â”€ STICKY SECTION NAV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #service-nav {
         position: sticky;
         top: 64px;
@@ -792,7 +792,7 @@ const withBase = (path: string) => {
   </head>
 
   <body>
-    <!-- ─ HEADER ─────────────────────────────────── -->
+    <!-- â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <header id="hd6" aria-label="Site header">
       <a href={withBase("index")} class="hd6-logo" aria-label="Maid at Home">
         <div class="hd6-mark" aria-hidden="true">
@@ -891,10 +891,12 @@ const withBase = (path: string) => {
       </div>
 
       <a href={withBase("blog")}>Blog</a>
-      <a href={withBase("booking")} class="mob6-cta">Book Now →</a>
+      <a href={withBase("booking")} class="mob6-cta">Book Now â†’</a>
     </nav>
 
-    <!-- ─ PAGE HERO ──────────────────────────────── -->
+    <main id="main-content">
+
+    <!-- â”€ PAGE HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="std-hero" aria-labelledby="std-hero-h1">
       <div class="std-hero-sun" aria-hidden="true"></div>
       <div class="std-hero-body">
@@ -963,17 +965,18 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ STICKY SECTION NAV ────────────────────── -->
+    <!-- â”€ STICKY SECTION NAV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <nav id="service-nav" aria-label="Service sections">
       <div class="pnav-inner">
-        <a href="#why-us" class="pnav-link active"><span class="snav-icon">✨</span> Why Us</a>
-        <a href="#requirements" class="pnav-link"><span class="snav-icon">📋</span> Requirements</a>
-        <a href="#apply-section" class="pnav-link"><span class="snav-icon">📝</span> Apply Now</a>
-        <a href="#faq6" class="pnav-link"><span class="snav-icon">❓</span> FAQ</a>
+        <a href="#why-us" class="pnav-link active"><span class="snav-icon">âœ¨</span> Why Us</a>
+        <a href="#requirements" class="pnav-link"><span class="snav-icon">ðŸ“‹</span> Requirements</a>
+        <a href="#apply-section" class="pnav-link"><span class="snav-icon">ðŸ“</span> Apply Now</a>
+        <a href="#faq6" class="pnav-link"><span class="snav-icon">â“</span> FAQ</a>
       </div>
     </nav>
 
-    <!-- ─ BENEFITS SECTION ─────────────────────── -->
+
+    <!-- â”€ BENEFITS SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="why-us" class="pad" aria-labelledby="benefits-h2">
       <div class="c6">
         <div class="sg" style="text-align: center; margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto;">
@@ -987,21 +990,21 @@ const withBase = (path: string) => {
         <div class="benefits-grid sg">
           <!-- Benefit 1 -->
           <div class="benefit-card si">
-            <div class="benefit-icon">💵</div>
+            <div class="benefit-icon">ðŸ’µ</div>
             <h3>Great Hourly Rates</h3>
             <p>We pay above-average market rates because we expect high standards and want to reward detailed, reliable professionals.</p>
           </div>
 
           <!-- Benefit 2 -->
           <div class="benefit-card si">
-            <div class="benefit-icon">📅</div>
+            <div class="benefit-icon">ðŸ“…</div>
             <h3>Flexible Schedules</h3>
-            <p>You choose when you are available to work. Full-time hours, school-run friendliness, or weekend-only slots — it's entirely up to you.</p>
+            <p>You choose when you are available to work. Full-time hours, school-run friendliness, or weekend-only slots â€” it's entirely up to you.</p>
           </div>
 
           <!-- Benefit 3 -->
           <div class="benefit-card si">
-            <div class="benefit-icon">🤝</div>
+            <div class="benefit-icon">ðŸ¤</div>
             <h3>Supportive Management</h3>
             <p>Pau, Stefania, and the leadership team are always available. We provide clear checklist instructions and support you with client communications.</p>
           </div>
@@ -1009,7 +1012,7 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ REQUIREMENTS SECTION ─────────────────── -->
+    <!-- â”€ REQUIREMENTS SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="requirements" class="pad" aria-labelledby="requirements-h2">
       <div class="c6">
         <div class="req-grid sg">
@@ -1035,7 +1038,7 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ APPLICATION FORM SECTION ────────────── -->
+    <!-- â”€ APPLICATION FORM SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="apply-section" class="pad" aria-labelledby="apply-h2">
       <div class="c6">
         <div class="apply-layout sg">
@@ -1046,7 +1049,7 @@ const withBase = (path: string) => {
               Fill in the short application form. If you match what we are looking for, our recruitment team will reach out within 48 business hours to arrange an interview.
             </p>
             <div style="background: var(--sky); padding: 1.5rem; border-radius: var(--r); border: 1px solid var(--border-subtle);">
-              <p style="font-size: 0.85rem; font-weight: 700; color: var(--navy); margin-bottom: 0.25rem;">📌 Application Process:</p>
+              <p style="font-size: 0.85rem; font-weight: 700; color: var(--navy); margin-bottom: 0.25rem;">ðŸ“Œ Application Process:</p>
               <p style="font-size: 0.82rem; color: var(--grey);">1. Online Form Submission<br />2. Brief Phone Screening Interview<br />3. Practical trial clean with supervisor<br />4. Setup and onboarding</p>
             </div>
           </div>
@@ -1107,7 +1110,7 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ FAQ ─────────────────────────────────────── -->
+    <!-- â”€ FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="faq6" class="pad" aria-labelledby="faq6-h2">
       <div class="c6">
         <div class="faq6-layout">
@@ -1163,7 +1166,7 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ FINAL CTA ───────────────────────────────── -->
+    <!-- â”€ FINAL CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="cta6" class="cta-white" aria-labelledby="cta6-h2">
       <div class="c6">
         <div class="cta6-grid sg">
@@ -1197,12 +1200,14 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ FOOTER ──────────────────────────────────── -->
+    <!-- â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+
+    </main>
 
     <SiteFooter baseUrl={baseUrl} />
 
     <script is:inline>
-      /* ─ HEADER ───────────────────────────────────── */
+      /* â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const hd6 = document.getElementById("hd6");
       let headerScrollTicking6 = false;
       const updateHeaderScroll6 = () => {
@@ -1219,7 +1224,7 @@ const withBase = (path: string) => {
       window.addEventListener("scroll", onScroll6, { passive: true });
       updateHeaderScroll6();
 
-            /* ─ MOBILE NAV / MENU ────────────────────────── */
+            /* â”€ MOBILE NAV / MENU â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const tog6 = document.getElementById("hd6Toggle");
       const mob6 = document.getElementById("hd6-mob");
       const cls6 = document.getElementById("hd6MobClose");
@@ -1250,7 +1255,7 @@ const withBase = (path: string) => {
         });
       }
 
-      /* ─ MOBILE DROPDOWN ACCORDION ────────────────── */
+      /* â”€ MOBILE DROPDOWN ACCORDION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       if (mob6) {
         mob6.querySelectorAll('.mob6-dropdown-toggle').forEach(btn => {
           btn.addEventListener('click', (e) => {
@@ -1274,7 +1279,7 @@ const withBase = (path: string) => {
         });
       }
 
-      /* ─ STAGGER OBSERVER ─────────────────────────── */
+      /* â”€ STAGGER OBSERVER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const sObs6 = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
@@ -1285,7 +1290,7 @@ const withBase = (path: string) => {
       }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
       document.querySelectorAll(".sg").forEach(g => sObs6.observe(g));
 
-      /* ─ FAQ ──────────────────────────────────────── */
+      /* â”€ FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       document.querySelectorAll(".faq6-item").forEach(item => {
         item.querySelector(".faq6-q").addEventListener("click", () => {
           const open = item.classList.contains("open");
@@ -1294,7 +1299,7 @@ const withBase = (path: string) => {
         });
       });
     
-      /* ─ ACTIVE NAV LINK ON SCROLL ────────────────── */
+      /* â”€ ACTIVE NAV LINK ON SCROLL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const pnavLinks = document.querySelectorAll('.pnav-link');
       const pnavSections = ['why-us', 'requirements', 'apply-section', 'faq6'].map(id => document.getElementById(id));
       let pnavSectionsOffsets = [];
@@ -1341,7 +1346,7 @@ const withBase = (path: string) => {
       measurePnavSections6();
       updatePnavSections6();
  
-      /* ─ FIT CHECK CHECKS ────────────────────────── */
+      /* â”€ FIT CHECK CHECKS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       window.updateFitCta = () => {
         const fitOpts = [
           document.getElementById("fitOpt1"),
@@ -1353,7 +1358,7 @@ const withBase = (path: string) => {
           const checkedCount = fitOpts.filter(el => el.classList.contains("checked")).length;
           if (checkedCount === 3) {
             fitCta.classList.add("active");
-            fitCta.textContent = "Submit Application →";
+            fitCta.textContent = "Submit Application â†’";
             fitCta.style.pointerEvents = "auto";
           } else {
             fitCta.classList.remove("active");

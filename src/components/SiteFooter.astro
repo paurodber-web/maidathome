@@ -16,7 +16,7 @@ const recurringUrl = `${homeUrl}#rec6`;
 const calculatorUrl = `${homeUrl}#calc6`;
 ---
 
-<footer id="ft6" aria-label="Site footer">
+<footer id="ft6" aria-label="Site footer" role="contentinfo">
   <div class="ft6-inner">
     <div class="ft6-brand">
       <div class="ft6-logo">Maid at Home</div>
@@ -51,10 +51,133 @@ const calculatorUrl = `${homeUrl}#calc6`;
     </div>
   </div>
   <div class="ft6-bottom">
-    <span>© 2025 Maid at Home. All rights reserved.</span>
+    <span>&copy; 2025 Maid at Home. All rights reserved.</span>
     <div class="ft6-bottom-links">
       <a href="#">Privacy Policy</a>
       <a href="#">Terms of Service</a>
     </div>
   </div>
 </footer>
+
+<style>
+  #ft6 {
+    background: #0a1d33;
+    color: #ffffff;
+    padding: 5.5rem 0 2.5rem;
+  }
+
+  .ft6-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 2.5rem 3rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .ft6-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .ft6-logo {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+
+  .ft6-brand p {
+    max-width: 420px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #e8f4fd;
+  }
+
+  .ft6-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .ft6-col-title {
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #5aaee0;
+  }
+
+  .ft6-col a {
+    font-size: 0.88rem;
+    color: #e8f4fd;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .ft6-col a:hover {
+    color: #ffffff;
+  }
+
+  .ft6-bottom {
+    max-width: 1180px;
+    margin: 2rem auto 0;
+    padding: 0 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .ft6-bottom-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .ft6-bottom span,
+  .ft6-bottom a {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .ft6-bottom a:hover {
+    color: #ffffff;
+  }
+
+  @media (max-width: 1024px) {
+    .ft6-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #ft6 {
+      padding-top: 4.5rem;
+    }
+
+    .ft6-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 0 1.5rem 2.5rem;
+    }
+
+    .ft6-bottom {
+      padding: 0 1.5rem;
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .ft6-bottom-links {
+      justify-content: center;
+    }
+  }
+</style>

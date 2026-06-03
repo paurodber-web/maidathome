@@ -1,4 +1,5 @@
 ---
+import SiteFooter from "../components/SiteFooter.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import ResponsiveImage from "../../components/ResponsiveImage.astro";
 import { brightCleanLivingRoom } from "../../data/site-images";
@@ -15,7 +16,7 @@ const withBase = (path: string) => {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Standard House Cleaning Melbourne — Maid at Home</title>
+    <title>Standard House Cleaning Melbourne â€” Maid at Home</title>
     <meta name="description" content="Professional standard house cleaning in Melbourne. Trained, insured cleaners, eco-friendly products, consistent results every visit. Book online in 60 seconds." />
     <link
       rel="preload"
@@ -33,7 +34,7 @@ const withBase = (path: string) => {
         src: url("../fonts/plus-jakarta-sans-latin-normal.woff2") format("woff2");
       }
 
-      /* ─── TOKENS ──────────────────────────────── */
+      /* â”€â”€â”€ TOKENS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       :root {
         --navy:    #0a1d33;
         --blue-d:  #142d4c;
@@ -81,13 +82,13 @@ const withBase = (path: string) => {
       }
       img { display: block; max-width: 100%; }
 
-      /* ─── KEYFRAMES ───────────────────────────── */
+      /* â”€â”€â”€ KEYFRAMES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       @keyframes fadeUp {
         from { opacity: 0; transform: translateY(20px); }
         to   { opacity: 1; transform: none; }
       }
 
-      /* ─── STAGGER SYSTEM ──────────────────────── */
+      /* â”€â”€â”€ STAGGER SYSTEM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       .si {
         opacity: 0;
         transform: translateY(20px);
@@ -97,13 +98,13 @@ const withBase = (path: string) => {
       .si[data-d="r"] { transform: translateX(24px); }
       .si.in { opacity: 1; transform: none; }
 
-      /* ─── LAYOUT ──────────────────────────────── */
+      /* â”€â”€â”€ LAYOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       .c6     { max-width: 1180px; margin: 0 auto; padding: 0 2.5rem; }
       .pad    { padding: 6.5rem 0; }
       .pad-sm { padding: 4.5rem 0; }
       #service-nav + #what { padding-top: 8rem; }
 
-      /* ─── SHARED TYPOGRAPHY ───────────────────── */
+      /* â”€â”€â”€ SHARED TYPOGRAPHY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       .eyebrow6 {
         display: inline-flex; align-items: center; gap: 0.5rem;
         font-size: 0.72rem; font-weight: 800;
@@ -126,7 +127,7 @@ const withBase = (path: string) => {
         margin-top: 0.75rem;
       }
 
-      /* ─── BUTTONS ─────────────────────────────── */
+      /* â”€â”€â”€ BUTTONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       .btn6-primary {
         display: inline-flex; align-items: center; gap: 0.5rem;
         background: var(--yellow); color: var(--navy);
@@ -168,7 +169,7 @@ const withBase = (path: string) => {
       }
       .btn6-ghost-dark:hover { color: var(--white); border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06); }
 
-      /* ─── HEADER ──────────────────────────────── */
+      /* â”€â”€â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #hd6 {
         position: fixed; inset: 0 0 auto; z-index: 200;
         height: 72px; display: flex; align-items: center; justify-content: space-between;
@@ -295,7 +296,7 @@ const withBase = (path: string) => {
       #hd6-mob a { font-size: 1.2rem; font-weight: 600; color: var(--navy); text-decoration: none; padding: 0.95rem 0; border-bottom: 1px solid var(--grey-l); }
       .mob6-cta { background: var(--yellow); color: var(--navy); text-align: center; border-radius: var(--r); padding: 1.1rem; margin-top: 1rem; font-size: 1rem; font-weight: 700; text-decoration: none; display: block; }
 
-      /* ─── PAGE HERO ───────────────────────────── */
+      /* â”€â”€â”€ PAGE HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #std-hero { background: var(--sky); padding-top: 72px; position: relative; overflow: hidden; }
       .std-hero-sun {
         position: absolute; top: -120px; right: -100px;
@@ -370,12 +371,12 @@ const withBase = (path: string) => {
       .book-divider { height: 1px; background: var(--border-subtle); margin: 1.5rem 0; }
       .book-includes { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.75rem; }
       .book-inc { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; color: var(--grey-d); line-height: 1.5; }
-      .book-inc::before { content: '✓'; color: var(--green); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
+      .book-inc::before { content: 'âœ“'; color: var(--green); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
       .book-cta { display: block; text-align: center; background: var(--yellow); color: var(--navy); font-weight: 700; font-size: 0.95rem; padding: 0.95rem; border-radius: 100px; text-decoration: none; transition: background 0.25s, transform 0.2s, box-shadow 0.25s; margin-bottom: 0.85rem; box-shadow: 0 4px 14px rgba(246,193,51,0.25); }
       .book-cta:hover { background: var(--yellow-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(246,193,51,0.4); }
       .book-cta-sub { text-align: center; font-size: 0.76rem; color: var(--grey); }
 
-      /* ─── WHAT IS SECTION ──────────────────────── */
+      /* â”€â”€â”€ WHAT IS SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #what { background: var(--white); }
       .what-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
       .what-visual { position: relative; }
@@ -423,7 +424,7 @@ const withBase = (path: string) => {
       .what-copy p { font-size: 0.98rem; color: var(--grey); line-height: 1.8; margin-bottom: 1.25rem; }
       .what-copy p:last-of-type { margin-bottom: 2rem; }
 
-      /* ─── INCLUDES SECTION ─────────────────────── */
+      /* â”€â”€â”€ INCLUDES SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #includes { background: var(--sky); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
       .includes-top { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 3.5rem; }
       
@@ -441,7 +442,7 @@ const withBase = (path: string) => {
       .cl-room-name { font-size: 1.05rem; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
       .cl-items { display: flex; flex-direction: column; gap: 0.55rem; }
       .cl-item { display: flex; align-items: flex-start; gap: 0.55rem; font-size: 0.86rem; color: var(--grey-d); line-height: 1.5; }
-      .cl-item::before { content: '✓'; color: var(--blue); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
+      .cl-item::before { content: 'âœ“'; color: var(--blue); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
 
       .cl-note {
         margin-top: 2.25rem;
@@ -453,7 +454,7 @@ const withBase = (path: string) => {
       .cl-note p { font-size: 0.86rem; color: var(--grey-d); line-height: 1.6; }
       .cl-note strong { color: var(--navy); }
 
-      /* ─── HOW IT WORKS SECTION ────────────────── */
+      /* â”€â”€â”€ HOW IT WORKS SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #how { background: var(--navy); position: relative; overflow: hidden; color: var(--white); }
       #how::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 70% at 90% 10%, rgba(29,111,168,0.18) 0%, transparent 60%); pointer-events: none; }
       #how .eyebrow6 { color: var(--blue-l); }
@@ -488,7 +489,7 @@ const withBase = (path: string) => {
       .expect-body h4 { font-size: 0.98rem; font-weight: 700; color: var(--white); margin-bottom: 0.35rem; letter-spacing: -0.01em; }
       .expect-body p { font-size: 0.84rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
 
-      /* ─── WHEN TO BOOK SECTION ────────────────── */
+      /* â”€â”€â”€ WHEN TO BOOK SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #ideal { background: var(--white); }
       .ideal-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
       .ideal-scenarios { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
@@ -518,7 +519,7 @@ const withBase = (path: string) => {
       .not-ideal-box > p { font-size: 0.88rem; color: var(--grey); line-height: 1.65; margin-bottom: 1.5rem; }
       .not-ideal-items { display: flex; flex-direction: column; gap: 0.65rem; }
       .ni-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.85rem; color: var(--grey-d); line-height: 1.5; }
-      .ni-item::before { content: '→'; color: var(--blue); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
+      .ni-item::before { content: 'â†’'; color: var(--blue); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
 
       .service-nudge {
         background: var(--navy); border-radius: var(--r-xl); padding: 2rem;
@@ -541,13 +542,13 @@ const withBase = (path: string) => {
       .nl-arrow { color: rgba(255,255,255,0.3); font-size: 0.95rem; transition: transform 0.2s; }
       .nudge-link:hover .nl-arrow { transform: translateX(3px); color: var(--white); }
 
-      /* ─── PRICING SECTION ─────────────────────── */
+      /* â”€â”€â”€ PRICING SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #pricing { background: var(--sky); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
       .pricing-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
       .pricing-copy h2.h6 { margin-bottom: 1.25rem; }
       .freq-perks { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 2.25rem; margin-top: 1.75rem; }
       .freq-perk { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--grey-d); line-height: 1.6; }
-      .freq-perk::before { content: '✓'; color: var(--blue); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; width: 18px; height: 18px; background: var(--white); border: 1px solid var(--border-subtle); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-top: 2px; }
+      .freq-perk::before { content: 'âœ“'; color: var(--blue); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; width: 18px; height: 18px; background: var(--white); border: 1px solid var(--border-subtle); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-top: 2px; }
       
       .pricing-panel { display: flex; flex-direction: column; gap: 1.25rem; }
       .pricing-model-tabs { display: flex; gap: 0; background: var(--grey-l); border: 1px solid var(--border-subtle); border-radius: var(--r); padding: 4px; }
@@ -601,7 +602,7 @@ const withBase = (path: string) => {
       .panel { display: none; }
       .panel.active { display: block; }
 
-      /* ─── TESTIMONIALS SECTION ────────────────── */
+      /* â”€â”€â”€ TESTIMONIALS SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #reviews { background: var(--white); }
       .reviews-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1rem; }
       .g-badge { display: flex; align-items: center; gap: 0.5rem; background: var(--sky); border: 1px solid var(--border-subtle); border-radius: 100px; padding: 0.45rem 1.15rem; font-size: 0.82rem; color: var(--navy); font-weight: 700; box-shadow: var(--shadow-sm); }
@@ -618,7 +619,7 @@ const withBase = (path: string) => {
       .t-meta { font-size: 0.75rem; color: var(--grey); margin-top: 0.1rem; }
       .t-verified { display: flex; align-items: center; gap: 0.25rem; font-size: 0.72rem; color: var(--green); font-weight: 700; margin-top: 0.15rem; }
 
-      /* ─── FAQ SECTION ─────────────────────────── */
+      /* â”€â”€â”€ FAQ SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #faq { background: var(--sky); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
       .faq-layout { display: grid; grid-template-columns: 4fr 8fr; gap: 5rem; align-items: start; }
       .faq-contact { margin-top: 2.25rem; background: var(--white); border: 1px solid var(--border-subtle); border-radius: var(--r-l); padding: 1.5rem; box-shadow: var(--shadow-sm); }
@@ -633,7 +634,7 @@ const withBase = (path: string) => {
       .faq-a { font-size: 0.9rem; color: var(--grey); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease), padding 0.3s; }
       .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.35rem; }
 
-      /* ─── OTHER SERVICES SECTION ──────────────── */
+      /* â”€â”€â”€ OTHER SERVICES SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #other-services { background: var(--white); }
       .other-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
       .other-card {
@@ -654,7 +655,7 @@ const withBase = (path: string) => {
       .other-card-link { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; font-weight: 700; color: var(--blue); margin-top: 1.25rem; opacity: 0; transform: translateX(-4px); transition: opacity 0.25s, transform 0.25s; }
       .other-card:hover .other-card-link { opacity: 1; transform: none; }
 
-      /* ─── FINAL CTA ────────────────────────────── */
+      /* â”€â”€â”€ FINAL CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #cta6.cta-sky {
         background: var(--sky);
         padding: 6.5rem 0;
@@ -700,7 +701,7 @@ const withBase = (path: string) => {
         object-fit: cover;
       }
 
-      /* ─── FOOTER ──────────────────────────────── */
+      /* â”€â”€â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #ft6 { background: var(--navy); padding: 4.5rem 2.5rem 2.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
       .ft6-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
       .ft6-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 0.85rem; max-width: 280px; }
@@ -712,7 +713,7 @@ const withBase = (path: string) => {
       .ft6-bottom span, .ft6-bottom a { font-size: 0.78rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
       .ft6-bottom a:hover { color: rgba(255,255,255,0.6); }
 
-      /* ─── RESPONSIVE ──────────────────────────── */
+      /* â”€â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       @media (max-width: 1024px) {
         .hd6-nav { display: none; }
         .hd6-toggle { display: flex; }
@@ -824,7 +825,7 @@ const withBase = (path: string) => {
         .what-float-badge { display: none; }
       }
     
-      /* ─── STICKY SECTION NAV ─────────────────── */
+      /* â”€â”€â”€ STICKY SECTION NAV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #service-nav {
         position: sticky;
         top: 64px;
@@ -912,7 +913,7 @@ const withBase = (path: string) => {
   </head>
 
   <body>
-    <!-- ─ HEADER ─────────────────────────────────── -->
+    <!-- â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <header id="hd6" aria-label="Site header">
       <a href={withBase("index")} class="hd6-logo" aria-label="Maid at Home">
         <div class="hd6-mark" aria-hidden="true">
@@ -1011,19 +1012,21 @@ const withBase = (path: string) => {
       </div>
 
       <a href={withBase("blog")}>Blog</a>
-      <a href={withBase("booking")} class="mob6-cta">Book Now →</a>
+      <a href={withBase("booking")} class="mob6-cta">Book Now â†’</a>
     </nav>
 
-    <!-- ─ PAGE HERO ──────────────────────────────── -->
+    <main id="main-content">
+
+    <!-- â”€ PAGE HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="std-hero" aria-labelledby="std-hero-h1">
       <div class="std-hero-sun" aria-hidden="true"></div>
       <div class="std-hero-body">
         <div class="std-hero-left">
           <nav class="ph-breadcrumb" aria-label="Breadcrumb">
             <a href={withBase("index")}>Home</a>
-            <span class="sep" aria-hidden="true">→</span>
+            <span class="sep" aria-hidden="true">â†’</span>
             <a href={withBase("services")}>House Cleaning</a>
-            <span class="sep" aria-hidden="true">→</span>
+            <span class="sep" aria-hidden="true">â†’</span>
             <span class="current" aria-current="page" style="color: var(--grey-d)">Standard Cleaning</span>
           </nav>
           
@@ -1037,7 +1040,7 @@ const withBase = (path: string) => {
             <span class="ac">Clear mind.</span>
           </p>
           <p class="std-hero-sub">
-            A thorough, structured clean of your entire home — every room, every surface, every visit. Trained professionals, eco-friendly products, and results you can actually see.
+            A thorough, structured clean of your entire home â€” every room, every surface, every visit. Trained professionals, eco-friendly products, and results you can actually see.
           </p>
           
           <div class="std-hero-actions">
@@ -1061,7 +1064,7 @@ const withBase = (path: string) => {
             <div class="book-price-row">
               <div class="book-price"><sup>$</sup>149</div>
             </div>
-            <div class="book-price-note">1–2 bedroom home · Flat rate · All supplies included</div>
+            <div class="book-price-note">1â€“2 bedroom home Â· Flat rate Â· All supplies included</div>
             <div class="book-divider"></div>
             <div class="book-includes">
               <div class="book-inc">All rooms vacuumed & mopped</div>
@@ -1070,27 +1073,28 @@ const withBase = (path: string) => {
               <div class="book-inc">Police-checked, insured cleaner</div>
               <div class="book-inc">100% satisfaction guarantee</div>
             </div>
-            <a href={withBase("pricing")} class="book-cta">Calculate My Price →</a>
+            <a href={withBase("pricing")} class="book-cta">Calculate My Price â†’</a>
             <div class="book-cta-sub">No credit card required to book</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ─ STICKY SECTION NAV ────────────────────── -->
+    <!-- â”€ STICKY SECTION NAV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <nav id="service-nav" aria-label="Service sections">
       <div class="pnav-inner">
-        <a href="#what" class="pnav-link active"><span class="snav-icon">🔍</span> What is it</a>
-        <a href="#includes" class="pnav-link"><span class="snav-icon">📋</span> Checklist</a>
-        <a href="#how" class="pnav-link"><span class="snav-icon">⏱️</span> How it works</a>
-        <a href="#ideal" class="pnav-link"><span class="snav-icon">💡</span> Ideal for</a>
-        <a href="#pricing" class="pnav-link"><span class="snav-icon">💰</span> Pricing</a>
-        <a href="#reviews" class="pnav-link"><span class="snav-icon">⭐</span> Reviews</a>
-        <a href="#faq" class="pnav-link"><span class="snav-icon">❓</span> FAQ</a>
+        <a href="#what" class="pnav-link active"><span class="snav-icon">ðŸ”</span> What is it</a>
+        <a href="#includes" class="pnav-link"><span class="snav-icon">ðŸ“‹</span> Checklist</a>
+        <a href="#how" class="pnav-link"><span class="snav-icon">â±ï¸</span> How it works</a>
+        <a href="#ideal" class="pnav-link"><span class="snav-icon">ðŸ’¡</span> Ideal for</a>
+        <a href="#pricing" class="pnav-link"><span class="snav-icon">ðŸ’°</span> Pricing</a>
+        <a href="#reviews" class="pnav-link"><span class="snav-icon">â­</span> Reviews</a>
+        <a href="#faq" class="pnav-link"><span class="snav-icon">â“</span> FAQ</a>
       </div>
     </nav>
 
-    <!-- ─ WHAT IS STANDARD CLEANING ──────────────── -->
+
+    <!-- â”€ WHAT IS STANDARD CLEANING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="what" class="pad" aria-labelledby="what-h2">
       <div class="c6">
         <div class="what-layout sg">
@@ -1098,46 +1102,46 @@ const withBase = (path: string) => {
             <div class="what-vis-main">
               <div class="what-vis-grid" aria-hidden="true"></div>
               <div class="what-vis-content">
-                <div class="what-vis-tag">Today's Clean — 14 Park St, South Yarra</div>
+                <div class="what-vis-tag">Today's Clean â€” 14 Park St, South Yarra</div>
                 <div class="what-vis-rooms">
                   <div class="wvr">
-                    <div class="wvr-left"><span class="wvr-icon">🛋️</span><span class="wvr-name">Living & Dining</span></div>
-                    <span class="wvr-status wvr-done">✓ Done</span>
+                    <div class="wvr-left"><span class="wvr-icon">ðŸ›‹ï¸</span><span class="wvr-name">Living & Dining</span></div>
+                    <span class="wvr-status wvr-done">âœ“ Done</span>
                   </div>
                   <div class="wvr">
-                    <div class="wvr-left"><span class="wvr-icon">🍳</span><span class="wvr-name">Kitchen</span></div>
-                    <span class="wvr-status wvr-done">✓ Done</span>
+                    <div class="wvr-left"><span class="wvr-icon">ðŸ³</span><span class="wvr-name">Kitchen</span></div>
+                    <span class="wvr-status wvr-done">âœ“ Done</span>
                   </div>
                   <div class="wvr">
-                    <div class="wvr-left"><span class="wvr-icon">🛏️</span><span class="wvr-name">Bedrooms (×2)</span></div>
-                    <span class="wvr-status wvr-done">✓ Done</span>
+                    <div class="wvr-left"><span class="wvr-icon">ðŸ›ï¸</span><span class="wvr-name">Bedrooms (Ã—2)</span></div>
+                    <span class="wvr-status wvr-done">âœ“ Done</span>
                   </div>
                   <div class="wvr">
-                    <div class="wvr-left"><span class="wvr-icon">🚿</span><span class="wvr-name">Bathroom</span></div>
-                    <span class="wvr-status" style="color:var(--yellow);font-weight:700;font-size:0.72rem;">● In progress</span>
+                    <div class="wvr-left"><span class="wvr-icon">ðŸš¿</span><span class="wvr-name">Bathroom</span></div>
+                    <span class="wvr-status" style="color:var(--yellow);font-weight:700;font-size:0.72rem;">â— In progress</span>
                   </div>
                   <div class="wvr">
-                    <div class="wvr-left"><span class="wvr-icon">🪟</span><span class="wvr-name">Hallway & Entry</span></div>
+                    <div class="wvr-left"><span class="wvr-icon">ðŸªŸ</span><span class="wvr-name">Hallway & Entry</span></div>
                     <span class="wvr-status wvr-pending" style="font-size:0.72rem; color:rgba(255,255,255,0.25);">Upcoming</span>
                   </div>
                 </div>
                 <div class="what-vis-footer">
                   <span class="what-vis-footer-label">Estimated completion</span>
-                  <span class="what-vis-footer-val">12:45 PM · On track</span>
+                  <span class="what-vis-footer-val">12:45 PM Â· On track</span>
                 </div>
               </div>
             </div>
             
             <div class="what-float-badge badge-tl">
-              <span class="wfb-icon">⏱</span>
+              <span class="wfb-icon">â±</span>
               <div>
-                <div class="wfb-text">2.5–3.5 hrs</div>
+                <div class="wfb-text">2.5â€“3.5 hrs</div>
                 <div class="wfb-sub">Avg 2-bed home</div>
               </div>
             </div>
             
             <div class="what-float-badge badge-br">
-              <span class="wfb-icon">♻️</span>
+              <span class="wfb-icon">â™»ï¸</span>
               <div>
                 <div class="wfb-text">Eco-safe products</div>
                 <div class="wfb-sub">Safe for kids & pets</div>
@@ -1148,11 +1152,11 @@ const withBase = (path: string) => {
           <div class="what-copy si" data-d="r">
             <p class="eyebrow6">What Is It</p>
             <h2 class="h6" id="what-h2">Maintenance cleaning, done to a<br /><span class="ac">professional standard</span></h2>
-            <p>A standard clean is designed to keep your home in consistently excellent condition. It's not a once-a-year event — it's the backbone of a well-maintained home, delivered on whatever schedule suits you.</p>
-            <p>Our cleaners work through every room systematically using a structured checklist. That means nothing gets forgotten, nothing gets rushed, and every visit delivers the same quality — whether it's your first clean or your fifth.</p>
+            <p>A standard clean is designed to keep your home in consistently excellent condition. It's not a once-a-year event â€” it's the backbone of a well-maintained home, delivered on whatever schedule suits you.</p>
+            <p>Our cleaners work through every room systematically using a structured checklist. That means nothing gets forgotten, nothing gets rushed, and every visit delivers the same quality â€” whether it's your first clean or your fifth.</p>
             <p>We bring everything needed: commercial-grade equipment, eco-friendly and non-toxic products, and a cleaner who has been background-checked and trained to our standard. You don't need to supply a thing.</p>
             <div class="std-hero-actions" style="margin-top: 1.5rem;">
-              <a href="#includes" class="btn6-primary">See what's included →</a>
+              <a href="#includes" class="btn6-primary">See what's included â†’</a>
               <a href="#pricing" class="btn6-outline-dark">View pricing</a>
             </div>
           </div>
@@ -1160,7 +1164,7 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ WHAT'S INCLUDED ────────────────────────── -->
+    <!-- â”€ WHAT'S INCLUDED â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="includes" class="pad" aria-labelledby="inc-h2">
       <div class="c6">
         <div class="includes-top sg">
@@ -1169,7 +1173,7 @@ const withBase = (path: string) => {
             <h2 class="h6" id="inc-h2">Every room. Every visit.<br />Nothing missed.</h2>
           </div>
           <div class="si" data-d="r">
-            <p class="lead6">Every standard clean follows the same structured checklist — no variation between cleaners, no guesswork, no forgotten corners. Here's exactly what gets done.</p>
+            <p class="lead6">Every standard clean follows the same structured checklist â€” no variation between cleaners, no guesswork, no forgotten corners. Here's exactly what gets done.</p>
           </div>
         </div>
 
@@ -1177,7 +1181,7 @@ const withBase = (path: string) => {
           
           <div class="cl-room si" role="listitem">
             <div class="cl-room-head">
-              <div class="cl-room-icon">🛋️</div>
+              <div class="cl-room-icon">ðŸ›‹ï¸</div>
               <div class="cl-room-name">Living & Dining Areas</div>
             </div>
             <div class="cl-items">
@@ -1192,7 +1196,7 @@ const withBase = (path: string) => {
 
           <div class="cl-room si" role="listitem">
             <div class="cl-room-head">
-              <div class="cl-room-icon">🍳</div>
+              <div class="cl-room-icon">ðŸ³</div>
               <div class="cl-room-name">Kitchen</div>
             </div>
             <div class="cl-items">
@@ -1209,7 +1213,7 @@ const withBase = (path: string) => {
 
           <div class="cl-room si" role="listitem">
             <div class="cl-room-head">
-              <div class="cl-room-icon">🛏️</div>
+              <div class="cl-room-icon">ðŸ›ï¸</div>
               <div class="cl-room-name">Bedrooms</div>
             </div>
             <div class="cl-items">
@@ -1225,7 +1229,7 @@ const withBase = (path: string) => {
 
           <div class="cl-room si" role="listitem">
             <div class="cl-room-head">
-              <div class="cl-room-icon">🚿</div>
+              <div class="cl-room-icon">ðŸš¿</div>
               <div class="cl-room-name">Bathrooms</div>
             </div>
             <div class="cl-items">
@@ -1241,7 +1245,7 @@ const withBase = (path: string) => {
 
           <div class="cl-room si" role="listitem">
             <div class="cl-room-head">
-              <div class="cl-room-icon">🪟</div>
+              <div class="cl-room-icon">ðŸªŸ</div>
               <div class="cl-room-name">Hallways & Entry</div>
             </div>
             <div class="cl-items">
@@ -1256,7 +1260,7 @@ const withBase = (path: string) => {
 
           <div class="cl-room si" role="listitem">
             <div class="cl-room-head">
-              <div class="cl-room-icon">🧺</div>
+              <div class="cl-room-icon">ðŸ§º</div>
               <div class="cl-room-name">Laundry (if applicable)</div>
             </div>
             <div class="cl-items">
@@ -1271,13 +1275,13 @@ const withBase = (path: string) => {
         </div>
 
         <div class="cl-note sg">
-          <span style="font-size:1.15rem; flex-shrink:0; margin-top:2px" class="si" data-d="l">💡</span>
-          <p class="si" data-d="r"><strong>This is our standard checklist.</strong> Every cleaner follows it on every visit. If you have specific preferences — particular areas to focus on, things to skip, or access notes — you can leave instructions when booking or message us directly before your clean.</p>
+          <span style="font-size:1.15rem; flex-shrink:0; margin-top:2px" class="si" data-d="l">ðŸ’¡</span>
+          <p class="si" data-d="r"><strong>This is our standard checklist.</strong> Every cleaner follows it on every visit. If you have specific preferences â€” particular areas to focus on, things to skip, or access notes â€” you can leave instructions when booking or message us directly before your clean.</p>
         </div>
       </div>
     </section>
 
-    <!-- ─ HOW IT WORKS ──────────────────────────── -->
+    <!-- â”€ HOW IT WORKS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="how" class="pad" aria-labelledby="how-h2">
       <div class="c6">
         <div class="sg">
@@ -1292,45 +1296,45 @@ const withBase = (path: string) => {
               <div class="step-num-wrap active"><span class="step-num">1</span></div>
               <div class="step-body">
                 <h3>Book online in 60 seconds</h3>
-                <p>Choose your service, home size, preferred date, and pricing model. Get an instant transparent quote — no hidden fees, no follow-up calls required.</p>
+                <p>Choose your service, home size, preferred date, and pricing model. Get an instant transparent quote â€” no hidden fees, no follow-up calls required.</p>
               </div>
             </div>
             <div class="how-step si">
               <div class="step-num-wrap pending"><span class="step-num">2</span></div>
               <div class="step-body">
                 <h3>We arrive and start immediately</h3>
-                <p>Your cleaner arrives on time, fully equipped with all supplies. They work through the standard checklist room by room — no delays, no interruptions.</p>
+                <p>Your cleaner arrives on time, fully equipped with all supplies. They work through the standard checklist room by room â€” no delays, no interruptions.</p>
               </div>
             </div>
             <div class="how-step si">
               <div class="step-num-wrap pending"><span class="step-num">3</span></div>
               <div class="step-body">
                 <h3>Come home to a clean house</h3>
-                <p>You receive a completion notification when done. If anything wasn't right, we fix it within 24 hours at no charge — no questions asked.</p>
+                <p>You receive a completion notification when done. If anything wasn't right, we fix it within 24 hours at no charge â€” no questions asked.</p>
               </div>
             </div>
           </div>
           
           <div class="how-right sg">
             <div class="expect-card si">
-              <span class="expect-icon">🛡️</span>
+              <span class="expect-icon">ðŸ›¡ï¸</span>
               <div class="expect-body">
                 <h4>You don't need to be home</h4>
                 <p>Most of our clients are out during their clean. Key drop-off, lockbox codes, or concierge access can all be arranged at booking. Every cleaner is police-checked and fully insured.</p>
               </div>
             </div>
             <div class="expect-card si">
-              <span class="expect-icon">🧴</span>
+              <span class="expect-icon">ðŸ§´</span>
               <div class="expect-body">
                 <h4>All supplies provided</h4>
-                <p>We bring everything — commercial vacuums, mops, microfibre cloths, and eco-friendly non-toxic cleaning products. Safe for children, pets, and sensitive surfaces. You supply nothing.</p>
+                <p>We bring everything â€” commercial vacuums, mops, microfibre cloths, and eco-friendly non-toxic cleaning products. Safe for children, pets, and sensitive surfaces. You supply nothing.</p>
               </div>
             </div>
             <div class="expect-card si">
-              <span class="expect-icon">📋</span>
+              <span class="expect-icon">ðŸ“‹</span>
               <div class="expect-body">
                 <h4>Same checklist, every time</h4>
-                <p>Every cleaner follows our structured checklist on every visit. No variation based on who shows up — the standard is the standard, always.</p>
+                <p>Every cleaner follows our structured checklist on every visit. No variation based on who shows up â€” the standard is the standard, always.</p>
               </div>
             </div>
           </div>
@@ -1338,42 +1342,42 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ WHEN IS IT IDEAL ──────────────────────── -->
+    <!-- â”€ WHEN IS IT IDEAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="ideal" class="pad" aria-labelledby="ideal-h2">
       <div class="c6">
         <div class="ideal-layout sg">
           <div class="si" data-d="l">
             <p class="eyebrow6">When to Book</p>
             <h2 class="h6" id="ideal-h2">Is a standard clean<br />right for you?</h2>
-            <p class="lead6" style="margin-top:0.75rem; margin-bottom:2rem;">A standard clean is the right choice for most Melbourne households — but it's not the right tool for every situation. Here's when it fits perfectly.</p>
+            <p class="lead6" style="margin-top:0.75rem; margin-bottom:2rem;">A standard clean is the right choice for most Melbourne households â€” but it's not the right tool for every situation. Here's when it fits perfectly.</p>
             
             <div class="ideal-scenarios">
               <div class="ideal-scenario">
-                <div class="is-icon">🔄</div>
+                <div class="is-icon">ðŸ”„</div>
                 <div class="is-body">
                   <h4>You want a regular, consistent clean</h4>
-                  <p>Weekly, fortnightly, or monthly — a standard clean on a schedule is the most effective way to keep your home in great condition without thinking about it.</p>
+                  <p>Weekly, fortnightly, or monthly â€” a standard clean on a schedule is the most effective way to keep your home in great condition without thinking about it.</p>
                 </div>
               </div>
               <div class="ideal-scenario">
-                <div class="is-icon">🏡</div>
+                <div class="is-icon">ðŸ¡</div>
                 <div class="is-body">
                   <h4>Your home is already reasonably tidy</h4>
                   <p>Standard cleaning works best in homes that are maintained between visits. If there's no major buildup, a standard clean is efficient and thorough.</p>
                 </div>
               </div>
               <div class="ideal-scenario">
-                <div class="is-icon">⏰</div>
+                <div class="is-icon">â°</div>
                 <div class="is-body">
                   <h4>You're time-poor and want it handled</h4>
                   <p>You'd rather spend your weekend on other things. Book once and your home stays consistently clean without any ongoing effort from you.</p>
                 </div>
               </div>
               <div class="ideal-scenario">
-                <div class="is-icon">💰</div>
+                <div class="is-icon">ðŸ’°</div>
                 <div class="is-body">
                   <h4>You want predictable, transparent pricing</h4>
-                  <p>Flat rate by bedrooms. Know exactly what you'll pay before we arrive. No surprises, no variables — especially when booked on a recurring plan.</p>
+                  <p>Flat rate by bedrooms. Know exactly what you'll pay before we arrive. No surprises, no variables â€” especially when booked on a recurring plan.</p>
                 </div>
               </div>
             </div>
@@ -1384,32 +1388,32 @@ const withBase = (path: string) => {
               <h3>When standard cleaning might not be enough</h3>
               <p>If your home has particular needs, a different service may serve you better. Here's how to tell:</p>
               <div class="not-ideal-items">
-                <div class="ni-item"><span>The home hasn't been professionally cleaned in over 2–3 months → consider a <strong>Deep Clean</strong> first</span></div>
-                <div class="ni-item"><span>You're moving out and need to recover your bond → you need an <strong>End of Lease Clean</strong></span></div>
-                <div class="ni-item"><span>You're moving into a new property → a <strong>Move In Clean</strong> is the right starting point</span></div>
-                <div class="ni-item"><span>You need the oven, fridge, or windows done → add these as <strong>Extras</strong> to any booking</span></div>
+                <div class="ni-item"><span>The home hasn't been professionally cleaned in over 2â€“3 months â†’ consider a <strong>Deep Clean</strong> first</span></div>
+                <div class="ni-item"><span>You're moving out and need to recover your bond â†’ you need an <strong>End of Lease Clean</strong></span></div>
+                <div class="ni-item"><span>You're moving into a new property â†’ a <strong>Move In Clean</strong> is the right starting point</span></div>
+                <div class="ni-item"><span>You need the oven, fridge, or windows done â†’ add these as <strong>Extras</strong> to any booking</span></div>
               </div>
             </div>
             
             <div class="service-nudge">
               <h3>Not sure which service you need?</h3>
-              <p>Browse all our services and compare what's included — or call us and we'll point you in the right direction.</p>
+              <p>Browse all our services and compare what's included â€” or call us and we'll point you in the right direction.</p>
               <div class="nudge-links">
                 <a href={withBase("services") + "#deep"} class="nudge-link">
-                  <span class="nl-name">🔍 Deep Cleaning</span>
-                  <span class="nl-arrow">›</span>
+                  <span class="nl-name">ðŸ” Deep Cleaning</span>
+                  <span class="nl-arrow">â€º</span>
                 </a>
                 <a href={withBase("services") + "#eol"} class="nudge-link">
-                  <span class="nl-name">📋 End of Lease Cleaning</span>
-                  <span class="nl-arrow">›</span>
+                  <span class="nl-name">ðŸ“‹ End of Lease Cleaning</span>
+                  <span class="nl-arrow">â€º</span>
                 </a>
                 <a href={withBase("services") + "#movein"} class="nudge-link">
-                  <span class="nl-name">📦 Move In Cleaning</span>
-                  <span class="nl-arrow">›</span>
+                  <span class="nl-name">ðŸ“¦ Move In Cleaning</span>
+                  <span class="nl-arrow">â€º</span>
                 </a>
                 <a href={withBase("services") + "#compare"} class="nudge-link">
-                  <span class="nl-name">⚖️ Compare all services</span>
-                  <span class="nl-arrow">›</span>
+                  <span class="nl-name">âš–ï¸ Compare all services</span>
+                  <span class="nl-arrow">â€º</span>
                 </a>
               </div>
             </div>
@@ -1418,29 +1422,29 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ PRICING ───────────────────────────────── -->
+    <!-- â”€ PRICING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="pricing" class="pad" aria-labelledby="pricing-h2">
       <div class="c6">
         <div class="pricing-layout sg">
           <div class="pricing-copy si" data-d="l">
             <p class="eyebrow6">Pricing</p>
             <h2 class="h6" id="pricing-h2">Choose flat rate<br />or hourly</h2>
-            <p class="lead6">Two pricing models — flat rate by bedrooms or hourly. Both include all equipment and products, and both are eligible for recurring frequency discounts.</p>
+            <p class="lead6">Two pricing models â€” flat rate by bedrooms or hourly. Both include all equipment and products, and both are eligible for recurring frequency discounts.</p>
             <div class="freq-perks">
-              <div class="freq-perk">Weekly bookings — <strong>save 10%</strong></div>
-              <div class="freq-perk">Fortnightly bookings — <strong>save 10%</strong></div>
-              <div class="freq-perk">Monthly bookings — <strong>save 5%</strong></div>
-              <div class="freq-perk">No lock-in contracts · Cancel anytime</div>
+              <div class="freq-perk">Weekly bookings â€” <strong>save 10%</strong></div>
+              <div class="freq-perk">Fortnightly bookings â€” <strong>save 10%</strong></div>
+              <div class="freq-perk">Monthly bookings â€” <strong>save 5%</strong></div>
+              <div class="freq-perk">No lock-in contracts Â· Cancel anytime</div>
               <div class="freq-perk">Same cleaner on recurring plans</div>
             </div>
-            <a href={withBase("pricing")} class="btn6-outline-dark">Full pricing breakdown →</a>
+            <a href={withBase("pricing")} class="btn6-outline-dark">Full pricing breakdown â†’</a>
           </div>
 
           <div class="pricing-panel si" data-d="r">
             <!-- Model toggle -->
             <div class="pricing-model-tabs" role="tablist" aria-label="Pricing model">
-              <button class="pmt-tab on" role="tab" aria-selected="true" id="tab-flat-btn">🏠 Flat Rate</button>
-              <button class="pmt-tab" role="tab" aria-selected="false" id="tab-hourly-btn">⏱ Hourly</button>
+              <button class="pmt-tab on" role="tab" aria-selected="true" id="tab-flat-btn">ðŸ  Flat Rate</button>
+              <button class="pmt-tab" role="tab" aria-selected="false" id="tab-hourly-btn">â± Hourly</button>
             </div>
 
             <!-- FLAT RATE PANEL -->
@@ -1449,14 +1453,14 @@ const withBase = (path: string) => {
                 <div class="bed-row" role="listitem">
                   <div class="bed-info">
                     <span class="bed-label">Studio / 1 Bedroom</span>
-                    <span class="bed-sublabel">Approx. 2–2.5 hrs</span>
+                    <span class="bed-sublabel">Approx. 2â€“2.5 hrs</span>
                   </div>
                   <span class="bed-price">$149</span>
                 </div>
                 <div class="bed-row featured" role="listitem">
                   <div class="bed-info">
                     <span class="bed-label">2 Bedrooms</span>
-                    <span class="bed-sublabel">Approx. 2.5–3.5 hrs</span>
+                    <span class="bed-sublabel">Approx. 2.5â€“3.5 hrs</span>
                   </div>
                   <div style="display:flex;align-items:center;gap:0.75rem;">
                     <span class="bed-pop">Most popular</span>
@@ -1466,14 +1470,14 @@ const withBase = (path: string) => {
                 <div class="bed-row" role="listitem">
                   <div class="bed-info">
                     <span class="bed-label">3 Bedrooms</span>
-                    <span class="bed-sublabel">Approx. 3–4 hrs</span>
+                    <span class="bed-sublabel">Approx. 3â€“4 hrs</span>
                   </div>
                   <span class="bed-price">$239</span>
                 </div>
                 <div class="bed-row" role="listitem">
                   <div class="bed-info">
                     <span class="bed-label">4+ Bedrooms</span>
-                    <span class="bed-sublabel">Approx. 4–5 hrs</span>
+                    <span class="bed-sublabel">Approx. 4â€“5 hrs</span>
                   </div>
                   <span class="bed-price">$299</span>
                 </div>
@@ -1544,7 +1548,7 @@ const withBase = (path: string) => {
             </div>
 
             <div style="margin-top: 1.5rem;">
-              <a href={withBase("pricing")} class="book-cta">Book Standard Cleaning →</a>
+              <a href={withBase("pricing")} class="book-cta">Book Standard Cleaning â†’</a>
               <p style="font-size:0.76rem;color:var(--grey);text-align:center;margin-top:0.6rem;">No credit card required to check availability</p>
             </div>
           </div>
@@ -1552,7 +1556,7 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ TESTIMONIALS ────────────────────────────── -->
+    <!-- â”€ TESTIMONIALS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="reviews" class="pad" aria-labelledby="reviews-h2">
       <div class="c6">
         <div class="reviews-header sg">
@@ -1565,39 +1569,39 @@ const withBase = (path: string) => {
         
         <div class="t-grid sg">
           <article class="t-card si">
-            <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <p class="t-text">"Absolutely impeccable. The bathroom and kitchen looked brand new after the first visit. We've moved to fortnightly and haven't looked back — same cleaner every time, same standard."</p>
+            <div class="t-stars" aria-label="5 out of 5 stars">â˜…â˜…â˜…â˜…â˜…</div>
+            <p class="t-text">"Absolutely impeccable. The bathroom and kitchen looked brand new after the first visit. We've moved to fortnightly and haven't looked back â€” same cleaner every time, same standard."</p>
             <footer class="t-author">
               <div class="t-avatar" style="background:linear-gradient(135deg,#3d6db5,#1a3a5c)" aria-hidden="true">SM</div>
               <div>
                 <div class="t-name">Sarah M.</div>
-                <div class="t-meta">South Yarra · 3 weeks ago</div>
+                <div class="t-meta">South Yarra Â· 3 weeks ago</div>
                 <div class="t-verified"><svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true"><circle cx="4.5" cy="4.5" r="4.5" fill="#16a34a"/><path d="M2.5 4.5l1.5 1.5 2.5-2.5" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified</div>
               </div>
             </footer>
           </article>
           
           <article class="t-card si">
-            <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <p class="t-text">"I've tried four different services over two years. Lumino is in a completely different league. Punctual, thorough, and the consistency alone is worth everything — I always come home to the same result."</p>
+            <div class="t-stars" aria-label="5 out of 5 stars">â˜…â˜…â˜…â˜…â˜…</div>
+            <p class="t-text">"I've tried four different services over two years. Lumino is in a completely different league. Punctual, thorough, and the consistency alone is worth everything â€” I always come home to the same result."</p>
             <footer class="t-author">
               <div class="t-avatar" style="background:linear-gradient(135deg,#7c3aed,#4c1d95)" aria-hidden="true">AL</div>
               <div>
                 <div class="t-name">Anna L.</div>
-                <div class="t-meta">Fitzroy · 2 weeks ago</div>
+                <div class="t-meta">Fitzroy Â· 2 weeks ago</div>
                 <div class="t-verified"><svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true"><circle cx="4.5" cy="4.5" r="4.5" fill="#16a34a"/><path d="M2.5 4.5l1.5 1.5 2.5-2.5" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified</div>
               </div>
             </footer>
           </article>
           
           <article class="t-card si">
-            <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <p class="t-text">"Booking was so easy, the cleaner was on time and incredibly thorough. Even wiped down the light switches and door handles — details I'd never noticed before. Genuinely impressed every single time."</p>
+            <div class="t-stars" aria-label="5 out of 5 stars">â˜…â˜…â˜…â˜…â˜…</div>
+            <p class="t-text">"Booking was so easy, the cleaner was on time and incredibly thorough. Even wiped down the light switches and door handles â€” details I'd never noticed before. Genuinely impressed every single time."</p>
             <footer class="t-author">
               <div class="t-avatar" style="background:linear-gradient(135deg,#0e7490,#155e75)" aria-hidden="true">DR</div>
               <div>
                 <div class="t-name">David R.</div>
-                <div class="t-meta">Collingwood · 1 month ago</div>
+                <div class="t-meta">Collingwood Â· 1 month ago</div>
                 <div class="t-verified"><svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true"><circle cx="4.5" cy="4.5" r="4.5" fill="#16a34a"/><path d="M2.5 4.5l1.5 1.5 2.5-2.5" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified</div>
               </div>
             </footer>
@@ -1606,7 +1610,7 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ FAQ ─────────────────────────────────────── -->
+    <!-- â”€ FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="faq" class="pad" aria-labelledby="faq-h2">
       <div class="c6">
         <div class="faq-layout">
@@ -1624,13 +1628,13 @@ const withBase = (path: string) => {
           
           <div class="faq-list sg" role="list">
             {[
-              ["What's the difference between standard and deep cleaning?", "A standard clean covers all the key areas of your home on a surface-to-medium level — it's designed for regular maintenance. A deep clean goes further: inside appliances, tile grout, window tracks, skirting boards, light fittings, and built-in storage. If your home hasn't had a professional clean in a while, we often recommend starting with a deep clean and switching to standard from there."],
-              ["Do I need to be home during the clean?", "No — most of our clients are out while we clean. Key drop-off, lockbox codes, or building access details can all be arranged at booking. Every cleaner is police-checked and fully insured. You'll receive a notification when they arrive and when the job is complete."],
-              ["Do you bring all your own equipment and products?", "Yes. Your cleaner arrives with everything needed — commercial-grade vacuum, mop, microfibre cloths, and eco-safe, non-toxic cleaning products. You don't need to supply a thing. If you have specific product preferences (fragrance-free, particular brands), just note it at booking and we'll accommodate where possible."],
-              ["How long does a standard clean take?", "For a 2-bedroom home in maintained condition, typically 2.5–3.5 hours. A studio or 1-bedroom takes around 2–2.5 hours. Larger homes (3–4 bedrooms) take 3–5 hours. These estimates assume the home is in a reasonably maintained state — if there's significant buildup, a deep clean may be more appropriate."],
+              ["What's the difference between standard and deep cleaning?", "A standard clean covers all the key areas of your home on a surface-to-medium level â€” it's designed for regular maintenance. A deep clean goes further: inside appliances, tile grout, window tracks, skirting boards, light fittings, and built-in storage. If your home hasn't had a professional clean in a while, we often recommend starting with a deep clean and switching to standard from there."],
+              ["Do I need to be home during the clean?", "No â€” most of our clients are out while we clean. Key drop-off, lockbox codes, or building access details can all be arranged at booking. Every cleaner is police-checked and fully insured. You'll receive a notification when they arrive and when the job is complete."],
+              ["Do you bring all your own equipment and products?", "Yes. Your cleaner arrives with everything needed â€” commercial-grade vacuum, mop, microfibre cloths, and eco-safe, non-toxic cleaning products. You don't need to supply a thing. If you have specific product preferences (fragrance-free, particular brands), just note it at booking and we'll accommodate where possible."],
+              ["How long does a standard clean take?", "For a 2-bedroom home in maintained condition, typically 2.5â€“3.5 hours. A studio or 1-bedroom takes around 2â€“2.5 hours. Larger homes (3â€“4 bedrooms) take 3â€“5 hours. These estimates assume the home is in a reasonably maintained state â€” if there's significant buildup, a deep clean may be more appropriate."],
               ["Will I get the same cleaner every visit?", "For recurring bookings, we assign the same cleaner to your home wherever possible. This means no re-explaining your preferences, no adjustment period, and a cleaner who knows your home. In cases of absence or unavailability, we'll notify you in advance and send a trained replacement."],
-              ["What if I'm not happy with the result?", "We offer a 100% satisfaction guarantee. If something wasn't cleaned to your standard, contact us within 24 hours and we'll return to fix it at no extra cost. No arguments, no forms — just a correction."],
-              ["Can I add extras like oven or fridge cleaning?", "Yes — extras can be added to any booking. Oven deep clean ($35), fridge interior ($45), interior windows ($60), balcony ($40), blinds ($50), and more. Add them during checkout or contact us before your clean. Extras are priced individually and added to your base rate."],
+              ["What if I'm not happy with the result?", "We offer a 100% satisfaction guarantee. If something wasn't cleaned to your standard, contact us within 24 hours and we'll return to fix it at no extra cost. No arguments, no forms â€” just a correction."],
+              ["Can I add extras like oven or fridge cleaning?", "Yes â€” extras can be added to any booking. Oven deep clean ($35), fridge interior ($45), interior windows ($60), balcony ($40), blinds ($50), and more. Add them during checkout or contact us before your clean. Extras are priced individually and added to your base rate."],
               ["Can I cancel or reschedule?", "Cancellations and reschedules are free up to 24 hours before your booking. For recurring customers, you can pause or cancel your plan at any time with no fees and no lock-in contracts."]
             ].map((item, i) => (
               <div class="faq-item si" role="listitem">
@@ -1648,39 +1652,39 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ OTHER SERVICES ────────────────────────── -->
+    <!-- â”€ OTHER SERVICES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="other-services" class="pad" aria-labelledby="other-h2">
       <div class="c6">
         <div class="sg">
           <p class="eyebrow6">Other Services</p>
           <h2 class="h6" id="other-h2">Need something different?</h2>
-          <p class="lead6" style="margin-top:0.75rem; max-width:540px;">Standard cleaning covers most situations — but if your home needs more, we have you covered.</p>
+          <p class="lead6" style="margin-top:0.75rem; max-width:540px;">Standard cleaning covers most situations â€” but if your home needs more, we have you covered.</p>
         </div>
 
         <div class="other-grid sg">
           <a href={withBase("services") + "#deep"} class="other-card si">
-            <div class="other-card-icon">🔍</div>
+            <div class="other-card-icon">ðŸ”</div>
             <h3>Deep Cleaning</h3>
             <p>Top-to-bottom reset covering every corner, appliance, grout line, and surface. The right choice before starting a regular schedule or after a long gap.</p>
-            <span class="other-card-link">Learn more →</span>
+            <span class="other-card-link">Learn more â†’</span>
           </a>
           <a href={withBase("services") + "#eol"} class="other-card si">
-            <div class="other-card-icon">📋</div>
+            <div class="other-card-icon">ðŸ“‹</div>
             <h3>End of Lease</h3>
             <p>Bond-back focused clean aligned to real estate inspection standards. Free re-clean within 72 hours if anything is disputed. The most critical clean you'll need.</p>
-            <span class="other-card-link">Learn more →</span>
+            <span class="other-card-link">Learn more â†’</span>
           </a>
           <a href={withBase("services") + "#movein"} class="other-card si">
-            <div class="other-card-icon">📦</div>
+            <div class="other-card-icon">ðŸ“¦</div>
             <h3>Move In Cleaning</h3>
             <p>Start your new home fresh before you unpack. We prepare every room, cupboard, and surface so you settle in with total confidence from day one.</p>
-            <span class="other-card-link">Learn more →</span>
+            <span class="other-card-link">Learn more â†’</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- ─ FINAL CTA ─────────────────────────────── -->
+    <!-- â”€ FINAL CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <section id="cta6" class="cta-sky" aria-labelledby="cta6-h2">
       <div class="c6">
         <div class="cta6-grid sg">
@@ -1714,13 +1718,15 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- ─ FOOTER ────────────────────────────────── -->
+    <!-- â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+
+    </main>
 
     <SiteFooter baseUrl={baseUrl} />
 
-    <!-- ─ SCRIPTS ───────────────────────────────── -->
+    <!-- â”€ SCRIPTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
     <script is:inline>
-      /* ─ HEADER ────────────────────────────────────── */
+      /* â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const hd6 = document.getElementById("hd6");
       let headerScrollTicking6 = false;
       const updateHeaderScroll6 = () => {
@@ -1737,7 +1743,7 @@ const withBase = (path: string) => {
       window.addEventListener("scroll", onScroll6, { passive: true });
       updateHeaderScroll6();
 
-            /* ─ MOBILE NAV / MENU ────────────────────────── */
+            /* â”€ MOBILE NAV / MENU â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const tog6 = document.getElementById("hd6Toggle");
       const mob6 = document.getElementById("hd6-mob");
       const cls6 = document.getElementById("hd6MobClose");
@@ -1768,7 +1774,7 @@ const withBase = (path: string) => {
         });
       }
 
-      /* ─ MOBILE DROPDOWN ACCORDION ────────────────── */
+      /* â”€ MOBILE DROPDOWN ACCORDION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       if (mob6) {
         mob6.querySelectorAll('.mob6-dropdown-toggle').forEach(btn => {
           btn.addEventListener('click', (e) => {
@@ -1792,7 +1798,7 @@ const withBase = (path: string) => {
         });
       }
 
-      /* ─ STAGGER OBSERVER ──────────────────────────── */
+      /* â”€ STAGGER OBSERVER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const sObs6 = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
@@ -1803,7 +1809,7 @@ const withBase = (path: string) => {
       }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
       document.querySelectorAll(".sg").forEach(g => sObs6.observe(g));
 
-      /* ─ FAQ ACCORDION LOGIC ───────────────────────── */
+      /* â”€ FAQ ACCORDION LOGIC â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       document.querySelectorAll(".faq-item").forEach(item => {
         item.querySelector(".faq-q").addEventListener("click", () => {
           const open = item.classList.contains("open");
@@ -1812,7 +1818,7 @@ const withBase = (path: string) => {
         });
       });
 
-      /* ─ PRICING MODEL TABS SWITCHER ───────────────── */
+      /* â”€ PRICING MODEL TABS SWITCHER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const tabFlat = document.getElementById("tab-flat-btn");
       const tabHourly = document.getElementById("tab-hourly-btn");
       const panelFlat = document.getElementById("flat-panel");
@@ -1831,7 +1837,7 @@ const withBase = (path: string) => {
         });
       }
     
-      /* ─ ACTIVE NAV LINK ON SCROLL ────────────────── */
+      /* â”€ ACTIVE NAV LINK ON SCROLL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       const pnavLinks = document.querySelectorAll('.pnav-link');
       const pnavSections = ['what', 'includes', 'how', 'ideal', 'pricing', 'reviews', 'faq'].map(id => document.getElementById(id));
       let pnavSectionsOffsets = [];
