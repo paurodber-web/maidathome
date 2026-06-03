@@ -1,0 +1,4196 @@
+---
+import { suburbsData } from "../../data/suburbs";
+import { reviewsData } from "../../data/reviews";
+import { getDynamicFaqs } from "../../data/faqs";
+
+export async function getStaticPaths() {
+  return Object.values(suburbsData).map((suburb) => ({
+    params: { suburb: suburb.slug },
+    props: { suburb },
+  }));
+}
+
+const { suburb } = Astro.props;
+
+const dynamicFaqs = getDynamicFaqs(suburb.name, suburb.slug);
+
+const suburbIndex = Object.values(suburbsData).findIndex((s) => s.slug === suburb.slug);
+const selectedReviews = [
+  reviewsData[suburbIndex % 13],
+  reviewsData[(suburbIndex + 1 + Math.floor(suburbIndex / 13)) % 13],
+  reviewsData[(suburbIndex + 2 + Math.floor(suburbIndex / 13) * 2) % 13]
+];
+
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => {
+  const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  const p = path.startsWith("/") ? path.slice(1) : path;
+  return p ? `${base}${p}` : base;
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>House Cleaning Service in {suburb.name} | Maid at Home</title>
+    <meta name="description" content={suburb.metaDescription} />
+    <link rel="canonical" href={`https://maidathome.com.au/areas/${suburb.slug}`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style is:global>
+      /* ─── TOKENS ──────────────────────────────── */
+      :root {
+        --navy: #0a1d33;
+        --blue-d: #142d4c;
+        --blue: #1d6fa8;
+        --blue-l: #5aaee0;
+        --blue-xl: #e8f4fd;
+        --sky: #f0f7fd;
+        --yellow: #f6c133;
+        --yellow-d: #e0ab1d;
+        --yellow-l: #fffbe6;
+        --green: #16a34a;
+        --green-l: #e8f7ee;
+        --grey: #5e6a75;
+        --grey-d: #2d3748;
+        --grey-l: #e2e8f0;
+        --white: #ffffff;
+
+        /* Subtle premium border/shadow tokens instead of heavy lines */
+        --border-subtle: rgba(29, 111, 168, 0.08);
+        --border-hover: rgba(29, 111, 168, 0.18);
+        --shadow-sm: 0 2px 8px rgba(10, 29, 51, 0.02);
+        --shadow-md: 0 8px 30px rgba(10, 29, 51, 0.04);
+        --shadow-lg: 0 16px 48px rgba(10, 29, 51, 0.06);
+        --shadow-premium: 0 24px 60px rgba(10, 29, 51, 0.08);
+
+        --font: "Plus Jakarta Sans", system-ui, sans-serif;
+        --r-s: 8px;
+        --r: 12px;
+        --r-l: 20px;
+        --r-xl: 28px;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font);
+        color: var(--grey-d);
+        background: var(--white);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.6;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      /* ─── KEYFRAMES ───────────────────────────── */
+      @keyframes lineUp {
+        from {
+          transform: translateY(110%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes imgReveal {
+        from {
+          opacity: 0;
+          transform: scale(0.96) translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes pulseDot {
+        0% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+      @keyframes floatY {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      /* ─── STAGGER SYSTEM ──────────────────────── */
+      .si {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease);
+      }
+      .si[data-d="l"] {
+        transform: translateX(-24px);
+      }
+      .si[data-d="r"] {
+        transform: translateX(24px);
+      }
+      .si[data-d="sc"] {
+        transform: scale(0.96);
+      }
+      .si.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ─── LAYOUT ──────────────────────────────── */
+      .c6 {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+      }
+      .pad {
+        padding: 6.5rem 0;
+      }
+      .pad-sm {
+        padding: 4.5rem 0;
+      }
+
+      /* ─── SHARED TYPOGRAPHY ───────────────────── */
+      .eyebrow6 {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 0.85rem;
+      }
+      .eyebrow6::before {
+        content: "";
+        width: 16px;
+        height: 2.5px;
+        background: var(--yellow);
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+      h2.h6 {
+        font-size: clamp(2rem, 3.4vw, 2.85rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--navy);
+        line-height: 1.15;
+      }
+      h2.h6 .ac {
+        color: var(--blue);
+      }
+      .lead6 {
+        font-size: 1.05rem;
+        color: var(--grey);
+        line-height: 1.75;
+        max-width: 500px;
+        margin-top: 0.75rem;
+      }
+
+      .sec-header6 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: end;
+        margin-bottom: 4rem;
+      }
+
+      /* ─── BUTTONS ─────────────────────────────── */
+      .btn6-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--yellow);
+        color: var(--navy);
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 0.95rem 2rem;
+        border-radius: 100px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font);
+        white-space: nowrap;
+        transition:
+          background 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(246, 193, 51, 0.2);
+      }
+      .btn6-primary:hover {
+        background: var(--yellow-d);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(246, 193, 51, 0.4);
+      }
+      .btn6-navy {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--navy);
+        color: var(--white);
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 0.95rem 2rem;
+        border-radius: 100px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font);
+        white-space: nowrap;
+        transition:
+          background 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(10, 29, 51, 0.15);
+      }
+      .btn6-navy:hover {
+        background: var(--blue-d);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(10, 29, 51, 0.3);
+      }
+      .btn6-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        color: var(--navy);
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 0.9rem 1.75rem;
+        border-radius: 100px;
+        border: 1px solid var(--grey-l);
+        background: transparent;
+        text-decoration: none;
+        cursor: pointer;
+        font-family: var(--font);
+        white-space: nowrap;
+        transition:
+          border-color 0.25s,
+          background 0.25s,
+          color 0.25s;
+      }
+      .btn6-outline:hover {
+        border-color: var(--navy);
+        background: var(--sky);
+        color: var(--navy);
+      }
+      .btn6-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        color: var(--navy);
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font);
+        transition:
+          gap 0.2s,
+          color 0.2s;
+      }
+      .btn6-ghost:hover {
+        gap: 0.65rem;
+        color: var(--blue);
+      }
+
+      /* ─────────────────────────────────────────── */
+      /* HEADER                                      */
+      /* ─────────────────────────────────────────── */
+      #hd6 {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 200;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 4vw;
+        transition:
+          background 0.3s var(--ease),
+          box-shadow 0.3s var(--ease),
+          height 0.3s var(--ease);
+      }
+      #hd6.scrolled {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 4px 30px rgba(10, 29, 51, 0.03);
+        height: 64px;
+        border-bottom: 1px solid rgba(10, 29, 51, 0.04);
+      }
+      .hd6-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        text-decoration: none;
+      }
+      .hd6-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: var(--blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: background 0.3s;
+      }
+      #hd6.scrolled .hd6-mark {
+        background: var(--navy);
+      }
+      .hd6-name {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: -0.02em;
+      }
+      .hd6-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .hd6-nav a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--grey-d);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+      }
+      .hd6-nav a:hover {
+        color: var(--blue);
+        background: var(--sky);
+      }
+      .hd6-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        background: var(--yellow);
+        color: var(--navy);
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 0.55rem 1.35rem;
+        border-radius: 100px;
+        text-decoration: none;
+        margin-left: 0.75rem;
+        transition:
+          background 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
+        white-space: nowrap;
+      }
+      .hd6-cta:hover {
+        background: var(--yellow-d);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 14px rgba(246, 193, 51, 0.35);
+      }
+      .hd6-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
+      }
+      .hd6-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--navy);
+        border-radius: 2px;
+      }
+      #hd6-mob {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 199;
+        background: var(--white);
+        flex-direction: column;
+        padding: 6rem 2rem 2rem;
+        gap: 0.5rem;
+      ; overflow-y: auto;}
+      /* Mobile Dropdown Accordion Styling */
+      .mob6-dropdown-item {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-dropdown-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+      #hd6-mob a, .mob6-dropdown-label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--navy);
+        text-decoration: none;
+        padding: 0.95rem 0;
+        flex: 1;
+      }
+      .mob6-dropdown-label {
+        cursor: default;
+        user-select: none;
+      }
+      .mob6-dropdown-toggle {
+        background: none;
+        border: none;
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--navy);
+        transition: transform 0.25s var(--ease);
+      }
+      .mob6-dropdown-toggle.open {
+        transform: rotate(180deg);
+        color: var(--blue);
+      }
+      .mob6-dropdown-item .mob6-sub-menu {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1.25rem;
+        border-left: 2px solid var(--border-subtle);
+        margin: 0.25rem 0 0.75rem;
+        gap: 0.35rem;
+        max-height: 500px;
+        opacity: 1;
+        overflow: hidden;
+        transition: max-height 0.35s var(--ease), opacity 0.35s var(--ease), margin 0.35s var(--ease);
+      }
+      .mob6-dropdown-item .mob6-sub-menu.collapsed {
+        max-height: 0;
+        opacity: 0;
+        margin: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .mob6-sub-menu a {
+        font-size: 0.95rem !important;
+        color: var(--grey) !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: none !important;
+      }
+      .mob6-sub-menu a:hover {
+        color: var(--blue) !important;
+      }
+      .mob6-dropdown-item {
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-dropdown-item a, .mob6-dropdown-item .mob6-dropdown-label {
+        border-bottom: none !important;
+      }
+
+      #hd6-mob.open {
+        display: flex;
+      }
+      #hd6-mob a {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--navy);
+        text-decoration: none;
+        padding: 0.95rem 0;
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: none;
+        border: none;
+        font-size: 1.6rem;
+        cursor: pointer;
+        color: var(--grey);
+      }
+      .mob6-cta {
+        background: var(--yellow);
+        color: var(--navy);
+        text-align: center;
+        border-radius: var(--r);
+        padding: 1.1rem;
+        margin-top: 1rem;
+        font-size: 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        display: block;
+      }
+
+      /* ─── HERO ─────────────────────────────────── */
+      #hero6 {
+        background: var(--sky);
+        height: calc(100dvh - 64px);
+        min-height: calc(100dvh - 64px);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        padding-top: 72px;
+      }
+      .h6-sun {
+        position: absolute;
+        top: -140px;
+        right: -120px;
+        width: 650px;
+        height: 650px;
+        border-radius: 50%;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(246, 193, 51, 0.15) 0%,
+          rgba(246, 193, 51, 0.03) 60%,
+          transparent 80%
+        );
+        pointer-events: none;
+      }
+      .h6-arc {
+        position: absolute;
+        bottom: 80px;
+        left: -80px;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        border: 40px solid rgba(255, 255, 255, 0.7);
+        pointer-events: none;
+      }
+      .h6-body {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 5.5rem 2.5rem 4rem;
+        gap: 4.5rem;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+        width: 100%;
+      }
+      .h6-text {
+        display: flex;
+        flex-direction: column;
+      }
+      .h6-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: 0.05em;
+        margin-bottom: 1.75rem;
+        width: fit-content;
+        animation: fadeUp 0.5s var(--ease) 0s both;
+        background: var(--white);
+        padding: 0.4rem 0.9rem;
+        border-radius: 100px;
+        box-shadow: var(--shadow-sm);
+      }
+      .h6-pill-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+        flex-shrink: 0;
+        position: relative;
+      }
+      .h6-pill-dot::after {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        background: rgba(22, 163, 74, 0.25);
+        animation: pulseDot 1.8s ease-out infinite;
+      }
+      .h6-display {
+        font-size: clamp(3rem, 5.5vw, 4.4rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1.05;
+        color: var(--navy);
+        margin-bottom: 1.5rem;
+      }
+      .h6-line {
+        display: block;
+        overflow: hidden;
+        padding-bottom: 0.22em;
+        margin-bottom: -0.17em;
+      }
+      .h6-line > span {
+        display: block;
+        animation: lineUp 0.75s var(--ease) both;
+      }
+      .h6-line:nth-child(1) > span {
+        animation-delay: 0.08s;
+      }
+      .h6-line:nth-child(2) > span {
+        animation-delay: 0.22s;
+      }
+      .h6-line:nth-child(3) > span {
+        animation-delay: 0.36s;
+      }
+      .h6-line.em > span {
+        color: var(--blue);
+      }
+      .h6-sub {
+        font-size: 1.1rem;
+        color: var(--grey);
+        line-height: 1.7;
+        max-width: 480px;
+        margin-bottom: 2.25rem;
+        animation: fadeUp 0.6s var(--ease) 0.6s both;
+      }
+      .h6-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 2.5rem;
+        animation: fadeUp 0.6s var(--ease) 0.75s both;
+      }
+      .h6-trust {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        animation: fadeUp 0.6s var(--ease) 0.9s both;
+      }
+      .h6-trust-item {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--navy);
+      }
+      .h6-trust-check {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--blue-xl);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        color: var(--blue);
+        font-weight: 800;
+        flex-shrink: 0;
+      }
+
+      .h6-visual {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: imgReveal 1s var(--ease) 0.18s both;
+      }
+      .h6-photo-bg {
+        position: absolute;
+        width: 380px;
+        height: 460px;
+        border-radius: 200px 200px 180px 180px;
+        background: var(--yellow);
+        opacity: 0.15;
+        top: 12px;
+        left: 50%;
+        transform: translateX(calc(-50% + 12px));
+        pointer-events: none;
+      }
+      .h6-photo-frame {
+        width: 360px;
+        height: 440px;
+        border-radius: 200px 200px 180px 180px;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        box-shadow: var(--shadow-lg);
+      }
+      .h6-photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+      .h6-badge {
+        position: absolute;
+        bottom: 24px;
+        left: -24px;
+        background: var(--white);
+        border-radius: var(--r-l);
+        padding: 1.1rem 1.4rem;
+        box-shadow: var(--shadow-lg);
+        z-index: 2;
+        animation: floatY 4.5s ease-in-out 1.2s infinite;
+        border: 1px solid var(--border-subtle);
+      }
+      .h6-badge-stars {
+        color: var(--yellow);
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+      }
+      .h6-badge-quote {
+        font-size: 0.82rem;
+        color: var(--navy);
+        font-weight: 700;
+        margin-top: 0.25rem;
+        line-height: 1.4;
+        max-width: 180px;
+      }
+      .h6-badge-meta {
+        font-size: 0.72rem;
+        color: var(--grey);
+        margin-top: 0.2rem;
+      }
+      .h6-rating-chip {
+        position: absolute;
+        top: 24px;
+        right: -16px;
+        background: var(--navy);
+        color: var(--white);
+        border-radius: 100px;
+        padding: 0.5rem 1.1rem;
+        font-size: 0.83rem;
+        font-weight: 700;
+        z-index: 2;
+        white-space: nowrap;
+        animation: floatY 5s ease-in-out 2s infinite;
+        box-shadow: var(--shadow-md);
+      }
+      .h6-rating-chip span {
+        color: var(--yellow);
+      }
+
+      /* ─── TRUST STRIP ─────────────────────────────── */
+      #trust6 {
+        background: var(--white);
+        border-bottom: 1px solid var(--border-subtle);
+        height: 64px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+      }
+      .trust6-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        height: 100%;
+      }
+      .trust6-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--navy);
+        white-space: nowrap;
+      }
+      .trust6-sep {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--grey-l);
+        flex-shrink: 0;
+      }
+
+      /* ─── SERVICES ────────────────────────────────── */
+      #srv6 {
+        background: var(--white);
+      }
+      .srv6-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.75rem;
+      }
+      .srv6-card {
+        background: var(--white);
+        border-radius: var(--r-xl);
+        padding: 2.25rem;
+        border: 1px solid var(--border-subtle);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          border-color 0.4s var(--ease),
+          box-shadow 0.4s var(--ease),
+          transform 0.4s var(--ease);
+      }
+      .srv6-card:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+      }
+      .srv6-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+      }
+      .srv6-card.cs::before {
+        background: var(--blue);
+      }
+      .srv6-card.cd::before {
+        background: #10b981;
+      }
+      .srv6-card.ceol::before {
+        background: var(--yellow);
+      }
+      .srv6-card.cmi::before {
+        background: #8b5cf6;
+      }
+      .srv6-card.ccp::before {
+        background: #f97316;
+      }
+      .srv6-card.cex::before {
+        background: var(--grey);
+      }
+
+      .srv6-card-blur {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        filter: blur(40px);
+        opacity: 0.03;
+        pointer-events: none;
+      }
+      .srv6-card.cs .srv6-card-blur {
+        background: var(--blue);
+        top: -20px;
+        right: -20px;
+      }
+      .srv6-card.cd .srv6-card-blur {
+        background: #10b981;
+        top: -20px;
+        right: -20px;
+      }
+      .srv6-card.ceol .srv6-card-blur {
+        background: var(--yellow);
+        top: -20px;
+        right: -20px;
+      }
+
+      .srv6-ico-ring {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+        flex-shrink: 0;
+        transition:
+          transform 0.3s var(--ease),
+          background-color 0.3s;
+        border: 1px solid var(--border-subtle);
+      }
+      .srv6-card.cs .srv6-ico-ring {
+        background: var(--sky);
+      }
+      .srv6-card.cd .srv6-ico-ring {
+        background: var(--green-l);
+      }
+      .srv6-card.ceol .srv6-ico-ring {
+        background: var(--yellow-l);
+      }
+      .srv6-card.cmi .srv6-ico-ring {
+        background: #f5f3ff;
+      }
+      .srv6-card.ccp .srv6-ico-ring {
+        background: #fff7ed;
+      }
+      .srv6-card.cex .srv6-ico-ring {
+        background: var(--sky);
+      }
+
+      .srv6-card:hover .srv6-ico-ring {
+        transform: scale(1.08) rotate(3deg);
+      }
+      .srv6-card.ceol:hover .srv6-ico-ring {
+        background-color: var(--yellow);
+      }
+      .srv6-badge {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: var(--navy);
+        color: var(--yellow);
+        font-size: 0.65rem;
+        font-weight: 800;
+        padding: 0.25rem 0.75rem;
+        border-radius: 100px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        box-shadow: var(--shadow-sm);
+      }
+      .srv6-name {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--navy);
+        letter-spacing: -0.01em;
+        margin-bottom: 0.35rem;
+      }
+      .srv6-price {
+        font-size: 0.85rem;
+        color: var(--grey);
+        margin-bottom: 0.85rem;
+      }
+      .srv6-price strong {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .srv6-desc {
+        font-size: 0.88rem;
+        color: var(--grey);
+        line-height: 1.65;
+        flex: 1;
+        margin-bottom: 1.5rem;
+      }
+
+      .srv6-link {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--blue);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        transition:
+          gap 0.25s,
+          color 0.25s;
+        margin-top: auto;
+        width: fit-content;
+      }
+      .srv6-link:hover {
+        gap: 0.6rem;
+        color: var(--navy);
+      }
+
+      /* ─── RECURRING CLEANING ──────────────────────── */
+      #rec6 {
+        background: var(--sky);
+      }
+      .rec6-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+        margin-top: 3.5rem;
+      }
+      .rec6-card {
+        background: var(--white);
+        border-radius: var(--r-l);
+        border: 1px solid var(--border-subtle);
+        padding: 2rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        transition:
+          transform 0.4s var(--ease),
+          border-color 0.4s var(--ease),
+          box-shadow 0.4s var(--ease);
+      }
+      .rec6-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--border-hover);
+        box-shadow: var(--shadow-lg);
+      }
+      .rec6-card.popular {
+        border-color: var(--yellow);
+        box-shadow: 0 10px 30px rgba(246, 193, 51, 0.15);
+      }
+      .rec6-card.popular:hover {
+        box-shadow: 0 16px 40px rgba(246, 193, 51, 0.25);
+      }
+      .rec6-popular-tag {
+        position: absolute;
+        top: -11px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--yellow);
+        color: var(--navy);
+        font-size: 0.65rem;
+        font-weight: 800;
+        padding: 0.25rem 0.85rem;
+        border-radius: 100px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        box-shadow: var(--shadow-sm);
+        white-space: nowrap;
+      }
+      .rec6-freq-badge {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: var(--sky);
+        border: 1px solid var(--border-subtle);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        margin-bottom: 1.25rem;
+        transition: transform 0.3s;
+      }
+      .rec6-card:hover .rec6-freq-badge {
+        transform: scale(1.08);
+      }
+      .rec6-card.popular .rec6-freq-badge {
+        background: var(--yellow-l);
+        border-color: rgba(246, 193, 51, 0.3);
+      }
+      .rec6-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 0.25rem;
+      }
+      .rec6-save {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--green);
+        margin-bottom: 1.5rem;
+        background: var(--green-l);
+        padding: 0.2rem 0.6rem;
+        border-radius: 100px;
+      }
+      .rec6-card.monthly .rec6-save {
+        color: var(--grey);
+        background: rgba(10, 29, 51, 0.05);
+      }
+      .rec6-price-wrap {
+        margin-bottom: 1.5rem;
+      }
+      .rec6-price {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: -0.04em;
+        line-height: 1;
+      }
+      .rec6-price-sub {
+        font-size: 0.75rem;
+        color: var(--grey);
+        margin-top: 0.25rem;
+      }
+      .rec6-incl-divider {
+        width: 100%;
+        height: 1px;
+        background: var(--border-subtle);
+        margin-bottom: 1.25rem;
+      }
+      .rec6-bullet {
+        font-size: 0.8rem;
+        color: var(--grey-d);
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+      .rec6-bullet::before {
+        content: "✓";
+        color: var(--green);
+        font-weight: 800;
+      }
+
+      .rec6-layout-bottom {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 4rem;
+        align-items: center;
+        margin-top: 4rem;
+      }
+      .rec6-benefits {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .rec6-benefit {
+        display: flex;
+        gap: 0.75rem;
+      }
+      .rec6-benefit-ico {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--sky);
+        border: 1.5px solid var(--border-subtle);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.95rem;
+        flex-shrink: 0;
+      }
+      .rec6-benefit-text strong {
+        color: var(--navy);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 0.15rem;
+      }
+      .rec6-benefit-text p {
+        font-size: 0.82rem;
+        color: var(--grey);
+        line-height: 1.5;
+      }
+
+      .rec6-team-spot {
+        background: var(--white);
+        border-radius: var(--r-l);
+        padding: 1.5rem 1.75rem;
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-md);
+        display: flex;
+        gap: 1.25rem;
+        align-items: center;
+      }
+      .rec6-team-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+        border: 2px solid var(--blue-xl);
+      }
+      .rec6-team-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .rec6-team-badge {
+        display: inline-block;
+        font-size: 0.65rem;
+        font-weight: 800;
+        background: var(--blue-xl);
+        color: var(--blue);
+        padding: 0.15rem 0.5rem;
+        border-radius: 100px;
+        text-transform: uppercase;
+        margin-bottom: 0.25rem;
+      }
+      .rec6-team-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .rec6-team-desc {
+        font-size: 0.82rem;
+        color: var(--grey);
+        line-height: 1.4;
+        margin-top: 0.2rem;
+      }
+      .rec6-right-info {
+        background: var(--white);
+        border-radius: var(--r-l);
+        padding: 1.75rem;
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-md);
+        display: flex;
+        flex-direction: column;
+      }
+      .rec6-right-info-title {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--navy);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .rec6-right-info-quote {
+        font-size: 0.88rem;
+        color: var(--grey-d);
+        font-style: italic;
+        line-height: 1.6;
+        margin-bottom: 0.6rem;
+      }
+      .rec6-right-info-author {
+        font-size: 0.75rem;
+        color: var(--grey);
+        font-weight: 600;
+      }
+
+      /* ─── HOW IT WORKS ────────────────────────────── */
+      #how6 {
+        background: var(--white);
+      }
+      .how6-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        margin-top: 4rem;
+        position: relative;
+      }
+      .how6-steps::before {
+        content: "";
+        position: absolute;
+        top: 36px;
+        left: calc(12.5% + 36px);
+        right: calc(12.5% + 36px);
+        height: 1px;
+        border-top: 2px dashed var(--border-subtle);
+        z-index: 0;
+      }
+      .how6-step {
+        padding: 0 1rem;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        background: var(--white);
+      }
+      .how6-ico-wrap {
+        width: 72px;
+        height: 72px;
+        border-radius: 20px;
+        background: var(--sky);
+        border: 1px solid var(--border-subtle);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        margin: 0 auto 1.5rem;
+        position: relative;
+        z-index: 1;
+        transition:
+          background 0.35s var(--ease),
+          border-color 0.35s var(--ease),
+          transform 0.35s var(--ease),
+          box-shadow 0.35s var(--ease);
+      }
+      .how6-step:hover .how6-ico-wrap {
+        background: var(--white);
+        border-color: var(--blue);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+      .how6-step-num {
+        position: absolute;
+        bottom: -8px;
+        right: -8px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--navy);
+        color: var(--white);
+        font-size: 0.72rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        border: 2px solid var(--white);
+      }
+      .how6-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.01em;
+      }
+      .how6-desc {
+        font-size: 0.85rem;
+        color: var(--grey);
+        line-height: 1.6;
+      }
+      .how6-cta {
+        text-align: center;
+        margin-top: 3.5rem;
+      }
+
+      /* ─── MEET THE TEAM ───────────────────────────── */
+      #team6 {
+        background: var(--white);
+        border-top: 1px solid var(--border-subtle);
+      }
+      .team6-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+      .team6-card {
+        background: var(--sky);
+        border-radius: var(--r-xl);
+        overflow: hidden;
+        border: 1px solid var(--border-subtle);
+        transition:
+          transform 0.4s var(--ease),
+          box-shadow 0.4s var(--ease);
+      }
+      .team6-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+      .team6-img {
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+      }
+      .team6-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .team6-body {
+        padding: 1.5rem 1.75rem;
+      }
+      .team6-role {
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 0.25rem;
+      }
+      .team6-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 0.35rem;
+      }
+      .team6-desc {
+        font-size: 0.85rem;
+        color: var(--grey);
+        line-height: 1.5;
+      }
+
+      /* ─── TESTIMONIALS ────────────────────────────── */
+      #tst6 {
+        background: var(--sky);
+      }
+      .tst6-score-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+        padding: 0.85rem 1.5rem;
+        background: var(--white);
+        border-radius: 100px;
+        border: 1px solid var(--border-subtle);
+        width: fit-content;
+        box-shadow: var(--shadow-sm);
+      }
+      .tst6-g-logo {
+        font-size: 1.4rem;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+      }
+      .tst6-score-num {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: -0.04em;
+        line-height: 1;
+      }
+      .tst6-stars {
+        color: var(--yellow);
+        font-size: 1rem;
+        letter-spacing: 2px;
+      }
+      .tst6-score-info {
+        font-size: 0.83rem;
+        color: var(--grey);
+        line-height: 1.4;
+      }
+      .tst6-score-info strong {
+        display: block;
+        color: var(--navy);
+      }
+
+      .tst6-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      .tst6-card {
+        background: var(--white);
+        border-radius: var(--r-xl);
+        padding: 2.25rem 2rem;
+        border: 1px solid var(--border-subtle);
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.3s var(--ease),
+          box-shadow 0.3s var(--ease),
+          border-color 0.3s var(--ease);
+      }
+      .tst6-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--border-hover);
+      }
+
+      .tst6-google-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding-bottom: 0.85rem;
+        border-bottom: 1px solid var(--border-subtle);
+        margin-bottom: 1rem;
+      }
+      .tst6-gicon {
+        font-size: 0.85rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #4285f4, #ea4335, #fbbc05, #34a853);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: 0.02em;
+      }
+      .tst6-verified {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.7rem;
+        font-weight: 700;
+        margin-left: auto;
+        background: var(--green-l);
+        padding: 0.15rem 0.55rem;
+        border-radius: 100px;
+        color: var(--green);
+      }
+      .tst6-stars {
+        color: var(--yellow);
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 0.75rem;
+      }
+      .tst6-text {
+        font-size: 0.9rem;
+        color: var(--grey-d);
+        line-height: 1.7;
+        font-style: italic;
+        flex: 1;
+        margin-bottom: 1.5rem;
+      }
+      .tst6-author {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-subtle);
+      }
+      .tst6-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .tst6-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .tst6-name {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .tst6-meta {
+        font-size: 0.75rem;
+        color: var(--grey);
+        margin-top: 0.1rem;
+      }
+
+      /* ─── END OF LEASE ────────────────────────────── */
+      #eol6 {
+        background: var(--sky);
+        position: relative;
+      }
+      .eol6-premium-accent {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: linear-gradient(
+          90deg,
+          var(--blue),
+          var(--yellow),
+          var(--blue)
+        );
+      }
+
+      .eol6-layout {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 5rem;
+        align-items: start;
+      }
+
+      .eol6-visual-strip {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+      .eol6-strip-img {
+        border-radius: var(--r);
+        overflow: hidden;
+        height: 150px;
+        border: 1px solid var(--border-subtle);
+        position: relative;
+      }
+      .eol6-strip-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .eol6-strip-img span {
+        position: absolute;
+        bottom: 0.5rem;
+        left: 0.5rem;
+        background: rgba(10, 29, 51, 0.75);
+        color: var(--white);
+        font-size: 0.65rem;
+        font-weight: 800;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .eol6-checklist-card {
+        background: var(--white);
+        border-radius: var(--r-xl);
+        border: 1px solid var(--border-subtle);
+        padding: 2.5rem;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .eol6-checklist-header {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 1rem;
+        margin-top: 2rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .eol6-checklist-header:first-child {
+        margin-top: 0;
+      }
+
+      .eol6-checks {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem 1.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .eol6-check-item {
+        display: flex;
+        align-items: baseline;
+        gap: 0.6rem;
+        font-size: 0.88rem;
+        color: var(--grey-d);
+        line-height: 1.55;
+      }
+      .eol6-check-ico {
+        color: var(--yellow-d);
+        font-weight: 800;
+        font-size: 0.75rem;
+        flex-shrink: 0;
+        margin-top: 0.15rem;
+      }
+
+      .eol6-reiv {
+        margin-top: 2rem;
+        padding: 1.1rem 1.4rem;
+        background: var(--sky);
+        border-radius: var(--r);
+        font-size: 0.88rem;
+        color: var(--grey-d);
+        line-height: 1.6;
+        border-left: 4px solid var(--blue);
+      }
+
+      .eol6-right {
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+      }
+      .eol6-price-card {
+        background: var(--sky);
+        border-radius: var(--r-xl);
+        border: 1px solid var(--border-subtle);
+        padding: 2.25rem;
+      }
+      .eol6-from {
+        font-size: 0.8rem;
+        color: var(--grey);
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+      .eol6-price-big {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: -0.05em;
+        line-height: 1;
+      }
+      .eol6-price-big sup {
+        font-size: 1.5rem;
+        vertical-align: super;
+        margin-right: 0.05rem;
+        font-weight: 600;
+      }
+      .eol6-price-note {
+        font-size: 0.83rem;
+        color: var(--grey);
+        margin-top: 0.5rem;
+        line-height: 1.5;
+      }
+      .eol6-divider {
+        height: 1px;
+        background: var(--border-subtle);
+        margin: 1.5rem 0;
+      }
+      .eol6-incl {
+        font-size: 0.88rem;
+        color: var(--grey-d);
+        line-height: 1.65;
+      }
+      .eol6-incl li {
+        padding: 0.25rem 0;
+      }
+      .eol6-incl li::marker {
+        color: var(--blue);
+      }
+
+      .eol6-guarantee-card {
+        background: var(--navy);
+        color: var(--white);
+        border-radius: var(--r-xl);
+        padding: 2.25rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        margin-bottom: 2rem;
+      }
+      .eol6-guarantee-card::before {
+        content: "⭐";
+        position: absolute;
+        right: -15px;
+        bottom: -15px;
+        font-size: 6.5rem;
+        opacity: 0.05;
+        line-height: 1;
+        user-select: none;
+      }
+      .eol6-g-eyebrow {
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--yellow);
+        margin-bottom: 0.75rem;
+      }
+      .eol6-g-title {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--white);
+        letter-spacing: -0.02em;
+        line-height: 1.25;
+        margin-bottom: 1rem;
+      }
+      .eol6-g-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        margin-bottom: 1.5rem;
+      }
+      .eol6-g-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.65rem;
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.5;
+      }
+      .eol6-g-check {
+        color: var(--yellow);
+        font-weight: 800;
+        flex-shrink: 0;
+      }
+
+      .eol6-quote {
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: var(--r);
+        padding: 1.1rem;
+        border-left: 3px solid var(--yellow);
+      }
+      .eol6-quote-text {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-style: italic;
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+      }
+      .eol6-quote-by {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.45);
+        font-weight: 600;
+      }
+
+      .eol6-cta-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .eol6-urgency {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.82rem;
+        color: var(--grey-d);
+        padding: 0.75rem 1rem;
+        background: var(--sky);
+        border-radius: var(--r);
+        border: 1px solid var(--border-subtle);
+      }
+
+      /* ─── CALCULATOR ──────────────────────────────── */
+      #calc6 {
+        background: var(--white);
+        position: relative;
+      }
+      .calc6-label {
+        background: var(--navy);
+        color: var(--yellow);
+        font-size: 0.7rem;
+        font-weight: 800;
+        padding: 0.4rem 1.1rem;
+        border-radius: 100px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-bottom: 1rem;
+        box-shadow: var(--shadow-sm);
+      }
+      .calc6-layout {
+        display: grid;
+        grid-template-columns: 5fr 7fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .calc6-trustpoints {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+      .calc6-tp {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.9rem;
+        color: var(--grey-d);
+      }
+      .calc6-tp-ico {
+        font-size: 1.1rem;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+
+      .calc6-card {
+        background: var(--white);
+        border-radius: var(--r-xl);
+        border: 1px solid var(--border-subtle);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+      .calc6-tabs {
+        display: flex;
+        background: var(--white);
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 0.4rem 0.4rem 0;
+        gap: 0.35rem;
+        overflow-x: auto;
+      }
+      .calc6-tab {
+        flex: 1;
+        padding: 0.8rem 0.75rem;
+        border-radius: var(--r) var(--r) 0 0;
+        border: none;
+        background: transparent;
+        font-family: var(--font);
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--grey);
+        cursor: pointer;
+        transition: all 0.25s var(--ease);
+        text-align: center;
+        white-space: nowrap;
+        border-bottom: 3px solid transparent;
+      }
+      .calc6-tab:hover {
+        color: var(--navy);
+      }
+      .calc6-tab.on {
+        color: var(--blue);
+        border-bottom-color: var(--blue);
+      }
+
+      .calc6-body {
+        padding: 2rem;
+      }
+      .calc6-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .calc6-lbl {
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--grey);
+        display: block;
+        margin-bottom: 0.6rem;
+      }
+      .calc6-stepper {
+        display: flex;
+        align-items: center;
+        border: 1px solid var(--grey-l);
+        border-radius: 100px;
+        overflow: hidden;
+        width: fit-content;
+        background: var(--white);
+      }
+      .calc6-sbtn {
+        width: 38px;
+        height: 38px;
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: var(--grey);
+        font-family: var(--font);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .calc6-sbtn:hover {
+        background: var(--sky);
+        color: var(--navy);
+      }
+      .calc6-sval {
+        width: 48px;
+        text-align: center;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--navy);
+        border-left: 1px solid var(--grey-l);
+        border-right: 1px solid var(--grey-l);
+        line-height: 38px;
+      }
+
+      .calc6-freq {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+      }
+      .calc6-fopt {
+        flex: 1;
+        min-width: 80px;
+        padding: 0.65rem 0.5rem;
+        border: 1px solid var(--grey-l);
+        border-radius: var(--r);
+        background: var(--white);
+        font-family: var(--font);
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--grey);
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.2s var(--ease);
+      }
+      .calc6-fopt:hover {
+        border-color: var(--blue);
+        color: var(--navy);
+      }
+      .calc6-fopt.on {
+        background: var(--navy);
+        border-color: var(--navy);
+        color: var(--white);
+        font-weight: 700;
+      }
+      .calc6-fopt small {
+        display: block;
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: var(--green);
+        margin-top: 0.15rem;
+      }
+      .calc6-fopt.on small {
+        color: var(--yellow);
+      }
+
+      .calc6-result {
+        background: var(--navy);
+        border-radius: var(--r-l);
+        padding: 1.75rem 2rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+      .calc6-result::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 85% 15%,
+          rgba(246, 193, 51, 0.15) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+      .calc6-result-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .calc6-price-lbl {
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 0.15rem;
+      }
+      .calc6-price {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--white);
+        letter-spacing: -0.05em;
+        line-height: 1;
+        transition: transform 0.25s;
+      }
+      .calc6-price sup {
+        font-size: 1.3rem;
+        font-weight: 500;
+        vertical-align: super;
+      }
+      .calc6-price-note {
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.4);
+        margin-top: 0.25rem;
+      }
+
+      .calc6-includes {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 1.25rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.4rem 1.5rem;
+      }
+      .calc6-incl-item {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .calc6-incl-item::before {
+        content: "✓";
+        color: var(--yellow);
+        font-weight: 800;
+        font-size: 0.7rem;
+        flex-shrink: 0;
+      }
+      .calc6-book-row {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-top: 1.25rem;
+        flex-wrap: wrap;
+      }
+      .btn6-book {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        background: var(--yellow);
+        color: var(--navy);
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 0.85rem 1.65rem;
+        border-radius: 100px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font);
+        white-space: nowrap;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .btn6-book:hover {
+        background: var(--yellow-d);
+        transform: translateY(-1px);
+      }
+      .btn6-call {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.55);
+        text-decoration: none;
+        transition: color 0.2s;
+        white-space: nowrap;
+      }
+      .btn6-call:hover {
+        color: var(--white);
+      }
+
+      /* ─── COVERAGE & LOCAL SEO ────────────────────── */
+      #cov6 {
+        background: var(--sky);
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .cov6-layout {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 4.5rem;
+        align-items: start;
+      }
+      .cov6-img {
+        border-radius: var(--r-xl);
+        overflow: hidden;
+        aspect-ratio: 16/10;
+        box-shadow: var(--shadow-md);
+      }
+      .cov6-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .suburb-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1.25rem 0;
+      }
+      .s-chip {
+        padding: 0.4rem 0.95rem;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        background: var(--sky);
+        border: 1px solid var(--border-subtle);
+        color: var(--navy);
+        cursor: pointer;
+        transition:
+          border-color 0.25s,
+          background 0.25s,
+          transform 0.2s;
+        white-space: nowrap;
+        display: inline-block;
+      }
+      .s-chip:hover {
+        border-color: var(--blue);
+        background: var(--blue-xl);
+        transform: translateY(-1px);
+      }
+      .cov6-badges {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .cov6-badge-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: var(--sky);
+        border: 1px solid var(--border-subtle);
+        padding: 1.25rem;
+        border-radius: var(--r);
+        box-shadow: var(--shadow-sm);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .cov6-badge-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+      .cov6-badge-icon {
+        font-size: 1.5rem;
+        background: var(--white);
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        box-shadow: var(--shadow-sm);
+      }
+      .cov6-badge-text h4 {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .cov6-badge-text p {
+        font-size: 0.78rem;
+        color: var(--grey);
+        margin-top: 0.15rem;
+      }
+
+      /* ─── FAQ ─────────────────────────────────────── */
+      #faq6 {
+        background: var(--white);
+      }
+      .faq6-layout {
+        display: grid;
+        grid-template-columns: 4fr 8fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .faq6-contact {
+        padding: 1.5rem;
+        background: var(--white);
+        border-radius: var(--r);
+        border: 1px solid var(--border-subtle);
+        margin-top: 2rem;
+        box-shadow: var(--shadow-sm);
+      }
+      .faq6-contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+      .faq6-contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.88rem;
+        color: var(--blue);
+        font-weight: 700;
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+      .faq6-contact-link:hover {
+        opacity: 0.85;
+      }
+      .faq6-contact-icon {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+      }
+      @media (min-width: 641px) {
+        .faq6-contact-links {
+          flex-direction: row;
+          align-items: center;
+          gap: 1.5rem;
+          flex-wrap: wrap;
+        }
+      }
+      .faq6-list {
+        border-top: 1px solid var(--border-subtle);
+      }
+      .faq6-item {
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .faq6-q {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.35rem 0;
+        cursor: pointer;
+        background: none;
+        border: none;
+        width: 100%;
+        font-family: var(--font);
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--navy);
+        text-align: left;
+        transition: color 0.2s;
+      }
+      .faq6-q:hover {
+        color: var(--blue);
+      }
+      .faq6-ico {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid var(--grey-l);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        color: var(--grey);
+        font-weight: 400;
+        flex-shrink: 0;
+        transition: all 0.3s var(--ease);
+        line-height: 1;
+      }
+      .faq6-item.open .faq6-ico {
+        background: var(--yellow);
+        border-color: var(--yellow);
+        color: var(--navy);
+        transform: rotate(45deg);
+      }
+      .faq6-a {
+        font-size: 0.9rem;
+        color: var(--grey);
+        line-height: 1.75;
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s var(--ease),
+          padding 0.3s;
+      }
+      .faq6-item.open .faq6-a {
+        max-height: 280px;
+        padding-bottom: 1.35rem;
+      }
+
+      /* ─── FINAL CTA ───────────────────────────────── */
+      #cta6.cta-white {
+        background: var(--white);
+        padding: 6.5rem 0;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      #cta6.cta-sky {
+        background: var(--sky);
+        padding: 6.5rem 0;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .cta6-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 4.5rem;
+        align-items: center;
+      }
+      .cta6-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .cta6-sub {
+        font-size: 1.05rem;
+        color: var(--grey);
+        line-height: 1.7;
+        max-width: 500px;
+        margin: 1rem 0 2.25rem;
+      }
+      .cta6-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 2.25rem;
+      }
+      .cta6-trust {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+        border-top: 1px solid var(--grey-l);
+        padding-top: 1.5rem;
+      }
+      .cta6-trust-item {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.83rem;
+        font-weight: 600;
+        color: var(--grey-d);
+      }
+      .cta6-trust-item::before {
+        content: "✓";
+        color: var(--green);
+        font-weight: 800;
+      }
+      .cta6-right {
+        position: relative;
+        overflow: hidden;
+        height: 380px;
+        border-radius: var(--r-xl);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-md);
+      }
+      .cta6-right img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ─── FOOTER ──────────────────────────────────── */
+      #ft6 {
+        background: var(--navy);
+        padding: 4.5rem 2.5rem 2.5rem;
+      }
+      .ft6-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3.5rem;
+        padding-bottom: 3rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      }
+      .ft6-brand p {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.4);
+        line-height: 1.7;
+        margin-top: 0.85rem;
+        max-width: 280px;
+      }
+      .ft6-logo {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: rgba(255, 255, 255, 0.85);
+        letter-spacing: -0.02em;
+      }
+      .ft6-col-title {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: 1.25rem;
+      }
+      .ft6-col a {
+        display: block;
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.45);
+        text-decoration: none;
+        margin-bottom: 0.6rem;
+        transition: color 0.2s;
+      }
+      .ft6-col a:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .ft6-bottom {
+        max-width: 1180px;
+        margin: 1.75rem auto 0;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .ft6-bottom span {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .ft6-bottom a {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.25);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .ft6-bottom a:hover {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* ─── RESPONSIVE ──────────────────────────────── */
+      @media (max-width: 1024px) {
+        .hd6-nav {
+          display: none;
+        }
+        .hd6-toggle {
+          display: flex;
+        }
+        #hero6 {
+          height: auto;
+          min-height: calc(100dvh - 80px);
+        }
+        #trust6 {
+          height: auto;
+          padding: 1.2rem 0;
+        }
+        .h6-body {
+          grid-template-columns: 1fr;
+          padding-bottom: 4rem;
+        }
+        .h6-visual {
+          display: none;
+        }
+        .sec-header6,
+        .rec6-layout-bottom,
+        .cov6-layout,
+        .faq6-layout,
+        .calc6-layout,
+        .eol6-layout,
+        .team6-grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .srv6-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .rec6-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .tst6-grid {
+          grid-template-columns: 1fr;
+        }
+        .how6-steps {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2.5rem;
+        }
+        .how6-steps::before {
+          display: none;
+        }
+        .ft6-inner {
+          grid-template-columns: 1fr 1fr;
+          gap: 2.5rem;
+        }
+        .cta6-grid {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        .cta6-right {
+          height: 320px;
+        }
+      }
+      @media (max-width: 768px) {
+        .c6 {
+          padding: 0 1.5rem;
+        }
+        .pad {
+          padding: 4.5rem 0;
+        }
+        .h6-display {
+          font-size: 2.8rem;
+        }
+        .srv6-grid {
+          grid-template-columns: 1fr;
+        }
+        .rec6-grid {
+          grid-template-columns: 1fr;
+        }
+        .how6-steps {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .eol6-layout {
+          gap: 2rem;
+        }
+        .eol6-checks {
+          grid-template-columns: 1fr;
+        }
+        .ft6-inner {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .faq6-layout {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .eol6-visual-strip {
+          grid-template-columns: 1fr;
+        }
+      }
+      .hd6-nav-item-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .hd6-nav-dropdown-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        cursor: pointer;
+      }
+      .hd6-nav-dropdown-toggle svg {
+        transition: transform 0.2s var(--ease);
+      }
+      .hd6-nav-item-dropdown:hover .hd6-nav-dropdown-toggle svg {
+        transform: rotate(180deg);
+      }
+      .hd6-dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+        background: var(--white);
+        min-width: 220px;
+        border-radius: var(--r);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-lg);
+        padding: 0.65rem 0;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.2s var(--ease),
+          transform 0.2s var(--ease),
+          visibility 0.2s;
+        z-index: 250;
+        display: flex;
+        flex-direction: column;
+      }
+      .hd6-nav-item-dropdown:hover .hd6-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+      .hd6-dropdown-menu a {
+        display: block !important;
+        font-size: 0.88rem !important;
+        font-weight: 600 !important;
+        color: var(--grey-d) !important;
+        padding: 0.6rem 1.25rem !important;
+        border-radius: 0 !important;
+        transition:
+          background 0.2s,
+          color 0.2s !important;
+        text-align: left;
+      }
+      .hd6-dropdown-menu a:hover {
+        background: var(--sky) !important;
+        color: var(--blue) !important;
+      }
+
+      .mob6-sub-menu {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1.25rem;
+        border-left: 2px solid var(--border-subtle);
+        margin: 0.25rem 0 0.75rem;
+        gap: 0.35rem;
+      }
+      .mob6-sub-menu a {
+        font-size: 0.95rem !important;
+        color: var(--grey) !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: none !important;
+      }
+      .mob6-sub-menu a:hover {
+        color: var(--blue) !important;
+      }
+      .hd6-mob-section-title {
+        font-size: 0.8rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--grey);
+        letter-spacing: 0.08em;
+        margin-top: 0.75rem;
+        margin-bottom: 0.25rem;
+      }
+
+      @media (max-width: 640px) {
+        .hd6-nav {
+          display: none;
+        }
+        .hd6-toggle {
+          display: flex;
+        }
+        .h6-display {
+          font-size: 2.4rem;
+        }
+        .cta6-left {
+          padding: 2.5rem 1.75rem;
+        }
+        .eol6-checklist-card {
+          padding: 1.5rem;
+        }
+      }
+      /* Keep every non-hero section aligned with the landing services section. */
+      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) {
+        padding-top: 6.5rem !important;
+        padding-bottom: 6.5rem !important;
+      }
+      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+        max-width: 1180px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 2.5rem !important;
+        padding-right: 2.5rem !important;
+      }
+      @media (max-width: 768px) {
+        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) {
+          padding-top: 4.5rem !important;
+          padding-bottom: 4.5rem !important;
+        }
+        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+          padding-left: 1.5rem !important;
+          padding-right: 1.5rem !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ─ HEADER ─────────────────────────────────── -->
+    <header id="hd6" aria-label="Site header">
+      <a href={withBase("index")} class="hd6-logo" aria-label="Maid at Home">
+        <div class="hd6-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path
+              d="M9 2L11 7H16L12 10.5L13.5 16L9 12.5L4.5 16L6 10.5L2 7H7L9 2Z"
+              fill="white"
+              fill-opacity="0.9"></path>
+          </svg>
+        </div>
+        <span class="hd6-name">Maid at Home</span>
+      </a>
+      <nav class="hd6-nav" aria-label="Main navigation">
+        <div class="hd6-nav-item-dropdown">
+          <a href={withBase("services")} class="hd6-nav-dropdown-toggle">
+            Our Services
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="hd6-dropdown-menu">
+            <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+            <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+            <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+            <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+            <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+            <a href={withBase("services/window-cleaning")}>Window Cleaning</a>
+            <a href={withBase("services/balcony-cleaning")}>Balcony Cleaning</a>
+          </div>
+        </div>
+        <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+        <a href={withBase("pricing")}>Pricing</a>
+        <a href={withBase("areas")}>Areas We Serve</a>
+        <a href={withBase("about")}>About Us</a>
+        <a href={withBase("careers")}>Join Our Team</a>
+        <div class="hd6-nav-item-dropdown">
+          <a href="#" class="hd6-nav-dropdown-toggle" onclick="event.preventDefault()">
+            Help
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="hd6-dropdown-menu">
+            <a href={withBase("faqs")}>FAQs</a>
+            <a href={withBase("contact")}>Contact Us</a>
+          </div>
+        </div>
+        <a href={withBase("blog")}>Blog</a>
+        <a href={withBase("booking")} class="hd6-cta">Book Now</a>
+      </nav>
+      <button
+        class="hd6-toggle"
+        id="hd6Toggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <nav id="hd6-mob" aria-label="Mobile navigation">
+      
+      <!-- Services Row -->
+      <div class="mob6-dropdown-item">
+        <div class="mob6-dropdown-trigger">
+          <a href={withBase("services")}>Services</a>
+          <button class="mob6-dropdown-toggle" aria-label="Toggle Services Menu" aria-expanded="false" data-target="mob-services-submenu">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mob6-sub-menu collapsed" id="mob-services-submenu">
+          <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+          <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+          <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+          <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+          <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+          <a href={withBase("services/window-cleaning")}>Window Cleaning</a>
+          <a href={withBase("services/balcony-cleaning")}>Balcony Cleaning</a>
+        </div>
+      </div>
+
+      <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+      <a href={withBase("pricing")}>Pricing</a>
+      <a href={withBase("areas")}>Areas We Serve</a>
+      <a href={withBase("about")}>About Us</a>
+      <a href={withBase("careers")}>Join Our Team</a>
+
+      <!-- Help Row -->
+      <div class="mob6-dropdown-item">
+        <div class="mob6-dropdown-trigger">
+          <span class="mob6-dropdown-label">Help</span>
+          <button class="mob6-dropdown-toggle" aria-label="Toggle Help Menu" aria-expanded="false" data-target="mob-help-submenu">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mob6-sub-menu collapsed" id="mob-help-submenu">
+          <a href={withBase("faqs")}>FAQs</a>
+          <a href={withBase("contact")}>Contact Us</a>
+        </div>
+      </div>
+
+      <a href={withBase("blog")}>Blog</a>
+      <a href={withBase("booking")} class="mob6-cta">Book Now →</a>
+    </nav>
+
+    <!-- ─ HERO ───────────────────────────────────── -->
+    <section id="hero6" aria-labelledby="h6-heading">
+      <div class="h6-sun" aria-hidden="true"></div>
+      <div class="h6-arc" aria-hidden="true"></div>
+
+      <div class="h6-body">
+        <div class="h6-text">
+
+          <h1 class="h6-pill" id="h6-heading">
+            <span class="h6-pill-dot" aria-hidden="true"></span>
+            Professional House Cleaning in {suburb.name}
+          </h1>
+
+          <p class="h6-display" aria-hidden="true">
+            <span class="h6-line"><span>Cleaning homes.</span></span>
+            <span class="h6-line em"><span>Improving lives.</span></span>
+          </p>
+
+          <p class="h6-sub">
+            {suburb.heroSub}
+          </p>
+
+          <div class="h6-actions">
+            <a href="#calc6" class="btn6-primary" id="hero6-book">
+              Get an instant quote
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 13 13"
+                fill="none"
+                aria-hidden="true"
+                ><path
+                  d="M2 6.5h9M7.5 2l4.5 4.5L7.5 11"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              >
+            </a>
+            <a href="tel:+61399990000" class="btn6-ghost">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 13 13"
+                fill="none"
+                aria-hidden="true"
+                ><path
+                  d="M11.5 8.8L9.2 7.9 8.3 8.8C7 8.3 4.7 6 4.2 4.7l.9-.9L4.2 1.5 1.5 1C1 2 1 3.3 1.9 5c1.4 2.7 3.4 4.7 6 6 1.7.9 3 .9 3.9.4l-.3-2.6z"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              >
+              (03) 9999 0000
+            </a>
+          </div>
+
+          <div class="h6-trust">
+            <div class="h6-trust-item">
+              <span class="h6-trust-check" aria-hidden="true">✓</span> Police checked
+            </div>
+            <div class="h6-trust-item">
+              <span class="h6-trust-check" aria-hidden="true">✓</span> Fully insured
+            </div>
+            <div class="h6-trust-item">
+              <span class="h6-trust-check" aria-hidden="true">✓</span> Satisfaction
+              guarantee
+            </div>
+          </div>
+        </div>
+
+        <div class="h6-visual" aria-hidden="true">
+          <div class="h6-photo-bg"></div>
+          <div class="h6-photo-frame">
+            <img
+              src={withBase("images/cleaner_portrait_hero.png")}
+              alt="Friendly Maid at Home cleaner"
+              loading="eager"
+            />
+          </div>
+          <div class="h6-badge">
+            <div class="h6-badge-stars">★★★★★</div>
+            <div class="h6-badge-quote">"{suburb.localQuote}"</div>
+            <div class="h6-badge-meta">— {suburb.localAuthor}</div>
+          </div>
+          <div class="h6-rating-chip">
+            <span>4.9★</span> Google · 340+ reviews
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ TRUST STRIP ─────────────────────────────── -->
+    <div id="trust6" role="list" aria-label="Service guarantees">
+      <div class="trust6-inner">
+        <div class="trust6-item" role="listitem">
+          🛡️ Police checked & insured
+        </div>
+        <div class="trust6-sep" aria-hidden="true"></div>
+        <div class="trust6-item" role="listitem">🌿 Eco-safe products</div>
+        <div class="trust6-sep" aria-hidden="true"></div>
+        <div class="trust6-item" role="listitem">⏱️ Always on time</div>
+        <div class="trust6-sep" aria-hidden="true"></div>
+        <div class="trust6-item" role="listitem">✅ Satisfaction guarantee</div>
+        <div class="trust6-sep" aria-hidden="true"></div>
+        <div class="trust6-item" role="listitem">📱 Book in 60 seconds</div>
+      </div>
+    </div>
+
+    <!-- ─ SERVICES ────────────────────────────────── -->
+    <section id="srv6" class="pad" aria-labelledby="srv6-h2">
+      <div class="c6">
+        <div class="sec-header6 sg">
+          <div class="si" data-d="l">
+            <p class="eyebrow6">Our Services</p>
+            <h2 class="h6" id="srv6-h2">
+              Everything your<br /><span class="ac">home needs</span>
+            </h2>
+          </div>
+          <p class="lead6 si" data-d="r">
+            Every service delivered by trained, insured professionals. Book a
+            one-off or set up a recurring schedule — we make it easy either way.
+          </p>
+        </div>
+
+        <div class="srv6-grid sg">
+          <div class="srv6-card cs si">
+            <div class="srv6-card-blur"></div>
+            <div class="srv6-ico-ring" aria-hidden="true">🏠</div>
+            <div class="srv6-name">Standard Cleaning</div>
+            <div class="srv6-price">From <strong>$120</strong> per visit</div>
+            <p class="srv6-desc">
+              Vacuuming, mopping, kitchen benches and appliance surfaces, full
+              bathroom clean, general dusting and tidying. The complete circuit,
+              done properly every time.
+            </p>
+            <a href={withBase("services")} class="srv6-link">View checklist →</a
+            >
+          </div>
+
+          <div class="srv6-card cd si">
+            <div class="srv6-card-blur"></div>
+            <div class="srv6-ico-ring" aria-hidden="true">🔍</div>
+            <div class="srv6-name">Deep Cleaning</div>
+            <div class="srv6-price">From <strong>$220</strong> per visit</div>
+            <p class="srv6-desc">
+              A full top-to-bottom reset. Grout lines, appliance interiors,
+              skirting boards, inside cupboards, every corner. Ideal after
+              illness, before a big event, or as a quarterly reset.
+            </p>
+            <a href={withBase("services")} class="srv6-link">View checklist →</a
+            >
+          </div>
+
+          <div class="srv6-card ceol si">
+            <div class="srv6-card-blur"></div>
+            <div class="srv6-badge" aria-label="Bond guaranteed">
+              100% Bond Guarantee
+            </div>
+            <div class="srv6-ico-ring" aria-hidden="true">📋</div>
+            <div class="srv6-name">End of Lease</div>
+            <div class="srv6-price">From <strong>$299</strong></div>
+            <p class="srv6-desc">
+              Aligned to the REIV inspection standard. 100% bond-back rate. If
+              your agent flags anything, we return within 72 hours at no cost —
+              guaranteed.
+            </p>
+            <a href="#eol6" class="srv6-link">Learn more ↓</a>
+          </div>
+
+          <div class="srv6-card cmi si">
+            <div class="srv6-card-blur"></div>
+            <div class="srv6-ico-ring" aria-hidden="true">📦</div>
+            <div class="srv6-name">Move In Cleaning</div>
+            <div class="srv6-price">From <strong>$180</strong></div>
+            <p class="srv6-desc">
+              Start your new home completely fresh before a single box is
+              unpacked. We handle any leftovers from previous tenants so you can
+              settle in straight away.
+            </p>
+            <a href={withBase("services")} class="srv6-link">View checklist →</a
+            >
+          </div>
+
+          <div class="srv6-card ccp si">
+            <div class="srv6-card-blur"></div>
+            <div class="srv6-ico-ring" aria-hidden="true">🧹</div>
+            <div class="srv6-name">Carpet Cleaning</div>
+            <div class="srv6-price">From <strong>$150</strong></div>
+            <p class="srv6-desc">
+              Professional hot water extraction that lifts deep-set stains,
+              allergens, and odours. Carpets are dry within hours and come up
+              genuinely clean — not just surface-treated.
+            </p>
+            <a href={withBase("services")} class="srv6-link">View checklist →</a
+            >
+          </div>
+
+          <div class="srv6-card cex si">
+            <div class="srv6-card-blur"></div>
+            <div class="srv6-ico-ring" aria-hidden="true">➕</div>
+            <div class="srv6-name">Extras & Add-Ons</div>
+            <div class="srv6-price">Custom pricing</div>
+            <p class="srv6-desc">
+              Add individual extras to any booking: oven, fridge, windows,
+              blinds, balcony. You choose exactly what you need — we price it
+              accordingly. No bundled packages you don't want.
+            </p>
+            <a href={withBase("pricing")} class="srv6-link"
+              >See add-on prices →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ RECURRING CLEANING ──────────────────────── -->
+    <section id="rec6" class="pad" aria-labelledby="rec6-h2">
+      <div class="c6">
+        <div
+          class="sg"
+          style="text-align: center; margin-bottom: 3.5rem; max-width: 600px; margin-left: auto; margin-right: auto;"
+        >
+          <p class="eyebrow6">Recurring Cleaning</p>
+          <h2 class="h6" id="rec6-h2">
+            Set it and forget it. Save with frequency.
+          </h2>
+          <p class="lead6" style="margin-top: 0.75rem;">
+            Choose your frequency and we do the rest. The same trusted cleaner,
+            every time — who learns your home and your preferences.
+          </p>
+        </div>
+
+        <div class="rec6-grid sg">
+          <div class="rec6-card popular si">
+            <div class="rec6-popular-tag">Best Value</div>
+            <div class="rec6-freq-badge" aria-hidden="true">📅</div>
+            <div class="rec6-name">Weekly</div>
+            <div class="rec6-save">Save 15%</div>
+            <div class="rec6-price-wrap">
+              <div class="rec6-price">~$161</div>
+              <div class="rec6-price-sub">per visit</div>
+            </div>
+            <div class="rec6-incl-divider"></div>
+            <div class="rec6-bullet">Priority fixed day</div>
+            <div class="rec6-bullet">Same cleaner weekly</div>
+            <div class="rec6-bullet">Perfect for busy homes</div>
+          </div>
+
+          <div class="rec6-card popular si">
+            <div class="rec6-popular-tag">Most Popular</div>
+            <div class="rec6-freq-badge" aria-hidden="true">🗓️</div>
+            <div class="rec6-name">Fortnightly</div>
+            <div class="rec6-save">Save 10%</div>
+            <div class="rec6-price-wrap">
+              <div class="rec6-price">~$170</div>
+              <div class="rec6-price-sub">per visit</div>
+            </div>
+            <div class="rec6-incl-divider"></div>
+            <div class="rec6-bullet">Consistent maintenance</div>
+            <div class="rec6-bullet">Same cleaner assigned</div>
+            <div class="rec6-bullet">Great balance of cost</div>
+          </div>
+
+          <div class="rec6-card si">
+            <div class="rec6-freq-badge" aria-hidden="true">🔄</div>
+            <div class="rec6-name">3 Weekly</div>
+            <div class="rec6-save">Save 5%</div>
+            <div class="rec6-price-wrap">
+              <div class="rec6-price">~$179</div>
+              <div class="rec6-price-sub">per visit</div>
+            </div>
+            <div class="rec6-incl-divider"></div>
+            <div class="rec6-bullet">Mid-month refreshes</div>
+            <div class="rec6-bullet">Flexible scheduling</div>
+            <div class="rec6-bullet">Ideal for low-traffic homes</div>
+          </div>
+
+          <div class="rec6-card monthly si">
+            <div class="rec6-freq-badge" aria-hidden="true">📆</div>
+            <div class="rec6-name">Monthly</div>
+            <div class="rec6-save">Standard Rate</div>
+            <div class="rec6-price-wrap">
+              <div class="rec6-price">~$189</div>
+              <div class="rec6-price-sub">per visit</div>
+            </div>
+            <div class="rec6-incl-divider"></div>
+            <div class="rec6-bullet">Deep reset clean</div>
+            <div class="rec6-bullet">Easy date changes</div>
+            <div class="rec6-bullet">No contract, pause anytime</div>
+          </div>
+        </div>
+
+        <div class="rec6-layout-bottom sg">
+          <div class="rec6-benefits si" data-d="l">
+            <div class="rec6-benefit">
+              <div class="rec6-benefit-ico">👤</div>
+              <div class="rec6-benefit-text">
+                <strong>Same cleaner, every visit</strong>
+                <p>
+                  We assign the same person to your home so they know your
+                  layout, preferences, and details.
+                </p>
+              </div>
+            </div>
+            <div class="rec6-benefit">
+              <div class="rec6-benefit-ico">📌</div>
+              <div class="rec6-benefit-text">
+                <strong>Priority scheduling</strong>
+                <p>
+                  Recurring clients get first access to preferred time slots and
+                  emergency availability.
+                </p>
+              </div>
+            </div>
+            <div class="rec6-benefit">
+              <div class="rec6-benefit-ico">🔄</div>
+              <div class="rec6-benefit-text">
+                <strong>Cancel or pause anytime</strong>
+                <p>
+                  No lock-in contracts. Pause for holidays or reschedule with 24
+                  hours notice.
+                </p>
+              </div>
+            </div>
+            <div class="rec6-benefit">
+              <div class="rec6-benefit-ico">🌿</div>
+              <div class="rec6-benefit-text">
+                <strong>Eco-safe products</strong>
+                <p>
+                  Safe for your children, your pets, and the planet. No harsh
+                  chemical residues.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="si"
+            data-d="r"
+            style="display:flex; flex-direction:column; gap:1.25rem;"
+          >
+            <div class="rec6-right-info">
+              <div class="rec6-right-info-title">
+                💛 What our recurring clients say
+              </div>
+              <p class="rec6-right-info-quote">
+                "I've had the same cleaner for 18 months. She knows our home
+                better than some guests. Couldn't imagine going back to doing it
+                ourselves."
+              </p>
+              <p class="rec6-right-info-author">
+                — Tom R., Brunswick · Weekly for 18 months
+              </p>
+            </div>
+            <div
+              style="margin-top:0.75rem; display:flex; gap:0.75rem; flex-wrap:wrap;"
+            >
+              <a href="#calc6" class="btn6-primary" id="rec6-cta"
+                >Set up recurring →</a
+              >
+              <a href="tel:+61399990000" class="btn6-outline"
+                >Talk to us first</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ HOW IT WORKS ────────────────────────────── -->
+    <section id="how6" class="pad" aria-labelledby="how6-h2">
+      <div class="c6">
+        <div class="sec-header6 sg">
+          <div class="si" data-d="l">
+            <p class="eyebrow6">How It Works</p>
+            <h2 class="h6" id="how6-h2">
+              Simple from<br /><span class="ac">start to finish</span>
+            </h2>
+          </div>
+          <p class="lead6 si" data-d="r">
+            No lengthy forms. No confusing quotes. Just tell us about your home,
+            pick a time, and we take care of everything.
+          </p>
+        </div>
+
+        <div class="how6-steps sg">
+          <div class="how6-step si">
+            <div class="how6-ico-wrap" aria-hidden="true">
+              📅
+              <span class="how6-step-num" aria-hidden="true">1</span>
+            </div>
+            <h3 class="how6-title">Book online</h3>
+            <p class="how6-desc">
+              Use our calculator to get an instant price. Pick your date and
+              time — takes under 60 seconds. No phone call needed.
+            </p>
+          </div>
+
+          <div class="how6-step si">
+            <div class="how6-ico-wrap" aria-hidden="true">
+              💬
+              <span class="how6-step-num" aria-hidden="true">2</span>
+            </div>
+            <h3 class="how6-title">We confirm instantly</h3>
+            <p class="how6-desc">
+              You'll receive an SMS confirmation with your cleaner's name and
+              arrival window. We contact you the evening before to confirm.
+            </p>
+          </div>
+
+          <div class="how6-step si">
+            <div class="how6-ico-wrap" aria-hidden="true">
+              🏠
+              <span class="how6-step-num" aria-hidden="true">3</span>
+            </div>
+            <h3 class="how6-title">We arrive, you relax</h3>
+            <p class="how6-desc">
+              Your cleaner arrives on time with all equipment. You don't need to
+              be home — just leave access. We follow your checklist every time.
+            </p>
+          </div>
+
+          <div class="how6-step si">
+            <div class="how6-ico-wrap" aria-hidden="true">
+              ✨
+              <span class="how6-step-num" aria-hidden="true">4</span>
+            </div>
+            <h3 class="how6-title">Spotless home</h3>
+            <p class="how6-desc">
+              We send you a message when we're done. If anything falls short of
+              your expectations, we return within 24 hours — at no charge.
+            </p>
+          </div>
+        </div>
+
+        <div class="how6-cta sg">
+          <a href="#calc6" class="btn6-primary si">Book your first clean →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ TESTIMONIALS ────────────────────────────── -->
+    <section id="tst6" class="pad" aria-labelledby="tst6-h2">
+      <div class="c6">
+        <div class="sec-header6 sg">
+          <div class="si" data-d="l">
+            <p class="eyebrow6">Reviews</p>
+            <h2 class="h6" id="tst6-h2">
+              What {suburb.name}<br /><span class="ac">families say</span>
+            </h2>
+          </div>
+          <p class="lead6 si" data-d="r">
+            All reviews are sourced directly from our Google Business Profile
+            and verified by Google. We haven't written a single one.<br />
+            <a href="#" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.25rem; color: var(--blue); font-size: 0.88rem; font-weight: 700; text-decoration: none; margin-top: 0.5rem; transition: gap 0.2s;" onmouseover="this.style.gap='0.45rem'" onmouseout="this.style.gap='0.25rem'">
+              Verify reviews on our Google Profile &rarr;
+            </a>
+          </p>
+        </div>
+
+        <div class="tst6-grid sg">
+          {
+            selectedReviews.map((review) => (
+              <div class="tst6-card si">
+                <div class="tst6-google-bar">
+                  <span class="tst6-gicon" aria-label="Google">Google Review</span>
+                  <span class="tst6-verified" aria-label="Verified by Google"
+                    >✓ Verified</span
+                  >
+                </div>
+                <div class="tst6-stars" aria-label="5 stars">★★★★★</div>
+                <p class="tst6-text">
+                  {review.text}
+                </p>
+                <div class="tst6-author">
+                  <div>
+                    <div class="tst6-name">{review.name}</div>
+                    <div class="tst6-meta">{review.meta}</div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ MEET THE TEAM SECTION ───────────────────── -->
+    <section id="team6" class="pad" aria-labelledby="team6-h2">
+      <div class="c6">
+        <div class="sec-header6 sg" style="margin-bottom: 3.5rem;">
+          <div class="si" data-d="l">
+            <p class="eyebrow6">Our Team</p>
+            <h2 class="h6" id="team6-h2">
+              Real people.<br /><span class="ac">Stunning results.</span>
+            </h2>
+          </div>
+          <p class="lead6 si" data-d="r">
+            We are not a tech agency. We employ, train, and support real people
+            in {suburb.name} and surrounding suburbs to deliver consistent house cleaning
+            quality.
+          </p>
+        </div>
+
+        <div class="team6-grid sg">
+          <div class="team6-card si">
+            <div class="team6-img">
+              <img
+                src={withBase("images/founder_pau.png")}
+                alt={`Pau - Founder of Maid at Home serving ${suburb.name}`}
+                loading="lazy"
+              />
+            </div>
+            <div class="team6-body">
+              <div class="team6-role">Founder & Operations</div>
+              <div class="team6-name">Pau R.</div>
+              <div class="team6-desc">
+                Pau started Maid at Home to bring transparent, high-quality,
+                pet-friendly cleaning to Melbourne. He oversees bookings and
+                operations while Mia supervises.
+              </div>
+            </div>
+          </div>
+
+          <div class="team6-card si">
+            <div class="team6-img">
+              <img
+                src={withBase("images/founder_stefania.png")}
+                alt={`Stefania - Co-Founder of Maid at Home serving ${suburb.name}`}
+                loading="lazy"
+              />
+            </div>
+            <div class="team6-body">
+              <div class="team6-role">Co-Founder & Experience</div>
+              <div class="team6-name">Stefania M.</div>
+              <div class="team6-desc">
+                Stefania leads our customer experience and guarantees all
+                cleaning products we use are 100% non-toxic, eco-friendly, and
+                safe for Melbourne's furry residents.
+              </div>
+            </div>
+          </div>
+
+          <div class="team6-card si">
+            <div class="team6-img">
+              <img
+                src={withBase("images/mia_the_cat.png")}
+                alt={`Mia - Pet-friendly ambassador for Maid at Home in ${suburb.name}`}
+                loading="lazy"
+              />
+            </div>
+            <div class="team6-body">
+              <div class="team6-role">Chief Happiness Officer</div>
+              <div class="team6-name">Mia</div>
+              <div class="team6-desc">
+                Our pet-friendly ambassador. Mia specializes in testing the
+                cleanliness of freshly vacuumed floors and finding the absolute
+                best sunny spots to nap.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ END OF LEASE ────────────────────────────── -->
+    <section id="eol6" class="pad" aria-labelledby="eol6-h2">
+      <div class="eol6-premium-accent" aria-hidden="true"></div>
+
+      <div class="c6">
+        <div class="eol6-layout sg">
+          <div class="eol6-left si" data-d="l">
+            <div class="eol6-visual-strip">
+              <div class="eol6-strip-img">
+                <img
+                  src={withBase("images/before_stove.png")}
+                  alt={`Before professional end of lease kitchen cleaning in ${suburb.name}`}
+                />
+                <span>Before Clean</span>
+              </div>
+              <div class="eol6-strip-img">
+                <img
+                  src={withBase("images/after_stove.png")}
+                  alt={`After professional end of lease kitchen cleaning in ${suburb.name} - spotless results`}
+                />
+                <span>After Clean (Spotless)</span>
+              </div>
+            </div>
+
+            <div class="eol6-checklist-card">
+              <p class="eyebrow6">End of Lease Cleaning</p>
+              <h2 class="h6" id="eol6-h2">
+                Get your full<br /><span class="ac">bond back.</span>
+              </h2>
+              <p class="lead6" style="margin-top:0.75rem; margin-bottom:2rem;">
+                Our end of lease service is aligned to real estate inspection
+                checklists. Every item covered, documented, and guaranteed.
+              </p>
+
+              <div class="eol6-checklist-header">🍳 Kitchen</div>
+              <div class="eol6-checks">
+                {
+                  [
+                    "Oven interior, racks & trays",
+                    "Rangehood, filters & grease",
+                    "Stovetop — all burners & grates",
+                    "Sink, taps & basin",
+                    "Benchtops & splashback",
+                    "Cabinets — inside and out",
+                    "Dishwasher interior",
+                  ].map((i) => (
+                    <div class="eol6-check-item">
+                      <span class="eol6-check-ico" aria-hidden="true">
+                        ✓
+                      </span>
+                      {i}
+                    </div>
+                  ))
+                }
+              </div>
+
+              <div class="eol6-checklist-header">🚿 Bathrooms & Laundry</div>
+              <div class="eol6-checks">
+                {
+                  [
+                    "Shower screens & enclosure",
+                    "Tiles — cleaned & desoiled",
+                    "Grout lines",
+                    "Toilet — bowl, seat & cistern",
+                    "Vanity, sink & mirror",
+                    "Exhaust fans",
+                    "Laundry basin & tubs",
+                  ].map((i) => (
+                    <div class="eol6-check-item">
+                      <span class="eol6-check-ico" aria-hidden="true">
+                        ✓
+                      </span>
+                      {i}
+                    </div>
+                  ))
+                }
+              </div>
+
+              <div class="eol6-checklist-header">🏠 All Rooms & General</div>
+              <div class="eol6-checks">
+                {
+                  [
+                    "Floors — vacuumed & mopped",
+                    "Skirting boards & cornices",
+                    "Light switches & power points",
+                    "Door frames & handles",
+                    "Window tracks & sills",
+                    "Windows (interior)",
+                    "Blinds & curtain rails",
+                    "Walls — spot cleaned",
+                    "Wardrobe interiors",
+                    "Air conditioning filters",
+                  ].map((i) => (
+                    <div class="eol6-check-item">
+                      <span class="eol6-check-ico" aria-hidden="true">
+                        ✓
+                      </span>
+                      {i}
+                    </div>
+                  ))
+                }
+              </div>
+
+              <div class="eol6-reiv" role="note">
+                <strong>Aligned to REIV inspection standards.</strong> Our checklist
+                is built from the same criteria used by Melbourne real estate agents
+                — so there are no surprises on inspection day.
+              </div>
+            </div>
+          </div>
+
+          <div class="eol6-right si" data-d="r">
+            <div class="eol6-price-card">
+              <div class="eol6-from">Starting from</div>
+              <div class="eol6-price-big"><sup>$</sup>299</div>
+              <div class="eol6-price-note">
+                Final price based on property size. Use the calculator below for
+                your exact quote.
+              </div>
+              <div class="eol6-divider"></div>
+              <ul
+                class="eol6-incl"
+                style="padding-left:1.1rem; list-style-type: disc;"
+              >
+                <li>Full REIV inspection checklist</li>
+                <li>All equipment and eco-safe products supplied</li>
+                <li>72-hour re-clean guarantee included</li>
+                <li>Certificate of completion available on request</li>
+              </ul>
+            </div>
+
+            <div
+              class="eol6-guarantee-card"
+              role="note"
+              aria-label="Our bond-back guarantee"
+            >
+              <div class="eol6-g-eyebrow">Our Guarantee</div>
+              <div class="eol6-g-title">100% Bond-Back.<br />Every time.</div>
+              <div class="eol6-g-items">
+                <div class="eol6-g-item">
+                  <span class="eol6-g-check" aria-hidden="true">✓</span>
+                  Agent flags something? We return within 72 hours.
+                </div>
+                <div class="eol6-g-item">
+                  <span class="eol6-g-check" aria-hidden="true">✓</span>
+                  Re-clean is completely free — no conditions.
+                </div>
+                <div class="eol6-g-item">
+                  <span class="eol6-g-check" aria-hidden="true">✓</span>
+                  We've maintained a 100% bond-back success rate.
+                </div>
+              </div>
+              <div class="eol6-quote">
+                <p class="eol6-quote-text">
+                  "The agent said it was the cleanest handover she'd ever seen.
+                  Full bond back, no dispute."
+                </p>
+                <div class="eol6-quote-by">
+                  — Emma S., Prahran · ★★★★★ Google Review
+                </div>
+              </div>
+            </div>
+
+            <div class="eol6-cta-wrap">
+              <a
+                href="#calc6"
+                class="btn6-primary"
+                id="eol6-main-cta"
+                style="width:100%; justify-content:center; padding:1.1rem;"
+              >
+                Get your end of lease quote →
+              </a>
+              <div class="eol6-urgency" role="note">
+                <span aria-hidden="true">⏰</span>
+                <span
+                  >Book at least <strong>48 hours before</strong> your inspection
+                  for guaranteed availability.</span
+                >
+              </div>
+              <a
+                href="tel:+61399990000"
+                class="btn6-outline"
+                style="width:100%; justify-content:center;"
+                >Or call us: (03) 9999 0000</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ CALCULATOR ──────────────────────────────── -->
+    <section id="calc6" class="pad" aria-labelledby="calc6-h2">
+      <div class="c6">
+        <div class="calc6-layout sg">
+          <div class="calc6-left si" data-d="l">
+            <div class="calc6-label">⚡ Instant Pricing</div>
+            <h2 class="h6" id="calc6-h2">
+              Your honest price<br /><span class="ac">in 30 seconds</span>
+            </h2>
+            <p class="lead6" style="margin-bottom:2rem;">
+              No hidden fees. No follow-up call needed. Select your service and
+              home size — and get an accurate price right now.
+            </p>
+
+            <div class="calc6-trustpoints">
+              {
+                [
+                  ["📋", "Price confirmed at booking — no surprises"],
+                  ["🔄", "Recurring discounts applied automatically"],
+                  ["🌿", "All products and equipment supplied"],
+                  ["✅", "Satisfaction guarantee on every clean"],
+                  ["📱", "Book instantly — confirmation in minutes"],
+                ].map(([ico, txt]) => (
+                  <div class="calc6-tp">
+                    <span class="calc6-tp-ico" aria-hidden="true">
+                      {ico}
+                    </span>
+                    <span>{txt}</span>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="calc6-card si" data-d="r">
+            <div class="calc6-tabs" role="tablist" aria-label="Service type">
+              <button
+                class="calc6-tab on"
+                role="tab"
+                aria-selected="true"
+                id="c6-std"
+                data-svc="standard">Standard</button
+              >
+              <button
+                class="calc6-tab"
+                role="tab"
+                aria-selected="false"
+                id="c6-deep"
+                data-svc="deep">Deep Clean</button
+              >
+              <button
+                class="calc6-tab"
+                role="tab"
+                aria-selected="false"
+                id="c6-eol"
+                data-svc="eol">End of Lease</button
+              >
+              <button
+                class="calc6-tab"
+                role="tab"
+                aria-selected="false"
+                id="c6-mi"
+                data-svc="movein">Move In</button
+              >
+            </div>
+
+            <div class="calc6-body">
+              <div class="calc6-row">
+                <div class="calc6-group">
+                  <label class="calc6-lbl" id="c6-bed-lbl">Bedrooms</label>
+                  <div
+                    class="calc6-stepper"
+                    role="group"
+                    aria-labelledby="c6-bed-lbl"
+                  >
+                    <button
+                      class="calc6-sbtn"
+                      id="c6-bed-m"
+                      aria-label="Fewer bedrooms">−</button
+                    >
+                    <div class="calc6-sval" id="c6-bed-v" aria-live="polite">
+                      2
+                    </div>
+                    <button
+                      class="calc6-sbtn"
+                      id="c6-bed-p"
+                      aria-label="More bedrooms">+</button
+                    >
+                  </div>
+                </div>
+                <div class="calc6-group">
+                  <label class="calc6-lbl" id="c6-bath-lbl">Bathrooms</label>
+                  <div
+                    class="calc6-stepper"
+                    role="group"
+                    aria-labelledby="c6-bath-lbl"
+                  >
+                    <button
+                      class="calc6-sbtn"
+                      id="c6-bath-m"
+                      aria-label="Fewer bathrooms">−</button
+                    >
+                    <div class="calc6-sval" id="c6-bath-v" aria-live="polite">
+                      1
+                    </div>
+                    <button
+                      class="calc6-sbtn"
+                      id="c6-bath-p"
+                      aria-label="More bathrooms">+</button
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="calc6-group" style="margin-bottom:1.5rem;">
+                <label class="calc6-lbl">Frequency</label>
+                <div
+                  class="calc6-freq"
+                  id="c6-freq"
+                  role="group"
+                  aria-label="Cleaning frequency"
+                >
+                  <button class="calc6-fopt on" data-freq="once"
+                    >One-off<small>No discount</small></button
+                  >
+                  <button class="calc6-fopt" data-freq="weekly"
+                    >Weekly / Fortnightly<small>Save 10%</small></button
+                  >
+                  <button class="calc6-fopt" data-freq="monthly"
+                    >3 Weekly / Monthly<small>Save 5%</small></button
+                  >
+                </div>
+              </div>
+
+              <div
+                class="calc6-result"
+                aria-live="polite"
+                aria-label="Estimated price"
+              >
+                <div class="calc6-result-top">
+                  <div>
+                    <div class="calc6-price-lbl">Your estimated price</div>
+                    <div class="calc6-price" id="c6-price"><sup>$</sup>155</div>
+                    <div class="calc6-price-note">
+                      All taxes & equipment included
+                    </div>
+                  </div>
+                </div>
+
+                <div class="calc6-includes" id="c6-includes">
+                  <!-- JS generated checklist -->
+                </div>
+
+                <div class="calc6-book-row">
+                  <a
+                    href={withBase("pricing")}
+                    class="btn6-book"
+                    id="calc6-book-btn">Book Clean Now</a
+                  >
+                  <a href="tel:+61399990000" class="btn6-call"
+                    >Or call (03) 9999 0000</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ COVERAGE & LOCAL SEO ────────────────────── -->
+    <section id="cov6" class="pad" aria-labelledby="cov6-h2">
+      <div class="c6">
+        <div class="cov6-layout sg">
+          <div class="si" data-d="l">
+            <p class="eyebrow6">Local Service</p>
+            <h2 class="h6" id="cov6-h2" style="margin-bottom: 1.5rem;">
+              We clean, you enjoy<br /><span class="ac"
+                >your {suburb.name} home</span
+              >
+            </h2>
+            <p
+              class="lead6"
+              style="max-width: 100%; font-size: 1.05rem; line-height: 1.8; color: var(--grey-d); margin-bottom: 2rem;"
+            >
+              {suburb.seoParagraph}
+            </p>
+
+            <div
+              style="margin-top: 2.25rem; border-top: 1px solid var(--border-subtle); padding-top: 1.75rem;"
+            >
+              <h3
+                style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--navy); letter-spacing: 0.08em; margin-bottom: 1rem;"
+              >
+                Other Suburbs We Serve
+              </h3>
+              <div class="suburb-chips" role="list" aria-label="Suburbs served">
+                {
+                  Object.values(suburbsData).map((subEntry) => {
+                    const isActive = subEntry.slug === suburb.slug;
+                    return isActive ? (
+                      <span
+                        class="s-chip active"
+                        style="border-color: var(--blue); background: var(--blue-xl); font-weight: 800;"
+                        role="listitem"
+                      >
+                        {subEntry.name}
+                      </span>
+                    ) : (
+                      <a
+                        href={withBase(`areas/${subEntry.slug}`)}
+                        class="s-chip"
+                        style="text-decoration:none;"
+                        role="listitem"
+                      >
+                        {subEntry.name}
+                      </a>
+                    );
+                  })
+                }
+              </div>
+              <p
+                style="font-size:0.82rem; color:var(--grey); margin-top:1.5rem;"
+              >
+                Don't see your suburb? <a
+                  href="tel:+61399990000"
+                  style="color:var(--blue); font-weight:700; text-decoration:none;"
+                  >Call us</a
+                > — we likely cover it.
+              </p>
+            </div>
+          </div>
+          <div
+            class="si"
+            data-d="r"
+            style="display:flex; flex-direction:column; gap:1.5rem;"
+          >
+            <div class="cov6-img">
+              <img
+                src={withBase("images/melbourne_suburb_aerial.png")}
+                alt={`Aerial view of suburbs serviced around ${suburb.name}`}
+                loading="lazy"
+              />
+            </div>
+
+            <div class="cov6-badges">
+              <div class="cov6-badge-card">
+                <span class="cov6-badge-icon" aria-hidden="true">🛡️</span>
+                <div class="cov6-badge-text">
+                  <h4>Local Cleaners in {suburb.name}</h4>
+                  <p>
+                    100% background-checked, insured, and based in the
+                    inner-east.
+                  </p>
+                </div>
+              </div>
+
+              <div class="cov6-badge-card">
+                <span class="cov6-badge-icon" aria-hidden="true">✨</span>
+                <div class="cov6-badge-text">
+                  <h4>100% Satisfaction Guarantee</h4>
+                  <p>
+                    Eco-friendly products, reliable scheduling, and professional
+                    results.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FAQ ─────────────────────────────────────── -->
+    <section id="faq6" class="pad" aria-labelledby="faq6-h2">
+      <div class="c6">
+        <div class="faq6-layout">
+          <div class="sg">
+            <div class="si" data-d="l">
+              <p class="eyebrow6">FAQ</p>
+              <h2 class="h6" id="faq6-h2">
+                Questions<br /><span class="ac">answered</span>
+              </h2>
+            </div>
+            <p class="lead6 si" style="margin-bottom:1.75rem;">
+              If your question isn't here, just call — a real person picks up.
+            </p>
+            <div class="faq6-contact si">
+              <div class="faq6-contact-links">
+                <a href="https://wa.me/61399990000" class="faq6-contact-link" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" width="18" height="18" class="faq6-contact-icon whatsapp-icon" aria-hidden="true">
+                    <path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.76.46 3.473 1.33 4.982L2 22l5.204-1.365a9.948 9.948 0 004.808 1.229h.005c5.504 0 9.983-4.482 9.983-9.988C22.003 6.482 17.518 2 12.012 2z" fill="#25D366"/>
+                    <path d="M16.924 14.15c-.27-.136-1.593-.785-1.84-.875-.246-.09-.426-.136-.606.136-.18.27-.7.876-.856 1.056-.158.18-.316.204-.586.068a7.382 7.382 0 01-2.176-1.343c-.856-.763-1.434-1.705-1.602-1.977-.168-.27-.018-.417.117-.551.121-.122.27-.317.406-.475.135-.158.18-.27.27-.452.09-.18.045-.339-.022-.475-.068-.136-.607-1.462-.832-2.004-.22-.528-.44-.457-.606-.466-.156-.008-.337-.01-.517-.01a1.002 1.002 0 00-.72.339c-.247.27-.945.927-.945 2.261 0 1.333.97 2.624 1.105 2.805.135.18 1.9 2.901 4.604 4.07.643.278 1.145.443 1.536.568.647.206 1.235.176 1.7.107.518-.078 1.593-.65 1.819-1.278.225-.628.225-1.167.157-1.278-.067-.113-.247-.18-.517-.316z" fill="#FFF"/>
+                  </svg>
+                  <span>(03) 9999 0000</span>
+                </a>
+                <a href="mailto:hello@maidathome.com.au" class="faq6-contact-link">
+                  <svg viewBox="0 0 24 24" width="18" height="18" class="faq6-contact-icon email-icon" aria-hidden="true">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  </svg>
+                  <span>hello@maidathome.com.au</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="faq6-list sg" role="list">
+            {
+              dynamicFaqs.map((item, i) => (
+                <div class="faq6-item si" role="listitem">
+                  <button
+                    class="faq6-q"
+                    aria-expanded="false"
+                    id={`faq6-q-${i}`}
+                    aria-controls={`faq6-a-${i}`}
+                  >
+                    {item.question}
+                    <span class="faq6-ico" aria-hidden="true">
+                      +
+                    </span>
+                  </button>
+                  <div
+                    class="faq6-a"
+                    id={`faq6-a-${i}`}
+                    role="region"
+                    aria-labelledby={`faq6-q-${i}`}
+                  >
+                    {item.answer}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FINAL CTA ───────────────────────────────── -->
+    <section id="cta6" class="cta-sky" aria-labelledby="cta6-h2">
+      <div class="c6">
+        <div class="cta6-grid sg">
+          <div class="cta6-left">
+            <div class="si" data-d="l">
+              <p class="eyebrow6">Ready to start?</p>
+              <h2 class="h6" id="cta6-h2">
+                A cleaner {suburb.name} home<br /><span class="ac"
+                  >starts today.</span
+                >
+              </h2>
+            </div>
+            <p class="cta6-sub si">
+              Join 2,400 Melbourne households who've handed off the cleaning —
+              and never looked back.
+            </p>
+            <div class="cta6-actions si">
+              <a href="#calc6" class="btn6-primary" id="cta6-book">
+                Get an instant quote
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 13 13"
+                  fill="none"
+                  aria-hidden="true"
+                  ><path
+                    d="M2 6.5h9M7.5 2l4.5 4.5L7.5 11"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path></svg
+                >
+              </a>
+              <a href="tel:+61399990000" class="btn6-outline" id="cta6-call"
+                >Talk to us first</a
+              >
+            </div>
+            <div class="cta6-trust si">
+              <span class="cta6-trust-item">No lock-in contracts</span>
+              <span class="cta6-trust-item">Cancel anytime</span>
+              <span class="cta6-trust-item">Satisfaction guaranteed</span>
+            </div>
+          </div>
+          <div class="cta6-right">
+            <img
+              src={withBase("images/bright_clean_living_room.png")}
+              alt={`Bright, clean living room in a ${suburb.name} home serviced by Maid at Home`}
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FOOTER ──────────────────────────────────── -->
+    <footer id="ft6" aria-label="Site footer">
+      <div class="ft6-inner">
+        <div class="ft6-brand">
+          <div class="ft6-logo">Maid at Home</div>
+          <p>
+            Melbourne's trusted professional cleaning service. Trained, insured,
+            and committed to consistent quality since 2019.
+          </p>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Services</div>
+          <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+          <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+          <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+          <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+          <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+          <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Company</div>
+          <a href={withBase("about")}>About Us</a>
+          <a href={withBase("careers")}>Work with Us</a>
+          <a href={withBase("blog")}>Blog</a>
+          <a href={withBase("areas")}>Service Areas</a>
+          <a href="#rec6">Recurring Cleaning</a>
+          <a href={withBase("blog")}>Blog</a>
+          <a href="#calc6">Pricing Calculator</a>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Contact</div>
+          <a href="tel:+61399990000">(03) 9999 0000</a>
+          <a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a>
+          <a href="#calc6">Book Online</a>
+        </div>
+      </div>
+      <div class="ft6-bottom">
+        <span>© 2025 Maid at Home. All rights reserved.</span>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      /* ─ HEADER ───────────────────────────────────── */
+      const hd6 = document.getElementById("hd6");
+      const onScroll6 = () =>
+        hd6.classList.toggle("scrolled", window.scrollY > 20);
+      window.addEventListener("scroll", onScroll6, { passive: true });
+      onScroll6();
+
+            /* ─ MOBILE NAV / MENU ────────────────────────── */
+      const tog6 = document.getElementById("hd6Toggle");
+      const mob6 = document.getElementById("hd6-mob");
+      const cls6 = document.getElementById("hd6MobClose");
+      
+      if (tog6 && mob6) {
+        tog6.addEventListener("click", () => {
+          const isOpen = mob6.classList.toggle("open");
+          if (hd6) hd6.classList.toggle("menu-open", isOpen);
+          tog6.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+      }
+      
+      if (cls6 && mob6 && tog6) {
+        cls6.addEventListener("click", () => {
+          mob6.classList.remove("open");
+          if (hd6) hd6.classList.remove("menu-open");
+          tog6.setAttribute("aria-expanded", "false");
+        });
+      }
+      
+      if (mob6) {
+        mob6.querySelectorAll("a").forEach(a => {
+          a.addEventListener("click", () => {
+            mob6.classList.remove("open");
+            if (hd6) hd6.classList.remove("menu-open");
+            if (tog6) tog6.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      /* ─ MOBILE DROPDOWN ACCORDION ────────────────── */
+      if (mob6) {
+        mob6.querySelectorAll('.mob6-dropdown-toggle').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const targetId = btn.getAttribute('data-target');
+            const submenu = document.getElementById(targetId);
+            if (submenu) {
+              const isCollapsed = submenu.classList.contains('collapsed');
+              if (isCollapsed) {
+                submenu.classList.remove('collapsed');
+                btn.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+              } else {
+                submenu.classList.add('collapsed');
+                btn.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+              }
+            }
+          });
+        });
+      }
+
+      /* ─ STAGGER OBSERVER ─────────────────────────── */
+      const sObs6 = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const items = Array.from(
+              entry.target.querySelectorAll(".si"),
+            ).filter((el) => !el.classList.contains("in"));
+            items.forEach((item, i) =>
+              setTimeout(() => item.classList.add("in"), i * 110),
+            );
+            sObs6.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.05, rootMargin: "0px 0px -20px 0px" },
+      );
+      document.querySelectorAll(".sg").forEach((g) => sObs6.observe(g));
+
+      /* ─ FAQ ──────────────────────────────────────── */
+      document.querySelectorAll(".faq6-item").forEach((item) => {
+        item.querySelector(".faq6-q").addEventListener("click", () => {
+          const open = item.classList.contains("open");
+          document.querySelectorAll(".faq6-item.open").forEach((o) => {
+            o.classList.remove("open");
+            o.querySelector(".faq6-q").setAttribute("aria-expanded", "false");
+          });
+          if (!open) {
+            item.classList.add("open");
+            item.querySelector(".faq6-q").setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+
+      /* ─ CALCULATOR ───────────────────────────────── */
+      const BASE = { standard: 120, deep: 175, eol: 260, movein: 160 };
+      const BED = { standard: 35, deep: 50, eol: 65, movein: 40 };
+      const BATH = { standard: 25, deep: 35, eol: 50, movein: 30 };
+      const DISC = { once: 1, weekly: 0.9, monthly: 0.95 };
+      const INCL = {
+        standard: [
+          "All bedrooms",
+          "Living areas",
+          "Kitchen surfaces",
+          "Bathrooms",
+          "Vacuum & mop",
+          "Dusting",
+        ],
+        deep: [
+          "Everything in Standard",
+          "Oven interior",
+          "Fridge interior",
+          "Grout lines",
+          "Skirting boards",
+          "Windows (interior)",
+        ],
+        eol: [
+          "Full REIV checklist",
+          "Oven, range & cupboards",
+          "Bathrooms, tiles & grout",
+          "Floors & skirting boards",
+          "Windows & blinds",
+          "72h re-clean guarantee",
+        ],
+        movein: [
+          "Full REIV checklist",
+          "Oven, range & cupboards",
+          "Bathrooms, tiles & grout",
+          "Floors & skirting boards",
+          "Windows & blinds",
+          "72h re-clean guarantee",
+        ],
+      };
+      let C6 = { svc: "standard", beds: 2, baths: 1, freq: "once" };
+
+      function renderCalc6() {
+        const raw =
+          BASE[C6.svc] +
+          (C6.beds - 1) * BED[C6.svc] +
+          (C6.baths - 1) * BATH[C6.svc];
+        const price = Math.round(raw * DISC[C6.freq]);
+        document.getElementById("c6-price").innerHTML = `<sup>$</sup>${price}`;
+        const el = document.getElementById("c6-includes");
+        el.innerHTML = INCL[C6.svc]
+          .map((i) => `<div class="calc6-incl-item">${i}</div>`)
+          .join("");
+      }
+
+      // Tabs
+      document.querySelectorAll(".calc6-tab").forEach((t) => {
+        t.addEventListener("click", () => {
+          document.querySelectorAll(".calc6-tab").forEach((x) => {
+            x.classList.remove("on");
+            x.setAttribute("aria-selected", "false");
+          });
+          t.classList.add("on");
+          t.setAttribute("aria-selected", "true");
+          C6.svc = t.dataset.svc;
+          renderCalc6();
+        });
+      });
+
+      // Steppers
+      // beds steppers
+      document.getElementById("c6-bed-m").onclick = () => {
+        if (C6.beds > 1) {
+          C6.beds--;
+          document.getElementById("c6-bed-v").textContent = C6.beds;
+          renderCalc6();
+        }
+      };
+      document.getElementById("c6-bed-p").onclick = () => {
+        if (C6.beds < 6) {
+          C6.beds++;
+          document.getElementById("c6-bed-v").textContent = C6.beds;
+          renderCalc6();
+        }
+      };
+      // baths steppers
+      document.getElementById("c6-bath-m").onclick = () => {
+        if (C6.baths > 1) {
+          C6.baths--;
+          document.getElementById("c6-bath-v").textContent = C6.baths;
+          renderCalc6();
+        }
+      };
+      document.getElementById("c6-bath-p").onclick = () => {
+        if (C6.baths < 4) {
+          C6.baths++;
+          document.getElementById("c6-bath-v").textContent = C6.baths;
+          renderCalc6();
+        }
+      };
+
+      // Frequency
+      document.querySelectorAll("[data-freq]").forEach((b) => {
+        b.addEventListener("click", () => {
+          document
+            .querySelectorAll("[data-freq]")
+            .forEach((x) => x.classList.remove("on"));
+          b.classList.add("on");
+          C6.freq = b.dataset.freq;
+          renderCalc6();
+        });
+      });
+
+      renderCalc6();
+    </script>
+  </body>
+</html>

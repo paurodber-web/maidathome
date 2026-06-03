@@ -1,0 +1,1737 @@
+---
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => {
+  const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  const p = path.startsWith("/") ? path.slice(1) : path;
+  return p ? `${base}${p}` : base;
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professional Carpet Steam Cleaning Melbourne — Maid at Home</title>
+    <meta name="description" content="Professional carpet steam and dry cleaning services in Melbourne. High-power hot water extraction removes deep dirt, stains, allergens & dust mites. Book online." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      /* ─── TOKENS ──────────────────────────────── */
+      :root {
+        --navy:    #0a1d33;
+        --blue-d:  #142d4c;
+        --blue:    #1d6fa8;
+        --blue-l:  #5aaee0;
+        --blue-xl: #e8f4fd;
+        --sky:     #f0f7fd;
+        --yellow:  #f6c133;
+        --yellow-d:#e0ab1d;
+        --yellow-l:#fffbe6;
+        --green:   #16a34a;
+        --green-l: #e8f7ee;
+        --grey:    #5e6a75;
+        --grey-d:  --grey-d;
+        --grey-d:  #2d3748;
+        --grey-l:  #e2e8f0;
+        --white:   #ffffff;
+
+        --border-subtle: rgba(29, 111, 168, 0.08);
+        --border-hover:  rgba(29, 111, 168, 0.18);
+        --shadow-sm:     0 2px 8px rgba(10, 29, 51, 0.02);
+        --shadow-md:     0 8px 30px rgba(10, 29, 51, 0.04);
+        --shadow-lg:     0 16px 48px rgba(10, 29, 51, 0.06);
+        --shadow-premium:0 24px 60px rgba(10, 29, 51, 0.08);
+
+        --font:  "Plus Jakarta Sans", system-ui, sans-serif;
+        --r-s:   8px;
+        --r:     12px;
+        --r-l:   20px;
+        --r-xl:  28px;
+        --ease:  cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 120px;
+      }
+      body {
+        font-family: var(--font);
+        color: var(--grey-d);
+        background: var(--white);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.6;
+      }
+      img { display: block; max-width: 100%; }
+
+      /* ─── KEYFRAMES ───────────────────────────── */
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: none; }
+      }
+
+      /* ─── STAGGER SYSTEM ──────────────────────── */
+      .si {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+      }
+      .si[data-d="l"] { transform: translateX(-24px); }
+      .si[data-d="r"] { transform: translateX(24px); }
+      .si.in { opacity: 1; transform: none; }
+
+      /* ─── LAYOUT ──────────────────────────────── */
+      .c6     { max-width: 1180px; margin: 0 auto; padding: 0 2.5rem; }
+      .pad    { padding: 6.5rem 0; }
+      .pad-sm { padding: 4.5rem 0; }
+      #service-nav + #what { padding-top: 8rem; }
+
+      /* ─── SHARED TYPOGRAPHY ───────────────────── */
+      .eyebrow6 {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        font-size: 0.72rem; font-weight: 800;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        color: var(--blue); margin-bottom: 0.85rem;
+      }
+      .eyebrow6::before {
+        content: ""; width: 16px; height: 2.5px;
+        background: var(--yellow); border-radius: 2px; flex-shrink: 0;
+      }
+      h2.h6 {
+        font-size: clamp(2rem, 3.4vw, 2.85rem);
+        font-weight: 800; letter-spacing: -0.03em;
+        color: var(--navy); line-height: 1.15;
+      }
+      h2.h6 .ac { color: var(--blue); }
+      .lead6 {
+        font-size: 1.05rem; color: var(--grey);
+        line-height: 1.75; max-width: 520px;
+        margin-top: 0.75rem;
+      }
+
+      /* ─── BUTTONS ─────────────────────────────── */
+      .btn6-primary {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        background: var(--yellow); color: var(--navy);
+        font-weight: 700; font-size: 0.95rem;
+        padding: 0.95rem 2rem; border-radius: 100px;
+        text-decoration: none; border: none; cursor: pointer;
+        font-family: var(--font); white-space: nowrap;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(246, 193, 51, 0.2);
+      }
+      .btn6-primary:hover { background: var(--yellow-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(246, 193, 51, 0.4); }
+      .btn6-outline {
+        display: inline-flex; align-items: center; gap: 0.45rem;
+        color: var(--navy); font-weight: 600; font-size: 0.9rem;
+        padding: 0.9rem 1.75rem; border-radius: 100px;
+        border: 1px solid var(--grey-l); background: transparent;
+        text-decoration: none; cursor: pointer; font-family: var(--font); white-space: nowrap;
+        transition: border-color 0.25s, background 0.25s, color 0.25s;
+      }
+      .btn6-outline:hover { border-color: var(--navy); background: var(--sky); }
+
+      .btn6-outline-dark {
+        display: inline-flex; align-items: center; gap: 0.4rem;
+        background: transparent; color: var(--blue); font-weight: 600; font-size: 0.9rem;
+        padding: 0.85rem 1.5rem; border-radius: 100px; border: 1.5px solid var(--grey-l);
+        text-decoration: none; cursor: pointer; transition: color 0.25s, border-color 0.25s, background 0.25s;
+        white-space: nowrap; font-family: var(--font);
+      }
+      .btn6-outline-dark:hover { color: var(--navy); border-color: var(--blue); background: var(--sky); }
+
+      /* ─── HEADER ──────────────────────────────── */
+      #hd6 {
+        position: fixed; inset: 0 0 auto; z-index: 200;
+        height: 72px; display: flex; align-items: center; justify-content: space-between;
+        padding: 0 4vw;
+        transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease), height 0.3s var(--ease);
+      }
+      #hd6.scrolled {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 4px 30px rgba(10, 29, 51, 0.03);
+        height: 64px; border-bottom: 1px solid rgba(10, 29, 51, 0.04);
+      }
+      .hd6-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+      .hd6-mark {
+        width: 38px; height: 38px; border-radius: 12px; background: var(--blue);
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0; transition: background 0.3s;
+      }
+      #hd6.scrolled .hd6-mark { background: var(--navy); }
+      .hd6-name { font-size: 1.15rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; }
+      .hd6-nav { display: flex; align-items: center; gap: 0.25rem; }
+      .hd6-nav a {
+        font-size: 0.9rem; font-weight: 500; color: var(--grey-d);
+        text-decoration: none; padding: 0.5rem 1rem;
+        border-radius: 8px; transition: color 0.2s, background 0.2s;
+      }
+      .hd6-nav a:hover, .hd6-nav a.active { color: var(--blue); background: var(--sky); }
+      .hd6-cta {
+        display: inline-flex; align-items: center; gap: 0.45rem;
+        background: var(--yellow); color: var(--navy);
+        font-weight: 700; font-size: 0.9rem; padding: 0.55rem 1.35rem; border-radius: 100px;
+        text-decoration: none; margin-left: 0.75rem;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s; white-space: nowrap;
+      }
+      .hd6-cta:hover { background: var(--yellow-d); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(246,193,51,.35); }
+      .hd6-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; z-index: 201; }
+      .hd6-toggle span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: transform 0.3s var(--ease), opacity 0.3s var(--ease); }
+      
+      #hd6.menu-open { background: var(--white) !important; box-shadow: none !important; border-bottom: 1px solid rgba(10, 29, 51, 0.04) !important; }
+      #hd6.menu-open .hd6-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      #hd6.menu-open .hd6-toggle span:nth-child(2) { opacity: 0; }
+      #hd6.menu-open .hd6-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      #hd6-mob {
+        display: none; position: fixed; inset: 0; z-index: 199;
+        background: var(--white); flex-direction: column; padding: 6rem 2rem 2rem; gap: 0.5rem;
+      ; overflow-y: auto;}
+      /* Mobile Dropdown Accordion Styling */
+      .mob6-dropdown-item {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-dropdown-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+      #hd6-mob a, .mob6-dropdown-label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--navy);
+        text-decoration: none;
+        padding: 0.95rem 0;
+        flex: 1;
+      }
+      .mob6-dropdown-label {
+        cursor: default;
+        user-select: none;
+      }
+      .mob6-dropdown-toggle {
+        background: none;
+        border: none;
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--navy);
+        transition: transform 0.25s var(--ease);
+      }
+      .mob6-dropdown-toggle.open {
+        transform: rotate(180deg);
+        color: var(--blue);
+      }
+      .mob6-dropdown-item .mob6-sub-menu {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1.25rem;
+        border-left: 2px solid var(--border-subtle);
+        margin: 0.25rem 0 0.75rem;
+        gap: 0.35rem;
+        max-height: 500px;
+        opacity: 1;
+        overflow: hidden;
+        transition: max-height 0.35s var(--ease), opacity 0.35s var(--ease), margin 0.35s var(--ease);
+      }
+      .mob6-dropdown-item .mob6-sub-menu.collapsed {
+        max-height: 0;
+        opacity: 0;
+        margin: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .mob6-sub-menu a {
+        font-size: 0.95rem !important;
+        color: var(--grey) !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: none !important;
+      }
+      .mob6-sub-menu a:hover {
+        color: var(--blue) !important;
+      }
+      .mob6-dropdown-item {
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-dropdown-item a, .mob6-dropdown-item .mob6-dropdown-label {
+        border-bottom: none !important;
+      }
+
+      #hd6-mob.open { display: flex; }
+      #hd6-mob a { font-size: 1.2rem; font-weight: 600; color: var(--navy); text-decoration: none; padding: 0.95rem 0; border-bottom: 1px solid var(--grey-l); }
+      .mob6-cta { background: var(--yellow); color: var(--navy); text-align: center; border-radius: var(--r); padding: 1.1rem; margin-top: 1rem; font-size: 1rem; font-weight: 700; text-decoration: none; display: block; }
+
+      /* ─── PAGE HERO ───────────────────────────── */
+      #std-hero { background: var(--sky); padding-top: 72px; position: relative; overflow: hidden; }
+      .std-hero-sun {
+        position: absolute; top: -120px; right: -100px;
+        width: 560px; height: 560px; border-radius: 50%;
+        background: radial-gradient(ellipse at center, rgba(246, 193, 51, 0.14) 0%, rgba(246, 193, 51, 0.03) 60%, transparent 80%);
+        pointer-events: none;
+      }
+      .std-hero-body {
+        max-width: 1180px; margin: 0 auto; padding: 4rem 2.5rem 5rem;
+        display: grid; grid-template-columns: 1.1fr 0.9fr;
+        gap: 5rem; align-items: center; position: relative; z-index: 2;
+      }
+      .ph-breadcrumb {
+        display: flex; align-items: center; gap: 0.5rem;
+        font-size: 0.78rem; font-weight: 500; color: var(--grey);
+        margin-bottom: 1.5rem; animation: fadeUp 0.5s var(--ease) 0s both;
+      }
+      .ph-breadcrumb a {
+        color: var(--grey);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .ph-breadcrumb a:hover {
+        color: var(--blue);
+      }
+      .ph-breadcrumb .sep {
+        color: var(--grey);
+        display: inline-block;
+      }
+
+      .std-hero-pill {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        font-size: 0.75rem; font-weight: 700; color: var(--blue); letter-spacing: 0.05em;
+        margin-bottom: 1.75rem; width: fit-content;
+        background: var(--white); padding: 0.4rem 0.9rem; border-radius: 100px;
+        box-shadow: var(--shadow-sm); animation: fadeUp 0.5s var(--ease) 0s both;
+      }
+      .std-hero-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+      
+      .std-hero-h1 {
+        font-size: clamp(2.8rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.04em;
+        line-height: 1.08; color: var(--navy); margin-bottom: 1.5rem;
+        animation: fadeUp 0.65s var(--ease) 0.1s both;
+      }
+      .std-hero-h1 .ac { color: var(--blue); }
+      .std-hero-sub {
+        font-size: 1.1rem; color: var(--grey); line-height: 1.75; max-width: 500px;
+        margin-bottom: 2.25rem; animation: fadeUp 0.65s var(--ease) 0.25s both;
+      }
+      .std-hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; animation: fadeUp 0.65s var(--ease) 0.4s both; }
+      .std-hero-stats { display: flex; gap: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle); animation: fadeUp 0.65s var(--ease) 0.5s both; }
+      .std-stat-val { font-size: 1.6rem; font-weight: 800; color: var(--navy); letter-spacing: -0.03em; line-height: 1; }
+      .std-stat-lbl { font-size: 0.75rem; color: var(--grey); margin-top: 0.25rem; }
+      .std-stat-div { width: 1px; background: var(--border-subtle); align-self: stretch; }
+
+      /* Floating Booking Summary Card */
+      .std-hero-right { display: flex; flex-direction: column; animation: fadeUp 0.8s var(--ease) 0.2s both; }
+      .book-card {
+        background: var(--white);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r-xl);
+        padding: 2.25rem;
+        box-shadow: var(--shadow-lg);
+        width: 100%;
+      }
+      .book-card-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); margin-bottom: 1.25rem; }
+      .book-price-from { font-size: 0.8rem; color: var(--grey); font-weight: 600; }
+      .book-price-row { display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: 0.25rem; }
+      .book-price { font-size: 2.5rem; font-weight: 800; color: var(--navy); letter-spacing: -0.05em; line-height: 1; }
+      .book-price sup { font-size: 1.1rem; font-weight: 600; vertical-align: top; margin-top: 0.35rem; display: inline-block; }
+      .book-price-note { font-size: 0.82rem; color: var(--grey); margin-bottom: 1.5rem; line-height: 1.5; }
+      .book-divider { height: 1px; background: var(--border-subtle); margin: 1.5rem 0; }
+      .book-includes { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.75rem; }
+      .book-inc { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; color: var(--grey-d); line-height: 1.5; }
+      .book-inc::before { content: '✓'; color: var(--green); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
+      .book-cta { display: block; text-align: center; background: var(--yellow); color: var(--navy); font-weight: 700; font-size: 0.95rem; padding: 0.95rem; border-radius: 100px; text-decoration: none; transition: background 0.25s, transform 0.2s, box-shadow 0.25s; margin-bottom: 0.85rem; box-shadow: 0 4px 14px rgba(246,193,51,0.25); }
+      .book-cta:hover { background: var(--yellow-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(246,193,51,0.4); }
+      .book-cta-sub { text-align: center; font-size: 0.76rem; color: var(--grey); }
+
+      /* ─── WHAT IS SECTION ──────────────────────── */
+      #what { background: var(--white); }
+      .what-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+      .what-visual { position: relative; }
+      .what-vis-main {
+        background: var(--navy);
+        border-radius: var(--r-xl);
+        padding: 2.5rem;
+        position: relative; overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+      .what-vis-main::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 80% 20%, rgba(29, 111, 168, 0.25) 0%, transparent 70%); pointer-events: none; }
+      .what-vis-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; border-radius: var(--r-xl); }
+      .what-vis-content { position: relative; z-index: 1; }
+      .what-vis-tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.5rem; }
+      .what-vis-rooms { display: flex; flex-direction: column; gap: 0.65rem; }
+      .wvr { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; border-radius: var(--r); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); transition: background 0.2s; }
+      .wvr:hover { background: rgba(255,255,255,0.08); }
+      .wvr-left { display: flex; align-items: center; gap: 0.75rem; }
+      .wvr-icon { font-size: 1.1rem; }
+      .wvr-name { font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.8); }
+      .wvr-status { display: flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; font-weight: 700; }
+      .wvr-done { color: var(--green); }
+      .wvr-pending { color: rgba(255,255,255,0.25); }
+      .what-vis-footer { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; }
+      .what-vis-footer-label { font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+      .what-vis-footer-val { font-size: 0.9rem; font-weight: 700; color: var(--yellow); }
+
+      /* Floating Badges */
+      .what-float-badge {
+        position: absolute;
+        background: var(--white);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r-l);
+        padding: 0.8rem 1.25rem;
+        box-shadow: var(--shadow-md);
+        display: flex; align-items: center; gap: 0.75rem;
+      }
+      .what-float-badge.badge-tl { top: -1.5rem; left: -1.5rem; }
+      .what-float-badge.badge-br { bottom: -1.5rem; right: -1.5rem; }
+      .wfb-icon { font-size: 1.25rem; flex-shrink: 0; }
+      .wfb-text { font-size: 0.85rem; font-weight: 800; color: var(--navy); white-space: nowrap; }
+      .wfb-sub { font-size: 0.72rem; color: var(--grey); margin-top: 0.1rem; }
+
+      .what-copy h2.h6 { margin-bottom: 1.5rem; }
+      .what-copy p { font-size: 0.98rem; color: var(--grey); line-height: 1.8; margin-bottom: 1.25rem; }
+      .what-copy p:last-of-type { margin-bottom: 2rem; }
+
+      /* ─── INCLUDES SECTION ─────────────────────── */
+      #includes { background: var(--sky); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+      .includes-top { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 3.5rem; }
+      
+      .checklist-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+        background: var(--border-subtle); border: 1px solid var(--border-subtle);
+        border-radius: var(--r-xl); overflow: hidden;
+        box-shadow: var(--shadow-sm);
+      }
+      .cl-room { background: var(--white); padding: 2rem; transition: background 0.25s; }
+      .cl-room:hover { background: var(--blue-xl); }
+      .cl-room-head { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.25rem; }
+      .cl-room-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--sky); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; border: 1px solid var(--border-subtle); transition: background 0.2s; }
+      .cl-room:hover .cl-room-icon { background: var(--white); }
+      .cl-room-name { font-size: 1.05rem; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
+      .cl-items { display: flex; flex-direction: column; gap: 0.55rem; }
+      .cl-item { display: flex; align-items: flex-start; gap: 0.55rem; font-size: 0.86rem; color: var(--grey-d); line-height: 1.5; }
+      .cl-item::before { content: '✓'; color: var(--blue); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
+
+      .cl-note {
+        margin-top: 2.25rem;
+        background: var(--white); border: 1px solid var(--border-subtle);
+        border-radius: var(--r-l); padding: 1.35rem 1.6rem;
+        display: flex; align-items: flex-start; gap: 0.85rem;
+        box-shadow: var(--shadow-sm);
+      }
+      .cl-note p { font-size: 0.86rem; color: var(--grey-d); line-height: 1.6; }
+      .cl-note strong { color: var(--navy); }
+
+      /* ─── HOW IT WORKS SECTION ────────────────── */
+      #how { background: var(--navy); position: relative; overflow: hidden; color: var(--white); }
+      #how::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 70% at 90% 10%, rgba(29,111,168,0.18) 0%, transparent 60%); pointer-events: none; }
+      #how .eyebrow6 { color: var(--blue-l); }
+      #how h2.h6 { color: var(--white); }
+      #how .lead6 { color: rgba(255,255,255,0.65); }
+      
+      .how-layout { display: grid; grid-template-columns: 5fr 7fr; gap: 5rem; align-items: start; margin-top: 4rem; position: relative; z-index: 1; }
+      .how-steps { display: flex; flex-direction: column; }
+      .how-step { display: flex; gap: 1.5rem; padding: 1.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .how-step:last-child { border-bottom: none; }
+      .step-num-wrap { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+      .step-num-wrap.active { background: var(--yellow); }
+      .step-num-wrap.pending { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.1); }
+      .step-num { font-size: 0.9rem; font-weight: 800; }
+      .step-num-wrap.active .step-num { color: var(--navy); }
+      .step-num-wrap.pending .step-num { color: rgba(255,255,255,0.3); }
+      .step-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 0.35rem; padding-top: 0.5rem; letter-spacing: -0.01em; }
+      .step-body p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+      .how-right { display: flex; flex-direction: column; gap: 1.25rem; }
+      .expect-card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: var(--r-xl);
+        padding: 1.6rem;
+        display: flex; gap: 1.1rem;
+        align-items: flex-start;
+        transition: background 0.25s, border-color 0.25s;
+      }
+      .expect-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); }
+      .expect-icon { font-size: 1.35rem; flex-shrink: 0; margin-top: 2px; }
+      .expect-body h4 { font-size: 0.98rem; font-weight: 700; color: var(--white); margin-bottom: 0.35rem; letter-spacing: -0.01em; }
+      .expect-body p { font-size: 0.84rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+      /* ─── WHEN TO BOOK SECTION ────────────────── */
+      #ideal { background: var(--white); }
+      .ideal-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
+      .ideal-scenarios { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+      .ideal-scenario {
+        display: flex; gap: 1.25rem;
+        padding: 1.75rem;
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r-xl);
+        background: var(--white);
+        transition: border-color 0.25s, background 0.25s, transform 0.25s, box-shadow 0.25s;
+        cursor: default;
+        box-shadow: var(--shadow-sm);
+      }
+      .ideal-scenario:hover { border-color: var(--border-hover); background: var(--sky); transform: translateX(4px); box-shadow: var(--shadow-md); }
+      .is-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--sky); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; border: 1px solid var(--border-subtle); transition: background 0.25s; }
+      .ideal-scenario:hover .is-icon { background: var(--white); }
+      .is-body h4 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.35rem; letter-spacing: -0.01em; }
+      .is-body p { font-size: 0.88rem; color: var(--grey); line-height: 1.65; }
+
+      .ideal-right { display: flex; flex-direction: column; gap: 1.75rem; }
+      .not-ideal-box {
+        background: var(--sky); border: 1px solid var(--border-subtle);
+        border-radius: var(--r-xl); padding: 2rem;
+        box-shadow: var(--shadow-sm);
+      }
+      .not-ideal-box h3 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.45rem; letter-spacing: -0.01em; }
+      .not-ideal-box > p { font-size: 0.88rem; color: var(--grey); line-height: 1.65; margin-bottom: 1.5rem; }
+      .not-ideal-items { display: flex; flex-direction: column; gap: 0.65rem; }
+      .ni-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.85rem; color: var(--grey-d); line-height: 1.5; }
+      .ni-item::before { content: '→'; color: var(--blue); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
+
+      .service-nudge {
+        background: var(--navy); border-radius: var(--r-xl); padding: 2rem;
+        position: relative; overflow: hidden;
+        box-shadow: var(--shadow-md);
+      }
+      .service-nudge::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 80% at 100% 100%, rgba(29, 111, 168, 0.2) 0%, transparent 70%); pointer-events: none; }
+      .service-nudge h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; position: relative; z-index: 1; letter-spacing: -0.01em; }
+      .service-nudge p { font-size: 0.86rem; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+      .nudge-links { display: flex; flex-direction: column; gap: 0.65rem; position: relative; z-index: 1; }
+      .nudge-link {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0.85rem 1.15rem;
+        background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+        border-radius: var(--r); text-decoration: none;
+        transition: background 0.2s, border-color 0.2s;
+      }
+      .nudge-link:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
+      .nl-name { font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.85); }
+      .nl-arrow { color: rgba(255,255,255,0.3); font-size: 0.95rem; transition: transform 0.2s; }
+      .nudge-link:hover .nl-arrow { transform: translateX(3px); color: var(--white); }
+
+      /* ─── PRICING SECTION ─────────────────────── */
+      #pricing { background: var(--sky); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+      .pricing-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
+      .pricing-copy h2.h6 { margin-bottom: 1.25rem; }
+      .freq-perks { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 2.25rem; margin-top: 1.75rem; }
+      .freq-perk { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--grey-d); line-height: 1.6; }
+      .freq-perk::before { content: '✓'; color: var(--blue); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; width: 18px; height: 18px; background: var(--white); border: 1px solid var(--border-subtle); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-top: 2px; }
+      
+      .pricing-panel { display: flex; flex-direction: column; gap: 1.25rem; }
+      .pricing-model-tabs { display: flex; gap: 0; background: var(--grey-l); border: 1px solid var(--border-subtle); border-radius: var(--r); padding: 4px; }
+      .pmt-tab { flex: 1; text-align: center; padding: 0.7rem; font-size: 0.88rem; font-weight: 700; color: var(--grey); border-radius: 8px; cursor: pointer; transition: all 0.25s var(--ease); border: none; background: none; font-family: var(--font); }
+      .pmt-tab.on { background: var(--white); color: var(--navy); box-shadow: var(--shadow-sm); }
+
+      #flat-panel .bed-rows { display: flex; flex-direction: column; gap: 0.65rem; }
+      .bed-row {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 1.1rem 1.5rem;
+        background: var(--white); border: 1px solid var(--border-subtle);
+        border-radius: var(--r-l);
+        box-shadow: var(--shadow-sm);
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .bed-row:hover { border-color: var(--border-hover); background: var(--sky); }
+      .bed-row.featured { background: var(--navy); border-color: var(--navy); }
+      .bed-row.featured:hover { background: var(--blue-d); }
+      .bed-info { display: flex; flex-direction: column; }
+      .bed-label { font-size: 0.95rem; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
+      .bed-row.featured .bed-label { color: var(--white); }
+      .bed-sublabel { font-size: 0.76rem; color: var(--grey); margin-top: 0.15rem; }
+      .bed-row.featured .bed-sublabel { color: rgba(255,255,255,0.4); }
+      .bed-price { font-size: 1.35rem; font-weight: 800; color: var(--blue); letter-spacing: -0.03em; }
+      .bed-row.featured .bed-price { color: var(--yellow); }
+      .bed-pop { font-size: 0.68rem; font-weight: 800; background: var(--yellow); color: var(--navy); padding: 0.25rem 0.65rem; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+      .freq-disc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; margin-top: 0.5rem; }
+      .fd-card {
+        padding: 1.1rem; border-radius: var(--r-l);
+        border: 1px solid var(--border-subtle); background: var(--white);
+        box-shadow: var(--shadow-sm);
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .fd-card:hover { border-color: var(--border-hover); background: var(--sky); }
+      .fd-card.fd-featured { background: linear-gradient(135deg, var(--blue-d), var(--navy)); border-color: var(--navy); }
+      .fd-name { font-size: 0.9rem; font-weight: 700; color: var(--navy); }
+      .fd-card.fd-featured .fd-name { color: var(--white); }
+      .fd-cadence { font-size: 0.75rem; color: var(--grey); margin-bottom: 0.5rem; }
+      .fd-card.fd-featured .fd-cadence { color: rgba(255,255,255,0.45); }
+      .fd-disc { font-size: 1.15rem; font-weight: 800; color: var(--green); letter-spacing: -0.02em; }
+      .fd-card.fd-featured .fd-disc { color: var(--yellow); }
+
+      #hourly-panel .hr-main { background: var(--white); border: 1px solid var(--border-subtle); border-radius: var(--r-l); padding: 1.5rem; display: flex; align-items: center; justify-content: space-between; box-shadow: var(--shadow-sm); }
+      .hr-rate-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); margin-bottom: 0.35rem; }
+      .hr-rate-val { font-size: 2.15rem; font-weight: 800; color: var(--navy); letter-spacing: -0.04em; line-height: 1; }
+      .hr-rate-val sup { font-size: 0.95rem; font-weight: 600; vertical-align: top; margin-top: 0.15rem; display: inline-block; }
+      .hr-rate-val span { font-size: 0.9rem; font-weight: 500; color: var(--grey); }
+      .hr-min-badge { background: var(--blue-xl); border: 1px solid var(--border-subtle); border-radius: var(--r); padding: 0.45rem 0.85rem; font-size: 0.78rem; font-weight: 700; color: var(--blue); }
+      
+      .panel { display: none; }
+      .panel.active { display: block; }
+
+      /* ─── TESTIMONIALS SECTION ────────────────── */
+      #reviews { background: var(--white); }
+      .reviews-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1rem; }
+      .g-badge { display: flex; align-items: center; gap: 0.5rem; background: var(--sky); border: 1px solid var(--border-subtle); border-radius: 100px; padding: 0.45rem 1.15rem; font-size: 0.82rem; color: var(--navy); font-weight: 700; box-shadow: var(--shadow-sm); }
+      .g-logo { font-weight: 800; font-size: 0.9rem; background: linear-gradient(180deg,#4285F4 0%,#34A853 33%,#FBBC05 66%,#EA4335 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+      
+      .t-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+      .t-card { background: var(--sky); border: 1px solid var(--border-subtle); border-radius: var(--r-xl); padding: 2rem; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s; box-shadow: var(--shadow-sm); }
+      .t-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+      .t-stars { color: var(--yellow); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 0.85rem; }
+      .t-text { font-size: 0.92rem; line-height: 1.7; color: var(--grey-d); margin-bottom: 1.5rem; font-style: italic; }
+      .t-author { display: flex; align-items: center; gap: 0.75rem; border-top: 1px solid var(--border-subtle); padding-top: 1.25rem; }
+      .t-avatar { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: var(--white); flex-shrink: 0; }
+      .t-name { font-size: 0.9rem; font-weight: 700; color: var(--navy); }
+      .t-meta { font-size: 0.75rem; color: var(--grey); margin-top: 0.1rem; }
+      .t-verified { display: flex; align-items: center; gap: 0.25rem; font-size: 0.72rem; color: var(--green); font-weight: 700; margin-top: 0.15rem; }
+
+      /* ─── FAQ SECTION ─────────────────────────── */
+      #faq { background: var(--sky); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+      .faq-layout { display: grid; grid-template-columns: 4fr 8fr; gap: 5rem; align-items: start; }
+      .faq-contact { margin-top: 2.25rem; background: var(--white); border: 1px solid var(--border-subtle); border-radius: var(--r-l); padding: 1.5rem; box-shadow: var(--shadow-sm); }
+      .faq-contact p { font-size: 0.88rem; color: var(--grey); line-height: 1.65; margin: 0; }
+      .faq-contact a { color: var(--blue); font-weight: 700; text-decoration: none; }
+      .faq-list { border-top: 1px solid var(--border-subtle); }
+      .faq-item { border-bottom: 1px solid var(--border-subtle); }
+      .faq-q { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.35rem 0; cursor: pointer; background: none; border: none; width: 100%; font-family: var(--font); font-size: 0.95rem; font-weight: 700; color: var(--navy); text-align: left; transition: color 0.2s; }
+      .faq-q:hover { color: var(--blue); }
+      .faq-q-icon { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; border: 1px solid var(--grey-l); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--grey); font-weight: 400; transition: all 0.3s var(--ease); line-height: 1; }
+      .faq-item.open .faq-q-icon { background: var(--yellow); border-color: var(--yellow); color: var(--navy); transform: rotate(45deg); }
+      .faq-a { font-size: 0.9rem; color: var(--grey); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease), padding 0.3s; }
+      .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.35rem; }
+
+      /* ─── OTHER SERVICES SECTION ──────────────── */
+      #other-services { background: var(--white); }
+      .other-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+      .other-card {
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r-xl);
+        padding: 2rem;
+        text-decoration: none;
+        background: var(--white);
+        box-shadow: var(--shadow-sm);
+        transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s, background 0.25s;
+        display: flex; flex-direction: column;
+      }
+      .other-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-md); transform: translateY(-3px); background: var(--sky); }
+      .other-card-icon { width: 46px; height: 46px; border-radius: 11px; background: var(--sky); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 1.25rem; border: 1px solid var(--border-subtle); transition: background 0.25s, transform 0.25s; }
+      .other-card:hover .other-card-icon { background: var(--white); transform: scale(1.06); }
+      .other-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.45rem; letter-spacing: -0.01em; }
+      .other-card p { font-size: 0.86rem; color: var(--grey); line-height: 1.6; flex: 1; }
+      .other-card-link { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; font-weight: 700; color: var(--blue); margin-top: 1.25rem; opacity: 0; transform: translateX(-4px); transition: opacity 0.25s, transform 0.25s; }
+      .other-card:hover .other-card-link { opacity: 1; transform: none; }
+
+      /* ─── FINAL CTA ────────────────────────────── */
+      #cta6.cta-sky {
+        background: var(--sky);
+        padding: 6.5rem 0;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .cta6-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 4.5rem;
+        align-items: center;
+      }
+      .cta6-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .cta6-sub {
+        font-size: 1.05rem;
+        color: var(--grey);
+        line-height: 1.7;
+        max-width: 500px;
+        margin: 1rem 0 2.25rem;
+      }
+      .cta6-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 2.25rem;
+      }
+      .cta6-right {
+        position: relative;
+        overflow: hidden;
+        height: 380px;
+        border-radius: var(--r-xl);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-md);
+      }
+      .cta6-right img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ─── FOOTER ──────────────────────────────── */
+      #ft6 { background: var(--navy); padding: 4.5rem 2.5rem 2.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+      .ft6-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .ft6-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 0.85rem; max-width: 280px; }
+      .ft6-logo { font-size: 1.2rem; font-weight: 800; color: rgba(255,255,255,0.85); letter-spacing: -0.02em; }
+      .ft6-col-title { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1.25rem; }
+      .ft6-col a { display: block; font-size: 0.88rem; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
+      .ft6-col a:hover { color: rgba(255,255,255,0.85); }
+      .ft6-bottom { max-width: 1180px; margin: 1.75rem auto 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+      .ft6-bottom span, .ft6-bottom a { font-size: 0.78rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
+      .ft6-bottom a:hover { color: rgba(255,255,255,0.6); }
+
+      /* ─── RESPONSIVE ──────────────────────────── */
+      @media (max-width: 1024px) {
+        .hd6-nav { display: none; }
+        .hd6-toggle { display: flex; }
+        .std-hero-body { grid-template-columns: 1fr; gap: 3rem; }
+        /* .std-hero-right { display: none; } */
+        .what-layout, .includes-top, .how-layout, .ideal-layout, .pricing-layout, .faq-layout { grid-template-columns: 1fr; gap: 3rem; }
+        .checklist-grid { grid-template-columns: 1fr; }
+        .t-grid { grid-template-columns: 1fr 1fr; }
+        .other-grid { grid-template-columns: 1fr 1fr; }
+        .cta6-grid { grid-template-columns: 1fr; gap: 3rem; }
+        .cta6-right { height: 320px; }
+        .ft6-inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      }
+      @media (max-width: 768px) {
+        .std-hero-body { padding: 4rem 1.5rem 3rem; }
+        .cta6-left { padding: 2.5rem 1.5rem; }
+        .c6 { padding: 0 1.5rem; }
+        .pad { padding: 4.5rem 0; }
+        .ft6-inner { grid-template-columns: 1fr; gap: 2rem; }
+      }
+      /* Dropdown style system */
+      .hd6-nav-item-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .hd6-nav-dropdown-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        cursor: pointer;
+      }
+      .hd6-nav-dropdown-toggle svg {
+        transition: transform 0.2s var(--ease);
+      }
+      .hd6-nav-item-dropdown:hover .hd6-nav-dropdown-toggle svg {
+        transform: rotate(180deg);
+      }
+      .hd6-dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+        background: var(--white);
+        min-width: 220px;
+        border-radius: var(--r);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-lg);
+        padding: 0.65rem 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s var(--ease), transform 0.2s var(--ease), visibility 0.2s;
+        z-index: 250;
+        display: flex;
+        flex-direction: column;
+      }
+      .hd6-nav-item-dropdown:hover .hd6-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+      .hd6-dropdown-menu a {
+        display: block !important;
+        font-size: 0.88rem !important;
+        font-weight: 600 !important;
+        color: var(--grey-d) !important;
+        padding: 0.6rem 1.25rem !important;
+        border-radius: 0 !important;
+        transition: background 0.2s, color 0.2s !important;
+        text-align: left;
+      }
+      .hd6-dropdown-menu a:hover {
+        background: var(--sky) !important;
+        color: var(--blue) !important;
+      }
+
+      /* Mobile sub-menu styling */
+      .mob6-sub-menu {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1.25rem;
+        border-left: 2px solid var(--border-subtle);
+        margin: 0.25rem 0 0.75rem;
+        gap: 0.35rem;
+      }
+      .mob6-sub-menu a {
+        font-size: 0.95rem !important;
+        color: var(--grey) !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: none !important;
+      }
+      .mob6-sub-menu a:hover {
+        color: var(--blue) !important;
+      }
+      .hd6-mob-section-title {
+        font-size: 0.8rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--grey);
+        letter-spacing: 0.08em;
+        margin-top: 0.75rem;
+        margin-bottom: 0.25rem;
+      }
+
+      @media (max-width: 640px) {
+        .hd6-nav { display: none; }
+        .hd6-toggle { display: flex; }
+        .std-hero-h1 { font-size: 2.4rem; }
+        .t-grid, .other-grid, .freq-disc-grid { grid-template-columns: 1fr; }
+        .what-float-badge { display: none; }
+      }
+    
+      /* ─── STICKY SECTION NAV ─────────────────── */
+      #service-nav {
+        position: sticky;
+        top: 64px;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border-subtle);
+        box-shadow: 0 4px 20px rgba(10,29,51,0.02);
+      }
+      .pnav-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+        display: flex;
+        gap: 1.5rem;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .pnav-inner::-webkit-scrollbar { display: none; }
+      .pnav-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 1rem 0.25rem;
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--grey);
+        text-decoration: none;
+        white-space: nowrap;
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s var(--ease);
+      }
+      .pnav-link:hover, .pnav-link.active {
+        color: var(--blue);
+        border-bottom-color: var(--blue);
+      }
+      .snav-icon {
+        font-size: 1rem;
+      }
+      
+      /* Target section spacing overrides for sticky header */
+      #what, #includes, #how, #ideal, #pricing, #reviews, #faq, #benefits-section, #faq6 {
+        scroll-margin-top: 120px;
+        
+      }
+
+      @media (max-width: 768px) {
+        #service-nav + #what { padding-top: 5.5rem; }
+      }
+      /* Keep every non-hero section aligned with the landing services section. */
+      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) {
+        padding-top: 6.5rem !important;
+        padding-bottom: 6.5rem !important;
+      }
+      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+        max-width: 1180px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 2.5rem !important;
+        padding-right: 2.5rem !important;
+      }
+      @media (max-width: 768px) {
+        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) {
+          padding-top: 4.5rem !important;
+          padding-bottom: 4.5rem !important;
+        }
+        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+          padding-left: 1.5rem !important;
+          padding-right: 1.5rem !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ─ HEADER ─────────────────────────────────── -->
+    <header id="hd6" aria-label="Site header">
+      <a href={withBase("index")} class="hd6-logo" aria-label="Maid at Home">
+        <div class="hd6-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 2L11 7H16L12 10.5L13.5 16L9 12.5L4.5 16L6 10.5L2 7H7L9 2Z" fill="white" fill-opacity="0.9"/>
+          </svg>
+        </div>
+        <span class="hd6-name">Maid at Home</span>
+      </a>
+      <nav class="hd6-nav" aria-label="Main navigation">
+        <div class="hd6-nav-item-dropdown">
+          <a href={withBase("services")} class="hd6-nav-dropdown-toggle">
+            Our Services
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="hd6-dropdown-menu">
+            <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+            <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+            <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+            <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+            <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+            <a href={withBase("services/window-cleaning")}>Window Cleaning</a>
+            <a href={withBase("services/balcony-cleaning")}>Balcony Cleaning</a>
+          </div>
+        </div>
+        <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+        <a href={withBase("pricing")}>Pricing</a>
+        <a href={withBase("areas")}>Areas We Serve</a>
+        <a href={withBase("about")}>About Us</a>
+        <a href={withBase("careers")}>Join Our Team</a>
+        <div class="hd6-nav-item-dropdown">
+          <a href="#" class="hd6-nav-dropdown-toggle" onclick="event.preventDefault()">
+            Help
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="hd6-dropdown-menu">
+            <a href={withBase("faqs")}>FAQs</a>
+            <a href={withBase("contact")}>Contact Us</a>
+          </div>
+        </div>
+        <a href={withBase("blog")}>Blog</a>
+        <a href={withBase("booking")} class="hd6-cta">Book Now</a>
+      </nav>
+      <button class="hd6-toggle" id="hd6Toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <nav id="hd6-mob" aria-label="Mobile navigation">
+      
+      <!-- Services Row -->
+      <div class="mob6-dropdown-item">
+        <div class="mob6-dropdown-trigger">
+          <a href={withBase("services")}>Services</a>
+          <button class="mob6-dropdown-toggle" aria-label="Toggle Services Menu" aria-expanded="false" data-target="mob-services-submenu">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mob6-sub-menu collapsed" id="mob-services-submenu">
+          <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+          <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+          <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+          <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+          <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+          <a href={withBase("services/window-cleaning")}>Window Cleaning</a>
+          <a href={withBase("services/balcony-cleaning")}>Balcony Cleaning</a>
+        </div>
+      </div>
+
+      <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+      <a href={withBase("pricing")}>Pricing</a>
+      <a href={withBase("areas")}>Areas We Serve</a>
+      <a href={withBase("about")}>About Us</a>
+      <a href={withBase("careers")}>Join Our Team</a>
+
+      <!-- Help Row -->
+      <div class="mob6-dropdown-item">
+        <div class="mob6-dropdown-trigger">
+          <span class="mob6-dropdown-label">Help</span>
+          <button class="mob6-dropdown-toggle" aria-label="Toggle Help Menu" aria-expanded="false" data-target="mob-help-submenu">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mob6-sub-menu collapsed" id="mob-help-submenu">
+          <a href={withBase("faqs")}>FAQs</a>
+          <a href={withBase("contact")}>Contact Us</a>
+        </div>
+      </div>
+
+      <a href={withBase("blog")}>Blog</a>
+      <a href={withBase("booking")} class="mob6-cta">Book Now →</a>
+    </nav>
+
+    <!-- ─ PAGE HERO ──────────────────────────────── -->
+    <section id="std-hero" aria-labelledby="std-hero-h1">
+      <div class="std-hero-sun" aria-hidden="true"></div>
+      <div class="std-hero-body">
+        <div class="std-hero-left">
+          
+          <h1 class="std-hero-pill" id="std-hero-h1">
+            <span class="std-hero-pill-dot" aria-hidden="true" style="background: var(--yellow)"></span>
+            Carpet Steam Cleaning Melbourne
+          </h1>
+          
+          <p class="std-hero-h1" aria-hidden="true">
+            Deep extraction.<br />
+            <span class="ac">Stain-free & fresh.</span>
+          </p>
+          <p class="std-hero-sub">
+            Advanced hot water extraction (steam cleaning) and dry cleaning methods. We remove deep-seated allergens, tough stains, and odours, returning carpets to original soft texture.
+          </p>
+          
+          <div class="std-hero-actions">
+            <a href="#pricing" class="btn6-primary">
+              See Pricing
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M2 6.5h9M7.5 2l4.5 4.5L7.5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="tel:+61399990000" class="btn6-outline">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M11.5 8.8L9.2 7.9 8.3 8.8C7 8.3 4.7 6 4.2 4.7l.9-.9L4.2 1.5 1.5 1C1 2 1 3.3 1.9 5c1.4 2.7 3.4 4.7 6 6 1.7.9 3 .9 3.9.4l-.3-2.6z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              (03) 9999 0000
+            </a>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ STICKY SECTION NAV ────────────────────── -->
+    <nav id="service-nav" aria-label="Service sections">
+      <div class="pnav-inner">
+        <a href="#what" class="pnav-link active"><span class="snav-icon">🔍</span> What is it</a>
+        <a href="#includes" class="pnav-link"><span class="snav-icon">📋</span> Checklist</a>
+        <a href="#how" class="pnav-link"><span class="snav-icon">⏱️</span> How it works</a>
+        <a href="#ideal" class="pnav-link"><span class="snav-icon">💡</span> Ideal for</a>
+        <a href="#pricing" class="pnav-link"><span class="snav-icon">💰</span> Pricing</a>
+        <a href="#reviews" class="pnav-link"><span class="snav-icon">⭐</span> Reviews</a>
+        <a href="#faq" class="pnav-link"><span class="snav-icon">❓</span> FAQ</a>
+      </div>
+    </nav>
+
+    <!-- ─ WHAT IS CARPET CLEANING ──────────────── -->
+    <section id="what" class="pad" aria-labelledby="what-h2">
+      <div class="c6">
+        <div class="what-layout sg">
+          <div class="what-visual si" data-d="l">
+            <div class="what-vis-main">
+              <div class="what-vis-grid" aria-hidden="true"></div>
+              <div class="what-vis-content">
+                <div class="what-vis-tag">Today's Steam Clean — 85 Chapel St, Prahran</div>
+                <div class="what-vis-rooms">
+                  <div class="wvr">
+                    <div class="wvr-left"><span class="wvr-icon">🛋️</span><span class="wvr-name">Master Bedroom (Steam Cleaned)</span></div>
+                    <span class="wvr-status wvr-done">✓ Done</span>
+                  </div>
+                  <div class="wvr">
+                    <div class="wvr-left"><span class="wvr-icon">🛏️</span><span class="wvr-name">Second Bedroom (Stain Spotting)</span></div>
+                    <span class="wvr-status wvr-done">✓ Done</span>
+                  </div>
+                  <div class="wvr">
+                    <div class="wvr-left"><span class="wvr-icon">🚪</span><span class="wvr-name">Hallway Runner</span></div>
+                    <span class="wvr-status wvr-done">✓ Done</span>
+                  </div>
+                  <div class="wvr">
+                    <div class="wvr-left"><span class="wvr-icon">🌀</span><span class="wvr-name">Lounge Room Rug (Agitation)</span></div>
+                    <span class="wvr-status" style="color:var(--yellow);font-weight:700;font-size:0.72rem;">● In progress</span>
+                  </div>
+                  <div class="wvr">
+                    <div class="wvr-left"><span class="wvr-icon">✨</span><span class="wvr-name">Deodorising Spray Run</span></div>
+                    <span class="wvr-status wvr-pending" style="font-size:0.72rem; color:rgba(255,255,255,0.25);">Upcoming</span>
+                  </div>
+                </div>
+                <div class="what-vis-footer">
+                  <span class="what-vis-footer-label">Estimated completion</span>
+                  <span class="what-vis-footer-val">1:30 PM · Walk-on ready in 3h</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="what-float-badge badge-tl">
+              <span class="wfb-icon">💨</span>
+              <div>
+                <div class="wfb-text">2–4 Hours</div>
+                <div class="wfb-sub">Average dry time</div>
+              </div>
+            </div>
+            
+            <div class="what-float-badge badge-br">
+              <span class="wfb-icon">🍃</span>
+              <div>
+                <div class="wfb-text">99.9% Allergy Free</div>
+                <div class="wfb-sub">Removes pollen & mites</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="what-copy si" data-d="r">
+            <p class="eyebrow6">What Is It</p>
+            <h2 class="h6" id="what-h2">High-performance cleaning that<br /><span class="ac">revitalises fibers</span></h2>
+            <p>Carpet fibers act as a magnet for dirt, traffic soot, pet dander, pollen, and dust mites. Standard vacuuming removes surface debris, but leaves deep-rooted contaminants trapped inside the pile.</p>
+            <p>Our professional carpet service utilizes advanced hot water extraction technology. By infusing high-temperature water (110°C) with eco-friendly cleaning agents, we break down stubborn soils, emulsify grease, and rinse them out with dual-motor vacuum suction.</p>
+            <p>The result is a deeply sanitized carpet that looks brighter, smells fresher, feels significantly softer, and dries rapidly within hours. Ideal for pet owners, families with babies, and bond returns.</p>
+            <div class="std-hero-actions" style="margin-top: 1.5rem;">
+              <a href="#includes" class="btn6-primary">See our process →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ WHAT'S INCLUDED (CHECKLIST) ───────────── -->
+    <section id="includes" class="pad" aria-labelledby="inc-h2">
+      <div class="c6">
+        <div class="includes-top sg">
+          <div>
+            <p class="eyebrow6">Our Process</p>
+            <h2 class="h6" id="inc-h2">No shortcuts. Just deep,<br /><span class="ac">thorough extraction.</span></h2>
+          </div>
+          <p class="lead6">We follow a strict multi-step carpet cleaning system to guarantee maximum soil recovery and stain treatment without leaving sticky detergent residues.</p>
+        </div>
+
+        <div class="checklist-grid sg">
+          <div class="cl-room si">
+            <div class="cl-room-head">
+              <div class="cl-room-icon">🔍</div>
+              <span class="cl-room-name">1. Inspection & Spotting</span>
+            </div>
+            <div class="cl-items">
+              <div class="cl-item">Fiber identification (Wool, Nylon, Polyester, Acrylic)</div>
+              <div class="cl-item">High-power industrial pre-vacuuming</div>
+              <div class="cl-item">Targeted stain pre-spray treatment (wine, coffee, blood)</div>
+              <div class="cl-item">Eco-friendly carpet sanitising traffic lane spray</div>
+            </div>
+          </div>
+
+          <div class="cl-room si">
+            <div class="cl-room-head">
+              <div class="cl-room-icon">💨</div>
+              <span class="cl-room-name">2. Hot Water Extraction</span>
+            </div>
+            <div class="cl-items">
+              <div class="cl-item">Fiber agitation to loosen deep-seated dirt and soil</div>
+              <div class="cl-item">Hot water extraction at 110°C to sanitise and rinse</div>
+              <div class="cl-item">Dual-motor high vacuum lift to recover 93% of water</div>
+              <div class="cl-item">Residue-free clean (no crunchy post-cleaning feel)</div>
+            </div>
+          </div>
+
+          <div class="cl-room si">
+            <div class="cl-room-head">
+              <div class="cl-room-icon">🍃</div>
+              <span class="cl-room-name">3. Deodorising & Sanitising</span>
+            </div>
+            <div class="cl-items">
+              <div class="cl-item">Aroma infusion (eliminates pet and musty odours)</div>
+              <div class="cl-item">Allergen and dust mite extraction</div>
+              <div class="cl-item">pH balance rinse to lock in carpet softness</div>
+              <div class="cl-item">Bacteria-killing sanitisation agent application</div>
+            </div>
+          </div>
+
+          <div class="cl-room si">
+            <div class="cl-room-head">
+              <div class="cl-room-icon">✨</div>
+              <span class="cl-room-name">4. Pile Grooming & Care</span>
+            </div>
+            <div class="cl-items">
+              <div class="cl-item">Carpet rake grooming to align pile fibers</div>
+              <div class="cl-item">Special protection spray application (optional add-on)</div>
+              <div class="cl-item">Drying airflow setup recommendations</div>
+              <div class="cl-item">Post-clean inspection with client satisfaction sign-off</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cl-note sg">
+          <p><strong>💡 What we ask of you:</strong> Please remove toys, breakables, and small items from the carpet. We can assist in moving light coffee tables and sofas, but we do not move heavy items like wardrobes, pianos, or massive master beds to ensure safety.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ HOW IT WORKS ──────────────────────────── -->
+    <section id="how" class="pad" aria-labelledby="how-h2">
+      <div class="c6">
+        <div class="sg">
+          <p class="eyebrow6">How It Works</p>
+          <h2 class="h6" id="how-h2">Booking your carpet clean<br />has never been simpler</h2>
+          <p class="lead6">Get dry, allergen-free carpets back in just 3 quick steps.</p>
+        </div>
+
+        <div class="how-layout sg">
+          <div class="how-steps">
+            <div class="how-step si">
+              <div class="step-num-wrap active">
+                <span class="step-num">1</span>
+              </div>
+              <div class="step-body">
+                <h3>Select Rooms & Date</h3>
+                <p>Book online or speak to our team. Tell us how many rooms, hallways, or rugs need steam cleaning, and pick a convenient time.</p>
+              </div>
+            </div>
+
+            <div class="how-step si">
+              <div class="step-num-wrap pending">
+                <span class="step-num">2</span>
+              </div>
+              <div class="step-body">
+                <h3>Professional Steam Clean</h3>
+                <p>Our background-checked technicians arrive with high-power extractors, pre-treat stains, extract dirt, and deodorise carpets.</p>
+              </div>
+            </div>
+
+            <div class="how-step si">
+              <div class="step-num-wrap pending">
+                <span class="step-num">3</span>
+              </div>
+              <div class="step-body">
+                <h3>Walk-On Ready Fast</h3>
+                <p>Within 2–4 hours (often sooner), carpets are dry. Enjoy fresh air, fluffier carpet fibers, and a stain-free floor.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="how-right si" data-d="r">
+            <div class="expect-card">
+              <span class="expect-icon">🚗</span>
+              <div class="expect-body">
+                <h4>Self-Contained Mobile Units</h4>
+                <p>Our technicians carry commercial-grade, portable or truck-mounted extractors capable of dealing with the toughest traffic paths.</p>
+              </div>
+            </div>
+
+            <div class="expect-card">
+              <span class="expect-icon">🧴</span>
+              <div class="expect-body">
+                <h4>Non-Toxic Spotting Agents</h4>
+                <p>Our spotters target red wine, pet stains, grease, coffee, and mud without harming carpet backing or releasing harsh VOCs.</p>
+              </div>
+            </div>
+
+            <div class="expect-card">
+              <span class="expect-icon">💯</span>
+              <div class="expect-body">
+                <h4>Satisfaction Guarantee</h4>
+                <p>Not satisfied with a particular spot? If it's structurally removable, we'll return and treat it again free of charge.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ WHEN TO BOOK ──────────────────────────── -->
+    <section id="ideal" class="pad" aria-labelledby="ideal-h2">
+      <div class="c6">
+        <div class="ideal-layout sg">
+          <div class="ideal-left si" data-d="l">
+            <p class="eyebrow6">Is it right for you?</p>
+            <h2 class="h6" id="ideal-h2">Ideal scenarios for<br /><span class="ac">carpet steam cleaning</span></h2>
+            <div class="ideal-scenarios">
+              <div class="ideal-scenario">
+                <div class="is-icon">🐱</div>
+                <div class="is-body">
+                  <h4>Pet Owners</h4>
+                  <p>Removes embedded pet hair, dander, fleas, and neutralises urine or wet dog odours completely.</p>
+                </div>
+              </div>
+
+              <div class="ideal-scenario">
+                <div class="is-icon">🤧</div>
+                <div class="is-body">
+                  <h4>Asthma & Allergy Sufferers</h4>
+                  <p>Lifts dust mites, pollen, mould spores, and organic air pollutants trapped deep inside carpet backing.</p>
+                </div>
+              </div>
+
+              <div class="ideal-scenario">
+                <div class="is-icon">🔑</div>
+                <div class="is-body">
+                  <h4>End of Lease Bond Returns</h4>
+                  <p>Most rental agreements in Victoria require professional carpet steam cleaning receipts. We supply digital REIV-compliant invoices.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ideal-right si" data-d="r">
+            <div class="not-ideal-box">
+              <h3>When carpet cleaning isn't enough</h3>
+              <p>Steam cleaning handles heavy traffic, stains, and sanitisation. However, it cannot solve structural issues:</p>
+              <div class="not-ideal-items">
+                <div class="ni-item"><span>Permanent chemical burns (bleach, severe dye transfer)</span></div>
+                <div class="ni-item"><span>Severe sub-floor pet urine saturation (requires carpet replacement)</span></div>
+                <div class="ni-item"><span>Extremely worn or threadbare areas (fibers are physically gone)</span></div>
+                <div class="ni-item"><span>Major flood extraction (refer to emergency water restoration)</span></div>
+              </div>
+            </div>
+
+            <div class="service-nudge">
+              <h3>Need a full home reset?</h3>
+              <p>Combine carpet cleaning with our deep clean or end-of-lease services and save up to 15% on package deals.</p>
+              <div class="nudge-links">
+                <a href={withBase("services/deep-cleaning")} class="nudge-link">
+                  <span class="nl-name">Deep House Cleaning</span>
+                  <span class="nl-arrow">→</span>
+                </a>
+                <a href={withBase("services/end-of-lease-cleaning")} class="nudge-link">
+                  <span class="nl-name">End of Lease Clean</span>
+                  <span class="nl-arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ PRICING ───────────────────────────────── -->
+    <section id="pricing" class="pad" aria-labelledby="pricing-h2">
+      <div class="c6">
+        <div class="pricing-layout sg">
+          <div class="pricing-copy si" data-d="l">
+            <p class="eyebrow6">Pricing Plans</p>
+            <h2 class="h6" id="pricing-h2">Simple, flat-rate<br /><span class="ac">carpet pricing</span></h2>
+            <p class="lead6">No hidden fees, no fuel surcharges. Choose the plan that covers your rooms, or ask for a custom quote if you have rugs and hallways.</p>
+            
+            <div class="freq-perks">
+              <div class="freq-perk">Minimum booking fee of $99 applies</div>
+              <div class="freq-perk">REIV-compliant digital receipt supplied</div>
+              <div class="freq-perk">Eco-friendly cleaning solutions included</div>
+            </div>
+            
+            <div class="std-hero-actions">
+              <a href={withBase("pricing")} class="btn6-primary">Get Custom Quote →</a>
+            </div>
+          </div>
+
+          <div class="pricing-panel si" data-d="r">
+            <div class="pricing-model-tabs" role="tablist">
+              <button class="pmt-tab on" id="tab-flat-btn" role="tab" aria-selected="true" aria-controls="flat-panel">Steam Clean Packages</button>
+              <button class="pmt-tab" id="tab-hourly-btn" role="tab" aria-selected="false" aria-controls="hourly-panel">Add-ons</button>
+            </div>
+
+            <!-- Flat Package Panel -->
+            <div class="panel active" id="flat-panel" role="tabpanel" aria-labelledby="tab-flat-btn">
+              <div class="bed-rows">
+                <div class="bed-row">
+                  <div class="bed-info">
+                    <span class="bed-label">2 Rooms Package</span>
+                    <span class="bed-sublabel">Up to 25m² total · Bedrooms or study</span>
+                  </div>
+                  <div class="bed-price">$99</div>
+                </div>
+
+                <div class="bed-row featured">
+                  <div class="bed-info">
+                    <div style="display:flex; align-items:center; gap:0.5rem;">
+                      <span class="bed-label">3 Rooms Package</span>
+                      <span class="bed-pop">Popular</span>
+                    </div>
+                    <span class="bed-sublabel">Up to 35m² total · Living & bedrooms</span>
+                  </div>
+                  <div class="bed-price">$139</div>
+                </div>
+
+                <div class="bed-row">
+                  <div class="bed-info">
+                    <span class="bed-label">4 Rooms Package</span>
+                    <span class="bed-sublabel">Up to 45m² total · Complete family home</span>
+                  </div>
+                  <div class="bed-price">$179</div>
+                </div>
+
+                <div class="bed-row">
+                  <div class="bed-info">
+                    <span class="bed-label">Additional Rooms</span>
+                    <span class="bed-sublabel">Price per extra room (up to 12m²)</span>
+                  </div>
+                  <div class="bed-price">+$35</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add-ons Panel -->
+            <div class="panel" id="hourly-panel" role="tabpanel" aria-labelledby="tab-hourly-btn">
+              <div class="bed-rows">
+                <div class="bed-row">
+                  <div class="bed-info">
+                    <span class="bed-label">Hallway Runner</span>
+                    <span class="bed-sublabel">Up to 6 metres length</span>
+                  </div>
+                  <div class="bed-price">$30</div>
+                </div>
+
+                <div class="bed-row">
+                  <div class="bed-info">
+                    <span class="bed-label">Staircases (per step)</span>
+                    <span class="bed-sublabel">Steam cleaned and vacuumed</span>
+                  </div>
+                  <div class="bed-price">$4</div>
+                </div>
+
+                <div class="bed-row">
+                  <div class="bed-info">
+                    <span class="bed-label">Lounge / Couch (per seat)</span>
+                    <span class="bed-sublabel">Upholstery deep clean extraction</span>
+                  </div>
+                  <div class="bed-price">$35</div>
+                </div>
+
+                <div class="bed-row">
+                  <div class="bed-info">
+                    <span class="bed-label">Carpet Protector (per room)</span>
+                    <span class="bed-sublabel">Felt shield barrier to block stains</span>
+                  </div>
+                  <div class="bed-price">$20</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ TESTIMONIALS ──────────────────────────── -->
+    <section id="reviews" class="pad" aria-labelledby="rev-h2">
+      <div class="c6">
+        <div class="reviews-header sg">
+          <div>
+            <p class="eyebrow6">Reviews</p>
+            <h2 class="h6" id="rev-h2">What our clients say</h2>
+          </div>
+          <div class="g-badge" aria-label="Google rating: 4.9 stars from 380 reviews">
+            <span class="g-logo">G</span>
+            <span>4.9 ★★★★★ (380+ reviews)</span>
+          </div>
+        </div>
+
+        <div class="t-grid sg">
+          <div class="t-card si">
+            <div class="t-stars" aria-label="5 stars">★★★★★</div>
+            <p class="t-text">"Had our carpets steam cleaned for our bond return. Outstanding job. All coffee spots in the lounge disappeared. Agent was thrilled."</p>
+            <div class="t-author">
+              <div class="t-avatar" style="background:#4285F4">H</div>
+              <div>
+                <span class="t-name">Harrison P.</span>
+                <div class="t-meta">Richmond · Nov 2025</div>
+                <span class="t-verified">✓ Verified Bond Return</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-card si">
+            <div class="t-stars" aria-label="5 stars">★★★★★</div>
+            <p class="t-text">"We have three golden retrievers, so dog smell was a constant battle. After Maid at Home steam cleaned, it felt like a brand new home."</p>
+            <div class="t-author">
+              <div class="t-avatar" style="background:#34A853">C</div>
+              <div>
+                <span class="t-name">Claire M.</span>
+                <div class="t-meta">Camberwell · Feb 2026</div>
+                <span class="t-verified">✓ Verified Client</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-card si">
+            <div class="t-stars" aria-label="5 stars">★★★★★</div>
+            <p class="t-text">"Punctual, professional, and explain everything clearly. The drying time was less than 3 hours. Will definitely use them annually."</p>
+            <div class="t-author">
+              <div class="t-avatar" style="background:#FBBC05">R</div>
+              <div>
+                <span class="t-name">Ryan K.</span>
+                <div class="t-meta">Fitzroy · May 2026</div>
+                <span class="t-verified">✓ Verified Client</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FAQ ───────────────────────────────────── -->
+    <section id="faq" class="pad" aria-labelledby="faq-h2">
+      <div class="c6">
+        <div class="faq-layout sg">
+          <div class="si" data-d="l">
+            <p class="eyebrow6">FAQ</p>
+            <h2 class="h6" id="faq-h2">Frequently<br />asked questions</h2>
+            <div class="faq-contact">
+              <p>Have a question not listed here? Get in touch at <a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a> or call us.</p>
+            </div>
+          </div>
+
+          <div class="faq-list si" data-d="r">
+            {[
+              ["How long does it take for carpets to dry?", "With our industrial dual-motor extraction equipment, we recover over 90% of water. Carpets typically take between 2 to 4 hours to dry. On colder or humid days, it may take up to 6 hours. Leaving windows cracked or turning on fans/heaters accelerates the process."],
+              ["Can you remove all stains?", "We carry specialized chemical spotting agents for red wine, urine, ink, coffee, and grease, successfully lifting about 95% of stains. However, permanent dye shifts, chemical bleach burns, or rust that has structurally bonded with fibers cannot be reversed."],
+              ["Are your cleaning chemicals safe for babies and pets?", "Yes, we use biodegradable, non-toxic, and residue-free detergents that neutralize completely during the extraction phase. It is completely safe for babies and pets to play on the carpet once it is fully dry."],
+              ["Do I need to vacuum before the cleaners arrive?", "Our technicians always perform a light industrial vacuum run to remove top-level hair and grit before applying the pre-spray. If the carpets are heavily soiled, we recommend running a standard vacuum beforehand to speed up the process."],
+              ["Do you provide receipts for bond returns?", "Absolutely. We supply a digital, fully tax-compliant receipt detailing 'Carpet Steam Cleaning' which satisfies all Victoria real estate and landlord bond release inspection requirements."]
+            ].map((item, i) => (
+              <div class="faq-item">
+                <button class="faq-q" id={`faq-q-${i}`} aria-expanded="false" aria-controls={`faq-a-${i}`}>
+                  <span>{item[0]}</span>
+                  <span class="faq-q-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-a" id={`faq-a-${i}`} role="region" aria-labelledby={`faq-q-${i}`}>
+                  {item[1]}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ OTHER SERVICES ────────────────────────── -->
+    <section id="other-services" class="pad" aria-labelledby="other-h2">
+      <div class="c6">
+        <div class="sg">
+          <p class="eyebrow6">Other Services</p>
+          <h2 class="h6" id="other-h2">Need something different?</h2>
+          <p class="lead6" style="margin-top:0.75rem; max-width:540px;">If your carpets are fine but you need standard home maintenance or end of lease solutions, we've got you covered.</p>
+        </div>
+
+        <div class="other-grid sg">
+          <a href={withBase("services/standard-cleaning")} class="other-card si">
+            <div class="other-card-icon">🧹</div>
+            <h3>Standard Cleaning</h3>
+            <p>Weekly or fortnightly house upkeep. Dusting, vacuuming, mopping, bathroom detailing, and general kitchen cleanup to keep things pristine.</p>
+            <span class="other-card-link">Learn more →</span>
+          </a>
+          <a href={withBase("services/deep-cleaning")} class="other-card si">
+            <div class="other-card-icon">✨</div>
+            <h3>Deep Cleaning</h3>
+            <p>Top-to-bottom reset covering every corner, appliance, grout line, and surface. The right choice before starting a regular schedule or after a long gap.</p>
+            <span class="other-card-link">Learn more →</span>
+          </a>
+          <a href={withBase("services/end-of-lease-cleaning")} class="other-card si">
+            <div class="other-card-icon">📋</div>
+            <h3>End of Lease</h3>
+            <p>Bond-back focused clean aligned to real estate inspection standards. Free re-clean within 72 hours if anything is disputed. The most critical clean you'll need.</p>
+            <span class="other-card-link">Learn more →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FINAL CTA ─────────────────────────────── -->
+    <section id="cta6" class="cta-sky" aria-labelledby="cta6-h2">
+      <div class="c6">
+        <div class="cta6-grid sg">
+          <div class="cta6-left">
+            <div class="si" data-d="l">
+              <p class="eyebrow6">Ready to start?</p>
+              <h2 class="h6" id="cta6-h2">Get those carpets looking<br /><span class="ac">and feeling brand new</span></h2>
+            </div>
+            <p class="cta6-sub si">
+              Let Pau, Stefania, and our vetted Melbourne team take care of your home cleaning. No lock-in contracts, just real care and consistent quality you can count on.
+            </p>
+            <div class="cta6-actions si">
+              <a href={withBase("pricing")} class="btn6-primary" id="cta6-book">
+                Get an instant quote
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M2 6.5h9M7.5 2l4.5 4.5L7.5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="cta6-right" aria-hidden="true">
+            <img src={withBase("images/bright_clean_living_room.png")} alt="" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FOOTER ────────────────────────────────── -->
+    <footer id="ft6" aria-label="Site footer">
+      <div class="ft6-inner">
+        <div class="ft6-brand">
+          <div class="ft6-logo">Maid at Home</div>
+          <p>Melbourne's trusted professional cleaning service. Trained, insured, and committed to consistent quality since 2019.</p>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Services</div>
+          <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+          <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+          <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+          <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+          <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+          <a href={withBase("carpet-cleaning")} class="active">Carpet Cleaning</a>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Company</div>
+          <a href={withBase("about")}>About Us</a>
+          <a href={withBase("careers")}>Work with Us</a>
+          <a href={withBase("blog")}>Blog</a>
+          <a href={withBase("areas")}>Service Areas</a>
+          <a href={withBase("index") + "#rec6"}>Recurring Cleaning</a>
+          <a href={withBase("index") + "#calc6"}>Pricing Calculator</a>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Contact</div>
+          <a href="tel:+61399990000">(03) 9999 0000</a>
+          <a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a>
+          <a href={withBase("pricing")}>Book Online</a>
+        </div>
+      </div>
+      <div class="ft6-bottom">
+        <span>© 2025 Maid at Home. All rights reserved.</span>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ─ SCRIPTS ───────────────────────────────── -->
+    <script is:inline>
+      /* ─ HEADER ────────────────────────────────────── */
+      const hd6 = document.getElementById("hd6");
+      const onScroll6 = () => hd6.classList.toggle("scrolled", window.scrollY > 20);
+      window.addEventListener("scroll", onScroll6, { passive: true });
+      onScroll6();
+
+            /* ─ MOBILE NAV / MENU ────────────────────────── */
+      const tog6 = document.getElementById("hd6Toggle");
+      const mob6 = document.getElementById("hd6-mob");
+      const cls6 = document.getElementById("hd6MobClose");
+      
+      if (tog6 && mob6) {
+        tog6.addEventListener("click", () => {
+          const isOpen = mob6.classList.toggle("open");
+          if (hd6) hd6.classList.toggle("menu-open", isOpen);
+          tog6.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+      }
+      
+      if (cls6 && mob6 && tog6) {
+        cls6.addEventListener("click", () => {
+          mob6.classList.remove("open");
+          if (hd6) hd6.classList.remove("menu-open");
+          tog6.setAttribute("aria-expanded", "false");
+        });
+      }
+      
+      if (mob6) {
+        mob6.querySelectorAll("a").forEach(a => {
+          a.addEventListener("click", () => {
+            mob6.classList.remove("open");
+            if (hd6) hd6.classList.remove("menu-open");
+            if (tog6) tog6.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      /* ─ MOBILE DROPDOWN ACCORDION ────────────────── */
+      if (mob6) {
+        mob6.querySelectorAll('.mob6-dropdown-toggle').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const targetId = btn.getAttribute('data-target');
+            const submenu = document.getElementById(targetId);
+            if (submenu) {
+              const isCollapsed = submenu.classList.contains('collapsed');
+              if (isCollapsed) {
+                submenu.classList.remove('collapsed');
+                btn.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+              } else {
+                submenu.classList.add('collapsed');
+                btn.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+              }
+            }
+          });
+        });
+      }
+
+      /* ─ STAGGER OBSERVER ──────────────────────────── */
+      const sObs6 = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const items = Array.from(entry.target.querySelectorAll(".si")).filter(el => !el.classList.contains("in"));
+          items.forEach((item, i) => setTimeout(() => item.classList.add("in"), i * 110));
+          sObs6.unobserve(entry.target);
+        });
+      }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
+      document.querySelectorAll(".sg").forEach(g => sObs6.observe(g));
+
+      /* ─ FAQ ACCORDION LOGIC ───────────────────────── */
+      document.querySelectorAll(".faq-item").forEach(item => {
+        item.querySelector(".faq-q").addEventListener("click", () => {
+          const open = item.classList.contains("open");
+          document.querySelectorAll(".faq-item.open").forEach(o => { o.classList.remove("open"); o.querySelector(".faq-q").setAttribute("aria-expanded","false"); });
+          if (!open) { item.classList.add("open"); item.querySelector(".faq-q").setAttribute("aria-expanded","true"); }
+        });
+      });
+
+      /* ─ PRICING MODEL TABS SWITCHER ───────────────── */
+      const tabFlat = document.getElementById("tab-flat-btn");
+      const tabHourly = document.getElementById("tab-hourly-btn");
+      const panelFlat = document.getElementById("flat-panel");
+      const panelHourly = document.getElementById("hourly-panel");
+
+      if (tabFlat && tabHourly) {
+        tabFlat.addEventListener("click", () => {
+          tabFlat.classList.add("on"); tabFlat.setAttribute("aria-selected", "true");
+          tabHourly.classList.remove("on"); tabHourly.setAttribute("aria-selected", "false");
+          panelFlat.classList.add("active"); panelHourly.classList.remove("active");
+        });
+        tabHourly.addEventListener("click", () => {
+          tabHourly.classList.add("on"); tabHourly.setAttribute("aria-selected", "true");
+          tabFlat.classList.remove("on"); tabFlat.setAttribute("aria-selected", "false");
+          panelHourly.classList.add("active"); panelFlat.classList.remove("active");
+        });
+      }
+    
+      /* ─ ACTIVE NAV LINK ON SCROLL ────────────────── */
+      const pnavLinks = document.querySelectorAll('.pnav-link');
+      const pnavSections = ['what', 'includes', 'how', 'ideal', 'pricing', 'reviews', 'faq'].map(id => document.getElementById(id));
+      let lastActiveIndex = 0;
+      window.addEventListener('scroll', () => {
+        const offset = window.scrollY > 20 ? 64 : 72;
+        const scrollY = window.scrollY + offset + 48 + 40;
+        let current = 0;
+        pnavSections.forEach((sec, i) => { if (sec && sec.offsetTop <= scrollY) current = i; });
+        pnavLinks.forEach((l, i) => l.classList.toggle('active', i === current));
+        
+        if (current !== lastActiveIndex) {
+          lastActiveIndex = current;
+          const activeLink = pnavLinks[current];
+          if (activeLink) {
+            const container = document.querySelector('#service-nav .pnav-inner');
+            if (container) {
+              const containerWidth = container.clientWidth;
+              const linkLeft = activeLink.offsetLeft;
+              const linkWidth = activeLink.clientWidth;
+              container.scrollTo({
+                left: linkLeft - (containerWidth / 2) + (linkWidth / 2),
+                behavior: 'smooth'
+              });
+            }
+          }
+        }
+      }, { passive: true });
+
+    </script>
+  </body>
+</html>

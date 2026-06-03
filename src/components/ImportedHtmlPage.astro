@@ -1,0 +1,207 @@
+---
+interface Props {
+  rawHtml: string;
+}
+
+interface HtmlTag {
+  attrs: Record<string, string | boolean>;
+  innerHtml?: string;
+}
+
+const { rawHtml } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+
+const withBase = (path: string) => {
+  const normalizedBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  const normalizedPath = path.startsWith("/") ? path.slice(1) : path;
+
+  if (!normalizedPath) {
+    return normalizedBase;
+  }
+
+  return `${normalizedBase}${normalizedPath}`;
+};
+
+const routeMap: Record<string, string> = {
+  index: withBase(""),
+  about: withBase("about"),
+  areas: withBase("areas"),
+  pricing: withBase("pricing"),
+  services: withBase("services"),
+  "standard-cleaning": withBase("services/standard-cleaning"),
+  "deep-cleaning": withBase("services/deep-cleaning"),
+  "end-of-lease-cleaning": withBase("services/end-of-lease-cleaning"),
+  "move-in-cleaning": withBase("services/move-in-cleaning"),
+  "oven-cleaning": withBase("services/oven-cleaning"),
+  "house-cleaning": withBase("house-cleaning-services"),
+  "house-cleaning-services": withBase("house-cleaning-services"),
+  "calculator-variants": withBase("calculator-variants"),
+  "areas-we-serve-variants": withBase("areas-we-serve-variants"),
+  faqs: withBase("faqs"),
+  careers: withBase("careers"),
+};
+
+const normalizeRoute = (target: string) => {
+  const match = target.match(/^([^?#]+)\.html([?#].*)?$/i);
+
+  if (!match) {
+    return target;
+  }
+
+  const [, slug, suffix = ""] = match;
+  const normalized = routeMap[slug] ?? withBase(slug);
+
+  return `${normalized}${suffix}`;
+};
+
+const globalHeaderLinks = [
+  { label: "Services", href: withBase("services") },
+  { label: "About", href: withBase("about") },
+  { label: "Pricing", href: withBase("pricing") },
+  { label: "Areas", href: withBase("areas") },
+  { label: "Join Our Team", href: withBase("careers") },
+  { label: "FAQs", href: withBase("faqs") },
+];
+
+const desktopHeaderNav = (ctaLabel = "Get a Quote") => `
+  <nav aria-label="Main">
+    ${globalHeaderLinks
+      .map(({ label, href }) => `<a href="${href}">${label}</a>`)
+      .join("")}
+    <a href="${withBase("pricing")}" class="btn-header">${ctaLabel}</a>
+  </nav>
+`;
+
+const mobileHeaderNav = (ctaLabel = "Get a Quote →") => `
+  <nav id="mob-nav" aria-label="Mobile navigation">
+    <button id="mobClose" aria-label="Close menu">×</button>
+    ${globalHeaderLinks
+      .map(
+        ({ label, href }) =>
+          `<a href="${href}" onclick="closeMob()">${label}</a>`,
+      )
+      .join("")}
+    <a href="${withBase("pricing")}" class="mob-cta" onclick="closeMob()">${ctaLabel}</a>
+  </nav>
+`;
+
+const normalizeHtmlLinks = (html: string) =>
+  html.replace(
+    /\b(href|src)=("|')([^"']+?\.html(?:[?#][^"']*)?)\2/gi,
+    (_match, attr, quote, target) =>
+      `${attr}=${quote}${normalizeRoute(target)}${quote}`,
+  );
+
+const normalizeAbsoluteLinks = (html: string) =>
+  html.replace(
+    /\b(href|src)=("|')\/(?!\/)([^"']*)\2/gi,
+    (_match, attr, quote, target) =>
+      `${attr}=${quote}${withBase(target)}${quote}`,
+  );
+
+const rewriteHeaderNavigation = (html: string) => {
+  const navLabelRegex = new RegExp(
+    String.raw`<nav\b[^>]*aria-label=(["'])Main\1[^>]*>[\s\S]*?<\/nav>`,
+    "i",
+  );
+  const currentDesktopNav = html.match(navLabelRegex)?.[0] ?? "";
+  const currentDesktopCta =
+    currentDesktopNav.match(
+      new RegExp(
+        String.raw`<a\b[^>]*class=(["'])[^"']*\bbtn-header\b[^"']*\1[^>]*>([\s\S]*?)<\/a>`,
+        "i",
+      ),
+    )?.[2]?.trim() || "Get a Quote";
+
+  const withDesktopNav = html.replace(
+    navLabelRegex,
+    desktopHeaderNav(currentDesktopCta),
+  );
+
+  const mobileNavRegex = new RegExp(
+    String.raw`<nav\b[^>]*id=(["'])mob-nav\1[^>]*>[\s\S]*?<\/nav>`,
+    "i",
+  );
+  const currentMobileNav = withDesktopNav.match(mobileNavRegex)?.[0] ?? "";
+  const currentMobileCta =
+    currentMobileNav.match(
+      new RegExp(
+        String.raw`<a\b[^>]*class=(["'])[^"']*\bmob-cta\b[^"']*\1[^>]*>([\s\S]*?)<\/a>`,
+        "i",
+      ),
+    )?.[2]?.trim() || "Get a Quote →";
+
+  return withDesktopNav.replace(
+    mobileNavRegex,
+    mobileHeaderNav(currentMobileCta),
+  );
+};
+
+const parseAttrs = (tagSource: string) => {
+  const attrs: Record<string, string | boolean> = {};
+  const attrRegex =
+    /([^\s=/>]+)(?:=(?:"([^"]*)"|'([^']*)'|([^\s>]+)))?/g;
+  const openTag = tagSource.match(/^<[^>]+>/)?.[0] ?? tagSource;
+
+  for (const match of openTag.matchAll(attrRegex)) {
+    const name = match[1];
+
+    if (name.startsWith("<")) {
+      continue;
+    }
+
+    const value = match[2] ?? match[3] ?? match[4];
+    attrs[name] = value ?? true;
+  }
+
+  return attrs;
+};
+
+const lang =
+  rawHtml.match(/<html[^>]*lang=(["'])([^"']+)\1/i)?.[2] ?? "en";
+const title =
+  rawHtml.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.trim() ?? "";
+const headMatch = rawHtml.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
+const bodyMatch = rawHtml.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+const headHtml = normalizeAbsoluteLinks(
+  normalizeHtmlLinks(headMatch?.[1] ?? ""),
+);
+
+const metaTags: HtmlTag[] = Array.from(
+  headHtml.matchAll(/<meta\b[^>]*>/gi),
+  (match) => ({ attrs: parseAttrs(match[0]) }),
+);
+const linkTags: HtmlTag[] = Array.from(
+  headHtml.matchAll(/<link\b[^>]*>/gi),
+  (match) => ({ attrs: parseAttrs(match[0]) }),
+);
+const styleBlocks = Array.from(
+  headHtml.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi),
+  (match) => match[1],
+);
+
+const normalizedBody = rewriteHeaderNavigation(
+  normalizeAbsoluteLinks(
+    normalizeHtmlLinks(bodyMatch?.[1] ?? rawHtml),
+  ),
+);
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {
+      metaTags
+        .filter((tag) => !("charset" in tag.attrs))
+        .map((tag) => <meta {...tag.attrs} />)
+    }
+    {linkTags.map((tag) => <link {...tag.attrs} />)}
+    {styleBlocks.map((style) => <style is:inline set:html={style} />)}
+  </head>
+  <body>
+    <div style="display: contents;" set:html={normalizedBody} />
+  </body>
+</html>

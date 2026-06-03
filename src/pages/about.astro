@@ -1,0 +1,1427 @@
+---
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => {
+  const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  const p = path.startsWith("/") ? path.slice(1) : path;
+  return p ? `${base}${p}` : base;
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us — Maid at Home Melbourne</title>
+    <meta name="description" content="Meet Pau and Stefania, the founders of Maid at Home. From working as cleaners in Melbourne to building one of the city's most trusted residential cleaning services. Our story." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      /* ─── TOKENS ──────────────────────────────── */
+      :root {
+        --navy:    #0a1d33;
+        --blue-d:  #142d4c;
+        --blue:    #1d6fa8;
+        --blue-l:  #5aaee0;
+        --blue-xl: #e8f4fd;
+        --sky:     #f0f7fd;
+        --yellow:  #f6c133;
+        --yellow-d:#e0ab1d;
+        --yellow-l:#fffbe6;
+        --green:   #16a34a;
+        --green-l: #e8f7ee;
+        --grey:    #5e6a75;
+        --grey-d:  #2d3748;
+        --grey-l:  #e2e8f0;
+        --white:   #ffffff;
+
+        --border-subtle: rgba(29, 111, 168, 0.08);
+        --border-hover:  rgba(29, 111, 168, 0.18);
+        --shadow-sm:     0 2px 8px rgba(10, 29, 51, 0.02);
+        --shadow-md:     0 8px 30px rgba(10, 29, 51, 0.04);
+        --shadow-lg:     0 16px 48px rgba(10, 29, 51, 0.06);
+        --shadow-premium:0 24px 60px rgba(10, 29, 51, 0.08);
+
+        --font:  "Plus Jakarta Sans", system-ui, sans-serif;
+        --r-s:   8px;
+        --r:     12px;
+        --r-l:   20px;
+        --r-xl:  28px;
+        --ease:  cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--font);
+        color: var(--grey-d);
+        background: var(--white);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.6;
+      }
+      img { display: block; max-width: 100%; }
+
+      /* ─── KEYFRAMES ───────────────────────────── */
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: none; }
+      }
+      @keyframes floatY {
+        0%, 100% { transform: translateY(0); }
+        50%       { transform: translateY(-5px); }
+      }
+
+      /* ─── STAGGER SYSTEM ──────────────────────── */
+      .si {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+      }
+      .si[data-d="l"] { transform: translateX(-24px); }
+      .si[data-d="r"] { transform: translateX(24px); }
+      .si.in { opacity: 1; transform: none; }
+
+      /* ─── LAYOUT ──────────────────────────────── */
+      .c6     { max-width: 1180px; margin: 0 auto; padding: 0 2.5rem; }
+      .pad    { padding: 6.5rem 0; }
+      .pad-sm { padding: 4.5rem 0; }
+      #about-nav + #story { padding-top: 8rem; }
+
+      /* ─── SHARED TYPOGRAPHY ───────────────────── */
+      .eyebrow6 {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        font-size: 0.72rem; font-weight: 800;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        color: var(--blue); margin-bottom: 0.85rem;
+      }
+      .eyebrow6::before {
+        content: ""; width: 16px; height: 2.5px;
+        background: var(--yellow); border-radius: 2px; flex-shrink: 0;
+      }
+      h2.h6 {
+        font-size: clamp(2rem, 3.4vw, 2.85rem);
+        font-weight: 800; letter-spacing: -0.03em;
+        color: var(--navy); line-height: 1.15;
+      }
+      h2.h6 .ac { color: var(--blue); }
+      .lead6 {
+        font-size: 1.05rem; color: var(--grey);
+        line-height: 1.75; max-width: 520px;
+        margin-top: 0.75rem;
+      }
+      .sec-header6 {
+        display: grid; grid-template-columns: 1fr 1fr;
+        gap: 4rem; align-items: end; margin-bottom: 4rem;
+      }
+
+      /* ─── BUTTONS ─────────────────────────────── */
+      .btn6-primary {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        background: var(--yellow); color: var(--navy);
+        font-weight: 700; font-size: 0.95rem;
+        padding: 0.95rem 2rem; border-radius: 100px;
+        text-decoration: none; border: none; cursor: pointer;
+        font-family: var(--font); white-space: nowrap;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(246, 193, 51, 0.2);
+      }
+      .btn6-primary:hover { background: var(--yellow-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(246, 193, 51, 0.4); }
+      .btn6-outline {
+        display: inline-flex; align-items: center; gap: 0.45rem;
+        color: var(--navy); font-weight: 600; font-size: 0.9rem;
+        padding: 0.9rem 1.75rem; border-radius: 100px;
+        border: 1px solid var(--grey-l); background: transparent;
+        text-decoration: none; cursor: pointer; font-family: var(--font); white-space: nowrap;
+        transition: border-color 0.25s, background 0.25s, color 0.25s;
+      }
+      .btn6-outline:hover { border-color: var(--navy); background: var(--sky); }
+      .btn6-ghost-dark {
+        display: inline-flex; align-items: center; gap: 0.4rem;
+        background: transparent; color: rgba(255,255,255,0.6);
+        font-weight: 500; font-size: 0.9rem; border-radius: 100px;
+        border: 1px solid rgba(255,255,255,0.15);
+        padding: 0.9rem 1.75rem; text-decoration: none;
+        font-family: var(--font); white-space: nowrap;
+        transition: color 0.25s, border-color 0.25s, background 0.25s;
+      }
+      .btn6-ghost-dark:hover { color: var(--white); border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06); }
+
+      /* ─── HEADER ──────────────────────────────── */
+      #hd6 {
+        position: fixed; inset: 0 0 auto; z-index: 200;
+        height: 72px; display: flex; align-items: center; justify-content: space-between;
+        padding: 0 4vw;
+        transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease), height 0.3s var(--ease);
+      }
+      #hd6.scrolled {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 4px 30px rgba(10, 29, 51, 0.03);
+        height: 64px; border-bottom: 1px solid rgba(10, 29, 51, 0.04);
+      }
+      .hd6-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+      .hd6-mark {
+        width: 38px; height: 38px; border-radius: 12px; background: var(--blue);
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0; transition: background 0.3s;
+      }
+      #hd6.scrolled .hd6-mark { background: var(--navy); }
+      .hd6-name { font-size: 1.15rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; }
+      .hd6-nav { display: flex; align-items: center; gap: 0.25rem; }
+      .hd6-nav a {
+        font-size: 0.9rem; font-weight: 500; color: var(--grey-d);
+        text-decoration: none; padding: 0.5rem 1rem;
+        border-radius: 8px; transition: color 0.2s, background 0.2s;
+      }
+      .hd6-nav a:hover, .hd6-nav a.active { color: var(--blue); background: var(--sky); }
+      .hd6-cta {
+        display: inline-flex; align-items: center; gap: 0.45rem;
+        background: var(--yellow); color: var(--navy);
+        font-weight: 700; font-size: 0.9rem; padding: 0.55rem 1.35rem; border-radius: 100px;
+        text-decoration: none; margin-left: 0.75rem;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s; white-space: nowrap;
+      }
+      .hd6-cta:hover { background: var(--yellow-d); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(246,193,51,.35); }
+      .hd6-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; z-index: 201; }
+      .hd6-toggle span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: transform 0.3s var(--ease), opacity 0.3s var(--ease); }
+      
+      #hd6.menu-open { background: var(--white) !important; box-shadow: none !important; border-bottom: 1px solid rgba(10, 29, 51, 0.04) !important; }
+      #hd6.menu-open .hd6-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      #hd6.menu-open .hd6-toggle span:nth-child(2) { opacity: 0; }
+      #hd6.menu-open .hd6-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      #hd6-mob {
+        display: none; position: fixed; inset: 0; z-index: 199;
+        background: var(--white); flex-direction: column; padding: 6rem 2rem 2rem; gap: 0.5rem;
+      ; overflow-y: auto;}
+      /* Mobile Dropdown Accordion Styling */
+      .mob6-dropdown-item {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-dropdown-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+      #hd6-mob a, .mob6-dropdown-label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--navy);
+        text-decoration: none;
+        padding: 0.95rem 0;
+        flex: 1;
+      }
+      .mob6-dropdown-label {
+        cursor: default;
+        user-select: none;
+      }
+      .mob6-dropdown-toggle {
+        background: none;
+        border: none;
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--navy);
+        transition: transform 0.25s var(--ease);
+      }
+      .mob6-dropdown-toggle.open {
+        transform: rotate(180deg);
+        color: var(--blue);
+      }
+      .mob6-dropdown-item .mob6-sub-menu {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1.25rem;
+        border-left: 2px solid var(--border-subtle);
+        margin: 0.25rem 0 0.75rem;
+        gap: 0.35rem;
+        max-height: 500px;
+        opacity: 1;
+        overflow: hidden;
+        transition: max-height 0.35s var(--ease), opacity 0.35s var(--ease), margin 0.35s var(--ease);
+      }
+      .mob6-dropdown-item .mob6-sub-menu.collapsed {
+        max-height: 0;
+        opacity: 0;
+        margin: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .mob6-sub-menu a {
+        font-size: 0.95rem !important;
+        color: var(--grey) !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: none !important;
+      }
+      .mob6-sub-menu a:hover {
+        color: var(--blue) !important;
+      }
+      .mob6-dropdown-item {
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-dropdown-item a, .mob6-dropdown-item .mob6-dropdown-label {
+        border-bottom: none !important;
+      }
+
+      #hd6-mob.open { display: flex; }
+      #hd6-mob a { font-size: 1.2rem; font-weight: 600; color: var(--navy); text-decoration: none; padding: 0.95rem 0; border-bottom: 1px solid var(--grey-l); }
+      .mob6-cta { background: var(--yellow); color: var(--navy); text-align: center; border-radius: var(--r); padding: 1.1rem; margin-top: 1rem; font-size: 1rem; font-weight: 700; text-decoration: none; display: block; }
+
+      /* ─── PAGE HERO ───────────────────────────── */
+      #about-hero { background: var(--sky); padding-top: 72px; position: relative; overflow: hidden; }
+      .about-hero-sun {
+        position: absolute; top: -120px; right: -100px;
+        width: 560px; height: 560px; border-radius: 50%;
+        background: radial-gradient(ellipse at center, rgba(246, 193, 51, 0.14) 0%, rgba(246, 193, 51, 0.03) 60%, transparent 80%);
+        pointer-events: none;
+      }
+      .about-hero-body {
+        max-width: 1180px; margin: 0 auto; padding: 4rem 2.5rem 5rem;
+        display: grid; grid-template-columns: 1.1fr 0.9fr;
+        gap: 5rem; align-items: start; position: relative; z-index: 2;
+      }
+      .about-hero-pill {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        font-size: 0.75rem; font-weight: 700; color: var(--blue); letter-spacing: 0.05em;
+        margin-bottom: 1.75rem; width: fit-content;
+        background: var(--white); padding: 0.4rem 0.9rem; border-radius: 100px;
+        box-shadow: var(--shadow-sm); animation: fadeUp 0.5s var(--ease) 0s both;
+      }
+      .about-hero-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+      .about-hero-h1 {
+        font-size: clamp(2.8rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.04em;
+        line-height: 1.08; color: var(--navy); margin-bottom: 1.5rem;
+        animation: fadeUp 0.65s var(--ease) 0.1s both;
+      }
+      .about-hero-h1 .ac { color: var(--blue); }
+      .about-hero-sub {
+        font-size: 1.1rem; color: var(--grey); line-height: 1.75; max-width: 500px;
+        margin-bottom: 2.25rem; animation: fadeUp 0.65s var(--ease) 0.25s both;
+      }
+      .about-hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; animation: fadeUp 0.65s var(--ease) 0.4s both; }
+      .about-hero-right { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; animation: fadeUp 0.8s var(--ease) 0.2s both; }
+      .about-hero-img { border-radius: var(--r-xl); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--border-subtle); }
+      .about-hero-img:first-child { grid-row: span 2; }
+      .about-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+      .about-hero-img.tall { height: 380px; }
+      .about-hero-img.short { height: 185px; }
+
+      /* ─── SECTION ANCHOR NAV ──────────────────── */
+      #about-nav {
+        background: rgba(255,255,255,0.96);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-subtle);
+        position: sticky;
+        top: 72px;
+        z-index: 150;
+        transition: top 0.3s var(--ease);
+      }
+      #hd6.scrolled ~ #about-nav {
+        top: 64px;
+      }
+      .pnav-inner { max-width: 1180px; margin: 0 auto; padding: 0 2.5rem; display: flex; align-items: center; gap: 0.5rem; overflow-x: auto; scrollbar-width: none; }
+      .pnav-inner::-webkit-scrollbar { display: none; }
+      .pnav-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 600; color: var(--grey); padding: 1.1rem 1.15rem; text-decoration: none; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -1px; transition: color 0.25s, border-color 0.25s; }
+      .pnav-link:hover { color: var(--blue); }
+      .pnav-link.active { color: var(--blue); border-bottom-color: var(--blue); font-weight: 700; }
+
+      /* ─── 1. STORY ────────────────────────────── */
+      #story { background: var(--white); }
+      .story-layout { display: grid; grid-template-columns: 5fr 7fr; gap: 6rem; align-items: start; }
+
+      /* Timeline */
+      .story-timeline { display: flex; flex-direction: column; position: relative; padding-top: 0.25rem; }
+      .story-timeline::before {
+        content: ""; position: absolute; left: 19px; top: 10px; bottom: 10px;
+        width: 2px; background: var(--grey-l); border-radius: 2px;
+      }
+      .tl-item { display: flex; gap: 1.5rem; position: relative; padding-bottom: 2.5rem; }
+      .tl-item:last-child { padding-bottom: 0; }
+      .tl-dot-wrap { flex-shrink: 0; width: 40px; display: flex; flex-direction: column; align-items: center; }
+      .tl-dot {
+        width: 14px; height: 14px; border-radius: 50%;
+        border: 2px solid var(--grey-l); background: var(--white); margin-top: 3px; flex-shrink: 0;
+        transition: border-color 0.3s, background 0.3s;
+      }
+      .tl-item.hi .tl-dot { background: var(--yellow); border-color: var(--yellow); box-shadow: 0 0 0 4px rgba(246, 193, 51, 0.15); }
+      .tl-item.ms .tl-dot { background: var(--blue); border-color: var(--blue); box-shadow: 0 0 0 4px rgba(29, 111, 168, 0.12); }
+      .tl-content { flex: 1; }
+      .tl-year { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey); margin-bottom: 0.3rem; }
+      .tl-item.hi .tl-year { color: var(--yellow-d); }
+      .tl-item.ms .tl-year { color: var(--blue); }
+      .tl-title { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; letter-spacing: -0.01em; }
+      .tl-text { font-size: 0.84rem; color: var(--grey); line-height: 1.65; }
+
+      /* Story copy */
+      .story-copy h2.h6 { margin-bottom: 1.5rem; }
+      .story-copy p { font-size: 0.97rem; color: var(--grey); line-height: 1.8; margin-bottom: 1.25rem; }
+      .story-copy p:last-of-type { margin-bottom: 0; }
+      .story-pull {
+        margin: 2rem 0;
+        border-left: 3px solid var(--yellow);
+        padding: 0.5rem 0 0.5rem 1.5rem;
+      }
+      .story-pull p { font-size: 1.08rem; font-weight: 600; color: var(--navy); line-height: 1.6; font-style: italic; margin: 0; }
+
+      /* ─── 2. FOUNDERS ─────────────────────────── */
+      #founders {
+        background: var(--white);
+        border-top: 1px solid var(--border-subtle);
+        position: relative; overflow: hidden;
+      }
+      .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; position: relative; z-index: 1; }
+
+      .founder-card {
+        background: var(--sky);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r-xl); overflow: hidden;
+        transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+      }
+      .founder-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .founder-img {
+        width: 100%; height: 320px; overflow: hidden;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .founder-img img { width: 100%; height: 100%; object-fit: cover; }
+      .founder-body { padding: 1.75rem 2rem 2rem; }
+      .founder-name { font-size: 1.35rem; font-weight: 800; color: var(--navy); letter-spacing: -0.03em; margin-bottom: 0.2rem; }
+      .founder-role { font-size: 0.8rem; font-weight: 600; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.25rem; }
+      .founder-bio { font-size: 0.88rem; color: var(--grey); line-height: 1.75; margin-bottom: 1.25rem; }
+      .founder-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+      .founder-tag {
+        font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.65rem; border-radius: 100px;
+        background: var(--blue-xl); border: 1px solid var(--border-subtle);
+        color: var(--blue);
+      }
+      .founder-details { display: flex; flex-direction: column; gap: 0.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle); }
+      .fdr { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: var(--grey); }
+      .fdr-ico { font-size: 0.9rem; flex-shrink: 0; }
+      .founder-quote {
+        background: var(--yellow-l);
+        border: 1px solid rgba(246, 193, 51, 0.35);
+        border-radius: var(--r); padding: 1rem 1.1rem; margin-top: 1.25rem;
+      }
+      .founder-quote p { font-size: 0.84rem; color: var(--grey-d); line-height: 1.65; font-style: italic; }
+      .founder-quote p::before { content: '"'; color: var(--yellow-d); font-weight: 800; margin-right: 2px; }
+      .founder-quote p::after  { content: '"'; color: var(--yellow-d); font-weight: 800; margin-left: 2px; }
+
+      /* Founders sec-header */
+      .founders-header { position: relative; z-index: 1; margin-bottom: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+      .founders-header h2.h6 { color: var(--navy); }
+      .founders-header .lead6 { color: var(--grey); }
+
+      /* ─── 3. MISSION & VALUES ─────────────────── */
+      #mission { background: var(--sky); }
+      .mission-layout { display: grid; grid-template-columns: 5fr 7fr; gap: 6rem; align-items: start; }
+      .mission-copy p { font-size: 0.95rem; color: var(--grey); line-height: 1.8; margin-bottom: 1.1rem; margin-top: 1.25rem; }
+      .mission-statement {
+        background: var(--navy); border-radius: var(--r-xl);
+        padding: 2.25rem; margin-top: 2rem; position: relative; overflow: hidden;
+      }
+      .mission-statement::before {
+        content: ""; position: absolute; inset: 0;
+        background: radial-gradient(ellipse 70% 70% at 100% 100%, rgba(29, 111, 168, 0.25) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .mission-statement blockquote {
+        position: relative; z-index: 1;
+        font-size: 1.05rem; font-weight: 600; color: var(--white); line-height: 1.7; font-style: italic;
+      }
+      .mission-statement blockquote::before {
+        content: '"'; font-size: 3rem; color: var(--yellow); font-weight: 800;
+        line-height: 0.5; display: block; margin-bottom: 0.75rem; font-style: normal;
+      }
+      .mission-statement cite { display: block; font-size: 0.78rem; color: rgba(255, 255, 255, 0.35); font-style: normal; margin-top: 1rem; }
+
+      /* Values list */
+      .values-grid {
+        display: flex; flex-direction: column; gap: 1px;
+        background: var(--grey-l);
+        border: 1px solid var(--grey-l); border-radius: var(--r-xl); overflow: hidden;
+      }
+      .value-item {
+        background: var(--white); padding: 1.75rem 2rem;
+        display: flex; gap: 1.25rem; align-items: flex-start;
+        transition: background 0.25s; cursor: default;
+      }
+      .value-item:hover { background: var(--blue-xl); }
+      .value-num {
+        width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+        background: var(--sky); border: 1px solid var(--border-subtle);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.78rem; font-weight: 800; color: var(--blue);
+        transition: background 0.25s, border-color 0.25s;
+      }
+      .value-item:hover .value-num { background: var(--blue-xl); border-color: rgba(29, 111, 168, 0.25); }
+      .value-body h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.35rem; letter-spacing: -0.01em; }
+      .value-body p { font-size: 0.85rem; color: var(--grey); line-height: 1.65; }
+
+      /* ─── 4. HOW WE HIRE ──────────────────────── */
+      #hiring { background: var(--sky); }
+      .hiring-layout { display: grid; grid-template-columns: 5fr 7fr; gap: 6rem; align-items: start; }
+      .hiring-copy p { font-size: 0.95rem; color: var(--grey); line-height: 1.8; margin-bottom: 1.1rem; margin-top: 1.25rem; }
+      .hiring-promise {
+        background: var(--white); border: 1px solid var(--border-subtle);
+        border-radius: var(--r-l); padding: 1.75rem; margin-top: 1.5rem;
+        box-shadow: var(--shadow-sm);
+      }
+      .hp-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.875rem; }
+      .hp-ico { font-size: 1.25rem; }
+      .hp-title { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
+      .hp-list { display: flex; flex-direction: column; gap: 0.6rem; list-style: none; padding: 0; }
+      .hp-item { display: flex; align-items: baseline; gap: 0.5rem; font-size: 0.86rem; color: var(--grey-d); line-height: 1.5; }
+      .hp-item::before { content: "✓"; color: var(--yellow-d); font-weight: 800; font-size: 0.95rem; flex-shrink: 0; }
+
+      .hiring-steps { display: flex; flex-direction: column; gap: 0; }
+      .hiring-step {
+        display: flex; gap: 1.25rem;
+        padding: 1.5rem 0; border-bottom: 1px solid var(--grey-l);
+      }
+      .hiring-step:last-child { border-bottom: none; }
+      .hs-num {
+        width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+        background: var(--navy);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.82rem; font-weight: 800; color: var(--white); margin-top: 2px;
+      }
+      .hs-body h3 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; letter-spacing: -0.01em; }
+      .hs-body p { font-size: 0.84rem; color: var(--grey); line-height: 1.65; }
+
+      /* ─── FAQ ─────────────────────────────────── */
+      #faq6 { background: var(--white); border-top: 1px solid var(--border-subtle); }
+      .faq6-layout { display: grid; grid-template-columns: 4fr 8fr; gap: 5rem; align-items: start; }
+      .compact-contact-card {
+        padding: 2rem 2.25rem;
+        background: var(--sky);
+        border-radius: 20px;
+        border: 1px solid var(--border-subtle);
+        width: fit-content;
+        max-width: 100%;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+        box-shadow: var(--shadow-sm);
+      }
+      .compact-card-line {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 0.88rem;
+        line-height: 1.2;
+        color: var(--blue);
+        font-weight: 700;
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+      .compact-card-line span:last-child {
+        font-size: 0.88rem;
+        line-height: 1.2;
+      }
+      .compact-card-line:hover {
+        opacity: 0.85;
+      }
+      .compact-card-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+      }
+      .faq6-list { border-top: 1px solid var(--border-subtle); }
+      .faq6-item { border-bottom: 1px solid var(--border-subtle); }
+      .faq6-q { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.35rem 0; cursor: pointer; background: none; border: none; width: 100%; font-family: var(--font); font-size: 0.95rem; font-weight: 700; color: var(--navy); text-align: left; transition: color 0.2s; }
+      .faq6-q:hover { color: var(--blue); }
+      .faq6-ico { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--grey-l); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--grey); font-weight: 400; flex-shrink: 0; transition: all 0.3s var(--ease); line-height: 1; }
+      .faq6-item.open .faq6-ico { background: var(--yellow); border-color: var(--yellow); color: var(--navy); transform: rotate(45deg); }
+      .faq6-a { font-size: 0.9rem; color: var(--grey); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease), padding 0.3s; }
+      .faq6-item.open .faq6-a { max-height: 280px; padding-bottom: 1.35rem; }
+
+      /* ─── FINAL CTA ────────────────────────────── */
+      #cta6.cta-sky {
+        background: var(--sky);
+        padding: 6.5rem 0;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .cta6-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 4.5rem;
+        align-items: center;
+      }
+      .cta6-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .cta6-sub {
+        font-size: 1.05rem;
+        color: var(--grey);
+        line-height: 1.7;
+        max-width: 500px;
+        margin: 1rem 0 2.25rem;
+      }
+      .cta6-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 2.25rem;
+      }
+      .cta6-trust {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+        border-top: 1px solid var(--grey-l);
+        padding-top: 1.5rem;
+      }
+      .cta6-trust-item {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.83rem;
+        font-weight: 600;
+        color: var(--grey-d);
+      }
+      .cta6-trust-item::before {
+        content: "✓";
+        color: var(--green);
+        font-weight: 800;
+      }
+      .cta6-right {
+        position: relative;
+        overflow: hidden;
+        height: 380px;
+        border-radius: var(--r-xl);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-md);
+      }
+      .cta6-right img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ─── FOOTER ──────────────────────────────── */
+      #ft6 { background: var(--navy); padding: 4.5rem 2.5rem 2.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+      .ft6-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .ft6-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 0.85rem; max-width: 280px; }
+      .ft6-logo { font-size: 1.2rem; font-weight: 800; color: rgba(255,255,255,0.85); letter-spacing: -0.02em; }
+      .ft6-col-title { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1.25rem; }
+      .ft6-col a { display: block; font-size: 0.88rem; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
+      .ft6-col a:hover { color: rgba(255,255,255,0.85); }
+      .ft6-bottom { max-width: 1180px; margin: 1.75rem auto 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+      .ft6-bottom span, .ft6-bottom a { font-size: 0.78rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
+      .ft6-bottom a:hover { color: rgba(255,255,255,0.6); }
+
+      /* ─── RESPONSIVE ──────────────────────────── */
+      @media (max-width: 1024px) {
+        .hd6-nav { display: none; }
+        .hd6-toggle { display: flex; }
+        .about-hero-body { grid-template-columns: 1fr; gap: 3rem; }
+        .about-hero-right { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .cta6-grid { grid-template-columns: 1fr; gap: 3rem; }
+        .cta6-right { height: 320px; }
+        .story-layout, .mission-layout, .hiring-layout, .faq6-layout { grid-template-columns: 1fr; gap: 4rem; }
+        .founders-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; width: 100%; }
+        .founders-header { grid-template-columns: 1fr; gap: 0.75rem; }
+        .sec-header6 { grid-template-columns: 1fr; gap: 1.5rem; }
+        .ft6-inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      }
+      @media (max-width: 768px) {
+        .about-hero-body { padding: 4rem 1.5rem 3rem; }
+        .cta6-left { padding: 2.5rem 1.5rem; }
+        .c6 { padding: 0 1.5rem; }
+        .pad { padding: 4.5rem 0; }
+        .ft6-inner { grid-template-columns: 1fr; gap: 2rem; }
+      }
+      /* Dropdown style system */
+      .hd6-nav-item-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .hd6-nav-dropdown-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        cursor: pointer;
+      }
+      .hd6-nav-dropdown-toggle svg {
+        transition: transform 0.2s var(--ease);
+      }
+      .hd6-nav-item-dropdown:hover .hd6-nav-dropdown-toggle svg {
+        transform: rotate(180deg);
+      }
+      .hd6-dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+        background: var(--white);
+        min-width: 220px;
+        border-radius: var(--r);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-lg);
+        padding: 0.65rem 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s var(--ease), transform 0.2s var(--ease), visibility 0.2s;
+        z-index: 250;
+        display: flex;
+        flex-direction: column;
+      }
+      .hd6-nav-item-dropdown:hover .hd6-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+      .hd6-dropdown-menu a {
+        display: block !important;
+        font-size: 0.88rem !important;
+        font-weight: 600 !important;
+        color: var(--grey-d) !important;
+        padding: 0.6rem 1.25rem !important;
+        border-radius: 0 !important;
+        transition: background 0.2s, color 0.2s !important;
+        text-align: left;
+      }
+      .hd6-dropdown-menu a:hover {
+        background: var(--sky) !important;
+        color: var(--blue) !important;
+      }
+
+      /* Mobile sub-menu styling */
+      .mob6-sub-menu {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1.25rem;
+        border-left: 2px solid var(--border-subtle);
+        margin: 0.25rem 0 0.75rem;
+        gap: 0.35rem;
+      }
+      .mob6-sub-menu a {
+        font-size: 0.95rem !important;
+        color: var(--grey) !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: none !important;
+      }
+      .mob6-sub-menu a:hover {
+        color: var(--blue) !important;
+      }
+      .hd6-mob-section-title {
+        font-size: 0.8rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--grey);
+        letter-spacing: 0.08em;
+        margin-top: 0.75rem;
+        margin-bottom: 0.25rem;
+      }
+
+      @media (max-width: 640px) {
+        .hd6-nav { display: none; }
+        .hd6-toggle { display: flex; }
+        .about-hero-h1 { font-size: 2.4rem; }
+        .founders-header { gap: 0.5rem; margin-bottom: 2.5rem; }
+      }
+      @media (max-width: 768px) {
+        #about-nav + #story { padding-top: 5.5rem; }
+      }
+      /* Keep every non-hero section aligned with the landing services section. */
+      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) {
+        padding-top: 6.5rem !important;
+        padding-bottom: 6.5rem !important;
+      }
+      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+        max-width: 1180px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 2.5rem !important;
+        padding-right: 2.5rem !important;
+      }
+      @media (max-width: 768px) {
+        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) {
+          padding-top: 4.5rem !important;
+          padding-bottom: 4.5rem !important;
+        }
+        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+          padding-left: 1.5rem !important;
+          padding-right: 1.5rem !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ─ HEADER ─────────────────────────────────── -->
+    <header id="hd6" aria-label="Site header">
+      <a href={withBase("index")} class="hd6-logo" aria-label="Maid at Home">
+        <div class="hd6-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 2L11 7H16L12 10.5L13.5 16L9 12.5L4.5 16L6 10.5L2 7H7L9 2Z" fill="white" fill-opacity="0.9"/>
+          </svg>
+        </div>
+        <span class="hd6-name">Maid at Home</span>
+      </a>
+      <nav class="hd6-nav" aria-label="Main navigation">
+        <div class="hd6-nav-item-dropdown">
+          <a href={withBase("services")} class="hd6-nav-dropdown-toggle">
+            Our Services
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="hd6-dropdown-menu">
+            <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+            <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+            <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+            <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+            <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+            <a href={withBase("services/window-cleaning")}>Window Cleaning</a>
+            <a href={withBase("services/balcony-cleaning")}>Balcony Cleaning</a>
+          </div>
+        </div>
+        <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+        <a href={withBase("pricing")}>Pricing</a>
+        <a href={withBase("areas")}>Areas We Serve</a>
+        <a href={withBase("about")} class="active">About Us</a>
+        <a href={withBase("careers")}>Join Our Team</a>
+        <div class="hd6-nav-item-dropdown">
+          <a href="#" class="hd6-nav-dropdown-toggle" onclick="event.preventDefault()">
+            Help
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="hd6-dropdown-menu">
+            <a href={withBase("faqs")}>FAQs</a>
+            <a href={withBase("contact")}>Contact Us</a>
+          </div>
+        </div>
+        <a href={withBase("blog")}>Blog</a>
+        <a href={withBase("booking")} class="hd6-cta">Book Now</a>
+      </nav>
+      <button class="hd6-toggle" id="hd6Toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <nav id="hd6-mob" aria-label="Mobile navigation">
+      
+      <!-- Services Row -->
+      <div class="mob6-dropdown-item">
+        <div class="mob6-dropdown-trigger">
+          <a href={withBase("services")}>Services</a>
+          <button class="mob6-dropdown-toggle" aria-label="Toggle Services Menu" aria-expanded="false" data-target="mob-services-submenu">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mob6-sub-menu collapsed" id="mob-services-submenu">
+          <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+          <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+          <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+          <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+          <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+          <a href={withBase("services/window-cleaning")}>Window Cleaning</a>
+          <a href={withBase("services/balcony-cleaning")}>Balcony Cleaning</a>
+        </div>
+      </div>
+
+      <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+      <a href={withBase("pricing")}>Pricing</a>
+      <a href={withBase("areas")}>Areas We Serve</a>
+      <a href={withBase("about")} class="active">About Us</a>
+      <a href={withBase("careers")}>Join Our Team</a>
+
+      <!-- Help Row -->
+      <div class="mob6-dropdown-item">
+        <div class="mob6-dropdown-trigger">
+          <span class="mob6-dropdown-label">Help</span>
+          <button class="mob6-dropdown-toggle" aria-label="Toggle Help Menu" aria-expanded="false" data-target="mob-help-submenu">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mob6-sub-menu collapsed" id="mob-help-submenu">
+          <a href={withBase("faqs")}>FAQs</a>
+          <a href={withBase("contact")}>Contact Us</a>
+        </div>
+      </div>
+
+      <a href={withBase("blog")}>Blog</a>
+      <a href={withBase("booking")} class="mob6-cta">Book Now →</a>
+    </nav>
+
+    <!-- ─ PAGE HERO ──────────────────────────────── -->
+    <section id="about-hero" aria-labelledby="about-h1">
+      <div class="about-hero-sun" aria-hidden="true"></div>
+      <div class="about-hero-body">
+        <div class="about-hero-left">
+          <h1 class="about-hero-pill" id="about-h1">
+            <span class="about-hero-pill-dot" aria-hidden="true"></span>
+            About Maid at Home Melbourne
+          </h1>
+          <p class="about-hero-h1" aria-hidden="true">
+            Built on trust.<br />
+            <span class="ac">Driven by care.</span>
+          </p>
+          <p class="about-hero-sub">
+            Pau and Stefania didn't start Maid at Home from a boardroom. They learned the trade cleaning Melbourne homes firsthand, building a trusted service focused on reliability and consistency.
+          </p>
+          <div class="about-hero-actions">
+            <a href="#founders" class="btn6-primary" id="about-hero-founders">
+              Meet the Founders
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M2 6.5h9M7.5 2l4.5 4.5L7.5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#story" class="btn6-outline" id="about-hero-story">Our Story</a>
+          </div>
+        </div>
+        <div class="about-hero-right" aria-hidden="true">
+          <div class="about-hero-img tall">
+            <img src={withBase("images/founder_pau.png")} alt="Pau, founder of Maid at Home" loading="eager" />
+          </div>
+          <div class="about-hero-img short">
+            <img src={withBase("images/founder_stefania.png")} alt="Stefania, co-founder" loading="eager" />
+          </div>
+          <div class="about-hero-img short">
+            <img src={withBase("images/mia_the_cat.png")} alt="Mia the cat, CHO" loading="eager" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ SECTION NAV ───────────────────────────── -->
+    <nav id="about-nav" aria-label="About sections">
+      <div class="pnav-inner">
+        <a href="#story" class="pnav-link active">Our Story</a>
+        <a href="#mission" class="pnav-link">Mission & Values</a>
+        <a href="#founders" class="pnav-link">Founders</a>
+        <a href="#hiring" class="pnav-link">How We Hire</a>
+        <a href="#faq6" class="pnav-link">FAQ</a>
+      </div>
+    </nav>
+
+    <!-- ─ 1. OUR STORY ──────────────────────────── -->
+    <section id="story" class="pad" aria-labelledby="story-h2">
+      <div class="c6">
+        <div class="story-layout sg">
+
+          <!-- Timeline (left) -->
+          <div class="story-timeline si" data-d="l" aria-label="Maid at Home timeline">
+            <div class="tl-item">
+              <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+              <div class="tl-content">
+                <div class="tl-year">Pre-2017</div>
+                <div class="tl-title">Two degrees, one decision</div>
+                <div class="tl-text">Pau finishes his Business Administration degree in Spain. Stefania wraps up Communications and Journalism in Colombia. Both decide to move to Melbourne for a fresh start together.</div>
+              </div>
+            </div>
+            <div class="tl-item hi">
+              <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+              <div class="tl-content">
+                <div class="tl-year">2017</div>
+                <div class="tl-title">Learning the job from the inside</div>
+                <div class="tl-text">Like many new arrivals, they start working in cleaning. They're good at it — and they start noticing everything that could be done better. The seeds of Maid at Home are planted.</div>
+              </div>
+            </div>
+            <div class="tl-item hi">
+              <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+              <div class="tl-content">
+                <div class="tl-year">2017 →</div>
+                <div class="tl-title">Going independent</div>
+                <div class="tl-text">They start taking on clients independently — building a reputation for consistency and reliability, one home at a time. Word spreads. The client list grows steadily.</div>
+              </div>
+            </div>
+            <div class="tl-item ms">
+              <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+              <div class="tl-content">
+                <div class="tl-year">2024</div>
+                <div class="tl-title">Maid at Home goes live</div>
+                <div class="tl-text">The website, booking platform, and brand launch. They hire their first external cleaners trained to their standard. The business scales properly for the first time.</div>
+              </div>
+            </div>
+            <div class="tl-item ms">
+              <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+              <div class="tl-content">
+                <div class="tl-year">Today</div>
+                <div class="tl-title">Still growing, still hands-on</div>
+                <div class="tl-text">2,400+ homes cleaned. A team of trained professionals. And two founders who still know exactly what a properly cleaned bathroom looks like — because they've cleaned thousands of them.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Story copy (right) -->
+          <div class="story-copy si" data-d="r">
+            <p class="eyebrow6">Our Story</p>
+            <h2 class="h6" id="story-h2">We didn't study cleaning.<br /><span class="ac">We lived it.</span></h2>
+            <p>When Pau and Stefania landed in Melbourne, they weren't thinking about starting a business. They were thinking about building a life in a new country — and that meant getting to work. Like a lot of new arrivals, cleaning was where they started.</p>
+            <p>What surprised them wasn't the work itself. It was how much room there was to do it better. Poor communication. Inconsistent results. Cleaners who showed up late, or used whatever products were on hand. Clients who never knew what to expect. The industry wasn't bad — it was just stuck.</p>
+            <div class="story-pull">
+              <p>The standard we set for ourselves wasn't "good enough for a cleaner." It was: would we be happy coming home to this?</p>
+            </div>
+            <p>In 2017 they started going directly to clients. No agency, no middleman — just Pau and Stefania showing up consistently, doing exactly what they said they would, and asking for honest feedback. The reputation they built was slow, earned, and real.</p>
+            <p>In 2024 they formalised everything: the brand, the booking system, the training process. They brought on team members and taught them the same standard. Maid at Home stopped being a two-person operation and became something bigger — without losing the values that made clients trust them in the first place.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ 3. MISSION & VALUES ─────────────────────── -->
+    <section id="mission" class="pad" aria-labelledby="mission-h2">
+      <div class="c6">
+        <div class="mission-layout sg">
+
+          <!-- Left: Mission copy + blockquote -->
+          <div class="mission-copy si" data-d="l">
+            <p class="eyebrow6">Mission & Values</p>
+            <h2 class="h6" id="mission-h2">Why consistency<br /><span class="ac">is everything</span></h2>
+            <p>Most cleaning companies have a great first visit. The problem is the third, the seventh, the fifteenth — when the novelty is gone and it's just another job. That's exactly where Maid at Home is designed not to drop off.</p>
+            <p>Consistency isn't exciting to talk about, but it's the hardest thing to deliver — and the only thing that actually matters to the people who open their front door at the end of a long day.</p>
+            <div class="mission-statement">
+              <blockquote>
+                A clean home shouldn't depend on who shows up or what kind of day they're having. It should be something you can count on, every single time, without having to check.
+              </blockquote>
+              <cite>— Pau & Stefania, Maid at Home Founders</cite>
+            </div>
+          </div>
+
+          <!-- Right: Values list -->
+          <div class="values-grid si" data-d="r" aria-label="Maid at Home values">
+            <div class="value-item">
+              <div class="value-num">01</div>
+              <div class="value-body">
+                <h3>Consistency above everything</h3>
+                <p>The same result on visit one and visit fifty. Every cleaner follows the same structured checklist. No shortcuts, no variation based on who's working that day. Clients should be able to predict exactly what they'll come home to — because they always do.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-num">02</div>
+              <div class="value-body">
+                <h3>Reliability as a baseline, not a selling point</h3>
+                <p>On time. Prepared. Equipped. Reliable isn't something we boast about — it's the floor, not the ceiling. A cleaner who shows up late or unprepared isn't an inconvenience. It's a broken promise, and we treat it that way.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-num">03</div>
+              <div class="value-body">
+                <h3>Honest pricing, always</h3>
+                <p>You see the price before we arrive. We don't adjust it on the day. No surprise charges, no fees buried in the booking process. What we quote is what you pay — because trust starts before the first visit.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-num">04</div>
+              <div class="value-body">
+                <h3>Respect for the people doing the work</h3>
+                <p>Our cleaners are paid fairly, trained properly, and treated like the professionals they are. We believe that how you treat your team is exactly how your team will treat a client's home. There are no shortcuts to that either.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <div class="value-num">05</div>
+              <div class="value-body">
+                <h3>Own it when something goes wrong</h3>
+                <p>We don't hide behind small print. If something wasn't cleaned to standard, we fix it — fast, no arguments, no charge. Our 24-hour re-clean guarantee exists because we mean it.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ 2. FOUNDERS ────────────────────────────── -->
+    <section id="founders" class="pad" aria-labelledby="founders-h2">
+      <div class="c6">
+        <div class="founders-header sg">
+          <div class="si" data-d="l">
+            <p class="eyebrow6 founders-eyebrow">The Founders</p>
+            <h2 class="h6" id="founders-h2">The people behind<br /><span class="ac">every clean</span></h2>
+          </div>
+          <p class="lead6 si" data-d="r">
+            Maid at Home isn't a faceless company. There are two real people behind every booking, every hire, and every standard we set — and you can hold them to it.
+          </p>
+        </div>
+
+        <div class="founders-grid sg">
+
+          <!-- PAU -->
+          <article class="founder-card si">
+            <div class="founder-img">
+              <img src={withBase("images/founder_pau.png")} alt="Pau Rodriguez" loading="lazy" />
+            </div>
+            <div class="founder-body">
+              <div class="founder-name">Pau Rodriguez</div>
+              <div class="founder-role">Co-founder · Operations & Growth</div>
+              <p class="founder-bio">Pau grew up in Spain and graduated with a degree in Business Administration before moving to Melbourne. His background shapes how Maid at Home runs — the systems, the pricing model, the hiring process, the growth strategy. He's the one obsessed with making sure every part of the operation works exactly as promised, at scale.</p>
+              <p class="founder-bio">He was one of the first people mopping floors and didn't leave those years behind when the business grew. That first-hand experience is what makes Maid at Home's processes genuinely practical — not built from a whiteboard, but from thousands of hours doing the actual work.</p>
+              <div class="founder-tags">
+                <span class="founder-tag">Business Administration</span>
+                <span class="founder-tag">Operations</span>
+                <span class="founder-tag">Growth Strategy</span>
+                <span class="founder-tag">Melbourne since 2017</span>
+              </div>
+              <div class="founder-details">
+                <div class="fdr"><span class="fdr-ico">🎓</span> Licenciado en ADE · Spain</div>
+                <div class="fdr"><span class="fdr-ico">📍</span> Based in Melbourne, VIC</div>
+              </div>
+              <div class="founder-quote">
+                <p>We built the system we wished had existed when we were just trying to do a good job for someone else. Every process at Maid at Home exists because we learned — the hard way — why it matters.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- STEFANIA -->
+          <article class="founder-card si">
+            <div class="founder-img">
+              <img src={withBase("images/founder_stefania.png")} alt="Stefania Ramirez" loading="lazy" />
+            </div>
+            <div class="founder-body">
+              <div class="founder-name">Stefania Ramirez</div>
+              <div class="founder-role">Co-founder · Client Experience & Brand</div>
+              <p class="founder-bio">Stefania is from Colombia and studied Communications and Journalism before making Melbourne home. She's the reason Maid at Home feels different to deal with — the clarity in how services are explained, the way clients are kept informed, the tone in every message. She built the customer experience from the ground up.</p>
+              <p class="founder-bio">Her approach to communication — honest, direct, warm — runs through everything Maid at Home puts out and every interaction clients have with the business. When something goes wrong, she's also the one making sure it gets fixed properly and the client knows about it.</p>
+              <div class="founder-tags">
+                <span class="founder-tag">Communications</span>
+                <span class="founder-tag">Client Experience</span>
+                <span class="founder-tag">Brand & Content</span>
+                <span class="founder-tag">Melbourne since 2017</span>
+              </div>
+              <div class="founder-details">
+                <div class="fdr"><span class="fdr-ico">🎓</span> Comunicación y Periodismo · Colombia</div>
+                <div class="fdr"><span class="fdr-ico">📍</span> Based in Melbourne, VIC</div>
+              </div>
+              <div class="founder-quote">
+                <p>When you hire a cleaner, you're letting someone into your home. That trust has to be earned — through honesty, consistency, and never over-promising. That's the only way we know how to do it.</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ 4. HOW WE HIRE ─────────────────────────── -->
+    <section id="hiring" class="pad" aria-labelledby="hiring-h2">
+      <div class="c6">
+        <div class="hiring-layout sg">
+
+          <!-- Left: copy -->
+          <div class="hiring-copy si" data-d="l">
+            <p class="eyebrow6">Our Team</p>
+            <h2 class="h6" id="hiring-h2">Who we let into<br /><span class="ac">your home</span></h2>
+            <p>Pau and Stefania built Maid at Home on their own reputation. When they started bringing other cleaners on board in 2024, the standard didn't change — it just had to be taught. Every person who cleans for Maid at Home goes through the same process they developed over seven years of doing it themselves.</p>
+            <p>We don't hire fast to fill a gap. We hire carefully and train thoroughly, because the alternative — a cleaner who doesn't meet the standard — costs us more than an unfilled slot ever would.</p>
+            <div class="hiring-promise">
+              <div class="hp-head">
+                <span class="hp-ico">🛡️</span>
+                <span class="hp-title">Every Maid at Home cleaner is:</span>
+              </div>
+              <ul class="hp-list">
+                <li class="hp-item">Police-checked before their first assignment</li>
+                <li class="hp-item">Fully insured (public liability and personal injury)</li>
+                <li class="hp-item">Trained on the Maid at Home cleaning checklist</li>
+                <li class="hp-item">Briefed on eco-product use and surface safety</li>
+                <li class="hp-item">Reviewed regularly by clients and by us</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right: steps -->
+          <div class="hiring-steps si" data-d="r" aria-label="How we hire and train cleaners">
+            <div class="hiring-step">
+              <div class="hs-num">1</div>
+              <div class="hs-body">
+                <h3>Application & initial screening</h3>
+                <p>Every applicant goes through a detailed screening before they meet us in person. We look for people with real cleaning experience, strong references, and — just as important — the kind of reliability and care that can't be trained in.</p>
+              </div>
+            </div>
+            <div class="hiring-step">
+              <div class="hs-num">2</div>
+              <div class="hs-body">
+                <h3>Background check</h3>
+                <p>Every cleaner is police-checked before they enter a client's home. No exceptions. Our clients open their doors to our team — that responsibility isn't taken lightly.</p>
+              </div>
+            </div>
+            <div class="hiring-step">
+              <div class="hs-num">3</div>
+              <div class="hs-body">
+                <h3>Hands-on training to our standard</h3>
+                <p>New cleaners are trained on our full checklist — room by room, product by product, surface by surface. Training isn't a walkthrough. It's practical, supervised, and assessed against the same standard we hold ourselves to. If it isn't right, we keep going.</p>
+              </div>
+            </div>
+            <div class="hiring-step">
+              <div class="hs-num">4</div>
+              <div class="hs-body">
+                <h3>Supervised first assignments</h3>
+                <p>The first jobs are reviewed closely — either by Pau or Stefania directly, or via detailed client feedback. We're not hands-off until we're confident the standard is consistent, not just passable.</p>
+              </div>
+            </div>
+            <div class="hiring-step">
+              <div class="hs-num">5</div>
+              <div class="hs-body">
+                <h3>Ongoing reviews & accountability</h3>
+                <p>Client feedback is read by the founders — not passed through a manager or filtered by a system. If a cleaner consistently gets strong feedback, they're recognised for it. If there's a recurring issue, we address it directly. Every cleaner knows the bar is real.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FAQ ─────────────────────────────────────── -->
+    <section id="faq6" class="pad" aria-labelledby="faq6-h2">
+      <div class="c6">
+        <div class="faq6-layout">
+          <div class="sg">
+            <div class="si" data-d="l">
+              <p class="eyebrow6">FAQ</p>
+              <h2 class="h6" id="faq6-h2">Questions<br /><span class="ac">answered</span></h2>
+            </div>
+            <p class="lead6 si" style="margin-bottom:1.75rem;">
+              If your question isn't here, just call — a real person picks up.
+            </p>
+            <div class="compact-contact-card si" style="padding:2rem 2.25rem;background:var(--white);border-radius:20px;border:1px solid var(--border-subtle);width:fit-content;max-width:100%;margin-top:2rem;display:flex;flex-direction:column;gap:1.1rem;box-shadow:var(--shadow-sm);">
+              <a href="https://wa.me/61399990000" class="compact-card-line" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.8rem;font-size:0.88rem;line-height:1.2;color:var(--blue);font-weight:700;text-decoration:none;transition:opacity 0.2s;">
+                <span class="compact-card-icon" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex-shrink:0;">
+                  <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.76.46 3.473 1.33 4.982L2 22l5.204-1.365a9.948 9.948 0 004.808 1.229h.005c5.504 0 9.983-4.482 9.983-9.988C22.003 6.482 17.518 2 12.012 2z" fill="#25D366"/>
+                    <path d="M16.924 14.15c-.27-.136-1.593-.785-1.84-.875-.246-.09-.426-.136-.606.136-.18.27-.7.876-.856 1.056-.158.18-.316.204-.586.068a7.382 7.382 0 01-2.176-1.343c-.856-.763-1.434-1.705-1.602-1.977-.168-.27-.018-.417.117-.551.121-.122.27-.317.406-.475.135-.158.18-.27.27-.452.09-.18.045-.339-.022-.475-.068-.136-.607-1.462-.832-2.004-.22-.528-.44-.457-.606-.466-.156-.008-.337-.01-.517-.01a1.002 1.002 0 00-.72.339c-.247.27-.945.927-.945 2.261 0 1.333.97 2.624 1.105 2.805.135.18 1.9 2.901 4.604 4.07.643.278 1.145.443 1.536.568.647.206 1.235.176 1.7.107.518-.078 1.593-.65 1.819-1.278.225-.628.225-1.167.157-1.278-.067-.113-.247-.18-.517-.316z" fill="#FFF"/>
+                  </svg>
+                </span>
+                <span>(03) 9999 0000</span>
+              </a>
+              <a href="mailto:hello@maidathome.com.au" class="compact-card-line" style="display:inline-flex;align-items:center;gap:0.8rem;font-size:0.88rem;line-height:1.2;color:var(--blue);font-weight:700;text-decoration:none;transition:opacity 0.2s;">
+                <span class="compact-card-icon" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex-shrink:0;">
+                  <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  </svg>
+                </span>
+                <span>hello@maidathome.com.au</span>
+              </a>
+            </div>
+          </div>
+          <div class="faq6-list sg" role="list">
+            {[
+              ["Who actually owns and operates Maid at Home?","Maid at Home is proudly owned and operated by its original founders, Pau Rodriguez and Stefania Ramirez, who started as cleaners themselves in Melbourne back in 2017. They remain highly hands-on in the day-to-day operations and quality control."],
+              ["How do you select and train your cleaning team?","We hire carefully and train thoroughly. Every cleaner undergoes rigorous in-person screening, national police checks, and reference checks. They are then trained room-by-room on the Maid at Home quality checklist and supervised on their first assignments."],
+              ["Are the founders still involved in the day-to-day business?","Yes, absolutely. Pau directly manages operations, booking systems, and cleaner training programs, while Stefania leads customer experience and handles quality reviews."],
+              ["How do you ensure cleaning quality remains consistent?","By using a standardized, room-by-room checklist on every clean. We also assign the same regular cleaner to recurring bookings wherever possible, as familiarity with your home leads to superior results."],
+              ["What happens if a cleaner misses something during a service?","We offer a 100% satisfaction guarantee. If any detail of your clean is missed or not up to standard, contact us within 24 hours and we will return to re-clean it free of charge. No arguments, no fuss."],
+              ["Are your cleaning products safe for pets and children?","Yes. As pet owners, Stefania and Pau make sure every cleaning product we use is eco-safe, non-toxic, pet-friendly, and biodegradable. We deliver a deep clean without harsh chemicals."],
+            ].map((item, i) => (
+              <div class="faq6-item si" role="listitem">
+                <button class="faq6-q" aria-expanded="false" id={`faq6-q-${i}`} aria-controls={`faq6-a-${i}`}>
+                  {item[0]}
+                  <span class="faq6-ico" aria-hidden="true">+</span>
+                </button>
+                <div class="faq6-a" id={`faq6-a-${i}`} role="region" aria-labelledby={`faq6-q-${i}`}>
+                  {item[1]}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FINAL CTA ───────────────────────────────── -->
+    <section id="cta6" class="cta-sky" aria-labelledby="cta6-h2">
+      <div class="c6">
+        <div class="cta6-grid sg">
+          <div class="cta6-left">
+            <div class="si" data-d="l">
+              <p class="eyebrow6">Ready to start?</p>
+              <h2 class="h6" id="cta6-h2">Ready to experience<br /><span class="ac">the difference?</span></h2>
+            </div>
+            <p class="cta6-sub si">
+              Let Pau, Stefania, and our vetted Melbourne team take care of your home cleaning. No lock-in contracts, just real care and consistent quality you can count on.
+            </p>
+            <div class="cta6-actions si">
+              <a href={withBase("index") + "#calc6"} class="btn6-primary" id="cta6-book">
+                Get an instant quote
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M2 6.5h9M7.5 2l4.5 4.5L7.5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="cta6-right" aria-hidden="true">
+            <img src={withBase("images/bright_clean_living_room.png")} alt="" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FOOTER ──────────────────────────────────── -->
+    <footer id="ft6" aria-label="Site footer">
+      <div class="ft6-inner">
+        <div class="ft6-brand">
+          <div class="ft6-logo">Maid at Home</div>
+          <p>Melbourne's trusted professional cleaning service. Trained, insured, and committed to consistent quality since 2019.</p>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Services</div>
+          <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+          <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+          <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+          <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+          <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+          <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Company</div>
+          <a href={withBase("about")}>About Us</a>
+          <a href={withBase("careers")}>Work with Us</a>
+        <a href={withBase("blog")}>Blog</a>
+          <a href={withBase("areas")}>Service Areas</a>
+          <a href={withBase("index") + "#rec6"}>Recurring Cleaning</a>
+          <a href={withBase("index") + "#calc6"}>Pricing Calculator</a>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Contact</div>
+          <a href="tel:+61399990000">(03) 9999 0000</a>
+          <a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a>
+          <a href={withBase("index") + "#calc6"}>Book Online</a>
+        </div>
+      </div>
+      <div class="ft6-bottom">
+        <span>© 2025 Maid at Home. All rights reserved.</span>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      /* ─ HEADER ────────────────────────────────────── */
+      const hd6 = document.getElementById("hd6");
+      const onScroll6 = () => hd6.classList.toggle("scrolled", window.scrollY > 20);
+      window.addEventListener("scroll", onScroll6, { passive: true });
+      onScroll6();
+
+            /* ─ MOBILE NAV / MENU ────────────────────────── */
+      const tog6 = document.getElementById("hd6Toggle");
+      const mob6 = document.getElementById("hd6-mob");
+      const cls6 = document.getElementById("hd6MobClose");
+      
+      if (tog6 && mob6) {
+        tog6.addEventListener("click", () => {
+          const isOpen = mob6.classList.toggle("open");
+          if (hd6) hd6.classList.toggle("menu-open", isOpen);
+          tog6.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+      }
+      
+      if (cls6 && mob6 && tog6) {
+        cls6.addEventListener("click", () => {
+          mob6.classList.remove("open");
+          if (hd6) hd6.classList.remove("menu-open");
+          tog6.setAttribute("aria-expanded", "false");
+        });
+      }
+      
+      if (mob6) {
+        mob6.querySelectorAll("a").forEach(a => {
+          a.addEventListener("click", () => {
+            mob6.classList.remove("open");
+            if (hd6) hd6.classList.remove("menu-open");
+            if (tog6) tog6.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      /* ─ MOBILE DROPDOWN ACCORDION ────────────────── */
+      if (mob6) {
+        mob6.querySelectorAll('.mob6-dropdown-toggle').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const targetId = btn.getAttribute('data-target');
+            const submenu = document.getElementById(targetId);
+            if (submenu) {
+              const isCollapsed = submenu.classList.contains('collapsed');
+              if (isCollapsed) {
+                submenu.classList.remove('collapsed');
+                btn.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+              } else {
+                submenu.classList.add('collapsed');
+                btn.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+              }
+            }
+          });
+        });
+      }
+
+      /* ─ STAGGER OBSERVER ──────────────────────────── */
+      const sObs6 = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const items = Array.from(entry.target.querySelectorAll(".si")).filter(el => !el.classList.contains("in"));
+          items.forEach((item, i) => setTimeout(() => item.classList.add("in"), i * 110));
+          sObs6.unobserve(entry.target);
+        });
+      }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
+      document.querySelectorAll(".sg").forEach(g => sObs6.observe(g));
+
+      /* ─ FAQ accordion logic ───────────────────────── */
+      document.querySelectorAll(".faq6-item").forEach(item => {
+        item.querySelector(".faq6-q").addEventListener("click", () => {
+          const open = item.classList.contains("open");
+          document.querySelectorAll(".faq6-item.open").forEach(o => { o.classList.remove("open"); o.querySelector(".faq6-q").setAttribute("aria-expanded","false"); });
+          if (!open) { item.classList.add("open"); item.querySelector(".faq6-q").setAttribute("aria-expanded","true"); }
+        });
+      });
+
+      /* ─ Active about nav link logic ──────────────── */
+      const pnavLinks = document.querySelectorAll('.pnav-link');
+      const pnavSections = ['story', 'mission', 'founders', 'hiring', 'faq6'].map(id => document.getElementById(id));
+      let lastActiveIndex = 0;
+      window.addEventListener('scroll', () => {
+        const offset = window.scrollY > 20 ? 64 : 72;
+        const scrollY = window.scrollY + offset + 48 + 40;
+        let current = 0;
+        pnavSections.forEach((sec, i) => { if (sec && sec.offsetTop <= scrollY) current = i; });
+        pnavLinks.forEach((l, i) => l.classList.toggle('active', i === current));
+        
+        if (current !== lastActiveIndex) {
+          lastActiveIndex = current;
+          const activeLink = pnavLinks[current];
+          if (activeLink) {
+            const container = document.querySelector('#about-nav .pnav-inner');
+            if (container) {
+              const containerWidth = container.clientWidth;
+              const linkLeft = activeLink.offsetLeft;
+              const linkWidth = activeLink.clientWidth;
+              container.scrollTo({
+                left: linkLeft - (containerWidth / 2) + (linkWidth / 2),
+                behavior: 'smooth'
+              });
+            }
+          }
+        }
+      }, { passive: true });
+    </script>
+  </body>
+</html>

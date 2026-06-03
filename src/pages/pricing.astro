@@ -1,0 +1,3510 @@
+---
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => {
+  const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  const p = path.startsWith("/") ? path.slice(1) : path;
+  return p ? `${base}${p}` : base;
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transparent Rates & Pricing — Maid at Home Melbourne</title>
+    <meta
+      name="description"
+      content="Clear, upfront pricing for every house cleaning service in Melbourne. Choose between fixed flat rate or flexible hourly rate. No hidden fees."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style is:global>
+      /* ─── TOKENS ──────────────────────────────── */
+      :root {
+        --navy: #0a1d33;
+        --blue-d: #142d4c;
+        --blue: #1d6fa8;
+        --blue-l: #5aaee0;
+        --blue-xl: #e8f4fd;
+        --sky: #f0f7fd;
+        --yellow: #f6c133;
+        --yellow-d: #e0ab1d;
+        --yellow-l: #fffbe6;
+        --green: #16a34a;
+        --green-l: #e8f7ee;
+        --grey: #5e6a75;
+        --grey-d: #2d3748;
+        --grey-l: #e2e8f0;
+        --white: #ffffff;
+
+        --border-subtle: rgba(29, 111, 168, 0.08);
+        --border-hover: rgba(29, 111, 168, 0.18);
+        --shadow-sm: 0 2px 8px rgba(10, 29, 51, 0.02);
+        --shadow-md: 0 8px 30px rgba(10, 29, 51, 0.04);
+        --shadow-lg: 0 16px 48px rgba(10, 29, 51, 0.06);
+        --shadow-premium: 0 24px 60px rgba(10, 29, 51, 0.08);
+
+        --font: "Plus Jakarta Sans", system-ui, sans-serif;
+        --r-s: 8px;
+        --r: 12px;
+        --r-l: 20px;
+        --r-xl: 28px;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 120px; /* Offset for fixed header + sticky nav */
+      }
+      body {
+        font-family: var(--font);
+        color: var(--grey-d);
+        background: var(--white);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.6;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      /* ─── KEYFRAMES ───────────────────────────── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes floatY {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      /* ─── STAGGER SYSTEM ──────────────────────── */
+      .si {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease);
+      }
+      .si[data-d="l"] {
+        transform: translateX(-24px);
+      }
+      .si[data-d="r"] {
+        transform: translateX(24px);
+      }
+      .si.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ─── LAYOUT ──────────────────────────────── */
+      .c6 {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+      }
+      .pad {
+        padding: 6.5rem 0;
+      }
+      .pad-sm {
+        padding: 4.5rem 0;
+      }
+      #pricing-nav + #methods {
+        padding-top: 8rem;
+      }
+
+      /* ─── SHARED TYPOGRAPHY ───────────────────── */
+      .eyebrow6 {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 0.85rem;
+      }
+      .eyebrow6::before {
+        content: "";
+        width: 16px;
+        height: 2.5px;
+        background: var(--yellow);
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+      h2.h6 {
+        font-size: clamp(2rem, 3.4vw, 2.85rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--navy);
+        line-height: 1.15;
+      }
+      h2.h6 .ac {
+        color: var(--blue);
+      }
+      .lead6 {
+        font-size: 1.05rem;
+        color: var(--grey);
+        line-height: 1.75;
+        max-width: 520px;
+        margin-top: 0.75rem;
+      }
+      .sec-header6 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: end;
+        margin-bottom: 4rem;
+      }
+
+      /* ─── BUTTONS ─────────────────────────────── */
+      .btn6-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--yellow);
+        color: var(--navy);
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 0.95rem 2rem;
+        border-radius: 100px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font);
+        white-space: nowrap;
+        transition:
+          background 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(246, 193, 51, 0.2);
+      }
+      .btn6-primary:hover {
+        background: var(--yellow-d);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(246, 193, 51, 0.4);
+      }
+      .btn6-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        color: var(--navy);
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 0.9rem 1.75rem;
+        border-radius: 100px;
+        border: 1px solid var(--grey-l);
+        background: transparent;
+        text-decoration: none;
+        cursor: pointer;
+        font-family: var(--font);
+        white-space: nowrap;
+        transition:
+          border-color 0.25s,
+          background 0.25s,
+          color 0.25s;
+      }
+      .btn6-outline:hover {
+        border-color: var(--navy);
+        background: var(--sky);
+      }
+
+      .btn6-outline-dark {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: transparent;
+        color: var(--blue);
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 0.85rem 1.5rem;
+        border-radius: 100px;
+        border: 1.5px solid var(--grey-l);
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          color 0.25s,
+          border-color 0.25s,
+          background 0.25s;
+        white-space: nowrap;
+        font-family: var(--font);
+      }
+      .btn6-outline-dark:hover {
+        color: var(--navy);
+        border-color: var(--blue);
+        background: var(--sky);
+      }
+
+      .btn6-ghost-dark {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 500;
+        font-size: 0.9rem;
+        border-radius: 100px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 0.9rem 1.75rem;
+        text-decoration: none;
+        font-family: var(--font);
+        white-space: nowrap;
+        transition:
+          color 0.25s,
+          border-color 0.25s,
+          background 0.25s;
+      }
+      .btn6-ghost-dark:hover {
+        color: var(--white);
+        border-color: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      /* ─── HEADER ──────────────────────────────── */
+      #hd6 {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 200;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 4vw;
+        transition:
+          background 0.3s var(--ease),
+          box-shadow 0.3s var(--ease),
+          height 0.3s var(--ease);
+      }
+      #hd6.scrolled {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 4px 30px rgba(10, 29, 51, 0.03);
+        height: 64px;
+        border-bottom: 1px solid rgba(10, 29, 51, 0.04);
+      }
+      .hd6-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        text-decoration: none;
+      }
+      .hd6-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: var(--blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: background 0.3s;
+      }
+      #hd6.scrolled .hd6-mark {
+        background: var(--navy);
+      }
+      .hd6-name {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: -0.02em;
+      }
+      .hd6-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .hd6-nav a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--grey-d);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+      }
+      .hd6-nav a:hover,
+      .hd6-nav a.active {
+        color: var(--blue);
+        background: var(--sky);
+      }
+      .hd6-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        background: var(--yellow);
+        color: var(--navy);
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 0.55rem 1.35rem;
+        border-radius: 100px;
+        text-decoration: none;
+        margin-left: 0.75rem;
+        transition:
+          background 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
+        white-space: nowrap;
+      }
+      .hd6-cta:hover {
+        background: var(--yellow-d);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 14px rgba(246, 193, 51, 0.35);
+      }
+      .hd6-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
+        z-index: 201;
+      }
+      .hd6-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--navy);
+        border-radius: 2px;
+        transition:
+          transform 0.3s var(--ease),
+          opacity 0.3s var(--ease);
+      }
+
+      #hd6.menu-open {
+        background: var(--white) !important;
+        box-shadow: none !important;
+        border-bottom: 1px solid rgba(10, 29, 51, 0.04) !important;
+      }
+      #hd6.menu-open .hd6-toggle span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      #hd6.menu-open .hd6-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      #hd6.menu-open .hd6-toggle span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      #hd6-mob {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 199;
+        background: var(--white);
+        flex-direction: column;
+        padding: 6rem 2rem 2rem;
+        gap: 0.5rem;
+      ; overflow-y: auto;}
+      /* Mobile Dropdown Accordion Styling */
+      .mob6-dropdown-item {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-dropdown-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+      #hd6-mob a, .mob6-dropdown-label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--navy);
+        text-decoration: none;
+        padding: 0.95rem 0;
+        flex: 1;
+      }
+      .mob6-dropdown-label {
+        cursor: default;
+        user-select: none;
+      }
+      .mob6-dropdown-toggle {
+        background: none;
+        border: none;
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--navy);
+        transition: transform 0.25s var(--ease);
+      }
+      .mob6-dropdown-toggle.open {
+        transform: rotate(180deg);
+        color: var(--blue);
+      }
+      .mob6-dropdown-item .mob6-sub-menu {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1.25rem;
+        border-left: 2px solid var(--border-subtle);
+        margin: 0.25rem 0 0.75rem;
+        gap: 0.35rem;
+        max-height: 500px;
+        opacity: 1;
+        overflow: hidden;
+        transition: max-height 0.35s var(--ease), opacity 0.35s var(--ease), margin 0.35s var(--ease);
+      }
+      .mob6-dropdown-item .mob6-sub-menu.collapsed {
+        max-height: 0;
+        opacity: 0;
+        margin: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .mob6-sub-menu a {
+        font-size: 0.95rem !important;
+        color: var(--grey) !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: none !important;
+      }
+      .mob6-sub-menu a:hover {
+        color: var(--blue) !important;
+      }
+      .mob6-dropdown-item {
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-dropdown-item a, .mob6-dropdown-item .mob6-dropdown-label {
+        border-bottom: none !important;
+      }
+
+      #hd6-mob.open {
+        display: flex;
+      }
+      #hd6-mob a {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--navy);
+        text-decoration: none;
+        padding: 0.95rem 0;
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-cta {
+        background: var(--yellow);
+        color: var(--navy);
+        text-align: center;
+        border-radius: var(--r);
+        padding: 1.1rem;
+        margin-top: 1rem;
+        font-size: 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        display: block;
+      }
+
+      /* ─── PAGE HERO ───────────────────────────── */
+      #pricing-hero {
+        background: var(--sky);
+        padding-top: 72px;
+        position: relative;
+        overflow: hidden;
+      }
+      .pricing-hero-sun {
+        position: absolute;
+        top: -120px;
+        right: -100px;
+        width: 560px;
+        height: 560px;
+        border-radius: 50%;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(246, 193, 51, 0.14) 0%,
+          rgba(246, 193, 51, 0.03) 60%,
+          transparent 80%
+        );
+        pointer-events: none;
+      }
+      .pricing-hero-body {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 4rem 2.5rem 5rem;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 5rem;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+      }
+      .pricing-hero-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: 0.05em;
+        margin-bottom: 1.75rem;
+        width: fit-content;
+        background: var(--white);
+        padding: 0.4rem 0.9rem;
+        border-radius: 100px;
+        box-shadow: var(--shadow-sm);
+        animation: fadeUp 0.5s var(--ease) 0s both;
+      }
+      .pricing-hero-pill-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--yellow);
+        flex-shrink: 0;
+      }
+      .pricing-hero-h1 {
+        font-size: clamp(2.8rem, 5vw, 4rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1.08;
+        color: var(--navy);
+        margin-bottom: 1.5rem;
+        animation: fadeUp 0.65s var(--ease) 0.1s both;
+      }
+      .pricing-hero-h1 .ac {
+        color: var(--blue);
+      }
+      .pricing-hero-sub {
+        font-size: 1.1rem;
+        color: var(--grey);
+        line-height: 1.75;
+        max-width: 500px;
+        margin-bottom: 2.25rem;
+        animation: fadeUp 0.65s var(--ease) 0.25s both;
+      }
+      .pricing-hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        animation: fadeUp 0.65s var(--ease) 0.4s both;
+      }
+      .pricing-hero-right {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        animation: fadeUp 0.8s var(--ease) 0.2s both;
+      }
+
+      .ph-breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--grey);
+        margin-bottom: 1.5rem;
+      }
+      .ph-breadcrumb a {
+        color: var(--grey);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .ph-breadcrumb a:hover {
+        color: var(--blue);
+      }
+      .ph-breadcrumb span {
+        color: var(--grey-l);
+      }
+
+      .hero-trust {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-subtle);
+        animation: fadeUp 0.65s var(--ease) 0.5s both;
+      }
+      .ht-item {
+        font-size: 0.78rem;
+        color: var(--grey-d);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .ht-item::before {
+        content: "✓";
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      /* Hero right — Method Cards */
+      .hmc {
+        background: var(--white);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r-l);
+        padding: 1.5rem 1.75rem;
+        box-shadow: var(--shadow-sm);
+        transition:
+          background 0.3s var(--ease),
+          border-color 0.3s var(--ease),
+          transform 0.3s var(--ease),
+          box-shadow 0.3s var(--ease);
+      }
+      .hmc:hover {
+        background: var(--sky);
+        border-color: var(--border-hover);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+      }
+      .hmc-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+      }
+      .hmc-badge {
+        font-size: 0.68rem;
+        font-weight: 800;
+        padding: 0.25rem 0.75rem;
+        border-radius: 100px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .badge-blue {
+        background: var(--blue-xl);
+        color: var(--blue);
+      }
+      .badge-yellow {
+        background: var(--yellow-l);
+        color: var(--yellow-d);
+      }
+      .hmc-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 0.35rem;
+        letter-spacing: -0.01em;
+      }
+      .hmc-desc {
+        font-size: 0.82rem;
+        color: var(--grey);
+        line-height: 1.55;
+      }
+      .hmc-price {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: -0.03em;
+        margin-top: 0.875rem;
+      }
+      .hmc-price span {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--grey);
+        margin-left: 0.2rem;
+      }
+
+      #pricing-nav {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-subtle);
+        position: sticky;
+        top: 64px;
+        z-index: 150;
+      }
+      .pnav-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .pnav-inner::-webkit-scrollbar {
+        display: none;
+      }
+      .pnav-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--grey);
+        padding: 1.1rem 1.15rem;
+        text-decoration: none;
+        white-space: nowrap;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -1px;
+        transition:
+          color 0.25s,
+          border-color 0.25s;
+      }
+      .pnav-link:hover {
+        color: var(--blue);
+      }
+      .pnav-link.active {
+        color: var(--blue);
+        border-bottom-color: var(--blue);
+        font-weight: 700;
+      }
+
+      /* ─── SCROLL TARGET ADJUSTMENTS ───────────── */
+      #methods, #flat-rate, #hourly, #estimate, #addons, #faq6 {
+        padding-top: 3rem;
+      }
+
+      /* ─── METHODS SECTION ──────────────────────── */
+      #methods {
+        background: var(--white);
+      }
+      .methods-intro {
+        text-align: center;
+        max-width: 640px;
+        margin: 0 auto 3.5rem;
+      }
+      .methods-intro h2 {
+        margin-bottom: 1rem;
+      }
+      .methods-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .method-card {
+        background: var(--white);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r-xl);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          border-color 0.4s var(--ease),
+          box-shadow 0.4s var(--ease),
+          transform 0.4s var(--ease);
+      }
+      .method-card:hover {
+        border-color: var(--border-hover);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-4px);
+      }
+      .method-card.featured {
+        background: var(--navy);
+        border-color: var(--navy);
+      }
+      .method-card.featured:hover {
+        box-shadow: var(--shadow-premium);
+      }
+      .method-card-top {
+        padding: 2.5rem 2.5rem 2rem;
+        flex: 1;
+      }
+      .method-icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        background: var(--sky);
+        border: 1px solid var(--border-subtle);
+        transition: background 0.25s;
+      }
+      .method-card:hover .method-icon {
+        background: var(--blue-xl);
+      }
+      .method-card.featured .method-icon {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .method-label {
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 0.5rem;
+      }
+      .method-card.featured .method-label {
+        color: var(--blue-l);
+      }
+
+      .method-card-top h3 {
+        font-size: 1.45rem;
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: -0.02em;
+        margin-bottom: 0.85rem;
+        line-height: 1.25;
+      }
+      .method-card.featured .method-card-top h3 {
+        color: var(--white);
+      }
+
+      .method-card-top p {
+        font-size: 0.92rem;
+        color: var(--grey);
+        line-height: 1.7;
+      }
+      .method-card.featured .method-card-top p {
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      .method-tag-row {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+      }
+      .method-tag {
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 0.25rem 0.75rem;
+        border-radius: 100px;
+        background: var(--sky);
+        border: 1px solid var(--border-subtle);
+        color: var(--blue);
+      }
+      .method-card.featured .method-tag {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .method-card-bottom {
+        padding: 2rem 2.5rem 2.5rem;
+        background: var(--sky);
+        border-top: 1px solid var(--border-subtle);
+      }
+      .method-card.featured .method-card-bottom {
+        background: rgba(255, 255, 255, 0.02);
+        border-top-color: rgba(255, 255, 255, 0.05);
+      }
+
+      .method-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1.75rem;
+      }
+      .method-li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        font-size: 0.85rem;
+        color: var(--grey-d);
+        line-height: 1.5;
+      }
+      .method-li::before {
+        content: "✓";
+        color: var(--green);
+        font-weight: 800;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+      }
+      .method-card.featured .method-li {
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .method-card.featured .method-li::before {
+        color: var(--yellow);
+      }
+
+      .method-rec {
+        background: var(--white);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r);
+        padding: 1.1rem 1.25rem;
+        margin-bottom: 1.75rem;
+      }
+      .method-card.featured .method-rec {
+        background: rgba(246, 193, 51, 0.05);
+        border-color: rgba(246, 193, 51, 0.15);
+      }
+      .method-rec-label {
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--grey);
+        margin-bottom: 0.3rem;
+      }
+      .method-card.featured .method-rec-label {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .method-rec-text {
+        font-size: 0.83rem;
+        color: var(--grey-d);
+        line-height: 1.5;
+      }
+      .method-card.featured .method-rec-text {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* ─── FLAT RATE SECTION ────────────────────── */
+      #flat-rate {
+        background: var(--sky);
+      }
+      .flat-cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+        margin-bottom: 2rem;
+      }
+      .flat-card {
+        background: var(--white);
+        padding: 2.25rem 1.75rem;
+        display: flex;
+        flex-direction: column;
+        border-radius: var(--r-xl);
+        border: 1px solid var(--border-subtle);
+        transition:
+          transform 0.4s var(--ease),
+          border-color 0.4s var(--ease),
+          box-shadow 0.4s var(--ease);
+        position: relative;
+      }
+      .flat-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--border-hover);
+        box-shadow: var(--shadow-lg);
+      }
+      .flat-card.popular {
+        border-color: var(--yellow);
+        box-shadow: 0 8px 30px rgba(246, 193, 51, 0.1);
+      }
+      .flat-card.popular:hover {
+        box-shadow: 0 16px 48px rgba(246, 193, 51, 0.2);
+      }
+
+      .flat-pop-badge {
+        position: absolute;
+        top: -11px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--yellow);
+        color: var(--navy);
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        padding: 0.25rem 0.85rem;
+        border-radius: 100px;
+        box-shadow: var(--shadow-sm);
+        white-space: nowrap;
+      }
+      .flat-beds {
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 0.35rem;
+      }
+      .flat-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 1.25rem;
+        letter-spacing: -0.01em;
+      }
+      .flat-price {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: -0.05em;
+        line-height: 1;
+      }
+      .flat-price sup {
+        font-size: 1.1rem;
+        font-weight: 600;
+        vertical-align: top;
+        margin-top: 0.2rem;
+        display: inline-block;
+      }
+      .flat-per {
+        font-size: 0.75rem;
+        color: var(--grey);
+        margin-top: 0.25rem;
+        font-weight: 600;
+      }
+      .flat-divider {
+        height: 1px;
+        background: var(--border-subtle);
+        margin: 1.5rem 0;
+      }
+      .flat-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        flex: 1;
+      }
+      .flat-det {
+        font-size: 0.82rem;
+        color: var(--grey);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .flat-det::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--blue);
+        flex-shrink: 0;
+      }
+      .flat-cta {
+        margin-top: 1.75rem;
+      }
+
+      .flat-btn {
+        display: block;
+        text-align: center;
+        padding: 0.75rem;
+        border-radius: 100px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.2s;
+        background: var(--sky);
+        color: var(--navy);
+        border: 1px solid var(--border-subtle);
+      }
+      .flat-btn:hover {
+        background: var(--blue-xl);
+        border-color: var(--blue);
+        color: var(--blue);
+      }
+      .flat-card.popular .flat-btn {
+        background: var(--yellow);
+        color: var(--navy);
+        border-color: transparent;
+      }
+      .flat-card.popular .flat-btn:hover {
+        background: var(--yellow-d);
+      }
+
+      /* Frequency cards */
+      .freq-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .freq-card {
+        background: var(--white);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r);
+        padding: 1.5rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition:
+          transform 0.3s var(--ease),
+          border-color 0.3s var(--ease),
+          box-shadow 0.3s var(--ease);
+        position: relative;
+      }
+      .freq-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--blue-l);
+        box-shadow: var(--shadow-md);
+      }
+      .freq-card.featured {
+        border-color: var(--blue);
+        background: var(--blue-xl);
+      }
+      .freq-card.featured::before {
+        content: "Popular";
+        position: absolute;
+        top: -10px;
+        font-size: 0.62rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background: var(--blue);
+        color: var(--white);
+        padding: 0.2rem 0.6rem;
+        border-radius: 100px;
+      }
+      .freq-card.featured-weekly::before {
+        content: "Best Value";
+        background: var(--green);
+      }
+      .freq-card.featured-weekly {
+        border-color: var(--green);
+        background: var(--green-l);
+      }
+      .freq-name {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 0.2rem;
+      }
+      .freq-cadence {
+        font-size: 0.75rem;
+        color: var(--grey);
+        margin-bottom: 0.75rem;
+      }
+      .freq-disc-val {
+        font-size: 1.45rem;
+        font-weight: 800;
+        color: var(--green);
+        letter-spacing: -0.02em;
+        margin-bottom: 0.15rem;
+      }
+      .freq-disc-val.none {
+        color: var(--grey);
+      }
+      .freq-disc-lbl {
+        font-size: 0.72rem;
+        color: var(--grey);
+        font-weight: 600;
+      }
+      .freq-badge-note {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--green);
+        background: var(--green-l);
+        padding: 0.3rem 0.85rem;
+        border-radius: 100px;
+      }
+
+      /* ─── HOURLY SECTION ───────────────────────── */
+      #hourly {
+        background: var(--white);
+        border-bottom: 1px solid var(--border-subtle);
+        position: relative;
+        overflow: hidden;
+      }
+      .hourly-layout {
+        display: grid;
+        grid-template-columns: 5.5fr 6.5fr;
+        gap: 5rem;
+        align-items: start;
+        position: relative;
+        z-index: 1;
+      }
+      .hourly-intro p.lead {
+        margin-top: 0.75rem;
+        margin-bottom: 2rem;
+      }
+      .hourly-note {
+        background: var(--sky);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r);
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .hourly-note p {
+        font-size: 0.85rem;
+        color: var(--grey);
+        line-height: 1.6;
+      }
+      .hourly-note strong {
+        display: block;
+        color: var(--navy);
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .hourly-min-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        background: var(--yellow-l);
+        border: 1px solid rgba(246, 193, 51, 0.35);
+        border-radius: var(--r);
+        padding: 1.1rem 1.25rem;
+      }
+      .hourly-min-note p {
+        font-size: 0.83rem;
+        color: var(--grey-d);
+        line-height: 1.6;
+      }
+      .hourly-min-note strong {
+        color: var(--yellow-d);
+        font-weight: 700;
+      }
+
+      .hourly-right {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      .hourly-rate-main {
+        background: var(--sky);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r-xl);
+        padding: 2.25rem;
+      }
+      .hrm-label {
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 0.5rem;
+      }
+      .hrm-rate {
+        font-size: 3.2rem;
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: -0.05em;
+        line-height: 1;
+      }
+      .hrm-rate sup {
+        font-size: 1.35rem;
+        font-weight: 600;
+        vertical-align: top;
+        margin-top: 0.4rem;
+        display: inline-block;
+      }
+      .hrm-rate span {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--grey);
+      }
+      .hrm-divider {
+        height: 1px;
+        background: var(--border-subtle);
+        margin: 1.5rem 0;
+      }
+      .hrm-note {
+        font-size: 0.84rem;
+        color: var(--grey);
+        line-height: 1.6;
+      }
+
+      .hourly-freq-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .hfc-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--white);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r);
+        padding: 1.1rem 1.5rem;
+        transition:
+          background 0.25s,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .hfc-row:hover {
+        background: var(--sky);
+        border-color: var(--border-hover);
+        box-shadow: var(--shadow-sm);
+      }
+      .hfc-row.hfc-featured {
+        background: var(--yellow-l);
+        border-color: rgba(246, 193, 51, 0.4);
+      }
+      .hfc-left {
+        display: flex;
+        flex-direction: column;
+      }
+      .hfc-name {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .hfc-row.hfc-featured .hfc-name {
+        color: var(--yellow-d);
+      }
+      .hfc-cadence {
+        font-size: 0.75rem;
+        color: var(--grey);
+      }
+      .hfc-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .hfc-original {
+        font-size: 0.85rem;
+        color: var(--grey);
+        text-decoration: line-through;
+        opacity: 0.6;
+      }
+      .hfc-final {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: -0.01em;
+      }
+      .hfc-row.hfc-featured .hfc-final {
+        color: var(--navy);
+      }
+      .hfc-save {
+        font-size: 0.72rem;
+        font-weight: 800;
+        background: var(--green-l);
+        color: var(--green);
+        padding: 0.2rem 0.6rem;
+        border-radius: 100px;
+      }
+
+      /* ─── ESTIMATE CALCULATOR ─────────────────── */
+      #estimate {
+        background: var(--sky);
+      }
+      .est-layout {
+        display: grid;
+        grid-template-columns: 5fr 7fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .est-intro {
+        padding-top: 1rem;
+      }
+      .est-intro p.lead {
+        margin-top: 0.75rem;
+        margin-bottom: 2rem;
+      }
+      .est-note {
+        background: var(--white);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r);
+        padding: 1.25rem;
+        box-shadow: var(--shadow-sm);
+      }
+      .est-note p {
+        font-size: 0.83rem;
+        color: var(--grey-d);
+        line-height: 1.6;
+      }
+
+      .est-box {
+        background: var(--white);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r-xl);
+        padding: 2.5rem;
+        box-shadow: var(--shadow-lg);
+      }
+      .est-box-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.01em;
+      }
+      .c-group {
+        margin-bottom: 1.5rem;
+      }
+      .c-label {
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: var(--grey);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 0.6rem;
+      }
+      .c-opts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .c-opt {
+        padding: 0.55rem 1.15rem;
+        border-radius: 100px;
+        border: 1.5px solid var(--grey-l);
+        background: var(--white);
+        font-size: 0.83rem;
+        font-weight: 600;
+        color: var(--grey);
+        cursor: pointer;
+        transition: all 0.25s var(--ease);
+        font-family: var(--font);
+      }
+      .c-opt:hover {
+        border-color: var(--blue);
+        color: var(--blue);
+      }
+      .c-opt.on {
+        background: var(--blue);
+        border-color: var(--blue);
+        color: var(--white);
+      }
+
+      .c-stepper {
+        display: flex;
+        align-items: center;
+        border: 1.5px solid var(--grey-l);
+        border-radius: 100px;
+        overflow: hidden;
+        width: fit-content;
+        background: var(--white);
+      }
+      .c-step-btn {
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: var(--grey);
+        transition:
+          background 0.2s,
+          color 0.2s;
+        font-family: var(--font);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .c-step-btn:hover {
+        background: var(--sky);
+        color: var(--blue);
+      }
+      .c-step-val {
+        width: 50px;
+        text-align: center;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--navy);
+        border-left: 1px solid var(--grey-l);
+        border-right: 1px solid var(--grey-l);
+        line-height: 40px;
+      }
+
+      .c-extras {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .c-extra {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1.15rem;
+        border: 1.5px solid var(--grey-l);
+        border-radius: var(--r);
+        background: var(--white);
+        cursor: pointer;
+        transition: all 0.25s var(--ease);
+      }
+      .c-extra:hover {
+        border-color: var(--blue-l);
+      }
+      .c-extra.on {
+        border-color: var(--blue);
+        background: var(--blue-xl);
+      }
+      .c-extra-name {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--grey-d);
+      }
+      .c-extra.on .c-extra-name {
+        color: var(--blue-d);
+        font-weight: 700;
+      }
+      .c-extra-amt {
+        font-size: 0.82rem;
+        color: var(--grey);
+        font-weight: 600;
+      }
+      .c-extra.on .c-extra-amt {
+        color: var(--blue);
+      }
+
+      .calc-result {
+        background: var(--navy);
+        border-radius: var(--r-l);
+        padding: 1.75rem 2rem;
+        margin-top: 1.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+      }
+      .cr-lbl {
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 0.15rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .cr-price {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: var(--white);
+        letter-spacing: -0.04em;
+        line-height: 1;
+      }
+      .cr-price span {
+        color: var(--yellow);
+      }
+      .cr-price sup {
+        font-size: 1.1rem;
+        font-weight: 600;
+        vertical-align: top;
+        margin-top: 0.2rem;
+        display: inline-block;
+        color: var(--white);
+      }
+      .cr-note {
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.35);
+        margin-top: 0.3rem;
+      }
+
+      /* ─── ADD-ONS SECTION ──────────────────────── */
+      #addons {
+        background: var(--white);
+      }
+      .addons-intro {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: end;
+        margin-bottom: 3.5rem;
+      }
+
+      .addons-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r-xl);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+      }
+      .addon-item {
+        padding: 2rem 1.75rem;
+        border-right: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+        background: var(--white);
+        transition: background 0.25s var(--ease);
+        position: relative;
+      }
+      .addon-item:nth-child(4n) {
+        border-right: none;
+      }
+      .addon-item:nth-child(n + 5) {
+        border-bottom: none;
+      }
+      .addon-item:hover {
+        background: var(--sky);
+      }
+
+      .addon-icon {
+        width: 46px;
+        height: 46px;
+        background: var(--sky);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        margin-bottom: 1.25rem;
+        transition:
+          background 0.25s,
+          transform 0.25s;
+        border: 1px solid var(--border-subtle);
+      }
+      .addon-item:hover .addon-icon {
+        background: var(--blue-xl);
+        transform: scale(1.05);
+      }
+      .addon-name {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 0.35rem;
+        letter-spacing: -0.01em;
+      }
+      .addon-desc {
+        font-size: 0.83rem;
+        color: var(--grey);
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+      }
+      .addon-price-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .addon-price {
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: var(--blue);
+        letter-spacing: -0.02em;
+      }
+      .addon-add-btn {
+        font-size: 0.78rem;
+        font-weight: 700;
+        padding: 0.4rem 0.85rem;
+        border-radius: 100px;
+        background: var(--yellow);
+        color: var(--navy);
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: var(--shadow-sm);
+      }
+      .addon-add-btn:hover {
+        background: var(--yellow-d);
+        transform: scale(1.03);
+      }
+
+      .addons-note {
+        background: var(--sky);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r);
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+      .addons-note p {
+        font-size: 0.85rem;
+        color: var(--grey-d);
+        line-height: 1.6;
+      }
+      .addons-note strong {
+        font-weight: 700;
+        color: var(--blue);
+      }
+
+      /* ─── FAQ SECTION (Style 6) ────────────────── */
+      #faq6 {
+        background: var(--white);
+        border-top: 1px solid var(--border-subtle);
+      }
+      .faq6-layout {
+        display: grid;
+        grid-template-columns: 4fr 8fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .faq6-contact {
+        padding: 1.5rem;
+        background: var(--sky);
+        border-radius: var(--r);
+        border: 1px solid var(--border-subtle);
+        margin-top: 2rem;
+        box-shadow: var(--shadow-sm);
+      }
+      .faq6-contact p {
+        font-size: 0.88rem;
+        color: var(--grey);
+        line-height: 1.6;
+      }
+      .faq6-contact a {
+        color: var(--blue);
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .faq6-list {
+        border-top: 1px solid var(--border-subtle);
+      }
+      .faq6-item {
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .faq6-q {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.35rem 0;
+        cursor: pointer;
+        background: none;
+        border: none;
+        width: 100%;
+        font-family: var(--font);
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--navy);
+        text-align: left;
+        transition: color 0.2s;
+      }
+      .faq6-q:hover {
+        color: var(--blue);
+      }
+      .faq6-ico {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid var(--grey-l);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        color: var(--grey);
+        font-weight: 400;
+        flex-shrink: 0;
+        transition: all 0.3s var(--ease);
+        line-height: 1;
+      }
+      .faq6-item.open .faq6-ico {
+        background: var(--yellow);
+        border-color: var(--yellow);
+        color: var(--navy);
+        transform: rotate(45deg);
+      }
+      .faq6-a {
+        font-size: 0.9rem;
+        color: var(--grey);
+        line-height: 1.75;
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s var(--ease),
+          padding 0.3s;
+      }
+      .faq6-item.open .faq6-a {
+        max-height: 280px;
+        padding-bottom: 1.35rem;
+      }
+
+      /* ─── FINAL CTA ────────────────────────────── */
+      #cta6.cta-sky {
+        background: var(--sky);
+        padding: 6.5rem 0;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      #cta6.cta-white {
+        background: var(--white);
+        padding: 6.5rem 0;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .cta6-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 4.5rem;
+        align-items: center;
+      }
+      .cta6-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .cta6-sub {
+        font-size: 1.05rem;
+        color: var(--grey);
+        line-height: 1.7;
+        max-width: 500px;
+        margin: 1rem 0 2.25rem;
+      }
+      .cta6-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 2.25rem;
+      }
+      .cta6-trust {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+        border-top: 1px solid var(--grey-l);
+        padding-top: 1.5rem;
+      }
+      .cta6-trust-item {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.83rem;
+        font-weight: 600;
+        color: var(--grey-d);
+      }
+      .cta6-trust-item::before {
+        content: "✓";
+        color: var(--green);
+        font-weight: 800;
+      }
+      .cta6-right {
+        position: relative;
+        overflow: hidden;
+        height: 380px;
+        border-radius: var(--r-xl);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-md);
+      }
+      .cta6-right img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ─── FOOTER ──────────────────────────────── */
+      #ft6 {
+        background: var(--navy);
+        padding: 4.5rem 2.5rem 2.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .ft6-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3.5rem;
+        padding-bottom: 3rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      }
+      .ft6-brand p {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.4);
+        line-height: 1.7;
+        margin-top: 0.85rem;
+        max-width: 280px;
+      }
+      .ft6-logo {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: rgba(255, 255, 255, 0.85);
+        letter-spacing: -0.02em;
+      }
+      .ft6-col-title {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: 1.25rem;
+      }
+      .ft6-col a {
+        display: block;
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.45);
+        text-decoration: none;
+        margin-bottom: 0.6rem;
+        transition: color 0.2s;
+      }
+      .ft6-col a:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .ft6-bottom {
+        max-width: 1180px;
+        margin: 1.75rem auto 0;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .ft6-bottom span,
+      .ft6-bottom a {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.25);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .ft6-bottom a:hover {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* ─── RESPONSIVE ──────────────────────────── */
+      @media (max-width: 1024px) {
+        .hd6-nav {
+          display: none;
+        }
+        .hd6-toggle {
+          display: flex;
+        }
+        .pricing-hero-body {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        .pricing-hero-right {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem;
+        }
+        .cta6-grid {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        .cta6-right {
+          height: 320px;
+        }
+        .methods-grid {
+          grid-template-columns: 1fr;
+        }
+        .flat-cards {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .freq-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .hourly-layout,
+        .est-layout {
+          grid-template-columns: 1fr;
+          gap: 4rem;
+        }
+        .addons-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .addon-item:nth-child(2n) {
+          border-right: none;
+        }
+        .addon-item:nth-child(n + 5) {
+          border-bottom: 1px solid var(--border-subtle);
+        }
+        .addons-intro {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        .faq6-layout {
+          grid-template-columns: 1fr;
+          gap: 4rem;
+        }
+        .ft6-inner {
+          grid-template-columns: 1fr 1fr;
+          gap: 2.5rem;
+        }
+      }
+      @media (max-width: 768px) {
+        .pricing-hero-body {
+          padding: 4rem 1.5rem 3rem;
+        }
+        .pricing-hero-right {
+          grid-template-columns: 1fr;
+        }
+        .cta6-left {
+          padding: 2.5rem 1.5rem;
+        }
+        .c6 {
+          padding: 0 1.5rem;
+        }
+        .pad {
+          padding: 4.5rem 0;
+        }
+        .ft6-inner {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .freq-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      /* Dropdown style system */
+      .hd6-nav-item-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .hd6-nav-dropdown-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        cursor: pointer;
+      }
+      .hd6-nav-dropdown-toggle svg {
+        transition: transform 0.2s var(--ease);
+      }
+      .hd6-nav-item-dropdown:hover .hd6-nav-dropdown-toggle svg {
+        transform: rotate(180deg);
+      }
+      .hd6-dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+        background: var(--white);
+        min-width: 220px;
+        border-radius: var(--r);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-lg);
+        padding: 0.65rem 0;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.2s var(--ease),
+          transform 0.2s var(--ease),
+          visibility 0.2s;
+        z-index: 250;
+        display: flex;
+        flex-direction: column;
+      }
+      .hd6-nav-item-dropdown:hover .hd6-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+      .hd6-dropdown-menu a {
+        display: block !important;
+        font-size: 0.88rem !important;
+        font-weight: 600 !important;
+        color: var(--grey-d) !important;
+        padding: 0.6rem 1.25rem !important;
+        border-radius: 0 !important;
+        transition:
+          background 0.2s,
+          color 0.2s !important;
+        text-align: left;
+      }
+      .hd6-dropdown-menu a:hover {
+        background: var(--sky) !important;
+        color: var(--blue) !important;
+      }
+
+      /* Mobile sub-menu styling */
+      .mob6-sub-menu {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1.25rem;
+        border-left: 2px solid var(--border-subtle);
+        margin: 0.25rem 0 0.75rem;
+        gap: 0.35rem;
+      }
+      .mob6-sub-menu a {
+        font-size: 0.95rem !important;
+        color: var(--grey) !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: none !important;
+      }
+      .mob6-sub-menu a:hover {
+        color: var(--blue) !important;
+      }
+      .hd6-mob-section-title {
+        font-size: 0.8rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--grey);
+        letter-spacing: 0.08em;
+        margin-top: 0.75rem;
+        margin-bottom: 0.25rem;
+      }
+
+      @media (max-width: 640px) {
+        .hd6-nav {
+          display: none;
+        }
+        .hd6-toggle {
+          display: flex;
+        }
+        .flat-cards {
+          grid-template-columns: 1fr;
+        }
+        .addons-grid {
+          grid-template-columns: 1fr;
+        }
+        .addon-item {
+          border-right: none !important;
+          border-bottom: 1px solid var(--border-subtle) !important;
+        }
+        .addon-item:last-child {
+          border-bottom: none !important;
+        }
+        .pnav-inner {
+          padding: 0 1.5rem;
+        }
+        .freq-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 768px) {
+        #pricing-nav + #methods {
+          padding-top: 5.5rem;
+        }
+      }
+      /* Keep every non-hero section aligned with the landing services section. */
+      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) {
+        padding-top: 6.5rem !important;
+        padding-bottom: 6.5rem !important;
+      }
+      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+        max-width: 1180px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 2.5rem !important;
+        padding-right: 2.5rem !important;
+      }
+      @media (max-width: 768px) {
+        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) {
+          padding-top: 4.5rem !important;
+          padding-bottom: 4.5rem !important;
+        }
+        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+          padding-left: 1.5rem !important;
+          padding-right: 1.5rem !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ─ HEADER ─────────────────────────────────── -->
+    <header id="hd6" aria-label="Site header">
+      <a href={withBase("index")} class="hd6-logo" aria-label="Maid at Home">
+        <div class="hd6-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path
+              d="M9 2L11 7H16L12 10.5L13.5 16L9 12.5L4.5 16L6 10.5L2 7H7L9 2Z"
+              fill="white"
+              fill-opacity="0.9"></path>
+          </svg>
+        </div>
+        <span class="hd6-name">Maid at Home</span>
+      </a>
+      <nav class="hd6-nav" aria-label="Main navigation">
+        <div class="hd6-nav-item-dropdown">
+          <a href={withBase("services")} class="hd6-nav-dropdown-toggle">
+            Our Services
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="hd6-dropdown-menu">
+            <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+            <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+            <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+            <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+            <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+            <a href={withBase("services/window-cleaning")}>Window Cleaning</a>
+            <a href={withBase("services/balcony-cleaning")}>Balcony Cleaning</a>
+          </div>
+        </div>
+        <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+        <a href={withBase("pricing")}>Pricing</a>
+        <a href={withBase("areas")}>Areas We Serve</a>
+        <a href={withBase("about")}>About Us</a>
+        <a href={withBase("careers")}>Join Our Team</a>
+        <div class="hd6-nav-item-dropdown">
+          <a href="#" class="hd6-nav-dropdown-toggle" onclick="event.preventDefault()">
+            Help
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="hd6-dropdown-menu">
+            <a href={withBase("faqs")}>FAQs</a>
+            <a href={withBase("contact")}>Contact Us</a>
+          </div>
+        </div>
+        <a href={withBase("blog")}>Blog</a>
+        <a href={withBase("booking")} class="hd6-cta">Book Now</a>
+      </nav>
+      <button
+        class="hd6-toggle"
+        id="hd6Toggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <nav id="hd6-mob" aria-label="Mobile navigation">
+      
+      <!-- Services Row -->
+      <div class="mob6-dropdown-item">
+        <div class="mob6-dropdown-trigger">
+          <a href={withBase("services")}>Services</a>
+          <button class="mob6-dropdown-toggle" aria-label="Toggle Services Menu" aria-expanded="false" data-target="mob-services-submenu">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mob6-sub-menu collapsed" id="mob-services-submenu">
+          <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+          <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+          <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+          <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+          <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+          <a href={withBase("services/window-cleaning")}>Window Cleaning</a>
+          <a href={withBase("services/balcony-cleaning")}>Balcony Cleaning</a>
+        </div>
+      </div>
+
+      <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+      <a href={withBase("pricing")}>Pricing</a>
+      <a href={withBase("areas")}>Areas We Serve</a>
+      <a href={withBase("about")}>About Us</a>
+      <a href={withBase("careers")}>Join Our Team</a>
+
+      <!-- Help Row -->
+      <div class="mob6-dropdown-item">
+        <div class="mob6-dropdown-trigger">
+          <span class="mob6-dropdown-label">Help</span>
+          <button class="mob6-dropdown-toggle" aria-label="Toggle Help Menu" aria-expanded="false" data-target="mob-help-submenu">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mob6-sub-menu collapsed" id="mob-help-submenu">
+          <a href={withBase("faqs")}>FAQs</a>
+          <a href={withBase("contact")}>Contact Us</a>
+        </div>
+      </div>
+
+      <a href={withBase("blog")}>Blog</a>
+      <a href={withBase("booking")} class="mob6-cta">Book Now →</a>
+    </nav>
+
+    <!-- ─ PAGE HERO ──────────────────────────────── -->
+    <section id="pricing-hero" aria-labelledby="pricing-h1">
+      <div class="pricing-hero-sun" aria-hidden="true"></div>
+      <div class="pricing-hero-body">
+        <div class="pricing-hero-left">
+          <h1 class="pricing-hero-pill" id="pricing-h1">
+            <span class="pricing-hero-pill-dot" aria-hidden="true"></span>
+            House Cleaning Pricing & Calculator Melbourne
+          </h1>
+          <p class="pricing-hero-h1" aria-hidden="true">
+            Simple pricing.<br /><span class="ac">No surprises.</span>
+          </p>
+          <p class="pricing-hero-sub">
+            Two ways to book: fixed flat rate based on bedroom count, or
+            flexible hourly rate with frequency discounts. Both options feature
+            trained cleaners and a 100% satisfaction guarantee.
+          </p>
+          <div class="pricing-hero-actions">
+            <a href="#estimate" class="btn6-primary">
+              Calculate My Price
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 13 13"
+                fill="none"
+                aria-hidden="true"
+                ><path
+                  d="M2 6.5h9M7.5 2l4.5 4.5L7.5 11"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              >
+            </a>
+            <a href="tel:+61399990000" class="btn6-outline">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 13 13"
+                fill="none"
+                aria-hidden="true"
+                ><path
+                  d="M11.5 8.8L9.2 7.9 8.3 8.8C7 8.3 4.7 6 4.2 4.7l.9-.9L4.2 1.5 1.5 1C1 2 1 3.3 1.9 5c1.4 2.7 3.4 4.7 6 6 1.7.9 3 .9 3.9.4l-.3-2.6z"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path></svg
+              >
+              (03) 9999 0000
+            </a>
+          </div>
+        </div>
+        <div class="pricing-hero-right" aria-hidden="true">
+          <div class="hmc">
+            <div class="hmc-head">
+              <span style="font-size:0.85rem;font-weight:700;color:var(--navy)"
+                >⏱ Hourly Rate</span
+              >
+              <span class="hmc-badge badge-blue">Flexible</span>
+            </div>
+            <div class="hmc-desc">
+              Pay for the time your clean actually takes. Best for homes that
+              need a full reset or when scope is uncertain. Discounts applied
+              automatically for recurring bookings.
+            </div>
+            <div class="hmc-price">$55<span>/ hour</span></div>
+          </div>
+          <div class="hmc">
+            <div class="hmc-head">
+              <span style="font-size:0.85rem;font-weight:700;color:var(--navy)"
+                >🏠 Flat Rate</span
+              >
+              <span class="hmc-badge badge-yellow">Predictable</span>
+            </div>
+            <div class="hmc-desc">
+              A fixed price based on number of bedrooms. Know exactly what
+              you'll pay before we arrive. Ideal for routine maintenance cleans
+              on a set schedule.
+            </div>
+            <div class="hmc-price">From $149<span>/ clean</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ SECTION NAV ───────────────────────────── -->
+    <nav id="pricing-nav" aria-label="Pricing sections">
+      <div class="pnav-inner">
+        <a href="#methods" class="pnav-link active">How It Works</a>
+        <a href="#flat-rate" class="pnav-link">Flat Rate</a>
+        <a href="#hourly" class="pnav-link">Hourly</a>
+        <a href="#estimate" class="pnav-link">Estimate</a>
+        <a href="#addons" class="pnav-link">Add-Ons</a>
+        <a href="#faq6" class="pnav-link">FAQ</a>
+      </div>
+    </nav>
+
+    <!-- ─ HOW IT WORKS ──────────────────────────── -->
+    <section id="methods" class="pad" aria-labelledby="methods-h2">
+      <div class="c6">
+        <div class="methods-intro sg">
+          <p class="eyebrow6">Two Pricing Models</p>
+          <h2 class="h6" id="methods-h2">
+            Choose the rate that fits your home
+          </h2>
+          <p class="lead6" style="margin: 0.75rem auto 0; text-align: center;">
+            There's no single right answer — it depends on your home, your
+            habits, and how predictable you want your invoice. Here's the honest
+            difference between each.
+          </p>
+        </div>
+        <div class="methods-grid sg">
+          <!-- HOURLY -->
+          <div class="method-card si" data-d="l">
+            <div class="method-card-top">
+              <div class="method-icon">⏱</div>
+              <div class="method-label">Hourly Rate</div>
+              <h3>Pay for the time.<br />Nothing more.</h3>
+              <p>
+                Our cleaners work at a fixed hourly rate and stop when the job
+                is done. If your home takes less time than expected, you pay
+                less. If it needs more attention, nothing gets skipped — you're
+                billed only for what's actually worked.
+              </p>
+              <div class="method-tag-row">
+                <span class="method-tag">Flexible scope</span>
+                <span class="method-tag">Pay for actual time</span>
+                <span class="method-tag">Recurring discounts</span>
+              </div>
+            </div>
+            <div class="method-card-bottom">
+              <div class="method-list">
+                <div class="method-li">
+                  Great for homes that haven't been cleaned in a while — no risk
+                  of running out of time mid-job
+                </div>
+                <div class="method-li">
+                  Ideal when the scope is uncertain: post-renovation,
+                  post-tenancy, seasonal deep resets
+                </div>
+                <div class="method-li">
+                  Recurring customers get automatic discounts applied to the
+                  hourly rate — up to 10% off
+                </div>
+                <div class="method-li">Minimum booking of 2 hours applies</div>
+              </div>
+              <div class="method-rec">
+                <div class="method-rec-label">Recommended for</div>
+                <div class="method-rec-text">
+                  First-time cleans, deep cleans, post-renovation, move out, or
+                  any situation where the full scope isn't known in advance.
+                </div>
+              </div>
+              <a
+                href="#hourly"
+                class="btn6-outline-dark"
+                style="width:100%;justify-content:center;">See hourly rates →</a
+              >
+            </div>
+          </div>
+
+          <!-- FLAT RATE -->
+          <div class="method-card featured si" data-d="r">
+            <div class="method-card-top">
+              <div class="method-icon">🏠</div>
+              <div class="method-label">Flat Rate</div>
+              <h3>One price.<br />No surprises.</h3>
+              <p>
+                A fixed price based on the number of bedrooms in your home —
+                confirmed before we arrive and never adjusted on the day. You
+                know exactly what you'll pay, every time. No clocks, no
+                uncertainty, no awkward conversations.
+              </p>
+              <div class="method-tag-row">
+                <span class="method-tag">Fixed price upfront</span>
+                <span class="method-tag">By number of bedrooms</span>
+                <span class="method-tag">Frequency discounts</span>
+              </div>
+            </div>
+            <div class="method-card-bottom">
+              <div class="method-list">
+                <div class="method-li">
+                  Perfect for routine standard cleans on a regular schedule —
+                  weekly, fortnightly, or monthly
+                </div>
+                <div class="method-li">
+                  Price is based on bedrooms only — no bathroom surcharges, no
+                  hidden extras
+                </div>
+                <div class="method-li">
+                  Discounts up to 10% for recurring plans, automatically applied
+                  to your flat rate
+                </div>
+                <div class="method-li">
+                  Quote confirmed at booking — what you see is what you pay
+                </div>
+              </div>
+              <div class="method-rec">
+                <div class="method-rec-label">Recommended for</div>
+                <div class="method-rec-text">
+                  Regular maintenance cleans on a consistent schedule. If your
+                  home is already in reasonable condition and you want a
+                  predictable, no-fuss invoice every time.
+                </div>
+              </div>
+              <a
+                href="#flat-rate"
+                class="btn6-primary"
+                style="width:100%;justify-content:center;">See flat rates →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FLAT RATE PRICING ─────────────────────── -->
+    <section id="flat-rate" class="pad" aria-labelledby="flat-rate-h2">
+      <div class="c6">
+        <div class="sec-header6 sg">
+          <div class="si" data-d="l">
+            <p class="eyebrow6">Flat Rate Pricing</p>
+            <h2 class="h6" id="flat-rate-h2">Fixed price by bedrooms</h2>
+          </div>
+          <p class="lead6 si" data-d="r">
+            One upfront price based on the number of bedrooms. No bathroom
+            surcharges. No surprises on the day.
+          </p>
+        </div>
+
+        <div
+          class="flat-cards sg"
+          role="list"
+          aria-label="Flat rate pricing by bedrooms"
+        >
+          <div class="flat-card si" role="listitem">
+            <div class="flat-beds">Studio / 1 Bed</div>
+            <div class="flat-name">Small Home</div>
+            <div class="flat-price"><sup>$</sup>149</div>
+            <div class="flat-per">per standard clean</div>
+            <div class="flat-divider"></div>
+            <div class="flat-details">
+              <div class="flat-det">All rooms included</div>
+              <div class="flat-det">Kitchen & bathroom</div>
+              <div class="flat-det">Approx. 2–2.5 hrs</div>
+            </div>
+            <div class="flat-cta">
+              <a href="#estimate" class="flat-btn">Book this</a>
+            </div>
+          </div>
+          <div class="flat-card popular si" role="listitem">
+            <div class="flat-pop-badge">Most Popular</div>
+            <div class="flat-beds">2 Bedrooms</div>
+            <div class="flat-name">Standard Home</div>
+            <div class="flat-price"><sup>$</sup>189</div>
+            <div class="flat-per">per standard clean</div>
+            <div class="flat-divider"></div>
+            <div class="flat-details">
+              <div class="flat-det">All rooms included</div>
+              <div class="flat-det">Kitchen & bathrooms</div>
+              <div class="flat-det">Approx. 2.5–3.5 hrs</div>
+            </div>
+            <div class="flat-cta">
+              <a href="#estimate" class="flat-btn">Book this</a>
+            </div>
+          </div>
+          <div class="flat-card si" role="listitem">
+            <div class="flat-beds">3 Bedrooms</div>
+            <div class="flat-name">Family Home</div>
+            <div class="flat-price"><sup>$</sup>239</div>
+            <div class="flat-per">per standard clean</div>
+            <div class="flat-divider"></div>
+            <div class="flat-details">
+              <div class="flat-det">All rooms included</div>
+              <div class="flat-det">Kitchen & bathrooms</div>
+              <div class="flat-det">Approx. 3–4 hrs</div>
+            </div>
+            <div class="flat-cta">
+              <a href="#estimate" class="flat-btn">Book this</a>
+            </div>
+          </div>
+          <div class="flat-card si" role="listitem">
+            <div class="flat-beds">4+ Bedrooms</div>
+            <div class="flat-name">Large Home</div>
+            <div class="flat-price"><sup>$</sup>299</div>
+            <div class="flat-per">per standard clean</div>
+            <div class="flat-divider"></div>
+            <div class="flat-details">
+              <div class="flat-det">All rooms included</div>
+              <div class="flat-det">Kitchen & bathrooms</div>
+              <div class="flat-det">Approx. 4–5 hrs</div>
+            </div>
+            <div class="flat-cta">
+              <a href="#estimate" class="flat-btn">Book this</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frequency discounts -->
+        <div class="sg" style="margin-top: 4.5rem;">
+          <div class="si">
+            <div
+              style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1.5rem; margin-bottom:1.75rem;"
+            >
+              <div>
+                <h3
+                  style="font-size:1.25rem; font-weight:800; color:var(--navy); letter-spacing:-0.02em;"
+                >
+                  Recurring discounts — applied automatically
+                </h3>
+                <p
+                  style="font-size:0.88rem; color:var(--grey); margin-top:0.25rem;"
+                >
+                  Set a schedule and save on every visit. Pause, change, or
+                  cancel anytime.
+                </p>
+              </div>
+              <span class="freq-badge-note">Cancel anytime · No contracts</span>
+            </div>
+
+            <div class="freq-grid">
+              <div class="freq-card">
+                <span class="freq-name">One-off</span>
+                <span class="freq-cadence">Single visit</span>
+                <div class="freq-disc-val none">—</div>
+                <div class="freq-disc-lbl">Standard rate</div>
+              </div>
+              <div class="freq-card featured featured-weekly">
+                <span class="freq-name">Weekly</span>
+                <span class="freq-cadence">Every 7 days</span>
+                <div class="freq-disc-val" style="color:var(--green)">
+                  10% off
+                </div>
+                <div class="freq-disc-lbl" style="color:var(--green)">
+                  Save on every clean
+                </div>
+              </div>
+              <div class="freq-card featured">
+                <span class="freq-name">Fortnightly</span>
+                <span class="freq-cadence">Every 14 days</span>
+                <div class="freq-disc-val" style="color:var(--blue)">
+                  10% off
+                </div>
+                <div class="freq-disc-lbl" style="color:var(--blue)">
+                  Most popular plan
+                </div>
+              </div>
+              <div class="freq-card">
+                <span class="freq-name">3-Weekly</span>
+                <span class="freq-cadence">Every 21 days</span>
+                <div class="freq-disc-val">5% off</div>
+                <div class="freq-disc-lbl">Occasional reset</div>
+              </div>
+              <div class="freq-card">
+                <span class="freq-name">Monthly</span>
+                <span class="freq-cadence">Every 28 days</span>
+                <div class="freq-disc-val">5% off</div>
+                <div class="freq-disc-lbl">Occasional refresh</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ HOURLY PRICING ────────────────────────── -->
+    <section id="hourly" class="pad" aria-labelledby="hourly-h2">
+      <div class="c6">
+        <div class="hourly-layout sg">
+          <div class="hourly-intro si" data-d="l">
+            <p class="eyebrow6">Hourly Rate</p>
+            <h2 class="h6" id="hourly-h2">Pay for the time your home needs</h2>
+            <p class="lead6">
+              Our hourly rate is the most flexible way to book. You're never
+              locked into a scope — if a room needs extra attention, we spend
+              the time. You pay only for what's worked.
+            </p>
+            <div class="hourly-note" style="margin-top: 1.5rem;">
+              <strong>When does hourly make sense?</strong>
+              <p>
+                Homes that haven't had a professional clean in a while, deep
+                cleans, post-renovation cleanups, move-out situations, or any
+                time the scope is uncertain — hourly ensures nothing gets rushed
+                or skipped.
+              </p>
+            </div>
+            <div class="hourly-min-note">
+              <span style="font-size:1.1rem;margin-top:1px">⏱</span>
+              <p>
+                <strong>2-hour minimum applies</strong> to all hourly bookings. Most
+                standard homes take 2.5–4 hours depending on size and condition. We'll
+                give you an honest time estimate when you book.
+              </p>
+            </div>
+          </div>
+
+          <div class="hourly-right si" data-d="r">
+            <div class="hourly-rate-main">
+              <div class="hrm-label">Standard Hourly Rate</div>
+              <div class="hrm-rate"><sup>$</sup>55<span>/ hour</span></div>
+              <div class="hrm-divider"></div>
+              <div class="hrm-note">
+                All equipment and eco-friendly products supplied.
+                Police-checked, fully insured cleaners. Price confirmed before
+                arrival — no adjustments on the day without your approval.
+              </div>
+            </div>
+
+            <div style="padding: 0.5rem 0 0.25rem;">
+              <span class="c-label">Recurring discounts on hourly rate</span>
+            </div>
+
+            <div class="hourly-freq-cards">
+              <div class="hfc-row">
+                <div class="hfc-left">
+                  <span class="hfc-name">One-off</span>
+                  <span class="hfc-cadence">Single visit · No discount</span>
+                </div>
+                <div class="hfc-right">
+                  <span class="hfc-final">$55.00/hr</span>
+                </div>
+              </div>
+              <div class="hfc-row">
+                <div class="hfc-left">
+                  <span class="hfc-name">Monthly</span>
+                  <span class="hfc-cadence">Every 28 days</span>
+                </div>
+                <div class="hfc-right">
+                  <span class="hfc-original">$55/hr</span>
+                  <span class="hfc-final">$52.25/hr</span>
+                  <span class="hfc-save">−5%</span>
+                </div>
+              </div>
+              <div class="hfc-row">
+                <div class="hfc-left">
+                  <span class="hfc-name">3-Weekly</span>
+                  <span class="hfc-cadence">Every 21 days</span>
+                </div>
+                <div class="hfc-right">
+                  <span class="hfc-original">$55/hr</span>
+                  <span class="hfc-final">$52.25/hr</span>
+                  <span class="hfc-save">−5%</span>
+                </div>
+              </div>
+              <div class="hfc-row">
+                <div class="hfc-left">
+                  <span class="hfc-name">Fortnightly</span>
+                  <span class="hfc-cadence">Every 14 days</span>
+                </div>
+                <div class="hfc-right">
+                  <span class="hfc-original">$55/hr</span>
+                  <span class="hfc-final">$49.50/hr</span>
+                  <span class="hfc-save">−10%</span>
+                </div>
+              </div>
+              <div class="hfc-row hfc-featured">
+                <div class="hfc-left">
+                  <span class="hfc-name">Weekly</span>
+                  <span class="hfc-cadence">Every 7 days · Best value</span>
+                </div>
+                <div class="hfc-right">
+                  <span class="hfc-original">$55/hr</span>
+                  <span class="hfc-final">$49.50/hr</span>
+                  <span class="hfc-save">−10%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ ESTIMATE CALCULATOR ───────────────────── -->
+    <section id="estimate" class="pad" aria-labelledby="estimate-h2">
+      <div class="c6">
+        <div class="est-layout sg">
+          <div class="est-intro si" data-d="l">
+            <p class="eyebrow6">Instant Estimate</p>
+            <h2 class="h6" id="estimate-h2">Get your price in seconds</h2>
+            <p class="lead6">
+              Adjust the options and your estimate updates live. Flat rate or
+              hourly — we'll show you both so you can choose what suits.
+            </p>
+            <div class="est-note" style="margin-top:2rem;">
+              <p>
+                📍 <strong>We service all Melbourne suburbs</strong> — CBD, inner
+                suburbs, eastern, northern, southern and western corridors. Confirm
+                your suburb when booking.
+              </p>
+            </div>
+            <div
+              style="margin-top:1.5rem; background:var(--white); border:1px solid var(--border-subtle); border-radius:var(--r); padding:1.25rem; box-shadow: var(--shadow-sm);"
+            >
+              <p style="font-size:0.82rem; color:var(--grey); line-height:1.6;">
+                <strong
+                  style="color:var(--navy);display:block;margin-bottom:0.2rem;"
+                  >All prices are indicative.</strong
+                > Final price confirmed at booking based on your home's specific requirements.
+                No obligation to book after getting your estimate.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="est-box si"
+            data-d="r"
+            role="form"
+            aria-label="Price estimator"
+          >
+            <p class="est-box-title">Your instant estimate</p>
+
+            <div class="c-group">
+              <span class="c-label">Pricing model</span>
+              <div class="c-opts" role="group" aria-label="Pricing model">
+                <button class="c-opt on" data-model="flat" id="calc-model-flat"
+                  >Flat Rate</button
+                >
+                <button class="c-opt" data-model="hourly" id="calc-model-hourly"
+                  >Hourly</button
+                >
+              </div>
+            </div>
+
+            <div class="c-group">
+              <span class="c-label">Frequency</span>
+              <div class="c-opts" role="group" aria-label="Frequency">
+                <button class="c-opt on" data-freq="once" id="freq-once"
+                  >One-off</button
+                >
+                <button class="c-opt" data-freq="weekly" id="freq-weekly"
+                  >Weekly</button
+                >
+                <button
+                  class="c-opt"
+                  data-freq="fortnightly"
+                  id="freq-fortnightly">Fortnightly</button
+                >
+                <button class="c-opt" data-freq="monthly" id="freq-monthly"
+                  >Monthly</button
+                >
+              </div>
+            </div>
+
+            <!-- Flat rate: bedrooms -->
+            <div class="c-group" id="beds-group">
+              <span class="c-label">Bedrooms</span>
+              <div class="c-stepper" role="group" aria-label="Bedrooms">
+                <button class="c-step-btn" id="beds-dec" aria-label="Decrease"
+                  >−</button
+                >
+                <div class="c-step-val" id="beds-v" aria-live="polite">2</div>
+                <button class="c-step-btn" id="beds-inc" aria-label="Increase"
+                  >+</button
+                >
+              </div>
+            </div>
+
+            <!-- Hourly: estimated hours -->
+            <div class="c-group" id="hours-group" style="display:none">
+              <span class="c-label">Estimated Hours</span>
+              <div class="c-stepper" role="group" aria-label="Hours">
+                <button class="c-step-btn" id="hours-dec" aria-label="Decrease"
+                  >−</button
+                >
+                <div
+                  class="c-step-val"
+                  id="hours-v"
+                  aria-live="polite"
+                  style="width:52px"
+                >
+                  2.5
+                </div>
+                <button class="c-step-btn" id="hours-inc" aria-label="Increase"
+                  >+</button
+                >
+              </div>
+              <p style="font-size:0.73rem;color:var(--grey);margin-top:0.5rem;">
+                Minimum 2 hours · Avg 2-bed home: 2.5–3.5 hrs
+              </p>
+            </div>
+
+            <div class="c-group">
+              <span class="c-label">Add Extras</span>
+              <div class="c-extras" role="group">
+                <div
+                  class="c-extra"
+                  data-price="35"
+                  role="checkbox"
+                  aria-checked="false"
+                  tabindex="0"
+                >
+                  <span class="c-extra-name">Oven Deep Clean</span><span
+                    class="c-extra-amt">+$35</span>
+                </div>
+                <div
+                  class="c-extra"
+                  data-price="45"
+                  role="checkbox"
+                  aria-checked="false"
+                  tabindex="0"
+                >
+                  <span class="c-extra-name">Fridge Interior</span><span
+                    class="c-extra-amt">+$45</span>
+                </div>
+                <div
+                  class="c-extra"
+                  data-price="60"
+                  role="checkbox"
+                  aria-checked="false"
+                  tabindex="0"
+                >
+                  <span class="c-extra-name">Interior Windows</span><span
+                    class="c-extra-amt">+$60</span>
+                </div>
+                <div
+                  class="c-extra"
+                  data-price="40"
+                  role="checkbox"
+                  aria-checked="false"
+                  tabindex="0"
+                >
+                  <span class="c-extra-name">Balcony / Outdoor</span><span
+                    class="c-extra-amt">+$40</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="calc-result" aria-live="polite" aria-atomic="true">
+              <div>
+                <div class="cr-lbl" id="cr-lbl">
+                  Estimated total (flat rate)
+                </div>
+                <div class="cr-price">
+                  <sup>$</sup><span id="calc-out">189</span>
+                </div>
+                <div class="cr-note" id="cr-note">
+                  Indicative · Confirmed at booking
+                </div>
+              </div>
+              <a
+                href={withBase("index") + "#calc6"}
+                class="btn6-primary"
+                style="font-size:0.88rem;padding:0.75rem 1.35rem;">Book Now</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ ADD-ONS ───────────────────────────────── -->
+    <section id="addons" class="pad" aria-labelledby="addons-h2">
+      <div class="c6">
+        <div class="addons-intro sg">
+          <div class="si" data-d="l">
+            <p class="eyebrow6">Extras & Add-Ons</p>
+            <h2 class="h6" id="addons-h2">Customise any booking</h2>
+          </div>
+          <p class="lead6 si" data-d="r">
+            Add individual extras to any service or pricing model. Clear
+            per-item pricing — only pay for what you need. Add at booking or any
+            time before your clean.
+          </p>
+        </div>
+
+        <div class="addons-grid sg" aria-label="Available add-ons">
+          <div class="addon-item si">
+            <div class="addon-icon">🔥</div>
+            <div class="addon-name">Oven Deep Clean</div>
+            <div class="addon-desc">
+              Full interior clean — racks, door glass, walls, and base. Degrease
+              and restore.
+            </div>
+            <div class="addon-price-row">
+              <span class="addon-price">+$35</span><button class="addon-add-btn"
+                >Add to booking</button>
+            </div>
+          </div>
+          <div class="addon-item si">
+            <div class="addon-icon">🧊</div>
+            <div class="addon-name">Fridge Interior</div>
+            <div class="addon-desc">
+              Shelves, drawers, walls and door seals cleaned and sanitised.
+            </div>
+            <div class="addon-price-row">
+              <span class="addon-price">+$45</span><button class="addon-add-btn"
+                >Add to booking</button>
+            </div>
+          </div>
+          <div class="addon-item si">
+            <div class="addon-icon">🪟</div>
+            <div class="addon-name">Interior Windows</div>
+            <div class="addon-desc">
+              All accessible interior windows cleaned streak-free, including
+              frames and sills.
+            </div>
+            <div class="addon-price-row">
+              <span class="addon-price">+$60</span><button class="addon-add-btn"
+                >Add to booking</button>
+            </div>
+          </div>
+          <div class="addon-item si">
+            <div class="addon-icon">🌿</div>
+            <div class="addon-name">Balcony / Outdoor</div>
+            <div class="addon-desc">
+              Balcony or courtyard swept, surfaces wiped, furniture moved and
+              cleaned.
+            </div>
+            <div class="addon-price-row">
+              <span class="addon-price">+$40</span><button class="addon-add-btn"
+                >Add to booking</button>
+            </div>
+          </div>
+          <div class="addon-item si">
+            <div class="addon-icon">🪣</div>
+            <div class="addon-name">Wall Spot Cleaning</div>
+            <div class="addon-desc">
+              Marks, scuffs, and fingerprints removed from walls throughout the
+              home.
+            </div>
+            <div class="addon-price-row">
+              <span class="addon-price">+$55</span><button class="addon-add-btn"
+                >Add to booking</button>
+            </div>
+          </div>
+          <div class="addon-item si">
+            <div class="addon-icon">🪵</div>
+            <div class="addon-name">Garage</div>
+            <div class="addon-desc">
+              Floor swept, shelving dusted, cobwebs removed, and surfaces wiped
+              down.
+            </div>
+            <div class="addon-price-row">
+              <span class="addon-price">+$65</span><button class="addon-add-btn"
+                >Add to booking</button>
+            </div>
+          </div>
+          <div class="addon-item si">
+            <div class="addon-icon">🧺</div>
+            <div class="addon-name">Laundry Appliances</div>
+            <div class="addon-desc">
+              Washing machine drum, detergent drawer, dryer filter, and exterior
+              cleaned.
+            </div>
+            <div class="addon-price-row">
+              <span class="addon-price">+$35</span><button class="addon-add-btn"
+                >Add to booking</button>
+            </div>
+          </div>
+          <div class="addon-item si">
+            <div class="addon-icon">🖼️</div>
+            <div class="addon-name">Blinds & Shutters</div>
+            <div class="addon-desc">
+              Every slat and panel hand-wiped — venetians, rollers, and
+              plantation shutters.
+            </div>
+            <div class="addon-price-row">
+              <span class="addon-price">+$50</span><button class="addon-add-btn"
+                >Add to booking</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sg">
+          <div class="addons-note si">
+            <span style="font-size:1.1rem;flex-shrink:0;margin-top:2px">💡</span
+            >
+            <p>
+              <strong>Add-ons work with both pricing models.</strong> Hourly bookings:
+              extras are typically handled within the booked time where possible.
+              Flat rate bookings: extras are priced individually and added to your
+              flat rate total. All prices confirmed at checkout.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ PRICING FAQ ───────────────────────────── -->
+    <section id="faq6" class="pad" aria-labelledby="faq6-h2">
+      <div class="c6">
+        <div class="faq6-layout">
+          <div class="sg">
+            <div class="si" data-d="l">
+              <p class="eyebrow6">FAQ</p>
+              <h2 class="h6" id="faq6-h2">Pricing questions</h2>
+            </div>
+            <p class="lead6 si" style="margin-bottom:1.75rem;">
+              Everything you need to know before booking.
+            </p>
+            <div class="faq6-contact si">
+              <p>
+                Still unsure? Call us on <a href="tel:+61399990000"
+                  >(03) 9999 0000</a
+                > or email <a href="mailto:hello@maidathome.com.au"
+                  >hello@maidathome.com.au</a
+                > — we'll recommend the right option for your home.
+              </p>
+            </div>
+          </div>
+          <div class="faq6-list sg" role="list">
+            {
+              [
+                [
+                  "Which is cheaper — flat rate or hourly?",
+                  "It depends on your home. For a well-maintained home on a regular schedule, flat rate is often more cost-effective because the time is predictable. For a home that hasn't been cleaned in a while or needs detailed attention, hourly is fairer — you're only charged for actual time worked, and nothing gets rushed to fit a fixed price.",
+                ],
+                [
+                  "How is the flat rate calculated?",
+                  "Flat rates are based on the number of bedrooms in your home — nothing else. No bathroom surcharges, no size variables. A studio or 1-bedroom starts at $149, scaling up to $299 for 4+ bedrooms. Add-ons (oven, fridge, windows, etc.) are priced separately and added to the flat rate total.",
+                ],
+                [
+                  "Can I switch between flat rate and hourly?",
+                  "Yes — you can choose your preferred pricing model at each booking. There's no lock-in. Some customers start with hourly for a first deep clean, then switch to flat rate for ongoing maintenance once the home is in a good baseline condition.",
+                ],
+                [
+                  "Are there any hidden fees?",
+                  "No. The price you see at booking is the price you pay. All equipment, eco-friendly products, and travel within the Melbourne metro area are included. The only additions are any extras or add-ons you specifically request, which are shown as separate line items.",
+                ],
+                [
+                  "How do recurring discounts work?",
+                  "Discounts are applied automatically at checkout when you select a recurring frequency — weekly (10% off), fortnightly (10% off), 3-weekly (5% off), or monthly (5% off). No codes needed. The discount applies to the base rate (flat or hourly) on every visit for as long as you maintain the schedule. You can pause or cancel any time with no penalty.",
+                ],
+                [
+                  "What's the minimum for an hourly booking?",
+                  "There's a 2-hour minimum for all hourly bookings. Most homes take between 2.5 and 4 hours depending on size and condition. We'll give you an honest time estimate when you book — and if the job finishes early, you're only charged for the actual time worked.",
+                ],
+                [
+                  "What if the job takes longer than estimated?",
+                  "For hourly bookings, if the job looks like it'll run over the estimated time, your cleaner will contact you before continuing. Nothing extra is charged without your approval. For flat rate bookings, the price is fixed — no additional charges regardless of how long the clean takes.",
+                ],
+              ].map((item, i) => (
+                <div class="faq6-item si" role="listitem">
+                  <button
+                    class="faq6-q"
+                    aria-expanded="false"
+                    id={`faq6-q-${i}`}
+                    aria-controls={`faq6-a-${i}`}
+                  >
+                    {item[0]}
+                    <span class="faq6-ico" aria-hidden="true">
+                      +
+                    </span>
+                  </button>
+                  <div
+                    class="faq6-a"
+                    id={`faq6-a-${i}`}
+                    role="region"
+                    aria-labelledby={`faq6-q-${i}`}
+                  >
+                    {item[1]}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FINAL CTA ───────────────────────────────── -->
+    <section id="cta6" class="cta-white" aria-labelledby="cta6-h2">
+      <div class="c6">
+        <div class="cta6-grid sg">
+          <div class="cta6-left">
+            <div class="si" data-d="l">
+              <p class="eyebrow6">Ready to start?</p>
+              <h2 class="h6" id="cta6-h2">
+                Ready to experience<br /><span class="ac">the difference?</span>
+              </h2>
+            </div>
+            <p class="cta6-sub si">
+              Join over 2,400 Melbourne households who trust Maid at Home.
+              Transparent pricing, consistent results, and no lock-in contracts.
+            </p>
+            <div class="cta6-actions si">
+              <a
+                href={withBase("index") + "#calc6"}
+                class="btn6-primary"
+                id="cta6-book"
+              >
+                Get an instant quote
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 13 13"
+                  fill="none"
+                  aria-hidden="true"
+                  ><path
+                    d="M2 6.5h9M7.5 2l4.5 4.5L7.5 11"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path></svg
+                >
+              </a>
+              <a href="tel:+61399990000" class="btn6-outline" id="cta6-call"
+                >Call (03) 9999 0000</a
+              >
+            </div>
+            <div class="cta6-trust si">
+              <div class="cta6-trust-item">No lock-in contracts</div>
+              <div class="cta6-trust-item">Free cancellation 24h before</div>
+              <div class="cta6-trust-item">100% satisfaction guarantee</div>
+            </div>
+          </div>
+          <div class="cta6-right" aria-hidden="true">
+            <img
+              src={withBase("images/bright_clean_living_room.png")}
+              alt=""
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FOOTER ──────────────────────────────────── -->
+    <footer id="ft6" aria-label="Site footer">
+      <div class="ft6-inner">
+        <div class="ft6-brand">
+          <div class="ft6-logo">Maid at Home</div>
+          <p>
+            Melbourne's trusted professional cleaning service. Trained, insured,
+            and committed to consistent quality since 2019.
+          </p>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Services</div>
+          <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+          <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+          <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+          <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+          <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+          <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Company</div>
+          <a href={withBase("about")}>About Us</a>
+          <a href={withBase("careers")}>Work with Us</a>
+        <a href={withBase("blog")}>Blog</a>
+          <a href={withBase("areas")}>Service Areas</a>
+          <a href={withBase("index") + "#rec6"}>Recurring Cleaning</a>
+          <a href={withBase("index") + "#calc6"}>Pricing Calculator</a>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Contact</div>
+          <a href="tel:+61399990000">(03) 9999 0000</a>
+          <a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a>
+          <a href={withBase("index") + "#calc6"}>Book Online</a>
+        </div>
+      </div>
+      <div class="ft6-bottom">
+        <span>© 2025 Maid at Home. All rights reserved.</span>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      /* ─ HEADER ────────────────────────────────────── */
+      const hd6 = document.getElementById("hd6");
+      const onScroll6 = () =>
+        hd6.classList.toggle("scrolled", window.scrollY > 20);
+      window.addEventListener("scroll", onScroll6, { passive: true });
+      onScroll6();
+
+            /* ─ MOBILE NAV / MENU ────────────────────────── */
+      const tog6 = document.getElementById("hd6Toggle");
+      const mob6 = document.getElementById("hd6-mob");
+      const cls6 = document.getElementById("hd6MobClose");
+      
+      if (tog6 && mob6) {
+        tog6.addEventListener("click", () => {
+          const isOpen = mob6.classList.toggle("open");
+          if (hd6) hd6.classList.toggle("menu-open", isOpen);
+          tog6.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+      }
+      
+      if (cls6 && mob6 && tog6) {
+        cls6.addEventListener("click", () => {
+          mob6.classList.remove("open");
+          if (hd6) hd6.classList.remove("menu-open");
+          tog6.setAttribute("aria-expanded", "false");
+        });
+      }
+      
+      if (mob6) {
+        mob6.querySelectorAll("a").forEach(a => {
+          a.addEventListener("click", () => {
+            mob6.classList.remove("open");
+            if (hd6) hd6.classList.remove("menu-open");
+            if (tog6) tog6.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      /* ─ MOBILE DROPDOWN ACCORDION ────────────────── */
+      if (mob6) {
+        mob6.querySelectorAll('.mob6-dropdown-toggle').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const targetId = btn.getAttribute('data-target');
+            const submenu = document.getElementById(targetId);
+            if (submenu) {
+              const isCollapsed = submenu.classList.contains('collapsed');
+              if (isCollapsed) {
+                submenu.classList.remove('collapsed');
+                btn.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+              } else {
+                submenu.classList.add('collapsed');
+                btn.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+              }
+            }
+          });
+        });
+      }
+
+      /* ─ STAGGER OBSERVER ──────────────────────────── */
+      const sObs6 = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const items = Array.from(
+              entry.target.querySelectorAll(".si"),
+            ).filter((el) => !el.classList.contains("in"));
+            items.forEach((item, i) =>
+              setTimeout(() => item.classList.add("in"), i * 110),
+            );
+            sObs6.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.05, rootMargin: "0px 0px -20px 0px" },
+      );
+      document.querySelectorAll(".sg").forEach((g) => sObs6.observe(g));
+
+      /* ─ FAQ accordion logic ───────────────────────── */
+      document.querySelectorAll(".faq6-item").forEach((item) => {
+        item.querySelector(".faq6-q").addEventListener("click", () => {
+          const open = item.classList.contains("open");
+          document.querySelectorAll(".faq6-item.open").forEach((o) => {
+            o.classList.remove("open");
+            o.querySelector(".faq6-q").setAttribute("aria-expanded", "false");
+          });
+          if (!open) {
+            item.classList.add("open");
+            item.querySelector(".faq6-q").setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+
+      /* ─ Active pricing nav link logic ──────────────── */
+      const pnavLinks = document.querySelectorAll(".pnav-link");
+      const pnavSections = [
+        "methods",
+        "flat-rate",
+        "hourly",
+        "estimate",
+        "addons",
+        "faq6",
+      ].map((id) => document.getElementById(id));
+      let lastActiveIndex = 0;
+      window.addEventListener(
+        "scroll",
+        () => {
+          const offset = window.scrollY > 20 ? 64 : 72;
+          const scrollY = window.scrollY + offset + 48 + 40;
+          let current = 0;
+          pnavSections.forEach((sec, i) => {
+            if (sec && sec.offsetTop <= scrollY) current = i;
+          });
+          pnavLinks.forEach((l, i) =>
+            l.classList.toggle("active", i === current),
+          );
+
+          if (current !== lastActiveIndex) {
+            lastActiveIndex = current;
+            const activeLink = pnavLinks[current];
+            if (activeLink) {
+              const container = document.querySelector(
+                "#pricing-nav .pnav-inner",
+              );
+              if (container) {
+                const containerWidth = container.clientWidth;
+                const linkLeft = activeLink.offsetLeft;
+                const linkWidth = activeLink.clientWidth;
+                container.scrollTo({
+                  left: linkLeft - containerWidth / 2 + linkWidth / 2,
+                  behavior: "smooth",
+                });
+              }
+            }
+          }
+        },
+        { passive: true },
+      );
+
+      /* ─ Interactive Calculator Logic ───────────────── */
+      const cs = {
+        model: "flat",
+        freq: "once",
+        beds: 2,
+        hours: 2.5,
+        extras: 0,
+      };
+      const flatBase = { 1: 149, 2: 189, 3: 239, 4: 299 };
+      const disc = { once: 0, weekly: 0.1, fortnightly: 0.1, monthly: 0.05 };
+      const hourlyBase = 55;
+
+      function calcTotal() {
+        let base = 0;
+        if (cs.model === "flat") {
+          const bedKey = Math.min(cs.beds, 4);
+          base = flatBase[bedKey] + (cs.beds > 4 ? (cs.beds - 4) * 30 : 0);
+        } else {
+          base = cs.hours * hourlyBase;
+        }
+        return Math.round((base + cs.extras) * (1 - disc[cs.freq]));
+      }
+
+      function renderCalc() {
+        const total = calcTotal();
+        document.getElementById("calc-out").textContent = total;
+        const isHourly = cs.model === "hourly";
+        document.getElementById("cr-lbl").textContent = isHourly
+          ? "Estimated total (hourly)"
+          : "Estimated total (flat rate)";
+        const discText =
+          disc[cs.freq] > 0
+            ? ` · ${(disc[cs.freq] * 100).toFixed(0)}% recurring discount applied`
+            : "";
+        document.getElementById("cr-note").textContent =
+          "Indicative · Confirmed at booking" + discText;
+      }
+
+      // Model Switch
+      const modelFlatBtn = document.getElementById("calc-model-flat");
+      const modelHourlyBtn = document.getElementById("calc-model-hourly");
+      const bedsGroup = document.getElementById("beds-group");
+      const hoursGroup = document.getElementById("hours-group");
+
+      modelFlatBtn.addEventListener("click", () => {
+        modelFlatBtn.classList.add("on");
+        modelHourlyBtn.classList.remove("on");
+        cs.model = "flat";
+        bedsGroup.style.display = "";
+        hoursGroup.style.display = "none";
+        renderCalc();
+      });
+
+      modelHourlyBtn.addEventListener("click", () => {
+        modelHourlyBtn.classList.add("on");
+        modelFlatBtn.classList.remove("on");
+        cs.model = "hourly";
+        bedsGroup.style.display = "none";
+        hoursGroup.style.display = "";
+        renderCalc();
+      });
+
+      // Frequency Switch
+      ["once", "weekly", "fortnightly", "monthly"].forEach((f) => {
+        const btn = document.getElementById(`freq-${f}`);
+        btn.addEventListener("click", () => {
+          ["once", "weekly", "fortnightly", "monthly"].forEach((item) => {
+            document.getElementById(`freq-${item}`).classList.remove("on");
+          });
+          btn.classList.add("on");
+          cs.freq = f;
+          renderCalc();
+        });
+      });
+
+      // Beds steppers
+      const bedsV = document.getElementById("beds-v");
+      document.getElementById("beds-dec").addEventListener("click", () => {
+        cs.beds = Math.max(cs.beds - 1, 1);
+        bedsV.textContent = cs.beds;
+        renderCalc();
+      });
+      document.getElementById("beds-inc").addEventListener("click", () => {
+        cs.beds = Math.min(cs.beds + 1, 8);
+        bedsV.textContent = cs.beds;
+        renderCalc();
+      });
+
+      // Hours steppers
+      const hoursV = document.getElementById("hours-v");
+      document.getElementById("hours-dec").addEventListener("click", () => {
+        cs.hours = Math.max(cs.hours - 0.5, 2);
+        hoursV.textContent = cs.hours;
+        renderCalc();
+      });
+      document.getElementById("hours-inc").addEventListener("click", () => {
+        cs.hours = Math.min(cs.hours + 0.5, 10);
+        hoursV.textContent = cs.hours;
+        renderCalc();
+      });
+
+      // Extras toggling
+      document.querySelectorAll(".c-extra").forEach((el) => {
+        const price = parseInt(el.getAttribute("data-price") || "0", 10);
+        el.addEventListener("click", () => {
+          el.classList.toggle("on");
+          const on = el.classList.contains("on");
+          el.setAttribute("aria-checked", on);
+          cs.extras += on ? price : -price;
+          renderCalc();
+        });
+        el.addEventListener("keypress", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            el.click();
+          }
+        });
+      });
+
+      // Add-on cards add buttons visual feedback
+      document.querySelectorAll(".addon-add-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const orig = btn.textContent;
+          btn.textContent = "✓ Added";
+          btn.style.background = "#16a34a";
+          btn.style.color = "#fff";
+          setTimeout(() => {
+            btn.textContent = orig;
+            btn.style.background = "";
+            btn.style.color = "";
+          }, 2000);
+        });
+      });
+    </script>
+  </body>
+</html>

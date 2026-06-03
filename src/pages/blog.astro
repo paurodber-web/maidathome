@@ -1,0 +1,1555 @@
+---
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => {
+  const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  const p = path.startsWith("/") ? path.slice(1) : path;
+  return p ? `${base}${p}` : base;
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog — Maid at Home Melbourne</title>
+    <meta name="description" content="Cleaning tips, home care guides, and expert advice from the Maid at Home team. Melbourne's professional house cleaning blog." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,400;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      /* ─── TOKENS ──────────────────────────────── */
+      :root {
+        --navy:    #0a1d33;
+        --blue-d:  #142d4c;
+        --blue:    #1d6fa8;
+        --blue-l:  #5aaee0;
+        --blue-xl: #e8f4fd;
+        --sky:     #f0f7fd;
+        --yellow:  #f6c133;
+        --yellow-d:#e0ab1d;
+        --yellow-l:#fffbe6;
+        --green:   #16a34a;
+        --green-l: #e8f7ee;
+        --grey:    #5e6a75;
+        --grey-d:  #2d3748;
+        --grey-l:  #e2e8f0;
+        --white:   #ffffff;
+
+        --border-subtle: rgba(29, 111, 168, 0.08);
+        --border-hover:  rgba(29, 111, 168, 0.18);
+        --shadow-sm:     0 2px 8px rgba(10, 29, 51, 0.02);
+        --shadow-md:     0 8px 30px rgba(10, 29, 51, 0.04);
+        --shadow-lg:     0 16px 48px rgba(10, 29, 51, 0.06);
+        --shadow-premium:0 24px 60px rgba(10, 29, 51, 0.08);
+
+        --font:  "Plus Jakarta Sans", system-ui, sans-serif;
+        --font-serif: 'Lora', Georgia, serif;
+        --r-s:   8px;
+        --r:     12px;
+        --r-l:   20px;
+        --r-xl:  28px;
+        --ease:  cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--font);
+        color: var(--grey-d);
+        background: var(--white);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.6;
+      }
+      img { display: block; max-width: 100%; }
+
+      /* ─── KEYFRAMES ───────────────────────────── */
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: none; }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+
+      /* ─── STAGGER SYSTEM ──────────────────────── */
+      .si {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+      }
+      .si[data-d="l"] { transform: translateX(-24px); }
+      .si[data-d="r"] { transform: translateX(24px); }
+      .si.in { opacity: 1; transform: none; }
+
+      /* ─── LAYOUT ──────────────────────────────── */
+      .c6     { max-width: 1180px; margin: 0 auto; padding: 0 2.5rem; }
+      .pad    { padding: 6.5rem 0; }
+      .pad-sm { padding: 4.5rem 0; }
+
+      /* ─── SHARED TYPOGRAPHY ───────────────────── */
+      .eyebrow6 {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        font-size: 0.72rem; font-weight: 800;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        color: var(--blue); margin-bottom: 0.85rem;
+      }
+      .eyebrow6::before {
+        content: ""; width: 16px; height: 2.5px;
+        background: var(--yellow); border-radius: 2px; flex-shrink: 0;
+      }
+      h2.h6 {
+        font-size: clamp(2rem, 3.4vw, 2.85rem);
+        font-weight: 800; letter-spacing: -0.03em;
+        color: var(--navy); line-height: 1.15;
+      }
+      h2.h6 .ac { color: var(--blue); }
+      .lead6 {
+        font-size: 1.05rem; color: var(--grey);
+        line-height: 1.75; max-width: 520px;
+        margin-top: 0.75rem;
+      }
+
+      /* ─── BUTTONS ─────────────────────────────── */
+      .btn6-primary {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        background: var(--yellow); color: var(--navy);
+        font-weight: 700; font-size: 0.95rem;
+        padding: 0.95rem 2rem; border-radius: 100px;
+        text-decoration: none; border: none; cursor: pointer;
+        font-family: var(--font); white-space: nowrap;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(246, 193, 51, 0.2);
+      }
+      .btn6-primary:hover { background: var(--yellow-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(246, 193, 51, 0.4); }
+      .btn6-outline {
+        display: inline-flex; align-items: center; gap: 0.45rem;
+        color: var(--navy); font-weight: 600; font-size: 0.9rem;
+        padding: 0.9rem 1.75rem; border-radius: 100px;
+        border: 1px solid var(--grey-l); background: transparent;
+        text-decoration: none; cursor: pointer; font-family: var(--font); white-space: nowrap;
+        transition: border-color 0.25s, background 0.25s, color 0.25s;
+      }
+      .btn6-outline:hover { border-color: var(--navy); background: var(--sky); }
+
+      /* ─── HEADER ──────────────────────────────── */
+      #hd6 {
+        position: fixed; inset: 0 0 auto; z-index: 200;
+        height: 72px; display: flex; align-items: center; justify-content: space-between;
+        padding: 0 4vw;
+        transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease), height 0.3s var(--ease);
+      }
+      #hd6.scrolled {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 4px 30px rgba(10, 29, 51, 0.03);
+        height: 64px; border-bottom: 1px solid rgba(10, 29, 51, 0.04);
+      }
+      .hd6-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+      .hd6-mark {
+        width: 38px; height: 38px; border-radius: 12px; background: var(--blue);
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0; transition: background 0.3s;
+      }
+      #hd6.scrolled .hd6-mark { background: var(--navy); }
+      .hd6-name { font-size: 1.15rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; }
+      .hd6-nav { display: flex; align-items: center; gap: 0.25rem; }
+      .hd6-nav a {
+        font-size: 0.9rem; font-weight: 500; color: var(--grey-d);
+        text-decoration: none; padding: 0.5rem 1rem;
+        border-radius: 8px; transition: color 0.2s, background 0.2s;
+      }
+      .hd6-nav a:hover, .hd6-nav a.active { color: var(--blue); background: var(--sky); }
+      .hd6-cta {
+        display: inline-flex; align-items: center; gap: 0.45rem;
+        background: var(--yellow); color: var(--navy);
+        font-weight: 700; font-size: 0.9rem; padding: 0.55rem 1.35rem; border-radius: 100px;
+        text-decoration: none; margin-left: 0.75rem;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s; white-space: nowrap;
+      }
+      .hd6-cta:hover { background: var(--yellow-d); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(246,193,51,.35); }
+      .hd6-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; z-index: 201; }
+      .hd6-toggle span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: transform 0.3s var(--ease), opacity 0.3s var(--ease); }
+      
+      #hd6.menu-open { background: var(--white) !important; box-shadow: none !important; border-bottom: 1px solid rgba(10, 29, 51, 0.04) !important; }
+      #hd6.menu-open .hd6-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      #hd6.menu-open .hd6-toggle span:nth-child(2) { opacity: 0; }
+      #hd6.menu-open .hd6-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      #hd6-mob {
+        display: none; position: fixed; inset: 0; z-index: 199;
+        background: var(--white); flex-direction: column; padding: 6rem 2rem 2rem; gap: 0.5rem;
+      ; overflow-y: auto;}
+      /* Mobile Dropdown Accordion Styling */
+      .mob6-dropdown-item {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-dropdown-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+      #hd6-mob a, .mob6-dropdown-label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--navy);
+        text-decoration: none;
+        padding: 0.95rem 0;
+        flex: 1;
+      }
+      .mob6-dropdown-label {
+        cursor: default;
+        user-select: none;
+      }
+      .mob6-dropdown-toggle {
+        background: none;
+        border: none;
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--navy);
+        transition: transform 0.25s var(--ease);
+      }
+      .mob6-dropdown-toggle.open {
+        transform: rotate(180deg);
+        color: var(--blue);
+      }
+      .mob6-dropdown-item .mob6-sub-menu {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1.25rem;
+        border-left: 2px solid var(--border-subtle);
+        margin: 0.25rem 0 0.75rem;
+        gap: 0.35rem;
+        max-height: 500px;
+        opacity: 1;
+        overflow: hidden;
+        transition: max-height 0.35s var(--ease), opacity 0.35s var(--ease), margin 0.35s var(--ease);
+      }
+      .mob6-dropdown-item .mob6-sub-menu.collapsed {
+        max-height: 0;
+        opacity: 0;
+        margin: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .mob6-sub-menu a {
+        font-size: 0.95rem !important;
+        color: var(--grey) !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: none !important;
+      }
+      .mob6-sub-menu a:hover {
+        color: var(--blue) !important;
+      }
+      .mob6-dropdown-item {
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-dropdown-item a, .mob6-dropdown-item .mob6-dropdown-label {
+        border-bottom: none !important;
+      }
+
+      #hd6-mob.open { display: flex; }
+      #hd6-mob a { font-size: 1.2rem; font-weight: 600; color: var(--navy); text-decoration: none; padding: 0.95rem 0; border-bottom: 1px solid var(--grey-l); }
+      .mob6-cta { background: var(--yellow); color: var(--navy); text-align: center; border-radius: var(--r); padding: 1.1rem; margin-top: 1rem; font-size: 1rem; font-weight: 700; text-decoration: none; display: block; }
+      .mob6-close { position: absolute; top: 1.25rem; right: 2rem; background: none; border: none; font-size: 1.5rem; color: var(--navy); cursor: pointer; }
+
+      /* Dropdown styling */
+      .hd6-nav-item-dropdown { position: relative; display: inline-block; }
+      .hd6-nav-dropdown-toggle { display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer; }
+      .hd6-nav-dropdown-toggle svg { transition: transform 0.2s var(--ease); }
+      .hd6-nav-item-dropdown:hover .hd6-nav-dropdown-toggle svg { transform: rotate(180deg); }
+      .hd6-dropdown-menu {
+        position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px);
+        background: var(--white); min-width: 220px; border-radius: var(--r);
+        border: 1px solid var(--border-subtle); box-shadow: var(--shadow-lg);
+        padding: 0.65rem 0; opacity: 0; visibility: hidden;
+        transition: opacity 0.2s var(--ease), transform 0.2s var(--ease), visibility 0.2s;
+        z-index: 250; display: flex; flex-direction: column;
+      }
+      .hd6-nav-item-dropdown:hover .hd6-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+      .hd6-dropdown-menu a {
+        display: block !important; font-size: 0.88rem !important; font-weight: 600 !important;
+        color: var(--grey-d) !important; padding: 0.6rem 1.25rem !important; border-radius: 0 !important;
+        transition: background 0.2s, color 0.2s !important; text-align: left;
+      }
+      .hd6-dropdown-menu a:hover { background: var(--sky) !important; color: var(--blue) !important; }
+
+      /* Mobile sub-menu styling */
+      .mob6-sub-menu { display: flex; flex-direction: column; padding-left: 1.25rem; border-left: 2px solid var(--border-subtle); margin: 0.25rem 0 0.75rem; gap: 0.35rem; }
+      .mob6-sub-menu a { font-size: 0.95rem !important; color: var(--grey) !important; padding: 0.5rem 0 !important; border-bottom: none !important; }
+      .mob6-sub-menu a:hover { color: var(--blue) !important; }
+      .hd6-mob-section-title { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--grey); letter-spacing: 0.08em; margin-top: 0.75rem; margin-bottom: 0.25rem; }
+
+      /* ─── HERO ────────────────────────────────── */
+      #blog-hero { background: var(--sky); padding-top: 72px; position: relative; overflow: hidden; }
+      .blog-hero-sun {
+        position: absolute; top: -120px; right: -100px;
+        width: 560px; height: 560px; border-radius: 50%;
+        background: radial-gradient(ellipse at center, rgba(246, 193, 51, 0.14) 0%, rgba(246, 193, 51, 0.03) 60%, transparent 80%);
+        pointer-events: none;
+      }
+      .blog-hero-body {
+        max-width: 1180px; margin: 0 auto; padding: 4rem 2.5rem 5rem;
+        display: grid; grid-template-columns: 1.15fr 0.85fr;
+        gap: 5rem; align-items: center; position: relative; z-index: 2;
+      }
+      .blog-hero-left { opacity: 0; animation: fadeUp 0.8s var(--ease) 0.1s forwards; }
+      .blog-hero-pill {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        font-size: 0.75rem; font-weight: 700; color: var(--blue); letter-spacing: 0.05em;
+        margin-bottom: 1.75rem; width: fit-content;
+        background: var(--white); padding: 0.4rem 0.9rem; border-radius: 100px;
+        box-shadow: var(--shadow-sm); animation: fadeUp 0.5s var(--ease) 0s both;
+      }
+      .blog-hero-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+      
+      .blog-hero-h1 {
+        font-size: clamp(2.8rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.04em;
+        line-height: 1.08; color: var(--navy); margin-bottom: 1.5rem;
+      }
+      .blog-hero-h1 .ac { color: var(--blue); }
+      .blog-hero-h1 em { font-style: italic; font-weight: 600; color: var(--yellow-d); }
+      .blog-hero-sub { font-size: 1.1rem; color: var(--grey); line-height: 1.75; max-width: 500px; margin-bottom: 2.5rem; }
+
+      /* Hero Category Cards on Right */
+      .blog-hero-right { opacity: 0; animation: fadeUp 0.9s var(--ease) 0.3s forwards; }
+      .hero-cats-box {
+        background: var(--white);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r-xl);
+        padding: 2rem;
+        box-shadow: var(--shadow-premium);
+      }
+      .hero-cats-title {
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--grey);
+        margin-bottom: 1.1rem;
+      }
+      .hero-cats-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .hero-cat-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--sky);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--r);
+        padding: 0.75rem 1.15rem;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--navy);
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.25s, border-color 0.25s, transform 0.2s;
+        font-family: var(--font);
+      }
+      .hero-cat-btn:hover {
+        background: var(--blue-xl);
+        border-color: var(--border-hover);
+        transform: translateX(3px);
+      }
+      .hcb-count {
+        font-size: 0.75rem;
+        color: var(--grey);
+        background: var(--white);
+        padding: 0.15rem 0.5rem;
+        border-radius: 100px;
+        border: 1px solid var(--border-subtle);
+        font-weight: 600;
+      }
+
+      /* ─── TRUST STRIP ─────────────────────────── */
+      #trust6 { background: var(--white); border-bottom: 1px solid var(--border-subtle); padding: 1.6rem 0; }
+      .trust6-inner { max-width: 1180px; margin: 0 auto; padding: 0 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+      .trust6-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 600; color: var(--navy); white-space: nowrap; }
+      .trust6-sep { width: 4px; height: 4px; border-radius: 50%; background: var(--grey-l); flex-shrink: 0; }
+
+      /* ─── FILTER BAR ──────────────────────────── */
+      #filter-bar {
+        background: var(--white);
+        border-bottom: 1px solid var(--border-subtle);
+        position: sticky;
+        top: 72px;
+        z-index: 150;
+        box-shadow: 0 4px 20px rgba(10,29,51,0.01);
+        transition: top 0.3s var(--ease);
+      }
+      #hd6.scrolled ~ #filter-bar { top: 64px; }
+      .fbar-inner {
+        max-width: 1180px; margin: 0 auto; padding: 0 2.5rem;
+        display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      }
+      .fbar-cats {
+        display: flex; align-items: center; overflow-x: auto; scrollbar-width: none; gap: 0.25rem;
+      }
+      .fbar-cats::-webkit-scrollbar { display: none; }
+      .fbar-cat {
+        display: inline-flex; align-items: center; gap: 0.45rem;
+        font-size: 0.85rem; font-weight: 700; color: var(--grey);
+        padding: 1.1rem 1.15rem; white-space: nowrap;
+        border-bottom: 3px solid transparent; margin-bottom: -1px;
+        background: none; border: none; cursor: pointer;
+        font-family: var(--font);
+        transition: color 0.25s, border-color 0.25s;
+      }
+      .fbar-cat:hover { color: var(--blue); }
+      .fbar-cat.active { color: var(--blue); border-bottom-color: var(--blue); }
+      .fbar-cat-count {
+        font-size: 0.72rem; background: var(--sky); color: var(--blue);
+        padding: 0.15rem 0.5rem; border-radius: 100px; font-weight: 700;
+        border: 1px solid var(--border-subtle);
+      }
+      .fbar-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+      .search-wrap { position: relative; }
+      .search-icon { position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); color: var(--grey); pointer-events: none; }
+      #search-input {
+        font-size: 0.85rem; font-weight: 600; color: var(--navy);
+        background: var(--sky); border: 1.5px solid var(--border-subtle);
+        border-radius: 100px; padding: 0.5rem 1rem 0.5rem 2.25rem;
+        font-family: var(--font); width: 200px;
+        transition: border-color 0.25s, width 0.3s var(--ease), background-color 0.25s;
+      }
+      #search-input:focus { outline: none; border-color: var(--blue); width: 240px; background: var(--white); }
+      .fbar-sort {
+        font-size: 0.85rem; font-weight: 600; color: var(--navy);
+        background: var(--sky); border: 1.5px solid var(--border-subtle);
+        border-radius: 100px; padding: 0.5rem 1.75rem 0.5rem 1rem;
+        cursor: pointer; font-family: var(--font);
+        transition: border-color 0.25s, background-color 0.25s;
+        appearance: none; -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%230a1d33' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat; background-position: right 0.75rem center;
+      }
+      .fbar-sort:focus { outline: none; border-color: var(--blue); }
+
+      /* ─── BLOG MAIN ───────────────────────────── */
+      #blog-main { background: var(--white); }
+      .blog-layout { display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: start; }
+
+      /* ─── FEATURED POST ───────────────────────── */
+      .featured-label {
+        font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--blue);
+        display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem;
+      }
+      .featured-label::before {
+        content: ""; width: 16px; height: 2.5px;
+        background: var(--yellow); border-radius: 2px;
+      }
+      #featured-post {
+        display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 0;
+        border: 1px solid var(--border-subtle); border-radius: var(--r-xl);
+        overflow: hidden; text-decoration: none; margin-bottom: 4rem;
+        transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+        background: var(--white); box-shadow: var(--shadow-sm);
+      }
+      #featured-post:hover {
+        border-color: var(--border-hover);
+        box-shadow: var(--shadow-premium);
+        transform: translateY(-4px);
+      }
+      .fp-image {
+        min-height: 320px; position: relative; overflow: hidden;
+        background: var(--sky); display: flex; align-items: center; justify-content: center;
+      }
+      .fp-image img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; display: block; }
+      .fp-image-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; }
+      .fp-image-placeholder .ph-icon { font-size: 2.5rem; }
+      .fp-image-placeholder .ph-text { font-size: 0.75rem; color: var(--grey); font-weight: 700; text-transform: uppercase; }
+      .fp-body { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+      .fp-cat { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.85rem; }
+      .fp-cat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); }
+      .fp-title { font-family: var(--font-serif); font-size: 1.65rem; font-weight: 600; color: var(--navy); line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 0.85rem; }
+      .fp-excerpt { font-size: 0.92rem; color: var(--grey); line-height: 1.7; margin-bottom: 1.75rem; }
+      
+      .fp-meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: auto; }
+      .fp-author { display: flex; align-items: center; gap: 0.5rem; }
+      .fp-avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; color: var(--white); flex-shrink: 0; }
+      .fp-author-name { font-size: 0.8rem; font-weight: 700; color: var(--navy); }
+      .fp-date { font-size: 0.78rem; color: var(--grey); }
+      .fp-read { font-size: 0.78rem; color: var(--grey); display: flex; align-items: center; gap: 0.25rem; }
+      .fp-read::before { content: '•'; color: var(--border-subtle); margin-right: 0.25rem; }
+
+      /* ─── POSTS GRID ──────────────────────────── */
+      #posts-section-title {
+        font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--grey);
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 1.5rem; padding-bottom: 0.85rem; border-bottom: 1.5px solid var(--border-subtle);
+      }
+      #posts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+      
+      /* Post Card */
+      .post-card {
+        border: 1px solid var(--border-subtle); border-radius: var(--r-xl);
+        overflow: hidden; background: var(--white); text-decoration: none;
+        display: flex; flex-direction: column; box-shadow: var(--shadow-sm);
+        transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+      }
+      .post-card:hover {
+        border-color: var(--border-hover);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-4px);
+      }
+      .pc-image { aspect-ratio: 16/9; background: var(--sky); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+      .pc-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s var(--ease); }
+      .post-card:hover .pc-image img { transform: scale(1.03); }
+      .pc-image-placeholder { font-size: 2.25rem; }
+      .pc-body { padding: 1.75rem; display: flex; flex-direction: column; flex: 1; }
+      .pc-cat { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.6rem; }
+      .pc-title { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 600; color: var(--navy); line-height: 1.35; margin-bottom: 0.6rem; }
+      .pc-excerpt { font-size: 0.88rem; color: var(--grey); line-height: 1.65; margin-bottom: 1.25rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      
+      .pc-meta { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-subtle); }
+      .pc-meta-left { display: flex; align-items: center; gap: 0.5rem; }
+      .pc-avatar { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.55rem; font-weight: 800; color: var(--white); }
+      .pc-author { font-size: 0.78rem; font-weight: 700; color: var(--navy); }
+      .pc-date { font-size: 0.75rem; color: var(--grey); }
+      .pc-read { font-size: 0.75rem; color: var(--grey); }
+
+      /* ─── LOAD MORE ───────────────────────────── */
+      #load-more-wrap { text-align: center; margin-top: 3rem; }
+      #load-more-btn {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        background: var(--white); border: 1.5px solid var(--border-subtle);
+        color: var(--blue); font-weight: 700; font-size: 0.9rem;
+        padding: 0.85rem 2rem; border-radius: 100px; cursor: pointer;
+        font-family: var(--font); transition: border-color 0.25s, background 0.25s, color 0.25s;
+      }
+      #load-more-btn:hover { border-color: var(--blue); background: var(--sky); }
+
+      /* ─── SIDEBAR ─────────────────────────────── */
+      .sidebar { display: flex; flex-direction: column; gap: 2rem; position: sticky; top: calc(72px + 60px + 2rem); }
+      #hd6.scrolled ~ #blog-main .sidebar { top: calc(64px + 60px + 2rem); }
+      .sidebar-widget { background: var(--sky); border: 1px solid var(--border-subtle); border-radius: var(--r-xl); padding: 1.75rem; }
+      .sw-title {
+        font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--grey); margin-bottom: 1.1rem;
+        display: flex; align-items: center; gap: 0.45rem;
+      }
+      .sw-title::before { content: ""; width: 12px; height: 2px; background: var(--yellow); border-radius: 2px; }
+
+      .sw-cats { display: flex; flex-direction: column; gap: 0.4rem; }
+      .sw-cat-btn {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0.6rem 0.85rem; border-radius: 8px; background: none; border: none;
+        cursor: pointer; font-family: var(--font); font-size: 0.88rem; font-weight: 700;
+        color: var(--navy); transition: background 0.25s, color 0.25s; width: 100%; text-align: left;
+      }
+      .sw-cat-btn:hover { background: var(--white); color: var(--blue); }
+      .sw-cat-btn.active { background: var(--blue); color: var(--white); }
+      .sw-cat-count {
+        font-size: 0.72rem; color: var(--grey); background: var(--white);
+        padding: 0.1rem 0.4rem; border-radius: 100px; font-weight: 600;
+        border: 1px solid var(--border-subtle);
+      }
+      .sw-cat-btn.active .sw-cat-count { background: rgba(255,255,255,0.15); color: var(--white); border-color: transparent; }
+
+      .sw-popular { display: flex; flex-direction: column; gap: 1rem; }
+      .sw-pop-post { display: flex; gap: 0.85rem; align-items: flex-start; text-decoration: none; padding-bottom: 0.85rem; border-bottom: 1px solid var(--border-subtle); }
+      .sw-pop-post:last-child { border-bottom: none; padding-bottom: 0; }
+      .sw-pop-num { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 800; color: var(--blue-l); width: 24px; flex-shrink: 0; line-height: 1; }
+      .sw-pop-title { font-size: 0.88rem; font-weight: 700; color: var(--navy); line-height: 1.4; transition: color 0.2s; }
+      .sw-pop-post:hover .sw-pop-title { color: var(--blue); }
+      .sw-pop-meta { font-size: 0.75rem; color: var(--grey); margin-top: 0.25rem; }
+
+      .sw-newsletter { background: var(--navy); border-color: transparent; color: var(--white); }
+      .sw-newsletter .sw-title { color: rgba(255,255,255,0.4); }
+      .sw-nl-heading { font-size: 1.05rem; font-weight: 800; color: var(--white); margin-bottom: 0.4rem; letter-spacing: -0.01em; }
+      .sw-nl-sub { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 1.25rem; line-height: 1.55; }
+      .sw-nl-form { display: flex; flex-direction: column; gap: 0.6rem; }
+      .sw-nl-input {
+        font-size: 0.88rem; font-family: var(--font); padding: 0.75rem 1rem;
+        border-radius: var(--r); border: 1px solid rgba(255,255,255,0.1);
+        background: rgba(255,255,255,0.05); color: var(--white); transition: border-color 0.2s;
+      }
+      .sw-nl-input::placeholder { color: rgba(255,255,255,0.3); }
+      .sw-nl-input:focus { outline: none; border-color: var(--blue-l); background: rgba(255,255,255,0.08); }
+      .sw-nl-btn { background: var(--yellow); color: var(--navy); font-weight: 700; font-size: 0.88rem; padding: 0.75rem; border-radius: var(--r); border: none; cursor: pointer; font-family: var(--font); transition: background 0.2s; }
+      .sw-nl-btn:hover { background: var(--yellow-d); }
+      .sw-nl-fine { font-size: 0.72rem; color: rgba(255,255,255,0.25); text-align: center; }
+
+      /* Loading skeleton */
+      #loading-state { display: none; }
+      .skeleton-featured { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--border-subtle); border-radius: var(--r-xl); overflow: hidden; margin-bottom: 4rem; }
+      .skel { background: linear-gradient(90deg, var(--sky) 25%, #e9eaeb 50%, var(--sky) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 6px; }
+      @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+      .skel-img { height: 320px; border-radius: 0; }
+      .skel-body { padding: 2.5rem; display: flex; flex-direction: column; gap: 0.85rem; }
+      .skel-tag { height: 14px; width: 80px; }
+      .skel-title { height: 28px; width: 90%; }
+      .skel-title-2 { height: 28px; width: 70%; }
+      .skel-text { height: 14px; width: 100%; }
+      .skel-text-2 { height: 14px; width: 85%; }
+      .skeleton-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+      .skel-card { border: 1px solid var(--border-subtle); border-radius: var(--r-xl); overflow: hidden; }
+      .skel-card-img { height: 180px; border-radius: 0; }
+      .skel-card-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+
+      /* Empty State */
+      #empty-state { display: none; text-align: center; padding: 5rem 2rem; }
+      .es-icon { font-size: 3rem; margin-bottom: 1.25rem; }
+      #empty-state h3 { font-size: 1.25rem; font-weight: 800; color: var(--navy); margin-bottom: 0.5rem; }
+      #empty-state p { font-size: 0.95rem; color: var(--grey); }
+
+      /* ─── FINAL CTA ────────────────────────────── */
+      #cta6.cta-sky {
+        background: var(--sky);
+        padding: 6.5rem 0;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      #cta6.cta-white {
+        background: var(--white);
+        padding: 6.5rem 0;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .cta6-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 4.5rem;
+        align-items: center;
+      }
+      .cta6-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .cta6-sub {
+        font-size: 1.05rem;
+        color: var(--grey);
+        line-height: 1.7;
+        max-width: 500px;
+        margin: 1rem 0 2.25rem;
+      }
+      .cta6-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 2.25rem;
+      }
+      .cta6-trust {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+        border-top: 1px solid var(--grey-l);
+        padding-top: 1.5rem;
+      }
+      .cta6-trust-item {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.83rem;
+        font-weight: 600;
+        color: var(--grey-d);
+      }
+      .cta6-trust-item::before {
+        content: "✓";
+        color: var(--green);
+        font-weight: 800;
+      }
+      .cta6-right {
+        position: relative;
+        overflow: hidden;
+        height: 380px;
+        border-radius: var(--r-xl);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-md);
+      }
+      .cta6-right img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ─── FOOTER ──────────────────────────────── */
+      #ft6 { background: var(--navy); padding: 4.5rem 2.5rem 2.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+      .ft6-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .ft6-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 0.85rem; max-width: 280px; }
+      .ft6-logo { font-size: 1.2rem; font-weight: 800; color: rgba(255,255,255,0.85); letter-spacing: -0.02em; }
+      .ft6-col-title { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1.25rem; }
+      .ft6-col a { display: block; font-size: 0.88rem; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
+      .ft6-col a:hover { color: rgba(255,255,255,0.85); }
+      .ft6-bottom { max-width: 1180px; margin: 1.75rem auto 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+      .ft6-bottom span, .ft6-bottom a { font-size: 0.78rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
+      .ft6-bottom a:hover { color: rgba(255,255,255,0.6); }
+
+      /* ─── RESPONSIVE ──────────────────────────── */
+      @media (max-width: 1024px) {
+        .hd6-nav { display: none; }
+        .hd6-toggle { display: flex; }
+        .blog-hero-body { grid-template-columns: 1fr; gap: 3.5rem; }
+        .blog-layout { grid-template-columns: 1fr; gap: 3rem; }
+        .sidebar { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        #featured-post { grid-template-columns: 1fr; }
+        .fp-image { min-height: 240px; }
+        .ft6-inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+        .cta6-grid { grid-template-columns: 1fr; gap: 3rem; }
+        .cta6-right { height: 320px; }
+      }
+      @media (max-width: 768px) {
+        .blog-hero-body { padding: 4rem 1.5rem 3rem; }
+        .c6 { padding: 0 1.5rem; }
+        .pad { padding: 4.5rem 0; }
+        .ft6-inner { grid-template-columns: 1fr; gap: 2rem; }
+        .sidebar { grid-template-columns: 1fr; }
+        #posts-grid { grid-template-columns: 1fr; }
+        .fbar-right { display: none; }
+        .fbar-inner { padding: 0 1.5rem; }
+      }
+      @media (max-width: 640px) {
+        .hd6-nav { display: none; }
+        .hd6-toggle { display: flex; }
+        .blog-hero-h1 { font-size: 2.4rem; }
+      }
+      /* Keep every non-hero section aligned with the landing services section. */
+      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) {
+        padding-top: 6.5rem !important;
+        padding-bottom: 6.5rem !important;
+      }
+      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+        max-width: 1180px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 2.5rem !important;
+        padding-right: 2.5rem !important;
+      }
+      @media (max-width: 768px) {
+        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) {
+          padding-top: 4.5rem !important;
+          padding-bottom: 4.5rem !important;
+        }
+        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+          padding-left: 1.5rem !important;
+          padding-right: 1.5rem !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ─ HEADER ─────────────────────────────────── -->
+    <header id="hd6" aria-label="Site header">
+      <a href={withBase("index")} class="hd6-logo" aria-label="Maid at Home">
+        <div class="hd6-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 2L11 7H16L12 10.5L13.5 16L9 12.5L4.5 16L6 10.5L2 7H7L9 2Z" fill="white" fill-opacity="0.9"/>
+          </svg>
+        </div>
+        <span class="hd6-name">Maid at Home</span>
+      </a>
+      <nav class="hd6-nav" aria-label="Main navigation">
+        <div class="hd6-nav-item-dropdown">
+          <a href={withBase("services")} class="hd6-nav-dropdown-toggle">
+            Our Services
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="hd6-dropdown-menu">
+            <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+            <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+            <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+            <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+            <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+            <a href={withBase("services/window-cleaning")}>Window Cleaning</a>
+            <a href={withBase("services/balcony-cleaning")}>Balcony Cleaning</a>
+          </div>
+        </div>
+        <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+        <a href={withBase("pricing")}>Pricing</a>
+        <a href={withBase("areas")}>Areas We Serve</a>
+        <a href={withBase("about")}>About Us</a>
+        <a href={withBase("careers")}>Join Our Team</a>
+        <div class="hd6-nav-item-dropdown">
+          <a href="#" class="hd6-nav-dropdown-toggle" onclick="event.preventDefault()">
+            Help
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="hd6-dropdown-menu">
+            <a href={withBase("faqs")}>FAQs</a>
+            <a href={withBase("contact")}>Contact Us</a>
+          </div>
+        </div>
+        <a href={withBase("blog")} class="active">Blog</a>
+        <a href={withBase("booking")} class="hd6-cta">Book Now</a>
+      </nav>
+      <button class="hd6-toggle" id="hd6Toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <nav id="hd6-mob" aria-label="Mobile navigation">
+      
+      <!-- Services Row -->
+      <div class="mob6-dropdown-item">
+        <div class="mob6-dropdown-trigger">
+          <a href={withBase("services")}>Services</a>
+          <button class="mob6-dropdown-toggle" aria-label="Toggle Services Menu" aria-expanded="false" data-target="mob-services-submenu">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mob6-sub-menu collapsed" id="mob-services-submenu">
+          <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+          <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+          <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+          <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+          <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+          <a href={withBase("services/window-cleaning")}>Window Cleaning</a>
+          <a href={withBase("services/balcony-cleaning")}>Balcony Cleaning</a>
+        </div>
+      </div>
+
+      <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+      <a href={withBase("pricing")}>Pricing</a>
+      <a href={withBase("areas")}>Areas We Serve</a>
+      <a href={withBase("about")}>About Us</a>
+      <a href={withBase("careers")}>Join Our Team</a>
+
+      <!-- Help Row -->
+      <div class="mob6-dropdown-item">
+        <div class="mob6-dropdown-trigger">
+          <span class="mob6-dropdown-label">Help</span>
+          <button class="mob6-dropdown-toggle" aria-label="Toggle Help Menu" aria-expanded="false" data-target="mob-help-submenu">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mob6-sub-menu collapsed" id="mob-help-submenu">
+          <a href={withBase("faqs")}>FAQs</a>
+          <a href={withBase("contact")}>Contact Us</a>
+        </div>
+      </div>
+
+      <a href={withBase("blog")} class="active">Blog</a>
+      <a href={withBase("booking")} class="mob6-cta">Book Now →</a>
+    </nav>
+
+    <!-- ─ PAGE HERO ──────────────────────────────── -->
+    <section id="blog-hero" aria-labelledby="blog-h1">
+      <div class="blog-hero-sun" aria-hidden="true"></div>
+      <div class="blog-hero-body">
+        <div class="blog-hero-left">
+          <h1 class="blog-hero-pill" id="blog-h1">
+            <span class="blog-hero-pill-dot" aria-hidden="true"></span>
+            Melbourne House Cleaning Blog & Tips
+          </h1>
+          <p class="blog-hero-h1" aria-hidden="true">
+            Smart cleaning.<br />
+            <span class="ac">Made simple.</span>
+          </p>
+          <p class="blog-hero-sub">
+            Practical guides, seasonal advice, and honest recommendations from Pau, Stefania, and the team. No filler — just things that actually help.
+          </p>
+          <div class="blog-hero-actions" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+            <a href={withBase("pricing")} class="btn6-primary">
+              Get a Free Quote
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M2 6.5h9M7.5 2l4.5 4.5L7.5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#blog-main" class="btn6-outline">Read Articles</a>
+          </div>
+        </div>
+
+        <div class="blog-hero-right">
+          <div class="hero-cats-box">
+            <h3 class="hero-cats-title">Browse by topic</h3>
+            <div class="hero-cats-list" id="hero-cats-list">
+              <!-- populated by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ TRUST STRIP ─────────────────────────────── -->
+    <div id="trust6" role="list" aria-label="Service guarantees">
+      <div class="trust6-inner">
+        <div class="trust6-item" role="listitem">🛡️ Police checked & insured</div>
+        <div class="trust6-sep" aria-hidden="true"></div>
+        <div class="trust6-item" role="listitem">🌿 Eco-safe products</div>
+        <div class="trust6-sep" aria-hidden="true"></div>
+        <div class="trust6-item" role="listitem">⏱️ Always on time</div>
+        <div class="trust6-sep" aria-hidden="true"></div>
+        <div class="trust6-item" role="listitem">✅ Satisfaction guarantee</div>
+        <div class="trust6-sep" aria-hidden="true"></div>
+        <div class="trust6-item" role="listitem">📱 Book in 60 seconds</div>
+      </div>
+    </div>
+
+    <!-- ─ FILTER BAR ────────────────────────────── */ -->
+    <div id="filter-bar" role="navigation" aria-label="Filter posts">
+      <div class="fbar-inner">
+        <div class="fbar-cats" id="fbar-cats" role="tablist">
+          <!-- populated by JS -->
+        </div>
+        <div class="fbar-right">
+          <div class="search-wrap">
+            <svg class="search-icon" width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+              <circle cx="5.5" cy="5.5" r="4" stroke="#5e6a75" stroke-width="1.6"/>
+              <path d="M9 9l2.5 2.5" stroke="#5e6a75" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <input type="search" id="search-input" placeholder="Search articles…" aria-label="Search blog posts" />
+          </div>
+          <select id="sort-select" class="fbar-sort" aria-label="Sort posts">
+            <option value="date-desc">Newest first</option>
+            <option value="date-asc">Oldest first</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ MAIN CONTENT ──────────────────────────── -->
+    <main id="blog-main" class="pad">
+      <div class="c6">
+        <div class="blog-layout sg">
+          
+          <!-- Content column -->
+          <div class="si" data-d="l">
+            <!-- Loading skeleton -->
+            <div id="loading-state">
+              <div class="skeleton-featured">
+                <div class="skel skel-img"></div>
+                <div class="skel-body">
+                  <div class="skel skel-tag"></div>
+                  <div class="skel skel-title"></div>
+                  <div class="skel skel-title-2"></div>
+                  <div style="height:0.75rem"></div>
+                  <div class="skel skel-text"></div>
+                  <div class="skel skel-text-2"></div>
+                  <div class="skel skel-text"></div>
+                </div>
+              </div>
+              <div class="skeleton-grid">
+                <div class="skel-card"><div class="skel skel-card-img"></div><div class="skel-card-body"><div class="skel skel-tag"></div><div class="skel skel-title"></div><div class="skel skel-text"></div></div></div>
+                <div class="skel-card"><div class="skel skel-card-img"></div><div class="skel-card-body"><div class="skel skel-tag"></div><div class="skel skel-title"></div><div class="skel skel-text"></div></div></div>
+              </div>
+            </div>
+
+            <!-- Featured post -->
+            <div id="featured-wrap">
+              <div class="featured-label" id="featured-label">Featured Article</div>
+              <a href="#" id="featured-post" aria-label="Featured post">
+                <div class="fp-image" id="fp-image">
+                  <div class="fp-image-placeholder">
+                    <span class="ph-icon">📰</span>
+                    <span class="ph-text">Loading…</span>
+                  </div>
+                </div>
+                <div class="fp-body">
+                  <div class="fp-cat" id="fp-cat"><span class="fp-cat-dot"></span>Loading</div>
+                  <div class="fp-title" id="fp-title">Loading featured article…</div>
+                  <div class="fp-excerpt" id="fp-excerpt">Please wait while we fetch the latest content.</div>
+                  <div class="fp-meta">
+                    <div class="fp-author">
+                      <div class="fp-avatar" id="fp-avatar" style="background: var(--blue-d)">M</div>
+                      <span class="fp-author-name" id="fp-author-name">Maid at Home Team</span>
+                    </div>
+                    <span class="fp-date" id="fp-date">—</span>
+                    <span class="fp-read" id="fp-read">— min read</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Posts grid -->
+            <div id="posts-section-title" aria-live="polite">
+              <span>All Articles</span>
+              <span id="post-count-label">—</span>
+            </div>
+            <div id="posts-grid" role="list" aria-label="Blog posts"></div>
+            
+            <div id="empty-state" role="status" aria-live="polite">
+              <div class="es-icon">🔍</div>
+              <h3>No articles found</h3>
+              <p>Try a different search or category filter.</p>
+            </div>
+
+            <div id="load-more-wrap">
+              <button id="load-more-btn" style="display:none">Load more articles</button>
+            </div>
+          </div>
+
+          <!-- Sidebar column -->
+          <aside class="sidebar si" data-d="r" aria-label="Blog sidebar">
+            <!-- Categories widget -->
+            <div class="sidebar-widget">
+              <div class="sw-title">Topics</div>
+              <div class="sw-cats" id="sidebar-cats"></div>
+            </div>
+
+            <!-- Popular posts widget -->
+            <div class="sidebar-widget">
+              <div class="sw-title">Popular Articles</div>
+              <div class="sw-popular" id="sidebar-popular"></div>
+            </div>
+
+            <!-- Newsletter widget -->
+            <div class="sidebar-widget sw-newsletter">
+              <div class="sw-title">Newsletter</div>
+              <div class="sw-nl-heading">Cleaning tips, monthly.</div>
+              <div class="sw-nl-sub">Short, practical, no spam. Join 800+ Melbourne homeowners.</div>
+              <div class="sw-nl-form">
+                <input type="email" class="sw-nl-input" placeholder="your@email.com" aria-label="Email address" />
+                <button class="sw-nl-btn">Subscribe →</button>
+              </div>
+              <p class="sw-nl-fine" style="margin-top:0.5rem;">No spam. Unsubscribe anytime.</p>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- ─ FINAL CTA ───────────────────────────────── -->
+    <section id="cta6" class="cta-white" aria-labelledby="cta6-h2">
+      <div class="c6">
+        <div class="cta6-grid sg">
+          <div class="cta6-left">
+            <div class="si" data-d="l">
+              <p class="eyebrow6">Ready to book?</p>
+              <h2 class="h6" id="cta6-h2">Put the tips into practice<br /><span class="ac">— or let us handle it.</span></h2>
+            </div>
+            <p class="cta6-sub si">
+              Book a professional clean and come home to exactly the result we write about.
+            </p>
+            <div class="cta6-actions si">
+              <a href={withBase("pricing")} class="btn6-primary" id="cta6-book">
+                Book a Clean →
+              </a>
+              <a href={withBase("services")} class="btn6-outline" id="cta6-call">See All Services</a>
+            </div>
+            <div class="cta6-trust si">
+              <span class="cta6-trust-item">No lock-in contracts</span>
+              <span class="cta6-trust-item">Cancel anytime</span>
+              <span class="cta6-trust-item">Satisfaction guaranteed</span>
+            </div>
+          </div>
+          <div class="cta6-right" aria-hidden="true">
+            <img src={withBase("images/bright_clean_living_room.png")} alt="" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FOOTER ────────────────────────────────── -->
+    <footer id="ft6" aria-label="Site footer">
+      <div class="ft6-inner">
+        <div class="ft6-brand">
+          <div class="ft6-logo">Maid at Home</div>
+          <p>Melbourne's trusted professional cleaning service. Trained, insured, and committed to consistent quality since 2019.</p>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Services</div>
+          <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+          <a href={withBase("services") + "#deep"}>Deep Cleaning</a>
+          <a href={withBase("services") + "#eol"}>End of Lease</a>
+          <a href={withBase("services") + "#movein"}>Move In Cleaning</a>
+          <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Company</div>
+          <a href={withBase("about")}>About Us</a>
+          <a href={withBase("careers")}>Work with Us</a>
+          <a href={withBase("areas")}>Service Areas</a>
+          <a href={withBase("index") + "#rec6"}>Recurring Cleaning</a>
+          <a href={withBase("blog")}>Blog</a>
+          <a href={withBase("pricing")}>Pricing Calculator</a>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Contact</div>
+          <a href="tel:+61399990000">(03) 9999 0000</a>
+          <a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a>
+          <a href={withBase("pricing")}>Book Online</a>
+        </div>
+      </div>
+      <div class="ft6-bottom">
+        <span>© 2026 Maid at Home. All rights reserved.</span>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline define:vars={{ withBaseUrl: withBase("blog-post") }}>
+      const SANITY_PROJECT_ID = 'YOUR_PROJECT_ID';
+      const SANITY_DATASET    = 'production';
+      const SANITY_API_VER    = '2024-01-01';
+      const BASE_POST_URL     = withBaseUrl + "?slug=";
+
+      const AUTHOR_COLOURS = {
+        'Pau Rodriguez':      'linear-gradient(135deg,#1d6fa8,#0a1d33)',
+        'Stefania Ramirez':   'linear-gradient(135deg,#7c3aed,#4c1d95)',
+        'Maid at Home Team':  'linear-gradient(135deg,#1d6fa8,#142d4c)',
+      };
+
+      const GROQ_QUERY = encodeURIComponent(`
+        *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
+          _id,
+          title,
+          "slug": slug.current,
+          publishedAt,
+          excerpt,
+          category,
+          readTime,
+          featured,
+          "author": author->{ name, initials, color },
+          "imageUrl": mainImage.asset->url
+        }
+      `);
+
+      const SANITY_URL = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VER}/data/query/${SANITY_DATASET}?query=${GROQ_QUERY}`;
+
+      let allPosts        = [];
+      let filteredPosts   = [];
+      let activeCategory  = 'all';
+      let searchQuery     = '';
+      let sortOrder       = 'date-desc';
+      let visibleCount    = 6;
+      const PAGE_SIZE     = 6;
+
+      function initials(name = '') {
+        return name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase() || 'M';
+      }
+
+      function fmtDate(iso) {
+        if (!iso) return '—';
+        return new Date(iso).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+      }
+
+      function imgUrl(url, w = 800) {
+        if (!url) return null;
+        return `${url}?w=${w}&auto=format&q=80`;
+      }
+
+      const CAT_COLOURS = ['#1d6fa8','#7c3aed','#0a1d33','#16a34a','#e0ab1d','#dc2626','#db2777','#6366f1'];
+      const catColourMap = {};
+      function catColour(cat) {
+        if (!catColourMap[cat]) {
+          const keys = Object.keys(catColourMap);
+          catColourMap[cat] = CAT_COLOURS[keys.length % CAT_COLOURS.length];
+        }
+        return catColourMap[cat];
+      }
+
+      function buildFeatured(post) {
+        const a = document.getElementById('featured-post');
+        const label = document.getElementById('featured-label');
+        if (!post) { document.getElementById('featured-wrap').style.display = 'none'; return; }
+
+        label.style.display = '';
+        a.href = `${BASE_POST_URL}${post.slug}`;
+        a.setAttribute('aria-label', post.title);
+
+        const fpImg = document.getElementById('fp-image');
+        if (post.imageUrl) {
+          fpImg.innerHTML = `<img src="${imgUrl(post.imageUrl, 900)}" alt="${post.title}" loading="eager">`;
+        } else {
+          const emoji = categoryEmoji(post.category);
+          fpImg.innerHTML = `
+            <div class="fp-image-placeholder">
+              <span class="ph-icon">${emoji}</span>
+              <span class="ph-text">${post.category || 'Article'}</span>
+            </div>`;
+        }
+
+        const colour = catColour(post.category || 'General');
+        document.getElementById('fp-cat').innerHTML = `<span class="fp-cat-dot" style="background:${colour}"></span>${post.category || 'Article'}`;
+        document.getElementById('fp-title').textContent   = post.title;
+        document.getElementById('fp-excerpt').textContent = post.excerpt || '';
+        document.getElementById('fp-date').textContent    = fmtDate(post.publishedAt);
+        document.getElementById('fp-read').textContent    = post.readTime ? `${post.readTime} min read` : '';
+
+        const authorName  = post.author?.name  || 'Maid at Home Team';
+        const authorInits = post.author?.initials || initials(authorName);
+        const authorCol   = post.author?.color || AUTHOR_COLOURS[authorName] || AUTHOR_COLOURS['Maid at Home Team'];
+        document.getElementById('fp-author-name').textContent = authorName;
+        const ava = document.getElementById('fp-avatar');
+        ava.textContent = authorInits;
+        ava.style.background = authorCol;
+      }
+
+      function buildPostCard(post) {
+        const emoji   = categoryEmoji(post.category);
+        const colour  = catColour(post.category || 'General');
+        const authorName  = post.author?.name  || 'Maid at Home Team';
+        const authorInits = post.author?.initials || initials(authorName);
+        const authorCol   = post.author?.color || AUTHOR_COLOURS[authorName] || AUTHOR_COLOURS['Maid at Home Team'];
+
+        const imgHtml = post.imageUrl
+          ? `<img src="${imgUrl(post.imageUrl, 600)}" alt="${post.title}" loading="lazy">`
+          : `<div class="pc-image-placeholder">${emoji}</div>`;
+
+        return `
+          <a href="${BASE_POST_URL}${post.slug}" class="post-card" role="listitem" aria-label="${post.title}">
+            <div class="pc-image">${imgHtml}</div>
+            <div class="pc-body">
+              <div class="pc-cat" style="color:${colour}">${post.category || 'Article'}</div>
+              <div class="pc-title">${post.title}</div>
+              <div class="pc-excerpt">${post.excerpt || ''}</div>
+              <div class="pc-meta">
+                <div class="pc-meta-left">
+                  <div class="pc-avatar" style="background:${authorCol}">${authorInits}</div>
+                  <span class="pc-author">${authorName}</span>
+                </div>
+                <span class="pc-date">${fmtDate(post.publishedAt)}</span>
+                ${post.readTime ? `<span class="pc-read">${post.readTime} min</span>` : ''}
+              </div>
+            </div>
+          </a>`;
+      }
+
+      function buildPopularPost(post, rank) {
+        return `
+          <a href="${BASE_POST_URL}${post.slug}" class="sw-pop-post">
+            <span class="sw-pop-num">${rank}</span>
+            <div>
+              <div class="sw-pop-title">${post.title}</div>
+              <div class="sw-pop-meta">${post.category || 'Article'} · ${fmtDate(post.publishedAt)}</div>
+            </div>
+          </a>`;
+      }
+
+      function categoryEmoji(cat = '') {
+        const map = {
+          'Cleaning Tips':    '🧹',
+          'Deep Cleaning':    '🔍',
+          'Organisation':     '📦',
+          'Eco Cleaning':     '♻️',
+          'Melbourne':        '🌆',
+          'Seasonal':         '🍂',
+          'Kitchen':          '🍳',
+          'Bathroom':         '🚿',
+          'Move In / Out':    '📋',
+          'Product Reviews':  '⭐',
+        };
+        return map[cat] || '📰';
+      }
+
+      function applyFilters() {
+        let posts = [...allPosts];
+        const featured = getFeaturedPost(allPosts);
+        if (featured && activeCategory === 'all' && !searchQuery) {
+          posts = posts.filter(p => p._id !== featured._id);
+        }
+        if (activeCategory !== 'all') {
+          posts = posts.filter(p => p.category === activeCategory);
+        }
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          posts = posts.filter(p =>
+            p.title.toLowerCase().includes(q) ||
+            (p.excerpt || '').toLowerCase().includes(q) ||
+            (p.category || '').toLowerCase().includes(q)
+          );
+        }
+        if (sortOrder === 'date-asc') {
+          posts.sort((a,b) => new Date(a.publishedAt) - new Date(b.publishedAt));
+        } else {
+          posts.sort((a,b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+        }
+        filteredPosts = posts;
+        visibleCount  = PAGE_SIZE;
+        renderGrid();
+      }
+
+      function renderGrid() {
+        const grid  = document.getElementById('posts-grid');
+        const empty = document.getElementById('empty-state');
+        const lmBtn = document.getElementById('load-more-btn');
+        const label = document.getElementById('post-count-label');
+
+        if (filteredPosts.length === 0) {
+          grid.innerHTML = '';
+          empty.style.display = 'block';
+          lmBtn.style.display = 'none';
+          label.textContent = '0 articles';
+          return;
+        }
+
+        empty.style.display = 'none';
+        const slice = filteredPosts.slice(0, visibleCount);
+        grid.innerHTML = slice.map(buildPostCard).join('');
+        label.textContent = `${filteredPosts.length} article${filteredPosts.length !== 1 ? 's' : ''}`;
+
+        if (visibleCount < filteredPosts.length) {
+          lmBtn.style.display = 'inline-flex';
+          lmBtn.textContent = `Load ${Math.min(PAGE_SIZE, filteredPosts.length - visibleCount)} more articles`;
+          lmBtn.disabled = false;
+        } else {
+          lmBtn.style.display = 'none';
+        }
+      }
+
+      function buildCategories(posts) {
+        const counts = {};
+        posts.forEach(p => {
+          if (p.category) counts[p.category] = (counts[p.category] || 0) + 1;
+        });
+
+        const cats = [{ label: 'All', value: 'all', count: posts.length }];
+        Object.entries(counts)
+          .sort((a,b) => b[1] - a[1])
+          .forEach(([k,v]) => cats.push({ label: k, value: k, count: v }));
+
+        const fbarEl = document.getElementById('fbar-cats');
+        fbarEl.innerHTML = cats.map(c => `
+          <button class="fbar-cat${c.value === 'all' ? ' active' : ''}" role="tab" aria-selected="${c.value === 'all'}" data-cat="${c.value}">
+            ${c.label}
+            <span class="fbar-cat-count">${c.count}</span>
+          </button>`).join('');
+
+        fbarEl.querySelectorAll('.fbar-cat').forEach(btn => {
+          btn.addEventListener('click', () => {
+            activeCategory = btn.dataset.cat;
+            fbarEl.querySelectorAll('.fbar-cat').forEach(b => {
+              b.classList.remove('active'); b.setAttribute('aria-selected','false');
+            });
+            btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+            syncSidebarCats();
+            applyFilters();
+          });
+        });
+
+        const sbarEl = document.getElementById('sidebar-cats');
+        sbarEl.innerHTML = cats.map(c => `
+          <button class="sw-cat-btn${c.value === 'all' ? ' active' : ''}" data-cat="${c.value}">
+            ${c.label}
+            <span class="sw-cat-count">${c.count}</span>
+          </button>`).join('');
+
+        sbarEl.querySelectorAll('.sw-cat-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            activeCategory = btn.dataset.cat;
+            syncFbarCats();
+            syncSidebarCats();
+            applyFilters();
+            document.getElementById('posts-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        });
+
+        const heroEl = document.getElementById('hero-cats-list');
+        heroEl.innerHTML = cats.slice(1).map(c => `
+          <button class="hero-cat-btn" data-cat="${c.value}">
+            <span>${categoryEmoji(c.value)} ${c.label}</span>
+            <span class="hcb-count">${c.count}</span>
+          </button>`).join('');
+        heroEl.querySelectorAll('.hero-cat-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            activeCategory = btn.dataset.cat;
+            syncFbarCats(); syncSidebarCats(); applyFilters();
+            document.getElementById('blog-main').scrollIntoView({ behavior: 'smooth' });
+          });
+        });
+      }
+
+      function syncFbarCats() {
+        document.querySelectorAll('.fbar-cat').forEach(b => {
+          const on = b.dataset.cat === activeCategory;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-selected', on);
+        });
+      }
+      
+      function syncSidebarCats() {
+        document.querySelectorAll('.sw-cat-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.cat === activeCategory);
+        });
+      }
+
+      function getFeaturedPost(posts) {
+        return posts.find(p => p.featured) || posts[0] || null;
+      }
+
+      function buildPopular(posts) {
+        const popular = [...posts].slice(0, 5);
+        const el = document.getElementById('sidebar-popular');
+        el.innerHTML = popular.length
+          ? popular.map((p,i) => buildPopularPost(p, i+1)).join('')
+          : '<p style="font-size:0.82rem;color:var(--grey-400)">No articles yet.</p>';
+      }
+
+      function updateHeroCount(n) {
+        document.getElementById('hero-count-text').textContent =
+          n === 0 ? 'No articles yet — check back soon'
+          : `${n} article${n !== 1 ? 's' : ''} published`;
+      }
+
+      const DEMO_POSTS = [
+        {
+          _id: 'demo-1', featured: true,
+          title: 'The 10-Minute Tidy: How to Keep Your Home Clean Between Professional Visits',
+          slug: 'ten-minute-tidy', category: 'Cleaning Tips',
+          publishedAt: '2026-05-15T09:00:00Z', readTime: 6,
+          excerpt: 'A quick daily routine that prevents buildup and means your professional clean always starts from a better baseline — saving you time and money.',
+          author: { name: 'Stefania Ramirez', initials: 'SR', color: 'linear-gradient(135deg,#7c3aed,#4c1d95)' },
+          imageUrl: null,
+        },
+        {
+          _id: 'demo-2', featured: false,
+          title: 'Oven Cleaning Without Harsh Chemicals: What Actually Works',
+          slug: 'oven-cleaning-natural', category: 'Eco Cleaning',
+          publishedAt: '2026-05-08T09:00:00Z', readTime: 5,
+          excerpt: 'Our cleaners tackle ovens professionally every day. Here\'s the baking soda and vinegar method that genuinely removes grease without toxic fumes.',
+          author: { name: 'Pau Rodriguez', initials: 'PR', color: 'linear-gradient(135deg,#1e4d78,#0a1d33)' },
+          imageUrl: null,
+        },
+        {
+          _id: 'demo-3', featured: false,
+          title: 'End of Lease Cleaning Checklist: What Melbourne Agents Actually Inspect',
+          slug: 'end-of-lease-checklist-melbourne', category: 'Move In / Out',
+          publishedAt: '2026-04-28T09:00:00Z', readTime: 8,
+          excerpt: 'The 47-point checklist used by Melbourne real estate agents during exit inspections — and how to make sure you tick every single box.',
+          author: { name: 'Stefania Ramirez', initials: 'SR', color: 'linear-gradient(135deg,#7c3aed,#4c1d95)' },
+          imageUrl: null,
+        },
+        {
+          _id: 'demo-4', featured: false,
+          title: 'How Often Should You Deep Clean Your Melbourne Apartment?',
+          slug: 'how-often-deep-clean-apartment', category: 'Deep Cleaning',
+          publishedAt: '2026-04-14T09:00:00Z', readTime: 4,
+          excerpt: 'The honest answer depends on your lifestyle. We break down the signs that your home needs more than a standard clean, and how to set a realistic schedule.',
+          author: { name: 'Pau Rodriguez', initials: 'PR', color: 'linear-gradient(135deg,#1e4d78,#0a1d33)' },
+          imageUrl: null,
+        },
+        {
+          _id: 'demo-5', featured: false,
+          title: 'Cleaning Hardwood Floors: The Method That Won\'t Damage Your Timber',
+          slug: 'cleaning-hardwood-floors', category: 'Cleaning Tips',
+          publishedAt: '2026-04-02T09:00:00Z', readTime: 5,
+          excerpt: 'Hardwood floors are common in Melbourne\'s inner suburbs. This is the exact process our cleaners use to clean them without causing warping, dullness, or water damage.',
+          author: { name: 'Maid at Home Team', initials: 'MH', color: 'linear-gradient(135deg,#1d6fa8,#142d4c)' },
+          imageUrl: null,
+        },
+        {
+          _id: 'demo-6', featured: false,
+          title: 'Spring Cleaning in Melbourne: A Room-by-Room Guide',
+          slug: 'spring-cleaning-melbourne-guide', category: 'Seasonal',
+          publishedAt: '2026-03-20T09:00:00Z', readTime: 7,
+          excerpt: 'September in Melbourne means opening the windows and tackling the buildup from a long winter. This is the order we\'d do it in, and why it matters.',
+          author: { name: 'Stefania Ramirez', initials: 'SR', color: 'linear-gradient(135deg,#7c3aed,#4c1d95)' },
+          imageUrl: null,
+        },
+        {
+          _id: 'demo-7', featured: false,
+          title: 'Bathroom Grout: Why It Gets Dark and How to Actually Fix It',
+          slug: 'bathroom-grout-cleaning', category: 'Bathroom',
+          publishedAt: '2026-03-10T09:00:00Z', readTime: 5,
+          excerpt: 'Grout discolouration isn\'t just cosmetic — it\'s a sign of mould and moisture problems. Here\'s the two-step approach that works and lasts.',
+          author: { name: 'Pau Rodriguez', initials: 'PR', color: 'linear-gradient(135deg,#1e4d78,#0a1d33)' },
+          imageUrl: null,
+        },
+      ];
+
+      async function loadPosts() {
+        document.getElementById('loading-state').style.display = 'block';
+        document.getElementById('featured-wrap').style.display = 'none';
+        document.getElementById('posts-grid').style.display     = 'none';
+
+        let posts = [];
+
+        if (SANITY_PROJECT_ID === 'YOUR_PROJECT_ID') {
+          await new Promise(r => setTimeout(r, 600));
+          posts = DEMO_POSTS;
+        } else {
+          try {
+            const res  = await fetch(SANITY_URL);
+            const data = await res.json();
+            posts = data.result || [];
+            if (posts.length === 0) posts = DEMO_POSTS;
+          } catch (err) {
+            console.error('[Maid at Home Blog] Failed to fetch from Sanity:', err);
+            posts = DEMO_POSTS;
+          }
+        }
+
+        document.getElementById('loading-state').style.display  = 'none';
+        document.getElementById('featured-wrap').style.display  = '';
+        document.getElementById('posts-grid').style.display     = '';
+
+        allPosts = posts;
+        updateHeroCount(posts.length);
+        buildCategories(posts);
+        buildPopular(posts);
+        buildFeatured(getFeaturedPost(posts));
+        applyFilters();
+      }
+
+      let searchTimeout;
+      document.getElementById('search-input').addEventListener('input', e => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          searchQuery = e.target.value.trim();
+          applyFilters();
+        }, 280);
+      });
+
+      document.getElementById('sort-select').addEventListener('change', e => {
+        sortOrder = e.target.value;
+        applyFilters();
+      });
+
+      document.getElementById('load-more-btn').addEventListener('click', () => {
+        visibleCount += PAGE_SIZE;
+        renderGrid();
+        const cards = document.querySelectorAll('#posts-grid .post-card');
+        if (cards[visibleCount - PAGE_SIZE]) {
+          cards[visibleCount - PAGE_SIZE].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+
+      const hd6 = document.getElementById("hd6");
+      const onScroll6 = () => hd6.classList.toggle("scrolled", window.scrollY > 20);
+      window.addEventListener("scroll", onScroll6, { passive: true });
+      onScroll6();
+
+      const tog6 = document.getElementById("hd6Toggle");
+      const mob6 = document.getElementById("hd6-mob");
+      tog6.addEventListener("click", () => {
+        const isOpen = mob6.classList.toggle("open");
+        hd6.classList.toggle("menu-open", isOpen);
+        tog6.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      });
+      mob6.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+        mob6.classList.remove("open");
+        hd6.classList.remove("menu-open");
+        tog6.setAttribute("aria-expanded", "false");
+      }));
+
+      const sObs6 = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const items = Array.from(entry.target.querySelectorAll(".si")).filter(el => !el.classList.contains("in"));
+          items.forEach((item, i) => setTimeout(() => item.classList.add("in"), i * 110));
+          sObs6.unobserve(entry.target);
+        });
+      }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
+      document.querySelectorAll(".sg").forEach(g => sObs6.observe(g));
+
+      loadPosts();
+    </script>
+  </body>
+</html>

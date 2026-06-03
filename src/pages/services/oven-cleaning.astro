@@ -1,0 +1,1038 @@
+---
+const baseUrl = import.meta.env.BASE_URL;
+const withBase = (path: string) => {
+  const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  const p = path.startsWith("/") ? path.slice(1) : path;
+  return p ? `${base}${p}` : base;
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professional Oven Cleaning Melbourne — Maid at Home</title>
+    <meta name="description" content="Deep oven cleaning services in Melbourne. Non-toxic, odourless cleaning that removes burnt grease and carbon build-up. Safe for families & pets. Book online." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      /* ─── TOKENS ──────────────────────────────── */
+      :root {
+        --navy:    #0a1d33;
+        --blue-d:  #142d4c;
+        --blue:    #1d6fa8;
+        --blue-l:  #5aaee0;
+        --blue-xl: #e8f4fd;
+        --sky:     #f0f7fd;
+        --yellow:  #f6c133;
+        --yellow-d:#e0ab1d;
+        --yellow-l:#fffbe6;
+        --green:   #16a34a;
+        --green-l: #e8f7ee;
+        --grey:    #5e6a75;
+        --grey-d:  #2d3748;
+        --grey-l:  #e2e8f0;
+        --white:   #ffffff;
+
+        --border-subtle: rgba(29, 111, 168, 0.08);
+        --border-hover:  rgba(29, 111, 168, 0.18);
+        --shadow-sm:     0 2px 8px rgba(10, 29, 51, 0.02);
+        --shadow-md:     0 8px 30px rgba(10, 29, 51, 0.04);
+        --shadow-lg:     0 16px 48px rgba(10, 29, 51, 0.06);
+        --shadow-premium:0 24px 60px rgba(10, 29, 51, 0.08);
+
+        --font:  "Plus Jakarta Sans", system-ui, sans-serif;
+        --r-s:   8px;
+        --r:     12px;
+        --r-l:   20px;
+        --r-xl:  28px;
+        --ease:  cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--font);
+        color: var(--grey-d);
+        background: var(--white);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.6;
+      }
+      img { display: block; max-width: 100%; }
+
+      /* ─── KEYFRAMES ───────────────────────────── */
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: none; }
+      }
+
+      /* ─── STAGGER SYSTEM ──────────────────────── */
+      .si {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+      }
+      .si[data-d="l"] { transform: translateX(-24px); }
+      .si[data-d="r"] { transform: translateX(24px); }
+      .si.in { opacity: 1; transform: none; }
+
+      /* ─── LAYOUT ──────────────────────────────── */
+      .c6     { max-width: 1180px; margin: 0 auto; padding: 0 2.5rem; }
+      .pad    { padding: 6.5rem 0; }
+      .pad-sm { padding: 4.5rem 0; }
+      #service-nav + #benefits-section { padding-top: 8rem; }
+
+      /* ─── SHARED TYPOGRAPHY ───────────────────── */
+      .eyebrow6 {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        font-size: 0.72rem; font-weight: 800;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        color: var(--blue); margin-bottom: 0.85rem;
+      }
+      .eyebrow6::before {
+        content: ""; width: 16px; height: 2.5px;
+        background: var(--yellow); border-radius: 2px; flex-shrink: 0;
+      }
+      h2.h6 {
+        font-size: clamp(2rem, 3.4vw, 2.85rem);
+        font-weight: 800; letter-spacing: -0.03em;
+        color: var(--navy); line-height: 1.15;
+      }
+      h2.h6 .ac { color: var(--blue); }
+      .lead6 {
+        font-size: 1.05rem; color: var(--grey);
+        line-height: 1.75; max-width: 520px;
+        margin-top: 0.75rem;
+      }
+
+      /* ─── BUTTONS ─────────────────────────────── */
+      .btn6-primary {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        background: var(--yellow); color: var(--navy);
+        font-weight: 700; font-size: 0.95rem;
+        padding: 0.95rem 2rem; border-radius: 100px;
+        text-decoration: none; border: none; cursor: pointer;
+        font-family: var(--font); white-space: nowrap;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 14px rgba(246, 193, 51, 0.2);
+      }
+      .btn6-primary:hover { background: var(--yellow-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(246, 193, 51, 0.4); }
+      .btn6-outline {
+        display: inline-flex; align-items: center; gap: 0.45rem;
+        color: var(--navy); font-weight: 600; font-size: 0.9rem;
+        padding: 0.9rem 1.75rem; border-radius: 100px;
+        border: 1px solid var(--grey-l); background: transparent;
+        text-decoration: none; cursor: pointer; font-family: var(--font); white-space: nowrap;
+        transition: border-color 0.25s, background 0.25s, color 0.25s;
+      }
+      .btn6-outline:hover { border-color: var(--navy); background: var(--sky); }
+
+      /* ─── HEADER ──────────────────────────────── */
+      #hd6 {
+        position: fixed; inset: 0 0 auto; z-index: 200;
+        height: 72px; display: flex; align-items: center; justify-content: space-between;
+        padding: 0 4vw;
+        transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease), height 0.3s var(--ease);
+      }
+      #hd6.scrolled {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 4px 30px rgba(10, 29, 51, 0.03);
+        height: 64px; border-bottom: 1px solid rgba(10, 29, 51, 0.04);
+      }
+      .hd6-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+      .hd6-mark {
+        width: 38px; height: 38px; border-radius: 12px; background: var(--blue);
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0; transition: background 0.3s;
+      }
+      #hd6.scrolled .hd6-mark { background: var(--navy); }
+      .hd6-name { font-size: 1.15rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; }
+      .hd6-nav { display: flex; align-items: center; gap: 0.25rem; }
+      .hd6-nav a {
+        font-size: 0.9rem; font-weight: 500; color: var(--grey-d);
+        text-decoration: none; padding: 0.5rem 1rem;
+        border-radius: 8px; transition: color 0.2s, background 0.2s;
+      }
+      .hd6-nav a:hover, .hd6-nav a.active { color: var(--blue); background: var(--sky); }
+      .hd6-cta {
+        display: inline-flex; align-items: center; gap: 0.45rem;
+        background: var(--yellow); color: var(--navy);
+        font-weight: 700; font-size: 0.9rem; padding: 0.55rem 1.35rem; border-radius: 100px;
+        text-decoration: none; margin-left: 0.75rem;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s; white-space: nowrap;
+      }
+      .hd6-cta:hover { background: var(--yellow-d); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(246,193,51,.35); }
+      .hd6-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; z-index: 201; }
+      .hd6-toggle span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: transform 0.3s var(--ease), opacity 0.3s var(--ease); }
+      
+      #hd6.menu-open { background: var(--white) !important; box-shadow: none !important; border-bottom: 1px solid rgba(10, 29, 51, 0.04) !important; }
+      #hd6.menu-open .hd6-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      #hd6.menu-open .hd6-toggle span:nth-child(2) { opacity: 0; }
+      #hd6.menu-open .hd6-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      #hd6-mob {
+        display: none; position: fixed; inset: 0; z-index: 199;
+        background: var(--white); flex-direction: column; padding: 6rem 2rem 2rem; gap: 0.5rem;
+      ; overflow-y: auto;}
+      /* Mobile Dropdown Accordion Styling */
+      .mob6-dropdown-item {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-dropdown-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+      #hd6-mob a, .mob6-dropdown-label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--navy);
+        text-decoration: none;
+        padding: 0.95rem 0;
+        flex: 1;
+      }
+      .mob6-dropdown-label {
+        cursor: default;
+        user-select: none;
+      }
+      .mob6-dropdown-toggle {
+        background: none;
+        border: none;
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--navy);
+        transition: transform 0.25s var(--ease);
+      }
+      .mob6-dropdown-toggle.open {
+        transform: rotate(180deg);
+        color: var(--blue);
+      }
+      .mob6-dropdown-item .mob6-sub-menu {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1.25rem;
+        border-left: 2px solid var(--border-subtle);
+        margin: 0.25rem 0 0.75rem;
+        gap: 0.35rem;
+        max-height: 500px;
+        opacity: 1;
+        overflow: hidden;
+        transition: max-height 0.35s var(--ease), opacity 0.35s var(--ease), margin 0.35s var(--ease);
+      }
+      .mob6-dropdown-item .mob6-sub-menu.collapsed {
+        max-height: 0;
+        opacity: 0;
+        margin: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .mob6-sub-menu a {
+        font-size: 0.95rem !important;
+        color: var(--grey) !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: none !important;
+      }
+      .mob6-sub-menu a:hover {
+        color: var(--blue) !important;
+      }
+      .mob6-dropdown-item {
+        border-bottom: 1px solid var(--grey-l);
+      }
+      .mob6-dropdown-item a, .mob6-dropdown-item .mob6-dropdown-label {
+        border-bottom: none !important;
+      }
+
+      #hd6-mob.open { display: flex; }
+      #hd6-mob a { font-size: 1.2rem; font-weight: 600; color: var(--navy); text-decoration: none; padding: 0.95rem 0; border-bottom: 1px solid var(--grey-l); }
+      .mob6-cta { background: var(--yellow); color: var(--navy); text-align: center; border-radius: var(--r); padding: 1.1rem; margin-top: 1rem; font-size: 1rem; font-weight: 700; text-decoration: none; display: block; }
+
+      /* ─── PAGE HERO ───────────────────────────── */
+      #std-hero { background: var(--sky); padding-top: 72px; position: relative; overflow: hidden; }
+      .std-hero-sun {
+        position: absolute; top: -120px; right: -100px;
+        width: 560px; height: 560px; border-radius: 50%;
+        background: radial-gradient(ellipse at center, rgba(246, 193, 51, 0.14) 0%, rgba(246, 193, 51, 0.03) 60%, transparent 80%);
+        pointer-events: none;
+      }
+      .std-hero-body {
+        max-width: 1180px; margin: 0 auto; padding: 4rem 2.5rem 5rem;
+        display: grid; grid-template-columns: 1.1fr 0.9fr;
+        gap: 5rem; align-items: center; position: relative; z-index: 2;
+      }
+      .ph-breadcrumb {
+        display: flex; align-items: center; gap: 0.5rem;
+        font-size: 0.78rem; font-weight: 500; color: var(--grey);
+        margin-bottom: 1.5rem; animation: fadeUp 0.5s var(--ease) 0s both;
+      }
+      .ph-breadcrumb a { color: var(--grey); text-decoration: none; transition: color 0.2s; }
+      .ph-breadcrumb a:hover { color: var(--blue); }
+      .ph-breadcrumb .sep { color: var(--grey); display: inline-block; }
+
+      .std-hero-pill {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        font-size: 0.75rem; font-weight: 700; color: var(--blue); letter-spacing: 0.05em;
+        margin-bottom: 1.75rem; width: fit-content;
+        background: var(--white); padding: 0.4rem 0.9rem; border-radius: 100px;
+        box-shadow: var(--shadow-sm); animation: fadeUp 0.5s var(--ease) 0s both;
+      }
+      .std-hero-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+      
+      .std-hero-h1 {
+        font-size: clamp(2.8rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.04em;
+        line-height: 1.08; color: var(--navy); margin-bottom: 1.5rem;
+        animation: fadeUp 0.65s var(--ease) 0.1s both;
+      }
+      .std-hero-h1 .ac { color: var(--blue); }
+      .std-hero-desc { font-size: 1.1rem; color: var(--grey-d); line-height: 1.7; margin-bottom: 2rem; animation: fadeUp 0.65s var(--ease) 0.15s both; }
+      .std-hero-actions { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; animation: fadeUp 0.65s var(--ease) 0.2s both; }
+
+      /* Summary / Price Card */
+      .book-card {
+        background: var(--white); border-radius: var(--r-xl); padding: 2.5rem;
+        border: 1px solid var(--border-subtle); box-shadow: var(--shadow-premium);
+        animation: fadeUp 0.8s var(--ease) 0.1s both;
+      }
+      .book-card-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--blue); margin-bottom: 0.75rem; }
+      .book-price-from { font-size: 0.85rem; color: var(--grey); }
+      .book-price-row { display: flex; align-items: baseline; gap: 0.35rem; margin-top: 0.1rem; margin-bottom: 0.5rem; }
+      .book-price { font-size: 3.2rem; font-weight: 800; color: var(--navy); letter-spacing: -0.05em; line-height: 1; }
+      .book-price sup { font-size: 1.4rem; font-weight: 600; vertical-align: super; }
+      .book-price-note { font-size: 0.82rem; color: var(--grey); line-height: 1.4; }
+      .book-divider { height: 1px; background: var(--border-subtle); margin: 1.75rem 0; }
+      .book-includes { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+      .book-inc { display: flex; align-items: center; gap: 0.65rem; font-size: 0.9rem; color: var(--grey-d); font-weight: 500; }
+      .book-inc::before { content: "✓"; color: var(--green); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
+      .book-cta { display: block; text-align: center; background: var(--yellow); color: var(--navy); font-weight: 700; font-size: 0.95rem; padding: 0.95rem; border-radius: 100px; text-decoration: none; transition: background 0.25s, transform 0.2s, box-shadow 0.25s; margin-bottom: 0.85rem; box-shadow: 0 4px 14px rgba(246,193,51,0.25); }
+      .book-cta:hover { background: var(--yellow-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(246,193,51,0.4); }
+      .book-cta-sub { text-align: center; font-size: 0.76rem; color: var(--grey); }
+
+      /* ─── BENEFITS SECTION ─────────────────────── */
+      #benefits-section { background: var(--white); }
+      .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+      .benefit-card {
+        padding: 2.25rem 2rem; background: var(--sky); border: 1px solid var(--border-subtle);
+        border-radius: var(--r-xl); display: flex; flex-direction: column; gap: 1rem;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .benefit-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+      .benefit-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--white); border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+      .benefit-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
+      .benefit-card p { font-size: 0.9rem; color: var(--grey); line-height: 1.6; }
+
+      /* ─── FAQ ─────────────────────────────────── */
+      #faq6 { background: var(--sky); border-top: 1px solid var(--border-subtle); }
+      .faq6-layout { display: grid; grid-template-columns: 4fr 8fr; gap: 5rem; align-items: start; }
+      .compact-contact-card {
+        padding: 2rem 2.25rem;
+        background: var(--sky);
+        border-radius: 20px;
+        border: 1px solid var(--border-subtle);
+        width: fit-content;
+        max-width: 100%;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+        box-shadow: var(--shadow-sm);
+      }
+      .compact-card-line {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 0.88rem;
+        line-height: 1.2;
+        color: var(--blue);
+        font-weight: 700;
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+      .compact-card-line span:last-child {
+        font-size: 0.88rem;
+        line-height: 1.2;
+      }
+      .compact-card-line:hover {
+        opacity: 0.85;
+      }
+      .compact-card-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+      }
+      .faq6-list { border-top: 1px solid var(--border-subtle); }
+      .faq6-item { border-bottom: 1px solid var(--border-subtle); }
+      .faq6-q { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.35rem 0; cursor: pointer; background: none; border: none; width: 100%; font-family: var(--font); font-size: 0.95rem; font-weight: 700; color: var(--navy); text-align: left; transition: color 0.2s; }
+      .faq6-q:hover { color: var(--blue); }
+      .faq6-ico { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--grey-l); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--grey); font-weight: 400; flex-shrink: 0; transition: all 0.3s var(--ease); line-height: 1; }
+      .faq6-item.open .faq6-ico { background: var(--yellow); border-color: var(--yellow); color: var(--navy); transform: rotate(45deg); }
+      .faq6-a { font-size: 0.9rem; color: var(--grey); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease), padding 0.3s; }
+      .faq6-item.open .faq6-a { max-height: 280px; padding-bottom: 1.35rem; }
+
+      /* ─── FINAL CTA ────────────────────────────── */
+      #cta6.cta-sky {
+        background: var(--sky);
+        padding: 6.5rem 0;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      #cta6.cta-white {
+        background: var(--white);
+        padding: 6.5rem 0;
+        border-top: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .cta6-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 4.5rem;
+        align-items: center;
+      }
+      .cta6-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .cta6-sub {
+        font-size: 1.05rem;
+        color: var(--grey);
+        line-height: 1.7;
+        max-width: 500px;
+        margin: 1rem 0 2.25rem;
+      }
+      .cta6-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 2.25rem;
+      }
+      .cta6-trust {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+        border-top: 1px solid var(--grey-l);
+        padding-top: 1.5rem;
+      }
+      .cta6-trust-item {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.83rem;
+        font-weight: 600;
+        color: var(--grey-d);
+      }
+      .cta6-trust-item::before {
+        content: "✓";
+        color: var(--green);
+        font-weight: 800;
+      }
+      .cta6-right {
+        position: relative;
+        overflow: hidden;
+        height: 380px;
+        border-radius: var(--r-xl);
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-md);
+      }
+      .cta6-right img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ─── FOOTER ──────────────────────────────── */
+      #ft6 { background: var(--navy); padding: 4.5rem 2.5rem 2.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+      .ft6-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .ft6-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 0.85rem; max-width: 280px; }
+      .ft6-logo { font-size: 1.2rem; font-weight: 800; color: rgba(255,255,255,0.85); letter-spacing: -0.02em; }
+      .ft6-col-title { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1.25rem; }
+      .ft6-col a { display: block; font-size: 0.88rem; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s; }
+      .ft6-col a:hover { color: rgba(255,255,255,0.85); }
+      .ft6-bottom { max-width: 1180px; margin: 1.75rem auto 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+      .ft6-bottom span, .ft6-bottom a { font-size: 0.78rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
+      .ft6-bottom a:hover { color: rgba(255,255,255,0.6); }
+
+      /* ─── RESPONSIVE ──────────────────────────── */
+      @media (max-width: 1024px) {
+        .hd6-nav { display: none; }
+        .hd6-toggle { display: flex; }
+        .std-hero-body { grid-template-columns: 1fr; gap: 3rem; }
+        .benefits-grid, .faq6-layout { grid-template-columns: 1fr; gap: 3rem; }
+        .cta6-grid { grid-template-columns: 1fr; gap: 3rem; }
+        .cta6-right { height: 320px; }
+        .ft6-inner { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      }
+      @media (max-width: 768px) {
+        .std-hero-body { padding: 4rem 1.5rem 3rem; }
+        .cta6-left { padding: 2.5rem 1.5rem; }
+        .c6 { padding: 0 1.5rem; }
+        .pad { padding: 4.5rem 0; }
+        .ft6-inner { grid-template-columns: 1fr; gap: 2rem; }
+      }
+      @media (max-width: 640px) {
+        .hd6-nav { display: none; }
+        .hd6-toggle { display: flex; }
+        .std-hero-h1 { font-size: 2.4rem; }
+      }
+
+      /* Dropdown style system */
+      .hd6-nav-item-dropdown { position: relative; display: inline-block; }
+      .hd6-nav-dropdown-toggle { display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer; }
+      .hd6-nav-dropdown-toggle svg { transition: transform 0.2s var(--ease); }
+      .hd6-nav-item-dropdown:hover .hd6-nav-dropdown-toggle svg { transform: rotate(180deg); }
+      .hd6-dropdown-menu {
+        position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px);
+        background: var(--white); min-width: 220px; border-radius: var(--r);
+        border: 1px solid var(--border-subtle); box-shadow: var(--shadow-lg);
+        padding: 0.65rem 0; opacity: 0; visibility: hidden;
+        transition: opacity 0.2s var(--ease), transform 0.2s var(--ease), visibility 0.2s;
+        z-index: 250; display: flex; flex-direction: column;
+      }
+      .hd6-nav-item-dropdown:hover .hd6-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+      .hd6-dropdown-menu a {
+        display: block !important; font-size: 0.88rem !important; font-weight: 600 !important;
+        color: var(--grey-d) !important; padding: 0.6rem 1.25rem !important; border-radius: 0 !important;
+        transition: background 0.2s, color 0.2s !important; text-align: left;
+      }
+      .hd6-dropdown-menu a:hover { background: var(--sky) !important; color: var(--blue) !important; }
+
+      /* Mobile sub-menu styling */
+      .mob6-sub-menu { display: flex; flex-direction: column; padding-left: 1.25rem; border-left: 2px solid var(--border-subtle); margin: 0.25rem 0 0.75rem; gap: 0.35rem; }
+      .mob6-sub-menu a { font-size: 0.95rem !important; color: var(--grey) !important; padding: 0.5rem 0 !important; border-bottom: none !important; }
+      .mob6-sub-menu a:hover { color: var(--blue) !important; }
+      .hd6-mob-section-title { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--grey); letter-spacing: 0.08em; margin-top: 0.75rem; margin-bottom: 0.25rem; }
+    
+      /* ─── STICKY SECTION NAV ─────────────────── */
+      #service-nav {
+        position: sticky;
+        top: 64px;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border-subtle);
+        box-shadow: 0 4px 20px rgba(10,29,51,0.02);
+      }
+      .pnav-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+        display: flex;
+        gap: 1.5rem;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .pnav-inner::-webkit-scrollbar { display: none; }
+      .pnav-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 1rem 0.25rem;
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--grey);
+        text-decoration: none;
+        white-space: nowrap;
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s var(--ease);
+      }
+      .pnav-link:hover, .pnav-link.active {
+        color: var(--blue);
+        border-bottom-color: var(--blue);
+      }
+      .snav-icon {
+        font-size: 1rem;
+      }
+      
+      /* Target section spacing overrides for sticky header */
+      #what, #includes, #how, #ideal, #pricing, #reviews, #faq, #benefits-section, #faq6 {
+        scroll-margin-top: 120px;
+        
+      }
+
+      @media (max-width: 768px) {
+        #service-nav + #benefits-section { padding-top: 5.5rem; }
+      }
+      /* Keep every non-hero section aligned with the landing services section. */
+      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) {
+        padding-top: 6.5rem !important;
+        padding-bottom: 6.5rem !important;
+      }
+      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+        max-width: 1180px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 2.5rem !important;
+        padding-right: 2.5rem !important;
+      }
+      @media (max-width: 768px) {
+        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) {
+          padding-top: 4.5rem !important;
+          padding-bottom: 4.5rem !important;
+        }
+        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+          padding-left: 1.5rem !important;
+          padding-right: 1.5rem !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ─ HEADER ─────────────────────────────────── -->
+    <header id="hd6" aria-label="Site header">
+      <a href={withBase("index")} class="hd6-logo" aria-label="Maid at Home">
+        <div class="hd6-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 2L11 7H16L12 10.5L13.5 16L9 12.5L4.5 16L6 10.5L2 7H7L9 2Z" fill="white" fill-opacity="0.9"/>
+          </svg>
+        </div>
+        <span class="hd6-name">Maid at Home</span>
+      </a>
+      <nav class="hd6-nav" aria-label="Main navigation">
+        <div class="hd6-nav-item-dropdown">
+          <a href={withBase("services")} class="hd6-nav-dropdown-toggle">
+            Our Services
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="hd6-dropdown-menu">
+            <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+            <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+            <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+            <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+            <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+            <a href={withBase("services/window-cleaning")}>Window Cleaning</a>
+            <a href={withBase("services/balcony-cleaning")}>Balcony Cleaning</a>
+          </div>
+        </div>
+        <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+        <a href={withBase("pricing")}>Pricing</a>
+        <a href={withBase("areas")}>Areas We Serve</a>
+        <a href={withBase("about")}>About Us</a>
+        <a href={withBase("careers")}>Join Our Team</a>
+        <div class="hd6-nav-item-dropdown">
+          <a href="#" class="hd6-nav-dropdown-toggle" onclick="event.preventDefault()">
+            Help
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="hd6-dropdown-menu">
+            <a href={withBase("faqs")}>FAQs</a>
+            <a href={withBase("contact")}>Contact Us</a>
+          </div>
+        </div>
+        <a href={withBase("blog")}>Blog</a>
+        <a href={withBase("booking")} class="hd6-cta">Book Now</a>
+      </nav>
+      <button class="hd6-toggle" id="hd6Toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <nav id="hd6-mob" aria-label="Mobile navigation">
+      
+      <!-- Services Row -->
+      <div class="mob6-dropdown-item">
+        <div class="mob6-dropdown-trigger">
+          <a href={withBase("services")}>Services</a>
+          <button class="mob6-dropdown-toggle" aria-label="Toggle Services Menu" aria-expanded="false" data-target="mob-services-submenu">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mob6-sub-menu collapsed" id="mob-services-submenu">
+          <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+          <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+          <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+          <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+          <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+          <a href={withBase("services/window-cleaning")}>Window Cleaning</a>
+          <a href={withBase("services/balcony-cleaning")}>Balcony Cleaning</a>
+        </div>
+      </div>
+
+      <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+      <a href={withBase("pricing")}>Pricing</a>
+      <a href={withBase("areas")}>Areas We Serve</a>
+      <a href={withBase("about")}>About Us</a>
+      <a href={withBase("careers")}>Join Our Team</a>
+
+      <!-- Help Row -->
+      <div class="mob6-dropdown-item">
+        <div class="mob6-dropdown-trigger">
+          <span class="mob6-dropdown-label">Help</span>
+          <button class="mob6-dropdown-toggle" aria-label="Toggle Help Menu" aria-expanded="false" data-target="mob-help-submenu">
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mob6-sub-menu collapsed" id="mob-help-submenu">
+          <a href={withBase("faqs")}>FAQs</a>
+          <a href={withBase("contact")}>Contact Us</a>
+        </div>
+      </div>
+
+      <a href={withBase("blog")}>Blog</a>
+      <a href={withBase("booking")} class="mob6-cta">Book Now →</a>
+    </nav>
+
+    <!-- ─ PAGE HERO ──────────────────────────────── -->
+    <section id="std-hero" aria-labelledby="std-hero-h1">
+      <div class="std-hero-sun" aria-hidden="true"></div>
+      <div class="std-hero-body">
+        <div class="std-hero-left">
+          <nav class="ph-breadcrumb" aria-label="Breadcrumb">
+            <a href={withBase("index")}>Home</a>
+            <span class="sep" aria-hidden="true">→</span>
+            <a href={withBase("services")}>House Cleaning</a>
+            <span class="sep" aria-hidden="true">→</span>
+            <span class="current" aria-current="page" style="color: var(--grey-d)">Oven Cleaning</span>
+          </nav>
+          
+          <h1 class="std-hero-pill" id="std-hero-h1">
+            <span class="std-hero-pill-dot" aria-hidden="true"></span>
+            Professional Oven Cleaning Melbourne
+          </h1>
+          
+          <p class="std-hero-h1" aria-hidden="true">
+            Professional<br />
+            <span class="ac">Oven Cleaning</span>
+          </p>
+          <p class="std-hero-desc">
+            A comprehensive, deep clean of your oven, racks, trays, and glass door. We use non-toxic, eco-safe, and completely odourless products so you can cook immediately with zero chemical fumes.
+          </p>
+          
+          <div class="std-hero-actions">
+            <a href={withBase("pricing")} class="btn6-primary">
+              Book Oven Cleaning
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M2 6.5h9M7.5 2l4.5 4.5L7.5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="tel:+61399990000" class="btn6-outline">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M11.5 8.8L9.2 7.9 8.3 8.8C7 8.3 4.7 6 4.2 4.7l.9-.9L4.2 1.5 1.5 1C1 2 1 3.3 1.9 5c1.4 2.7 3.4 4.7 6 6 1.7.9 3 .9 3.9.4l-.3-2.6z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              (03) 9999 0000
+            </a>
+          </div>
+        </div>
+
+        <div class="std-hero-right" aria-hidden="true">
+          <div class="book-card">
+            <div class="book-card-label">Oven Clean Summary</div>
+            <div class="book-price-from">Starting from</div>
+            <div class="book-price-row">
+              <div class="book-price"><sup>$</sup>79</div>
+            </div>
+            <div class="book-price-note">Single Oven: $79 · Double Oven: $119 · Racks & trays included</div>
+            <div class="book-divider"></div>
+            <div class="book-includes">
+              <div class="book-inc">Eco-safe, odourless products</div>
+              <div class="book-inc">Racks & trays soaked & detailed</div>
+              <div class="book-inc">Glass door disassembled & cleaned</div>
+              <div class="book-inc">Exterior polished & degreased</div>
+              <div class="book-inc">Ready to use immediately</div>
+            </div>
+            <a href={withBase("pricing")} class="book-cta">Book Oven Cleaning →</a>
+            <div class="book-cta-sub">Available as single service or add-on</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ STICKY SECTION NAV ────────────────────── -->
+    <nav id="service-nav" aria-label="Service sections">
+      <div class="pnav-inner">
+        <a href="#benefits-section" class="pnav-link active"><span class="snav-icon">✨</span> Benefits</a>
+        <a href="#faq6" class="pnav-link"><span class="snav-icon">❓</span> FAQ</a>
+      </div>
+    </nav>
+
+    <!-- ─ BENEFITS SECTION ─────────────────────── -->
+    <section id="benefits-section" class="pad" aria-labelledby="benefits-h2">
+      <div class="c6">
+        <div class="sg" style="text-align: center; margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+          <p class="eyebrow6">Our Standards</p>
+          <h2 class="h6" id="benefits-h2">Why choose professional oven cleaning?</h2>
+          <p class="lead6" style="margin-top: 0.75rem;">
+            It is more than just removing grease — it restores your kitchen's key appliance to top condition.
+          </p>
+        </div>
+
+        <div class="benefits-grid sg">
+          <!-- Benefit 1 -->
+          <div class="benefit-card si">
+            <div class="benefit-icon">🌿</div>
+            <h3>100% Non-Toxic & Odourless</h3>
+            <p>We do not use harsh caustic chemicals or sprays. Our specialized formulas are odourless, safe for your family, pets, and food prep, allowing you to use your oven immediately.</p>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="benefit-card si">
+            <div class="benefit-icon">⚡</div>
+            <h3>Improved Heat Efficiency</h3>
+            <p>Removing baked-on grease and carbon deposits from heating elements and interior walls helps your oven heat faster, distribute temperature evenly, and consume less electricity.</p>
+          </div>
+
+          <!-- Benefit 3 -->
+          <div class="benefit-card si">
+            <div class="benefit-icon">🔍</div>
+            <h3>Door Disassembly Included</h3>
+            <p>Grease often drips and builds up inside the double-glazed glass panels of your oven door. We carefully disassemble the door to clean the inner glass panes, leaving them fully transparent.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FAQ ─────────────────────────────────────── -->
+    <section id="faq6" class="pad" aria-labelledby="faq6-h2">
+      <div class="c6">
+        <div class="faq6-layout">
+          <div class="sg">
+            <div class="si" data-d="l">
+              <p class="eyebrow6">FAQ</p>
+              <h2 class="h6" id="faq6-h2">Oven cleaning<br /><span class="ac">details</span></h2>
+            </div>
+            <p class="lead6 si" style="margin-bottom: 1.75rem;">
+              Everything you need to know about our oven deep cleaning process.
+            </p>
+            <div class="compact-contact-card si" style="padding:2rem 2.25rem;background:var(--white);border-radius:20px;border:1px solid var(--border-subtle);width:fit-content;max-width:100%;margin-top:2rem;display:flex;flex-direction:column;gap:1.1rem;box-shadow:var(--shadow-sm);">
+              <a href="https://wa.me/61399990000" class="compact-card-line" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.8rem;font-size:0.88rem;line-height:1.2;color:var(--blue);font-weight:700;text-decoration:none;transition:opacity 0.2s;">
+                <span class="compact-card-icon" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex-shrink:0;">
+                  <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.76.46 3.473 1.33 4.982L2 22l5.204-1.365a9.948 9.948 0 004.808 1.229h.005c5.504 0 9.983-4.482 9.983-9.988C22.003 6.482 17.518 2 12.012 2z" fill="#25D366"/>
+                    <path d="M16.924 14.15c-.27-.136-1.593-.785-1.84-.875-.246-.09-.426-.136-.606.136-.18.27-.7.876-.856 1.056-.158.18-.316.204-.586.068a7.382 7.382 0 01-2.176-1.343c-.856-.763-1.434-1.705-1.602-1.977-.168-.27-.018-.417.117-.551.121-.122.27-.317.406-.475.135-.158.18-.27.27-.452.09-.18.045-.339-.022-.475-.068-.136-.607-1.462-.832-2.004-.22-.528-.44-.457-.606-.466-.156-.008-.337-.01-.517-.01a1.002 1.002 0 00-.72.339c-.247.27-.945.927-.945 2.261 0 1.333.97 2.624 1.105 2.805.135.18 1.9 2.901 4.604 4.07.643.278 1.145.443 1.536.568.647.206 1.235.176 1.7.107.518-.078 1.593-.65 1.819-1.278.225-.628.225-1.167.157-1.278-.067-.113-.247-.18-.517-.316z" fill="#FFF"/>
+                  </svg>
+                </span>
+                <span>(03) 9999 0000</span>
+              </a>
+              <a href="mailto:hello@maidathome.com.au" class="compact-card-line" style="display:inline-flex;align-items:center;gap:0.8rem;font-size:0.88rem;line-height:1.2;color:var(--blue);font-weight:700;text-decoration:none;transition:opacity 0.2s;">
+                <span class="compact-card-icon" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex-shrink:0;">
+                  <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  </svg>
+                </span>
+                <span>hello@maidathome.com.au</span>
+              </a>
+            </div>
+          </div>
+          <div class="faq6-list sg" role="list">
+            {[
+              ["How long does it take to clean an oven?","A single oven typically takes between 1.5 to 2 hours to clean thoroughly. A double oven or large range cooker can take 2.5 to 3 hours depending on the condition and built-up carbon."],
+              ["Can I use my oven immediately after cleaning?","Yes, absolutely. Because we use non-toxic, eco-safe, and odourless products, you don't have to wait or run the oven empty to burn off fumes. It is ready for cooking straight away."],
+              ["Do you clean the oven racks and trays?","Yes. We remove all racks, side supports, and trays, placing them in a specialized dip tank to soak and loosen burnt-on carbon and grease before scrubbing them back to a polished finish."],
+              ["What kind of products do you use?","We use professional-grade, non-caustic, and non-toxic pastes and solutions. They do not emit harsh chemical odours, making them completely safe for households with children, pregnant women, or pets."],
+              ["Can you clean rangehood filters or barbecues?","Yes. Rangehood filters and barbecues are treated as separate add-on items. You can select them during booking on our calculator page, or let us know when requesting a quote."],
+            ].map((item, i) => (
+              <div class="faq6-item si" role="listitem">
+                <button class="faq6-q" aria-expanded="false" id={`faq6-q-${i}`} aria-controls={`faq6-a-${i}`}>
+                  {item[0]}
+                  <span class="faq6-ico" aria-hidden="true">+</span>
+                </button>
+                <div class="faq6-a" id={`faq6-a-${i}`} role="region" aria-labelledby={`faq6-q-${i}`}>
+                  {item[1]}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FINAL CTA ───────────────────────────────── -->
+    <section id="cta6" class="cta-white" aria-labelledby="cta6-h2">
+      <div class="c6">
+        <div class="cta6-grid sg">
+          <div class="cta6-left">
+            <div class="si" data-d="l">
+              <p class="eyebrow6">Ready to start?</p>
+              <h2 class="h6" id="cta6-h2">Ready to experience<br /><span class="ac">the difference?</span></h2>
+            </div>
+            <p class="cta6-sub si">
+              Let Pau, Stefania, and our vetted Melbourne team take care of your oven deep clean. No lock-in contracts, just real care and consistent quality you can count on.
+            </p>
+            <div class="cta6-actions si">
+              <a href={withBase("pricing")} class="btn6-primary" id="cta6-book">
+                Get an instant quote
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M2 6.5h9M7.5 2l4.5 4.5L7.5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="cta6-right" aria-hidden="true">
+            <img src={withBase("images/bright_clean_living_room.png")} alt="" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─ FOOTER ──────────────────────────────────── -->
+    <footer id="ft6" aria-label="Site footer">
+      <div class="ft6-inner">
+        <div class="ft6-brand">
+          <div class="ft6-logo">Maid at Home</div>
+          <p>Melbourne's trusted professional cleaning service. Trained, insured, and committed to consistent quality since 2019.</p>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Services</div>
+          <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+          <a href={withBase("services") + "#deep"}>Deep Cleaning</a>
+          <a href={withBase("services") + "#eol"}>End of Lease</a>
+          <a href={withBase("services") + "#movein"}>Move In Cleaning</a>
+          <a href={withBase("services") + "#addons"}>Extras & Add-Ons</a>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Company</div>
+          <a href={withBase("about")}>About Us</a>
+          <a href={withBase("careers")}>Work with Us</a>
+          <a href={withBase("blog")}>Blog</a>
+          <a href={withBase("areas")}>Service Areas</a>
+          <a href={withBase("index") + "#rec6"}>Recurring Cleaning</a>
+          <a href={withBase("index") + "#calc6"}>Pricing Calculator</a>
+        </div>
+        <div class="ft6-col">
+          <div class="ft6-col-title">Contact</div>
+          <a href="tel:+61399990000">(03) 9999 0000</a>
+          <a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a>
+          <a href={withBase("pricing")}>Book Online</a>
+        </div>
+      </div>
+      <div class="ft6-bottom">
+        <span>© 2026 Maid at Home. All rights reserved.</span>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      /* ─ HEADER ───────────────────────────────────── */
+      const hd6 = document.getElementById("hd6");
+      const onScroll6 = () => hd6.classList.toggle("scrolled", window.scrollY > 20);
+      window.addEventListener("scroll", onScroll6, { passive: true });
+      onScroll6();
+
+            /* ─ MOBILE NAV / MENU ────────────────────────── */
+      const tog6 = document.getElementById("hd6Toggle");
+      const mob6 = document.getElementById("hd6-mob");
+      const cls6 = document.getElementById("hd6MobClose");
+      
+      if (tog6 && mob6) {
+        tog6.addEventListener("click", () => {
+          const isOpen = mob6.classList.toggle("open");
+          if (hd6) hd6.classList.toggle("menu-open", isOpen);
+          tog6.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+      }
+      
+      if (cls6 && mob6 && tog6) {
+        cls6.addEventListener("click", () => {
+          mob6.classList.remove("open");
+          if (hd6) hd6.classList.remove("menu-open");
+          tog6.setAttribute("aria-expanded", "false");
+        });
+      }
+      
+      if (mob6) {
+        mob6.querySelectorAll("a").forEach(a => {
+          a.addEventListener("click", () => {
+            mob6.classList.remove("open");
+            if (hd6) hd6.classList.remove("menu-open");
+            if (tog6) tog6.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      /* ─ MOBILE DROPDOWN ACCORDION ────────────────── */
+      if (mob6) {
+        mob6.querySelectorAll('.mob6-dropdown-toggle').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const targetId = btn.getAttribute('data-target');
+            const submenu = document.getElementById(targetId);
+            if (submenu) {
+              const isCollapsed = submenu.classList.contains('collapsed');
+              if (isCollapsed) {
+                submenu.classList.remove('collapsed');
+                btn.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+              } else {
+                submenu.classList.add('collapsed');
+                btn.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+              }
+            }
+          });
+        });
+      }
+
+      /* ─ STAGGER OBSERVER ─────────────────────────── */
+      const sObs6 = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const items = Array.from(entry.target.querySelectorAll(".si")).filter(el => !el.classList.contains("in"));
+          items.forEach((item, i) => setTimeout(() => item.classList.add("in"), i * 110));
+          sObs6.unobserve(entry.target);
+        });
+      }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
+      document.querySelectorAll(".sg").forEach(g => sObs6.observe(g));
+
+      /* ─ FAQ ──────────────────────────────────────── */
+      document.querySelectorAll(".faq6-item").forEach(item => {
+        item.querySelector(".faq6-q").addEventListener("click", () => {
+          const open = item.classList.contains("open");
+          document.querySelectorAll(".faq6-item.open").forEach(o => { o.classList.remove("open"); o.querySelector(".faq6-q").setAttribute("aria-expanded","false"); });
+          if (!open) { item.classList.add("open"); item.querySelector(".faq6-q").setAttribute("aria-expanded","true"); }
+        });
+      });
+    
+      /* ─ ACTIVE NAV LINK ON SCROLL ────────────────── */
+      const pnavLinks = document.querySelectorAll('.pnav-link');
+      const pnavSections = ['benefits-section', 'faq6'].map(id => document.getElementById(id));
+      let lastActiveIndex = 0;
+      window.addEventListener('scroll', () => {
+        const offset = window.scrollY > 20 ? 64 : 72;
+        const scrollY = window.scrollY + offset + 48 + 40;
+        let current = 0;
+        pnavSections.forEach((sec, i) => { if (sec && sec.offsetTop <= scrollY) current = i; });
+        pnavLinks.forEach((l, i) => l.classList.toggle('active', i === current));
+        
+        if (current !== lastActiveIndex) {
+          lastActiveIndex = current;
+          const activeLink = pnavLinks[current];
+          if (activeLink) {
+            const container = document.querySelector('#service-nav .pnav-inner');
+            if (container) {
+              const containerWidth = container.clientWidth;
+              const linkLeft = activeLink.offsetLeft;
+              const linkWidth = activeLink.clientWidth;
+              container.scrollTo({
+                left: linkLeft - (containerWidth / 2) + (linkWidth / 2),
+                behavior: 'smooth'
+              });
+            }
+          }
+        }
+      }, { passive: true });
+
+    </script>
+  </body>
+</html>
