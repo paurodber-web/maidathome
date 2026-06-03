@@ -4145,8 +4145,15 @@ const withBase = (path: string) => {
       const pnavSections = ["srv6", "rec6", "how6", "tst6", "team6", "eol6", "faq6"].map(
         (id) => document.getElementById(id),
       );
+      let pnavSectionOffsets = [];
       let lastActiveIndex = -1;
       let scrollTicking = false;
+      let resizeTicking = false;
+
+      const measurePnavSections6 = () => {
+        resizeTicking = false;
+        pnavSectionOffsets = pnavSections.map((sec) => (sec ? sec.offsetTop : 0));
+      };
 
       const updateScrollUi6 = () => {
         scrollTicking = false;
@@ -4158,8 +4165,8 @@ const withBase = (path: string) => {
         const offset = isScrolled ? 64 : 72;
         const scrollY = window.scrollY + offset + 48 + 40;
         let current = 0;
-        pnavSections.forEach((sec, i) => {
-          if (sec && sec.offsetTop <= scrollY) current = i;
+        pnavSectionOffsets.forEach((secTop, i) => {
+          if (secTop <= scrollY) current = i;
         });
 
         if (current === lastActiveIndex) return;
@@ -4173,7 +4180,19 @@ const withBase = (path: string) => {
         window.requestAnimationFrame(updateScrollUi6);
       };
 
+      const onResize6 = () => {
+        if (resizeTicking) return;
+        resizeTicking = true;
+        window.requestAnimationFrame(() => {
+          measurePnavSections6();
+          updateScrollUi6();
+        });
+      };
+
       window.addEventListener("scroll", onScroll6, { passive: true });
+      window.addEventListener("resize", onResize6, { passive: true });
+      window.addEventListener("load", onResize6, { once: true });
+      measurePnavSections6();
       updateScrollUi6();
 
             /* ─ MOBILE NAV / MENU ────────────────────────── */
