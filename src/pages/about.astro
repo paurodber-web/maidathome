@@ -1,4 +1,11 @@
 ---
+import ResponsiveImage from "../components/ResponsiveImage.astro";
+import {
+  brightCleanLivingRoom,
+  founderPau,
+  founderStefania,
+  miaTheCat,
+} from "../data/site-images";
 const baseUrl = import.meta.env.BASE_URL;
 const withBase = (path: string) => {
   const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
@@ -919,13 +926,37 @@ const withBase = (path: string) => {
         </div>
         <div class="about-hero-right" aria-hidden="true">
           <div class="about-hero-img tall">
-            <img src={withBase("images/founder_pau.webp")} alt="Pau, founder of Maid at Home" loading="eager" />
+            <ResponsiveImage
+              src={founderPau}
+              alt="Pau, founder of Maid at Home"
+              widths={[220, 320, 420]}
+              sizes="(max-width: 768px) 220px, 320px"
+              width={320}
+              height={320}
+              loading="eager"
+            />
           </div>
           <div class="about-hero-img short">
-            <img src={withBase("images/founder_stefania.webp")} alt="Stefania, co-founder" loading="eager" />
+            <ResponsiveImage
+              src={founderStefania}
+              alt="Stefania, co-founder"
+              widths={[220, 320, 420]}
+              sizes="(max-width: 768px) 220px, 320px"
+              width={320}
+              height={320}
+              loading="eager"
+            />
           </div>
           <div class="about-hero-img short">
-            <img src={withBase("images/mia_the_cat.webp")} alt="Mia the cat, CHO" loading="eager" />
+            <ResponsiveImage
+              src={miaTheCat}
+              alt="Mia the cat, CHO"
+              widths={[220, 320, 420]}
+              sizes="(max-width: 768px) 220px, 320px"
+              width={320}
+              height={320}
+              loading="eager"
+            />
           </div>
         </div>
       </div>
@@ -1088,7 +1119,15 @@ const withBase = (path: string) => {
           <!-- PAU -->
           <article class="founder-card si">
             <div class="founder-img">
-              <img src={withBase("images/founder_pau.webp")} alt="Pau Rodriguez" loading="lazy" />
+              <ResponsiveImage
+                src={founderPau}
+                alt="Pau Rodriguez"
+                widths={[260, 360, 520]}
+                sizes="(max-width: 768px) 260px, 360px"
+                width={360}
+                height={360}
+                loading="lazy"
+              />
             </div>
             <div class="founder-body">
               <div class="founder-name">Pau Rodriguez</div>
@@ -1114,7 +1153,15 @@ const withBase = (path: string) => {
           <!-- STEFANIA -->
           <article class="founder-card si">
             <div class="founder-img">
-              <img src={withBase("images/founder_stefania.webp")} alt="Stefania Ramirez" loading="lazy" />
+              <ResponsiveImage
+                src={founderStefania}
+                alt="Stefania Ramirez"
+                widths={[260, 360, 520]}
+                sizes="(max-width: 768px) 260px, 360px"
+                width={360}
+                height={360}
+                loading="lazy"
+              />
             </div>
             <div class="founder-body">
               <div class="founder-name">Stefania Ramirez</div>
@@ -1287,7 +1334,15 @@ const withBase = (path: string) => {
             </div>
           </div>
           <div class="cta6-right" aria-hidden="true">
-            <img src={withBase("images/bright_clean_living_room.webp")} alt="" loading="lazy" />
+            <ResponsiveImage
+              src={brightCleanLivingRoom}
+              alt=""
+              widths={[320, 480, 640]}
+              sizes="(max-width: 768px) 320px, 480px"
+              width={480}
+              height={480}
+              loading="lazy"
+            />
           </div>
         </div>
       </div>

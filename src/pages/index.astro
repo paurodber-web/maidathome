@@ -1,4 +1,15 @@
 ---
+import ResponsiveImage from "../components/ResponsiveImage.astro";
+import {
+  afterStoveSmall,
+  beforeStoveSmall,
+  brightCleanLivingRoom,
+  cleanerPortraitHeroSmall,
+  founderPau,
+  founderStefania,
+  melbourneSuburbAerial,
+  miaTheCat,
+} from "../data/site-images";
 import { suburbsData } from '../data/suburbs';
 import { reviewsData } from '../data/reviews';
 
@@ -2996,21 +3007,17 @@ const withBase = (path: string) => {
         <div class="h6-visual" aria-hidden="true">
           <div class="h6-photo-bg"></div>
           <div class="h6-photo-frame">
-            <picture>
-              <source
-                srcset={withBase("images/cleaner_portrait_hero-510.webp")}
-                type="image/webp"
-              />
-              <img
-                src={withBase("images/cleaner_portrait_hero.webp")}
-                alt="Friendly Maid at Home cleaner"
-                width="510"
-                height="620"
-                loading="eager"
-                decoding="async"
-                fetchpriority="high"
-              />
-            </picture>
+            <ResponsiveImage
+              src={cleanerPortraitHeroSmall}
+              alt="Friendly Maid at Home cleaner"
+              widths={[320, 420, 510]}
+              sizes="(max-width: 768px) 320px, 510px"
+              width={510}
+              height={510}
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
           </div>
           <div class="h6-badge">
             <div class="h6-badge-stars">★★★★★</div>
@@ -3444,9 +3451,13 @@ const withBase = (path: string) => {
           <!-- Card 1: Pau (Founder) -->
           <div class="team6-card si">
             <div class="team6-img">
-              <img
-                src={withBase("images/founder_pau.webp")}
+              <ResponsiveImage
+                src={founderPau}
                 alt="Pau - Founder of Maid at Home"
+                widths={[220, 320, 420]}
+                sizes="(max-width: 768px) 220px, 320px"
+                width={320}
+                height={320}
                 loading="lazy"
               />
             </div>
@@ -3464,9 +3475,13 @@ const withBase = (path: string) => {
           <!-- Card 2: Stefania (Co-Founder) -->
           <div class="team6-card si">
             <div class="team6-img">
-              <img
-                src={withBase("images/founder_stefania.webp")}
+              <ResponsiveImage
+                src={founderStefania}
                 alt="Stefania - Co-Founder of Maid at Home"
+                widths={[220, 320, 420]}
+                sizes="(max-width: 768px) 220px, 320px"
+                width={320}
+                height={320}
                 loading="lazy"
               />
             </div>
@@ -3484,9 +3499,13 @@ const withBase = (path: string) => {
           <!-- Card 3: Mia (The Cat) -->
           <div class="team6-card si">
             <div class="team6-img">
-              <img
-                src={withBase("images/mia_the_cat.webp")}
+              <ResponsiveImage
+                src={miaTheCat}
                 alt="Mia - Chief Happiness Officer of Maid at Home"
+                widths={[220, 320, 420]}
+                sizes="(max-width: 768px) 220px, 320px"
+                width={320}
+                height={320}
                 loading="lazy"
               />
             </div>
@@ -3515,37 +3534,29 @@ const withBase = (path: string) => {
             <!-- Visual strip showing real work and quality results -->
             <div class="eol6-visual-strip">
               <div class="eol6-strip-img">
-                <picture>
-                  <source
-                    srcset={withBase("images/before_stove-560.webp")}
-                    type="image/webp"
-                  />
-                  <img
-                    src={withBase("images/before_stove.webp")}
-                    alt="Before End of Lease Cleaning Stove reset"
-                    width="560"
-                    height="680"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
+                <ResponsiveImage
+                  src={beforeStoveSmall}
+                  alt="Before End of Lease Cleaning Stove reset"
+                  widths={[240, 360, 560]}
+                  sizes="(max-width: 768px) 45vw, 280px"
+                  width={560}
+                  height={560}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <span>Before Clean</span>
               </div>
               <div class="eol6-strip-img">
-                <picture>
-                  <source
-                    srcset={withBase("images/after_stove-560.webp")}
-                    type="image/webp"
-                  />
-                  <img
-                    src={withBase("images/after_stove.webp")}
-                    alt="After End of Lease Cleaning Stove reset"
-                    width="560"
-                    height="680"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
+                <ResponsiveImage
+                  src={afterStoveSmall}
+                  alt="After End of Lease Cleaning Stove reset"
+                  widths={[240, 360, 560]}
+                  sizes="(max-width: 768px) 45vw, 280px"
+                  width={560}
+                  height={560}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <span>After Clean (Spotless)</span>
               </div>
             </div>
@@ -3932,9 +3943,13 @@ const withBase = (path: string) => {
           </div>
           <div class="si" data-d="r">
             <div class="cov6-img">
-              <img
-                src={withBase("images/melbourne_suburb_aerial.webp")}
+              <ResponsiveImage
+                src={melbourneSuburbAerial}
                 alt="Aerial view of Melbourne suburbs"
+                widths={[320, 480, 720]}
+                sizes="(max-width: 768px) 320px, 480px"
+                width={480}
+                height={480}
                 loading="lazy"
               />
             </div>
@@ -4081,9 +4096,13 @@ const withBase = (path: string) => {
             </div>
           </div>
           <div class="cta6-right" aria-hidden="true">
-            <img
-              src={withBase("images/bright_clean_living_room.webp")}
+            <ResponsiveImage
+              src={brightCleanLivingRoom}
               alt=""
+              widths={[320, 480, 640]}
+              sizes="(max-width: 768px) 320px, 480px"
+              width={480}
+              height={480}
               loading="lazy"
             />
           </div>

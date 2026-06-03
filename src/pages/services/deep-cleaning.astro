@@ -1,4 +1,6 @@
 ---
+import ResponsiveImage from "../../components/ResponsiveImage.astro";
+import { brightCleanLivingRoom } from "../../data/site-images";
 const baseUrl = import.meta.env.BASE_URL;
 const withBase = (path: string) => {
   const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
@@ -1689,7 +1691,15 @@ const withBase = (path: string) => {
             </div>
           </div>
           <div class="cta6-right" aria-hidden="true">
-            <img src={withBase("images/bright_clean_living_room.webp")} alt="" loading="lazy" />
+            <ResponsiveImage
+              src={brightCleanLivingRoom}
+              alt=""
+              widths={[320, 480, 640]}
+              sizes="(max-width: 768px) 320px, 480px"
+              width={480}
+              height={480}
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
