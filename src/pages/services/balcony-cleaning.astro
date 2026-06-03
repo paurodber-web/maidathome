@@ -14,12 +14,23 @@ const withBase = (path: string) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Professional Balcony Cleaning Melbourne — Maid at Home</title>
     <meta name="description" content="Professional balcony cleaning services in Melbourne. Floor scrubbing, glass balustrade cleaning, dusting railings & furniture. Book online." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
 
     <style is:global>
-      /* ─── TOKENS ──────────────────────────────── */
+      @font-face {
+        font-family: "Plus Jakarta Sans";
+        font-style: normal;
+        font-weight: 300 800;
+        font-display: swap;
+        src: url("../fonts/plus-jakarta-sans-latin-normal.woff2") format("woff2");
+      }
+
+      @font-face {
+        font-family: "Plus Jakarta Sans";
+        font-style: italic;
+        font-weight: 400;
+        font-display: swap;
+        src: url("../fonts/plus-jakarta-sans-latin-italic.woff2") format("woff2");
+      }      /* ─── TOKENS ──────────────────────────────── */
       :root {
         --navy:    #0a1d33;
         --blue-d:  #142d4c;
