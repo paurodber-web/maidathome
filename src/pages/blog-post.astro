@@ -14,7 +14,13 @@ const withBase = (path: string) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Loading… — Maid at Home Blog</title>
     <meta name="description" content="" />
-
+    <link
+      rel="preload"
+      href={withBase("fonts/plus-jakarta-sans-latin-normal.woff2")}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <style is:global>
       @font-face {
         font-family: "Plus Jakarta Sans";
@@ -22,14 +28,6 @@ const withBase = (path: string) => {
         font-weight: 300 800;
         font-display: swap;
         src: url("../fonts/plus-jakarta-sans-latin-normal.woff2") format("woff2");
-      }
-
-      @font-face {
-        font-family: "Plus Jakarta Sans";
-        font-style: italic;
-        font-weight: 400;
-        font-display: swap;
-        src: url("../fonts/plus-jakarta-sans-latin-italic.woff2") format("woff2");
       }
       @font-face {
         font-family: "Lora";
@@ -45,7 +43,9 @@ const withBase = (path: string) => {
         font-weight: 400 500;
         font-display: swap;
         src: url("../fonts/lora-latin-italic.woff2") format("woff2");
-      }      /* ─── TOKENS ──────────────────────────────── */
+      }
+
+      /* ─── TOKENS ──────────────────────────────── */
       :root {
         --navy:    #0a1d33;
         --blue-d:  #142d4c;
@@ -549,6 +549,17 @@ const withBase = (path: string) => {
         section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
           padding-left: 1.5rem !important;
           padding-right: 1.5rem !important;
+        }
+      }
+      @media (max-width: 768px), (hover: none), (pointer: coarse) {
+        #hd6.scrolled,
+        nav[id$="-nav"]:not(#hd6-mob),
+        .eol6-strip-img span {
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+        .srv6-card-blur {
+          display: none;
         }
       }
     </style>
@@ -1332,9 +1343,20 @@ const withBase = (path: string) => {
       }
 
       const hd6 = document.getElementById("hd6");
-      const onScroll6 = () => hd6.classList.toggle("scrolled", window.scrollY > 20);
+      let headerScrollTicking6 = false;
+      const updateHeaderScroll6 = () => {
+        headerScrollTicking6 = false;
+        if (hd6) {
+          hd6.classList.toggle("scrolled", window.scrollY > 20);
+        }
+      };
+      const onScroll6 = () => {
+        if (headerScrollTicking6) return;
+        headerScrollTicking6 = true;
+        window.requestAnimationFrame(updateHeaderScroll6);
+      };
       window.addEventListener("scroll", onScroll6, { passive: true });
-      onScroll6();
+      updateHeaderScroll6();
 
       const tog6 = document.getElementById("hd6Toggle");
       const mob6 = document.getElementById("hd6-mob");
@@ -1347,3 +1369,4 @@ const withBase = (path: string) => {
     </script>
   </body>
 </html>
+

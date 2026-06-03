@@ -37,7 +37,13 @@ const withBase = (path: string) => {
     <title>House Cleaning Service in {suburb.name} | Maid at Home</title>
     <meta name="description" content={suburb.metaDescription} />
     <link rel="canonical" href={`https://maidathome.com.au/areas/${suburb.slug}`} />
-
+    <link
+      rel="preload"
+      href={withBase("fonts/plus-jakarta-sans-latin-normal.woff2")}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <style is:global>
       @font-face {
         font-family: "Plus Jakarta Sans";
@@ -47,13 +53,7 @@ const withBase = (path: string) => {
         src: url("../fonts/plus-jakarta-sans-latin-normal.woff2") format("woff2");
       }
 
-      @font-face {
-        font-family: "Plus Jakarta Sans";
-        font-style: italic;
-        font-weight: 400;
-        font-display: swap;
-        src: url("../fonts/plus-jakarta-sans-latin-italic.woff2") format("woff2");
-      }      /* ─── TOKENS ──────────────────────────────── */
+      /* ─── TOKENS ──────────────────────────────── */
       :root {
         --navy: #0a1d33;
         --blue-d: #142d4c;
@@ -2682,6 +2682,17 @@ const withBase = (path: string) => {
           padding-right: 1.5rem !important;
         }
       }
+      @media (max-width: 768px), (hover: none), (pointer: coarse) {
+        #hd6.scrolled,
+        nav[id$="-nav"]:not(#hd6-mob),
+        .eol6-strip-img span {
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+        .srv6-card-blur {
+          display: none;
+        }
+      }
     </style>
   </head>
 
@@ -3993,10 +4004,20 @@ const withBase = (path: string) => {
     <script is:inline>
       /* ─ HEADER ───────────────────────────────────── */
       const hd6 = document.getElementById("hd6");
-      const onScroll6 = () =>
-        hd6.classList.toggle("scrolled", window.scrollY > 20);
+      let headerScrollTicking6 = false;
+      const updateHeaderScroll6 = () => {
+        headerScrollTicking6 = false;
+        if (hd6) {
+          hd6.classList.toggle("scrolled", window.scrollY > 20);
+        }
+      };
+      const onScroll6 = () => {
+        if (headerScrollTicking6) return;
+        headerScrollTicking6 = true;
+        window.requestAnimationFrame(updateHeaderScroll6);
+      };
       window.addEventListener("scroll", onScroll6, { passive: true });
-      onScroll6();
+      updateHeaderScroll6();
 
             /* ─ MOBILE NAV / MENU ────────────────────────── */
       const tog6 = document.getElementById("hd6Toggle");

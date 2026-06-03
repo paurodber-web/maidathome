@@ -14,7 +14,13 @@ const withBase = (path: string) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us — Maid at Home Melbourne</title>
     <meta name="description" content="Meet Pau and Stefania, the founders of Maid at Home. From working as cleaners in Melbourne to building one of the city's most trusted residential cleaning services. Our story." />
-
+    <link
+      rel="preload"
+      href={withBase("fonts/plus-jakarta-sans-latin-normal.woff2")}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <style is:global>
       @font-face {
         font-family: "Plus Jakarta Sans";
@@ -24,13 +30,7 @@ const withBase = (path: string) => {
         src: url("../fonts/plus-jakarta-sans-latin-normal.woff2") format("woff2");
       }
 
-      @font-face {
-        font-family: "Plus Jakarta Sans";
-        font-style: italic;
-        font-weight: 400;
-        font-display: swap;
-        src: url("../fonts/plus-jakarta-sans-latin-italic.woff2") format("woff2");
-      }      /* ─── TOKENS ──────────────────────────────── */
+      /* ─── TOKENS ──────────────────────────────── */
       :root {
         --navy:    #0a1d33;
         --blue-d:  #142d4c;
@@ -776,6 +776,17 @@ const withBase = (path: string) => {
           padding-right: 1.5rem !important;
         }
       }
+      @media (max-width: 768px), (hover: none), (pointer: coarse) {
+        #hd6.scrolled,
+        nav[id$="-nav"]:not(#hd6-mob),
+        .eol6-strip-img span {
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+        .srv6-card-blur {
+          display: none;
+        }
+      }
     </style>
   </head>
 
@@ -1326,9 +1337,20 @@ const withBase = (path: string) => {
     <script is:inline>
       /* ─ HEADER ────────────────────────────────────── */
       const hd6 = document.getElementById("hd6");
-      const onScroll6 = () => hd6.classList.toggle("scrolled", window.scrollY > 20);
+      let headerScrollTicking6 = false;
+      const updateHeaderScroll6 = () => {
+        headerScrollTicking6 = false;
+        if (hd6) {
+          hd6.classList.toggle("scrolled", window.scrollY > 20);
+        }
+      };
+      const onScroll6 = () => {
+        if (headerScrollTicking6) return;
+        headerScrollTicking6 = true;
+        window.requestAnimationFrame(updateHeaderScroll6);
+      };
       window.addEventListener("scroll", onScroll6, { passive: true });
-      onScroll6();
+      updateHeaderScroll6();
 
             /* ─ MOBILE NAV / MENU ────────────────────────── */
       const tog6 = document.getElementById("hd6Toggle");
@@ -1408,31 +1430,52 @@ const withBase = (path: string) => {
       /* ─ Active about nav link logic ──────────────── */
       const pnavLinks = document.querySelectorAll('.pnav-link');
       const pnavSections = ['story', 'mission', 'founders', 'hiring', 'faq6'].map(id => document.getElementById(id));
-      let lastActiveIndex = 0;
-      window.addEventListener('scroll', () => {
+      let pnavSectionsOffsets = [];
+      let lastActiveIndex = -1;
+      let pnavSectionsScrollTicking = false;
+      let pnavSectionsResizeTicking = false;
+
+      const measurePnavSections6 = () => {
+        pnavSectionsResizeTicking = false;
+        pnavSectionsOffsets = pnavSections.map((sec) => (sec ? sec.offsetTop : 0));
+      };
+
+      const updatePnavSections6 = () => {
+        pnavSectionsScrollTicking = false;
         const offset = window.scrollY > 20 ? 64 : 72;
         const scrollY = window.scrollY + offset + 48 + 40;
         let current = 0;
-        pnavSections.forEach((sec, i) => { if (sec && sec.offsetTop <= scrollY) current = i; });
-        pnavLinks.forEach((l, i) => l.classList.toggle('active', i === current));
-        
-        if (current !== lastActiveIndex) {
-          lastActiveIndex = current;
-          const activeLink = pnavLinks[current];
-          if (activeLink) {
-            const container = document.querySelector('#about-nav .pnav-inner');
-            if (container) {
-              const containerWidth = container.clientWidth;
-              const linkLeft = activeLink.offsetLeft;
-              const linkWidth = activeLink.clientWidth;
-              container.scrollTo({
-                left: linkLeft - (containerWidth / 2) + (linkWidth / 2),
-                behavior: 'smooth'
-              });
-            }
-          }
-        }
-      }, { passive: true });
+        pnavSectionsOffsets.forEach((secTop, i) => {
+          if (secTop <= scrollY) current = i;
+        });
+        if (current === lastActiveIndex) return;
+        lastActiveIndex = current;
+        pnavLinks.forEach((l, i) => l.classList.toggle("active", i === current));
+      };
+
+      const onPnavSectionsScroll6 = () => {
+        if (pnavSectionsScrollTicking) return;
+        pnavSectionsScrollTicking = true;
+        window.requestAnimationFrame(updatePnavSections6);
+      };
+
+      const onPnavSectionsResize6 = () => {
+        if (pnavSectionsResizeTicking) return;
+        pnavSectionsResizeTicking = true;
+        window.requestAnimationFrame(() => {
+          measurePnavSections6();
+          updatePnavSections6();
+        });
+      };
+
+      window.addEventListener("scroll", onPnavSectionsScroll6, { passive: true });
+      window.addEventListener("resize", onPnavSectionsResize6, { passive: true });
+      window.addEventListener("load", onPnavSectionsResize6, { once: true });
+      measurePnavSections6();
+      updatePnavSections6();
     </script>
   </body>
 </html>
+
+
+

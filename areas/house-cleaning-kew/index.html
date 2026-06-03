@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>House Cleaning Service in Kew | Maid at Home</title><meta name="description" content="Trusted cleaning service for Kew homes. Fully insured cleaners for standard and deep cleaning. Flexible scheduling around your busy lifestyle."><link rel="canonical" href="https://maidathome.com.au/areas/house-cleaning-kew"><link rel="stylesheet" href="/maidathome/_astro/_suburb_.DPRr_5QT.css"></head> <body> <!-- ─ HEADER ─────────────────────────────────── --> <header id="hd6" aria-label="Site header"> <a href="/maidathome/index" class="hd6-logo" aria-label="Maid at Home"> <div class="hd6-mark" aria-hidden="true"> <svg width="18" height="18" viewBox="0 0 18 18" fill="none"> <path d="M9 2L11 7H16L12 10.5L13.5 16L9 12.5L4.5 16L6 10.5L2 7H7L9 2Z" fill="white" fill-opacity="0.9"></path> </svg> </div> <span class="hd6-name">Maid at Home</span> </a> <nav class="hd6-nav" aria-label="Main navigation"> <div class="hd6-nav-item-dropdown"> <a href="/maidathome/services" class="hd6-nav-dropdown-toggle">
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>House Cleaning Service in Kew | Maid at Home</title><meta name="description" content="Trusted cleaning service for Kew homes. Fully insured cleaners for standard and deep cleaning. Flexible scheduling around your busy lifestyle."><link rel="canonical" href="https://maidathome.com.au/areas/house-cleaning-kew"><link rel="preload" href="/maidathome/fonts/plus-jakarta-sans-latin-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/maidathome/_astro/_suburb_.qO1UXsQz.css"></head> <body> <!-- ─ HEADER ─────────────────────────────────── --> <header id="hd6" aria-label="Site header"> <a href="/maidathome/index" class="hd6-logo" aria-label="Maid at Home"> <div class="hd6-mark" aria-hidden="true"> <svg width="18" height="18" viewBox="0 0 18 18" fill="none"> <path d="M9 2L11 7H16L12 10.5L13.5 16L9 12.5L4.5 16L6 10.5L2 7H7L9 2Z" fill="white" fill-opacity="0.9"></path> </svg> </div> <span class="hd6-name">Maid at Home</span> </a> <nav class="hd6-nav" aria-label="Main navigation"> <div class="hd6-nav-item-dropdown"> <a href="/maidathome/services" class="hd6-nav-dropdown-toggle">
 Our Services
 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"> <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path> </svg> </a> <div class="hd6-dropdown-menu"> <a href="/maidathome/services/standard-cleaning">Standard Cleaning</a> <a href="/maidathome/services/deep-cleaning">Deep Cleaning</a> <a href="/maidathome/services/end-of-lease-cleaning">End of Lease</a> <a href="/maidathome/services/move-in-cleaning">Move In Cleaning</a> <a href="/maidathome/services/oven-cleaning">Oven Cleaning</a> <a href="/maidathome/services/window-cleaning">Window Cleaning</a> <a href="/maidathome/services/balcony-cleaning">Balcony Cleaning</a> </div> </div> <a href="/maidathome/carpet-cleaning">Carpet Cleaning</a> <a href="/maidathome/pricing">Pricing</a> <a href="/maidathome/areas">Areas We Serve</a> <a href="/maidathome/about">About Us</a> <a href="/maidathome/careers">Join Our Team</a> <div class="hd6-nav-item-dropdown"> <a href="#" class="hd6-nav-dropdown-toggle" onclick="event.preventDefault()">
 Help
@@ -237,10 +237,20 @@ Melbourne's trusted professional cleaning service. Trained, insured,
 </p> </div> <div class="ft6-col"> <div class="ft6-col-title">Services</div> <a href="/maidathome/services/standard-cleaning">Standard Cleaning</a> <a href="/maidathome/services/deep-cleaning">Deep Cleaning</a> <a href="/maidathome/services/end-of-lease-cleaning">End of Lease</a> <a href="/maidathome/services/move-in-cleaning">Move In Cleaning</a> <a href="/maidathome/services/oven-cleaning">Oven Cleaning</a> <a href="/maidathome/carpet-cleaning">Carpet Cleaning</a> </div> <div class="ft6-col"> <div class="ft6-col-title">Company</div> <a href="/maidathome/about">About Us</a> <a href="/maidathome/careers">Work with Us</a> <a href="/maidathome/blog">Blog</a> <a href="/maidathome/areas">Service Areas</a> <a href="#rec6">Recurring Cleaning</a> <a href="/maidathome/blog">Blog</a> <a href="#calc6">Pricing Calculator</a> </div> <div class="ft6-col"> <div class="ft6-col-title">Contact</div> <a href="tel:+61399990000">(03) 9999 0000</a> <a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a> <a href="#calc6">Book Online</a> </div> </div> <div class="ft6-bottom"> <span>© 2025 Maid at Home. All rights reserved.</span> <div style="display:flex; gap:1.5rem;"> <a href="#">Privacy Policy</a> <a href="#">Terms of Service</a> </div> </div> </footer> <script>
       /* ─ HEADER ───────────────────────────────────── */
       const hd6 = document.getElementById("hd6");
-      const onScroll6 = () =>
-        hd6.classList.toggle("scrolled", window.scrollY > 20);
+      let headerScrollTicking6 = false;
+      const updateHeaderScroll6 = () => {
+        headerScrollTicking6 = false;
+        if (hd6) {
+          hd6.classList.toggle("scrolled", window.scrollY > 20);
+        }
+      };
+      const onScroll6 = () => {
+        if (headerScrollTicking6) return;
+        headerScrollTicking6 = true;
+        window.requestAnimationFrame(updateHeaderScroll6);
+      };
       window.addEventListener("scroll", onScroll6, { passive: true });
-      onScroll6();
+      updateHeaderScroll6();
 
             /* ─ MOBILE NAV / MENU ────────────────────────── */
       const tog6 = document.getElementById("hd6Toggle");
