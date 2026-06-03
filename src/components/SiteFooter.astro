@@ -1,0 +1,60 @@
+---
+interface Props {
+  baseUrl: string;
+}
+
+const { baseUrl } = Astro.props;
+
+const withBase = (path: string) => {
+  const base = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  const p = path.startsWith("/") ? path.slice(1) : path;
+  return p ? `${base}${p}` : base;
+};
+
+const homeUrl = withBase("");
+const recurringUrl = `${homeUrl}#rec6`;
+const calculatorUrl = `${homeUrl}#calc6`;
+---
+
+<footer id="ft6" aria-label="Site footer">
+  <div class="ft6-inner">
+    <div class="ft6-brand">
+      <div class="ft6-logo">Maid at Home</div>
+      <p>
+        Melbourne's trusted professional cleaning service. Trained, insured,
+        and committed to consistent quality since 2019.
+      </p>
+    </div>
+    <div class="ft6-col">
+      <div class="ft6-col-title">Services</div>
+      <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+      <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
+      <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+      <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
+      <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
+      <a href={withBase("carpet-cleaning")}>Carpet Cleaning</a>
+    </div>
+    <div class="ft6-col">
+      <div class="ft6-col-title">Company</div>
+      <a href={withBase("about")}>About Us</a>
+      <a href={withBase("careers")}>Work with Us</a>
+      <a href={withBase("blog")}>Blog</a>
+      <a href={withBase("areas")}>Service Areas</a>
+      <a href={recurringUrl}>Recurring Cleaning</a>
+      <a href={calculatorUrl}>Pricing Calculator</a>
+    </div>
+    <div class="ft6-col">
+      <div class="ft6-col-title">Contact</div>
+      <a href="tel:+61399990000">(03) 9999 0000</a>
+      <a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a>
+      <a href={calculatorUrl}>Book Online</a>
+    </div>
+  </div>
+  <div class="ft6-bottom">
+    <span>© 2025 Maid at Home. All rights reserved.</span>
+    <div class="ft6-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
