@@ -22,6 +22,13 @@ const withBase = (path: string) => {
       name="description"
       content="Melbourne's most trusted house cleaning service. Meet our local team of professional, police-checked cleaners. Standard, deep, end of lease & carpet cleaning with 100% bond guarantee."
     />
+    <link
+      rel="preload"
+      href={withBase("fonts/plus-jakarta-sans-latin-normal.woff2")}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <style is:global>
       /* ─── TOKENS ──────────────────────────────── */
       @font-face {
@@ -30,14 +37,6 @@ const withBase = (path: string) => {
         font-weight: 300 800;
         font-display: swap;
         src: url("../fonts/plus-jakarta-sans-latin-normal.woff2") format("woff2");
-      }
-
-      @font-face {
-        font-family: "Plus Jakarta Sans";
-        font-style: italic;
-        font-weight: 400;
-        font-display: swap;
-        src: url("../fonts/plus-jakarta-sans-latin-italic.woff2") format("woff2");
       }
 
       :root {
@@ -4146,7 +4145,6 @@ const withBase = (path: string) => {
       const pnavSections = ["srv6", "rec6", "how6", "tst6", "team6", "eol6", "faq6"].map(
         (id) => document.getElementById(id),
       );
-      const pnavContainer = document.querySelector("#home-nav .pnav-inner");
       let lastActiveIndex = -1;
       let scrollTicking = false;
 
@@ -4167,17 +4165,6 @@ const withBase = (path: string) => {
         if (current === lastActiveIndex) return;
         lastActiveIndex = current;
         pnavLinks.forEach((link, i) => link.classList.toggle("active", i === current));
-
-        const activeLink = pnavLinks[current];
-        if (activeLink && pnavContainer) {
-          const containerWidth = pnavContainer.clientWidth;
-          const linkLeft = activeLink.offsetLeft;
-          const linkWidth = activeLink.clientWidth;
-          pnavContainer.scrollTo({
-            left: linkLeft - containerWidth / 2 + linkWidth / 2,
-            behavior: "smooth",
-          });
-        }
       };
 
       const onScroll6 = () => {
