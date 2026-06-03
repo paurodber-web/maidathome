@@ -898,8 +898,8 @@ const withBase = (path: string) => {
         width: 120px;
         height: 120px;
         border-radius: 50%;
-        filter: blur(40px);
-        opacity: 0.03;
+        filter: blur(24px);
+        opacity: 0.025;
         pointer-events: none;
       }
       .srv6-card.cs .srv6-card-blur {
@@ -2625,6 +2625,17 @@ const withBase = (path: string) => {
           grid-template-columns: 1fr;
         }
       }
+      @media (max-width: 768px), (hover: none), (pointer: coarse) {
+        #hd6.scrolled,
+        #home-nav,
+        .eol6-strip-img span {
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+        .srv6-card-blur {
+          display: none;
+        }
+      }
       /* Dropdown style system */
       .hd6-nav-item-dropdown {
         position: relative;
@@ -4131,10 +4142,52 @@ const withBase = (path: string) => {
     <script is:inline>
       /* ─ HEADER ───────────────────────────────────── */
       const hd6 = document.getElementById("hd6");
-      const onScroll6 = () =>
-        hd6.classList.toggle("scrolled", window.scrollY > 20);
+      const pnavLinks = document.querySelectorAll(".pnav-link");
+      const pnavSections = ["srv6", "rec6", "how6", "tst6", "team6", "eol6", "faq6"].map(
+        (id) => document.getElementById(id),
+      );
+      const pnavContainer = document.querySelector("#home-nav .pnav-inner");
+      let lastActiveIndex = -1;
+      let scrollTicking = false;
+
+      const updateScrollUi6 = () => {
+        scrollTicking = false;
+        const isScrolled = window.scrollY > 20;
+        if (hd6) {
+          hd6.classList.toggle("scrolled", isScrolled);
+        }
+
+        const offset = isScrolled ? 64 : 72;
+        const scrollY = window.scrollY + offset + 48 + 40;
+        let current = 0;
+        pnavSections.forEach((sec, i) => {
+          if (sec && sec.offsetTop <= scrollY) current = i;
+        });
+
+        if (current === lastActiveIndex) return;
+        lastActiveIndex = current;
+        pnavLinks.forEach((link, i) => link.classList.toggle("active", i === current));
+
+        const activeLink = pnavLinks[current];
+        if (activeLink && pnavContainer) {
+          const containerWidth = pnavContainer.clientWidth;
+          const linkLeft = activeLink.offsetLeft;
+          const linkWidth = activeLink.clientWidth;
+          pnavContainer.scrollTo({
+            left: linkLeft - containerWidth / 2 + linkWidth / 2,
+            behavior: "smooth",
+          });
+        }
+      };
+
+      const onScroll6 = () => {
+        if (scrollTicking) return;
+        scrollTicking = true;
+        window.requestAnimationFrame(updateScrollUi6);
+      };
+
       window.addEventListener("scroll", onScroll6, { passive: true });
-      onScroll6();
+      updateScrollUi6();
 
             /* ─ MOBILE NAV / MENU ────────────────────────── */
       const tog6 = document.getElementById("hd6Toggle");
@@ -4225,42 +4278,6 @@ const withBase = (path: string) => {
       });
 
       /* ─ ACTIVE HOME NAV LINK LOGIC ─────────────── */
-      const pnavLinks = document.querySelectorAll(".pnav-link");
-      const pnavSections = ["srv6", "rec6", "how6", "tst6", "team6", "eol6", "faq6"].map(
-        (id) => document.getElementById(id),
-      );
-      let lastActiveIndex = 0;
-      window.addEventListener(
-        "scroll",
-        () => {
-          const offset = window.scrollY > 20 ? 64 : 72;
-          const scrollY = window.scrollY + offset + 48 + 40;
-          let current = 0;
-          pnavSections.forEach((sec, i) => {
-            if (sec && sec.offsetTop <= scrollY) current = i;
-          });
-          pnavLinks.forEach((link, i) => link.classList.toggle("active", i === current));
-
-          if (current !== lastActiveIndex) {
-            lastActiveIndex = current;
-            const activeLink = pnavLinks[current];
-            if (activeLink) {
-              const container = document.querySelector("#home-nav .pnav-inner");
-              if (container) {
-                const containerWidth = container.clientWidth;
-                const linkLeft = activeLink.offsetLeft;
-                const linkWidth = activeLink.clientWidth;
-                container.scrollTo({
-                  left: linkLeft - containerWidth / 2 + linkWidth / 2,
-                  behavior: "smooth",
-                });
-              }
-            }
-          }
-        },
-        { passive: true },
-      );
-
       /* ─ CALCULATOR ───────────────────────────────── */
       const BASE = { standard: 120, deep: 175, eol: 260, movein: 160 };
       const BED = { standard: 35, deep: 50, eol: 65, movein: 40 };
