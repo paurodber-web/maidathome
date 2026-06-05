@@ -114,12 +114,15 @@ const withBase = (path: string) => {
         content: ""; width: 16px; height: 2.5px;
         background: var(--yellow); border-radius: 2px; flex-shrink: 0;
       }
-      h2.h6 {
-        font-size: clamp(2rem, 3.4vw, 2.85rem);
+      .h6 {
+        display: block;
+        margin: 0;
+        font-family: var(--font);
+font-size: clamp(2rem, 3.4vw, 2.85rem);
         font-weight: 800; letter-spacing: -0.03em;
         color: var(--navy); line-height: 1.15;
       }
-      h2.h6 .ac { color: var(--blue); }
+      .h6 .ac { color: var(--blue); }
       .lead6 {
         font-size: 1.05rem; color: var(--grey);
         line-height: 1.75; max-width: 520px;
@@ -460,7 +463,10 @@ const withBase = (path: string) => {
 
       /* End of Lease (Navy/Dark) */
       #eol { background: var(--navy); position: relative; overflow: hidden; color: var(--white); }
-      #eol h2.h6 { color: var(--white); }
+      #eol .h6 { display: block;
+        margin: 0;
+        font-family: var(--font);
+color: var(--white); }
       #eol .eyebrow6 { color: var(--blue-l); }
       #eol .lead6 { color: rgba(255,255,255,0.6); }
       #eol .svc-tag {
@@ -636,7 +642,10 @@ const withBase = (path: string) => {
         background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(29, 111, 168, 0.15) 0%, transparent 70%);
         pointer-events: none;
       }
-      .rec-banner-card h2.h6 { color: var(--white); }
+      .rec-banner-card .h6 { display: block;
+        margin: 0;
+        font-family: var(--font);
+color: var(--white); }
       .rec-banner-card .lead6 { color: rgba(255,255,255,0.6); }
       
       .rec-discount-stack { display: flex; flex-direction: column; gap: 0.65rem; align-items: stretch; flex-shrink: 0; position: relative; z-index: 2; }
@@ -1070,8 +1079,8 @@ const withBase = (path: string) => {
         <div class="svc-layout sg">
           <div class="svc-intro si" data-d="l">
             <div class="svc-tag">Standard Cleaning</div>
-            <p class="eyebrow6">Most Popular</p>
-            <h2 class="h6" id="std-h2">A thorough clean,<br />every single visit</h2>
+            <h2 class="eyebrow6" id="std-h2">Most Popular</h2>
+            <p class="h6" aria-hidden="true">A thorough clean,<br />every single visit</p>
             <p class="lead6">Our standard clean covers all the key areas of your home — vacuuming, mopping, kitchen surfaces, bathrooms, and more. Ideal as a one-off or on a recurring schedule with automatic discounts.</p>
             
             <div class="svc-includes-list" aria-label="What's included">
@@ -1149,8 +1158,8 @@ const withBase = (path: string) => {
 
           <div class="svc-intro si" data-d="r">
             <div class="deep-badge">Deep Cleaning</div>
-            <p class="eyebrow6">Full Reset</p>
-            <h2 class="h6" id="deep-h2">Top-to-bottom.<br />Every corner. No shortcuts.</h2>
+            <h2 class="eyebrow6" id="deep-h2">Full Reset</h2>
+            <p class="h6" aria-hidden="true">Top-to-bottom.<br />Every corner. No shortcuts.</p>
             <p class="lead6">A deep clean goes far beyond maintenance. We tackle built-up grime, hidden corners, grout lines, inside appliances, and every surface — ideal for first-time cleans, seasonal resets, or after major events.</p>
             
             <div class="svc-includes-list" aria-label="What's included">
@@ -1177,8 +1186,8 @@ const withBase = (path: string) => {
         <div class="svc-layout sg">
           <div class="svc-intro si" data-d="l">
             <div class="svc-tag">End of Lease Cleaning</div>
-            <p class="eyebrow6">Bond-Back Guaranteed</p>
-            <h2 class="h6" id="eol-h2">The clean where you<br />can't afford to get it wrong</h2>
+            <h2 class="eyebrow6" id="eol-h2">Bond-Back Guaranteed</h2>
+            <p class="h6" aria-hidden="true">The clean where you<br />can't afford to get it wrong</p>
             <p class="lead6">End of lease isn't a standard clean. It's a high-stakes service with real financial consequences — one missed item can cost you hundreds in bond deductions. Our team is trained specifically for Victorian real estate inspections.</p>
             
             <div class="svc-includes-list" aria-label="What's included">
@@ -1246,9 +1255,9 @@ const withBase = (path: string) => {
     <section id="movein" class="pad" aria-labelledby="movein-h2">
       <div class="c6">
         <div class="sg">
-          <p class="eyebrow6 si" data-d="l">Move In Cleaning</p>
+          <h2 class="eyebrow6 si" id="movein-h2" data-d="l">Move In Cleaning</h2>
           <div class="sec-header6 si" data-d="r">
-            <h2 class="h6" id="movein-h2">Start fresh in your<br />new Melbourne home</h2>
+            <p class="h6" aria-hidden="true">Start fresh in your<br />new Melbourne home</p>
             <p class="lead6">You shouldn't have to clean someone else's mess before you unpack. Our move-in clean prepares every corner of your new home so you settle in with total confidence — from day one.</p>
           </div>
         </div>
@@ -1324,8 +1333,8 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="addons-intro sg">
           <div class="si" data-d="l">
-            <p class="eyebrow6">Extras & Add-Ons</p>
-            <h2 class="h6" id="addons-h2">Customise any booking</h2>
+            <h2 class="eyebrow6" id="addons-h2">Extras & Add-Ons</h2>
+            <p class="h6" aria-hidden="true">Customise any booking</p>
           </div>
           <div class="si" data-d="r">
             <p class="lead6">Add individual extras to any service — standard, deep, end of lease, or move in. Mix and match to create the exact clean your home needs, with clear per-item pricing.</p>
@@ -1418,8 +1427,8 @@ const withBase = (path: string) => {
     <section id="compare" class="pad" aria-labelledby="compare-h2">
       <div class="c6">
         <div class="sg">
-          <p class="eyebrow6 si" data-d="l">Service Comparison</p>
-          <h2 class="h6 si" id="compare-h2">Find the right service for your needs</h2>
+          <h2 class="eyebrow6 si" id="compare-h2" data-d="l">Service Comparison</h2>
+          <p class="h6 si" aria-hidden="true">Find the right service for your needs</p>
           <p class="lead6 si" style="max-width: 560px;" data-d="r">Not sure which service fits your situation? This table breaks down exactly what each includes — so you book with confidence.</p>
         </div>
         
@@ -1550,8 +1559,8 @@ const withBase = (path: string) => {
         <div class="cta6-grid sg">
           <div class="cta6-left">
             <div class="si" data-d="l">
-              <p class="eyebrow6">Ready to start?</p>
-              <h2 class="h6" id="cta6-h2">Ready to experience<br /><span class="ac">the difference?</span></h2>
+              <h2 class="eyebrow6" id="cta6-h2">Ready to start?</h2>
+              <p class="h6" aria-hidden="true">Ready to experience<br /><span class="ac">the difference?</span></p>
             </div>
             <p class="cta6-sub si">
               Let Pau, Stefania, and our vetted Melbourne team take care of your home cleaning. No lock-in contracts, just real care and consistent quality you can count on.
@@ -1733,4 +1742,6 @@ const withBase = (path: string) => {
     </script>
   </body>
 </html>
+
+
 

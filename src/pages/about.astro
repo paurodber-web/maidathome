@@ -120,12 +120,15 @@ const withBase = (path: string) => {
         content: ""; width: 16px; height: 2.5px;
         background: var(--yellow); border-radius: 2px; flex-shrink: 0;
       }
-      h2.h6 {
+      .h6 {
+        display: block;
+        margin: 0;
+        font-family: var(--font);
         font-size: clamp(2rem, 3.4vw, 2.85rem);
         font-weight: 800; letter-spacing: -0.03em;
         color: var(--navy); line-height: 1.15;
       }
-      h2.h6 .ac { color: var(--blue); }
+      .h6 .ac { color: var(--blue); }
       .lead6 {
         font-size: 1.05rem; color: var(--grey);
         line-height: 1.75; max-width: 520px;
@@ -382,7 +385,10 @@ const withBase = (path: string) => {
       .tl-text { font-size: 0.84rem; color: var(--grey); line-height: 1.65; }
 
       /* Story copy */
-      .story-copy h2.h6 { margin-bottom: 1.5rem; }
+      .story-copy .h6 { display: block;
+        margin: 0;
+        font-family: var(--font);
+        margin-bottom: 1.5rem; }
       .story-copy p { font-size: 0.97rem; color: var(--grey); line-height: 1.8; margin-bottom: 1.25rem; }
       .story-copy p:last-of-type { margin-bottom: 0; }
       .story-pull {
@@ -440,7 +446,10 @@ const withBase = (path: string) => {
 
       /* Founders sec-header */
       .founders-header { position: relative; z-index: 1; margin-bottom: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
-      .founders-header h2.h6 { color: var(--navy); }
+      .founders-header .h6 { display: block;
+        margin: 0;
+        font-family: var(--font);
+        color: var(--navy); }
       .founders-header .lead6 { color: var(--grey); }
 
       /* ─── 3. MISSION & VALUES ─────────────────── */
@@ -1027,8 +1036,8 @@ const withBase = (path: string) => {
 
           <!-- Story copy (right) -->
           <div class="story-copy si" data-d="r">
-            <p class="eyebrow6">Our Story</p>
-            <h2 class="h6" id="story-h2">We didn't study cleaning.<br /><span class="ac">We lived it.</span></h2>
+            <h2 class="eyebrow6" id="story-h2">Our Story</h2>
+            <p class="h6" aria-hidden="true">We didn't study cleaning.<br /><span class="ac">We lived it.</span></p>
             <p>When Pau and Stefania landed in Melbourne, they weren't thinking about starting a business. They were thinking about building a life in a new country — and that meant getting to work. Like a lot of new arrivals, cleaning was where they started.</p>
             <p>What surprised them wasn't the work itself. It was how much room there was to do it better. Poor communication. Inconsistent results. Cleaners who showed up late, or used whatever products were on hand. Clients who never knew what to expect. The industry wasn't bad — it was just stuck.</p>
             <div class="story-pull">
@@ -1049,8 +1058,8 @@ const withBase = (path: string) => {
 
           <!-- Left: Mission copy + blockquote -->
           <div class="mission-copy si" data-d="l">
-            <p class="eyebrow6">Mission & Values</p>
-            <h2 class="h6" id="mission-h2">Why consistency<br /><span class="ac">is everything</span></h2>
+            <h2 class="eyebrow6" id="mission-h2">Mission & Values</h2>
+            <p class="h6" aria-hidden="true">Why consistency<br /><span class="ac">is everything</span></p>
             <p>Most cleaning companies have a great first visit. The problem is the third, the seventh, the fifteenth — when the novelty is gone and it's just another job. That's exactly where Maid at Home is designed not to drop off.</p>
             <p>Consistency isn't exciting to talk about, but it's the hardest thing to deliver — and the only thing that actually matters to the people who open their front door at the end of a long day.</p>
             <div class="mission-statement">
@@ -1109,8 +1118,8 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="founders-header sg">
           <div class="si" data-d="l">
-            <p class="eyebrow6 founders-eyebrow">The Founders</p>
-            <h2 class="h6" id="founders-h2">The people behind<br /><span class="ac">every clean</span></h2>
+            <h2 class="eyebrow6 founders-eyebrow" id="founders-h2">The Founders</h2>
+            <p class="h6" aria-hidden="true">The people behind<br /><span class="ac">every clean</span></p>
           </div>
           <p class="lead6 si" data-d="r">
             Maid at Home isn't a faceless company. There are two real people behind every booking, every hire, and every standard we set — and you can hold them to it.
@@ -1198,8 +1207,8 @@ const withBase = (path: string) => {
 
           <!-- Left: copy -->
           <div class="hiring-copy si" data-d="l">
-            <p class="eyebrow6">Our Team</p>
-            <h2 class="h6" id="hiring-h2">Who we let into<br /><span class="ac">your home</span></h2>
+            <h2 class="eyebrow6" id="hiring-h2">Our Team</h2>
+            <p class="h6" aria-hidden="true">Who we let into<br /><span class="ac">your home</span></p>
             <p>Pau and Stefania built Maid at Home on their own reputation. When they started bringing other cleaners on board in 2024, the standard didn't change — it just had to be taught. Every person who cleans for Maid at Home goes through the same process they developed over seven years of doing it themselves.</p>
             <p>We don't hire fast to fill a gap. We hire carefully and train thoroughly, because the alternative — a cleaner who doesn't meet the standard — costs us more than an unfilled slot ever would.</p>
             <div class="hiring-promise">
@@ -1266,8 +1275,8 @@ const withBase = (path: string) => {
         <div class="faq6-layout">
           <div class="sg">
             <div class="si" data-d="l">
-              <p class="eyebrow6">FAQ</p>
-              <h2 class="h6" id="faq6-h2">Questions<br /><span class="ac">answered</span></h2>
+              <h2 class="eyebrow6" id="faq6-h2">FAQ</h2>
+            <p class="h6" aria-hidden="true">Questions<br /><span class="ac">answered</span></p>
             </div>
             <p class="lead6 si" style="margin-bottom:1.75rem;">
               If your question isn't here, just call — a real person picks up.
@@ -1323,8 +1332,8 @@ const withBase = (path: string) => {
         <div class="cta6-grid sg">
           <div class="cta6-left">
             <div class="si" data-d="l">
-              <p class="eyebrow6">Ready to start?</p>
-              <h2 class="h6" id="cta6-h2">Ready to experience<br /><span class="ac">the difference?</span></h2>
+              <h2 class="eyebrow6" id="cta6-h2">Ready to start?</h2>
+            <p class="h6" aria-hidden="true">Ready to experience<br /><span class="ac">the difference?</span></p>
             </div>
             <p class="cta6-sub si">
               Let Pau, Stefania, and our vetted Melbourne team take care of your home cleaning. No lock-in contracts, just real care and consistent quality you can count on.
@@ -1499,6 +1508,9 @@ const withBase = (path: string) => {
     </script>
   </body>
 </html>
+
+
+
 
 
 

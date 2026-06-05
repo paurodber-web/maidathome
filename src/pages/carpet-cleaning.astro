@@ -115,12 +115,15 @@ const withBase = (path: string) => {
         content: ""; width: 16px; height: 2.5px;
         background: var(--yellow); border-radius: 2px; flex-shrink: 0;
       }
-      h2.h6 {
-        font-size: clamp(2rem, 3.4vw, 2.85rem);
+      .h6 {
+        display: block;
+        margin: 0;
+        font-family: var(--font);
+font-size: clamp(2rem, 3.4vw, 2.85rem);
         font-weight: 800; letter-spacing: -0.03em;
         color: var(--navy); line-height: 1.15;
       }
-      h2.h6 .ac { color: var(--blue); }
+      .h6 .ac { color: var(--blue); }
       .lead6 {
         font-size: 1.05rem; color: var(--grey);
         line-height: 1.75; max-width: 520px;
@@ -409,7 +412,10 @@ const withBase = (path: string) => {
       .wfb-text { font-size: 0.85rem; font-weight: 800; color: var(--navy); white-space: nowrap; }
       .wfb-sub { font-size: 0.72rem; color: var(--grey); margin-top: 0.1rem; }
 
-      .what-copy h2.h6 { margin-bottom: 1.5rem; }
+      .what-copy .h6 { display: block;
+        margin: 0;
+        font-family: var(--font);
+margin-bottom: 1.5rem; }
       .what-copy p { font-size: 0.98rem; color: var(--grey); line-height: 1.8; margin-bottom: 1.25rem; }
       .what-copy p:last-of-type { margin-bottom: 2rem; }
 
@@ -447,7 +453,10 @@ const withBase = (path: string) => {
       #how { background: var(--navy); position: relative; overflow: hidden; color: var(--white); }
       #how::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 70% at 90% 10%, rgba(29,111,168,0.18) 0%, transparent 60%); pointer-events: none; }
       #how .eyebrow6 { color: var(--blue-l); }
-      #how h2.h6 { color: var(--white); }
+      #how .h6 { display: block;
+        margin: 0;
+        font-family: var(--font);
+color: var(--white); }
       #how .lead6 { color: rgba(255,255,255,0.65); }
       
       .how-layout { display: grid; grid-template-columns: 5fr 7fr; gap: 5rem; align-items: start; margin-top: 4rem; position: relative; z-index: 1; }
@@ -534,7 +543,10 @@ const withBase = (path: string) => {
       /* â”€â”€â”€ PRICING SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #pricing { background: var(--sky); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
       .pricing-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
-      .pricing-copy h2.h6 { margin-bottom: 1.25rem; }
+      .pricing-copy .h6 { display: block;
+        margin: 0;
+        font-family: var(--font);
+margin-bottom: 1.25rem; }
       .freq-perks { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 2.25rem; margin-top: 1.75rem; }
       .freq-perk { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--grey-d); line-height: 1.6; }
       .freq-perk::before { content: 'âœ“'; color: var(--blue); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; width: 18px; height: 18px; background: var(--white); border: 1px solid var(--border-subtle); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-top: 2px; }
@@ -1111,8 +1123,8 @@ const withBase = (path: string) => {
           </div>
 
           <div class="what-copy si" data-d="r">
-            <p class="eyebrow6">What Is It</p>
-            <h2 class="h6" id="what-h2">High-performance cleaning that<br /><span class="ac">revitalises fibers</span></h2>
+            <h2 class="eyebrow6" id="what-h2">What Is It</h2>
+            <p class="h6" aria-hidden="true">High-performance cleaning that<br /><span class="ac">revitalises fibers</span></p>
             <p>Carpet fibers act as a magnet for dirt, traffic soot, pet dander, pollen, and dust mites. Standard vacuuming removes surface debris, but leaves deep-rooted contaminants trapped inside the pile.</p>
             <p>Our professional carpet service utilizes advanced hot water extraction technology. By infusing high-temperature water (110Â°C) with eco-friendly cleaning agents, we break down stubborn soils, emulsify grease, and rinse them out with dual-motor vacuum suction.</p>
             <p>The result is a deeply sanitized carpet that looks brighter, smells fresher, feels significantly softer, and dries rapidly within hours. Ideal for pet owners, families with babies, and bond returns.</p>
@@ -1129,8 +1141,8 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="includes-top sg">
           <div>
-            <p class="eyebrow6">Our Process</p>
-            <h2 class="h6" id="inc-h2">No shortcuts. Just deep,<br /><span class="ac">thorough extraction.</span></h2>
+            <h2 class="eyebrow6" id="inc-h2">Our Process</h2>
+            <p class="h6" aria-hidden="true">No shortcuts. Just deep,<br /><span class="ac">thorough extraction.</span></p>
           </div>
           <p class="lead6">We follow a strict multi-step carpet cleaning system to guarantee maximum soil recovery and stain treatment without leaving sticky detergent residues.</p>
         </div>
@@ -1199,8 +1211,8 @@ const withBase = (path: string) => {
     <section id="how" class="pad" aria-labelledby="how-h2">
       <div class="c6">
         <div class="sg">
-          <p class="eyebrow6">How It Works</p>
-          <h2 class="h6" id="how-h2">Booking your carpet clean<br />has never been simpler</h2>
+          <h2 class="eyebrow6" id="how-h2">How It Works</h2>
+            <p class="h6" aria-hidden="true">Booking your carpet clean<br />has never been simpler</p>
           <p class="lead6">Get dry, allergen-free carpets back in just 3 quick steps.</p>
         </div>
 
@@ -1271,8 +1283,8 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="ideal-layout sg">
           <div class="ideal-left si" data-d="l">
-            <p class="eyebrow6">Is it right for you?</p>
-            <h2 class="h6" id="ideal-h2">Ideal scenarios for<br /><span class="ac">carpet steam cleaning</span></h2>
+            <h2 class="eyebrow6" id="ideal-h2">Is it right for you?</h2>
+            <p class="h6" aria-hidden="true">Ideal scenarios for<br /><span class="ac">carpet steam cleaning</span></p>
             <div class="ideal-scenarios">
               <div class="ideal-scenario">
                 <div class="is-icon">ðŸ±</div>
@@ -1336,8 +1348,8 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="pricing-layout sg">
           <div class="pricing-copy si" data-d="l">
-            <p class="eyebrow6">Pricing Plans</p>
-            <h2 class="h6" id="pricing-h2">Simple, flat-rate<br /><span class="ac">carpet pricing</span></h2>
+            <h2 class="eyebrow6" id="pricing-h2">Pricing Plans</h2>
+            <p class="h6" aria-hidden="true">Simple, flat-rate<br /><span class="ac">carpet pricing</span></p>
             <p class="lead6">No hidden fees, no fuel surcharges. Choose the plan that covers your rooms, or ask for a custom quote if you have rugs and hallways.</p>
             
             <div class="freq-perks">
@@ -1443,8 +1455,8 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="reviews-header sg">
           <div>
-            <p class="eyebrow6">Reviews</p>
-            <h2 class="h6" id="rev-h2">What our clients say</h2>
+            <h2 class="eyebrow6" id="rev-h2">Reviews</h2>
+            <p class="h6" aria-hidden="true">What our clients say</p>
           </div>
           <div class="g-badge" aria-label="Google rating: 4.9 stars from 380 reviews">
             <span class="g-logo">G</span>
@@ -1500,8 +1512,8 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="faq-layout sg">
           <div class="si" data-d="l">
-            <p class="eyebrow6">FAQ</p>
-            <h2 class="h6" id="faq-h2">Frequently<br />asked questions</h2>
+            <h2 class="eyebrow6" id="faq-h2">FAQ</h2>
+            <p class="h6" aria-hidden="true">Frequently<br />asked questions</p>
             <div class="faq-contact">
               <p>Have a question not listed here? Get in touch at <a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a> or call us.</p>
             </div>
@@ -1534,8 +1546,8 @@ const withBase = (path: string) => {
     <section id="other-services" class="pad" aria-labelledby="other-h2">
       <div class="c6">
         <div class="sg">
-          <p class="eyebrow6">Other Services</p>
-          <h2 class="h6" id="other-h2">Need something different?</h2>
+          <h2 class="eyebrow6" id="other-h2">Other Services</h2>
+            <p class="h6" aria-hidden="true">Need something different?</p>
           <p class="lead6" style="margin-top:0.75rem; max-width:540px;">If your carpets are fine but you need standard home maintenance or end of lease solutions, we've got you covered.</p>
         </div>
 
@@ -1568,8 +1580,8 @@ const withBase = (path: string) => {
         <div class="cta6-grid sg">
           <div class="cta6-left">
             <div class="si" data-d="l">
-              <p class="eyebrow6">Ready to start?</p>
-              <h2 class="h6" id="cta6-h2">Get those carpets looking<br /><span class="ac">and feeling brand new</span></h2>
+              <h2 class="eyebrow6" id="cta6-h2">Ready to start?</h2>
+            <p class="h6" aria-hidden="true">Get those carpets looking<br /><span class="ac">and feeling brand new</span></p>
             </div>
             <p class="cta6-sub si">
               Let Pau, Stefania, and our vetted Melbourne team take care of your home cleaning. No lock-in contracts, just real care and consistent quality you can count on.
@@ -1765,4 +1777,7 @@ const withBase = (path: string) => {
     </script>
   </body>
 </html>
+
+
+
 

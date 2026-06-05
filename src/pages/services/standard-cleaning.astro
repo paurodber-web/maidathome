@@ -114,12 +114,15 @@ const withBase = (path: string) => {
         content: ""; width: 16px; height: 2.5px;
         background: var(--yellow); border-radius: 2px; flex-shrink: 0;
       }
-      h2.h6 {
+      .h6 {
+        display: block;
+        margin: 0;
+        font-family: var(--font);
         font-size: clamp(2rem, 3.4vw, 2.85rem);
         font-weight: 800; letter-spacing: -0.03em;
         color: var(--navy); line-height: 1.15;
       }
-      h2.h6 .ac { color: var(--blue); }
+      .h6 .ac { color: var(--blue); }
       .lead6 {
         font-size: 1.05rem; color: var(--grey);
         line-height: 1.75; max-width: 520px;
@@ -419,7 +422,10 @@ const withBase = (path: string) => {
       .wfb-text { font-size: 0.85rem; font-weight: 800; color: var(--navy); white-space: nowrap; }
       .wfb-sub { font-size: 0.72rem; color: var(--grey); margin-top: 0.1rem; }
 
-      .what-copy h2.h6 { margin-bottom: 1.5rem; }
+      .what-copy .h6 { display: block;
+        margin: 0;
+        font-family: var(--font);
+        margin-bottom: 1.5rem; }
       .what-copy p { font-size: 0.98rem; color: var(--grey); line-height: 1.8; margin-bottom: 1.25rem; }
       .what-copy p:last-of-type { margin-bottom: 2rem; }
 
@@ -457,7 +463,10 @@ const withBase = (path: string) => {
       #how { background: var(--navy); position: relative; overflow: hidden; color: var(--white); }
       #how::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 70% at 90% 10%, rgba(29,111,168,0.18) 0%, transparent 60%); pointer-events: none; }
       #how .eyebrow6 { color: var(--blue-l); }
-      #how h2.h6 { color: var(--white); }
+      #how .h6 { display: block;
+        margin: 0;
+        font-family: var(--font);
+        color: var(--white); }
       #how .lead6 { color: rgba(255,255,255,0.65); }
       
       .how-layout { display: grid; grid-template-columns: 5fr 7fr; gap: 5rem; align-items: start; margin-top: 4rem; position: relative; z-index: 1; }
@@ -544,7 +553,10 @@ const withBase = (path: string) => {
       /* â”€â”€â”€ PRICING SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
       #pricing { background: var(--sky); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
       .pricing-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
-      .pricing-copy h2.h6 { margin-bottom: 1.25rem; }
+      .pricing-copy .h6 { display: block;
+        margin: 0;
+        font-family: var(--font);
+        margin-bottom: 1.25rem; }
       .freq-perks { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 2.25rem; margin-top: 1.75rem; }
       .freq-perk { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--grey-d); line-height: 1.6; }
       .freq-perk::before { content: 'âœ“'; color: var(--blue); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; width: 18px; height: 18px; background: var(--white); border: 1px solid var(--border-subtle); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-top: 2px; }
@@ -1149,8 +1161,8 @@ const withBase = (path: string) => {
           </div>
 
           <div class="what-copy si" data-d="r">
-            <p class="eyebrow6">What Is It</p>
-            <h2 class="h6" id="what-h2">Maintenance cleaning, done to a<br /><span class="ac">professional standard</span></h2>
+            <h2 class="eyebrow6" id="what-h2">What Is It</h2>
+            <p class="h6" aria-hidden="true">Maintenance cleaning, done to a<br /><span class="ac">professional standard</span></p>
             <p>A standard clean is designed to keep your home in consistently excellent condition. It's not a once-a-year event â€” it's the backbone of a well-maintained home, delivered on whatever schedule suits you.</p>
             <p>Our cleaners work through every room systematically using a structured checklist. That means nothing gets forgotten, nothing gets rushed, and every visit delivers the same quality â€” whether it's your first clean or your fifth.</p>
             <p>We bring everything needed: commercial-grade equipment, eco-friendly and non-toxic products, and a cleaner who has been background-checked and trained to our standard. You don't need to supply a thing.</p>
@@ -1168,8 +1180,8 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="includes-top sg">
           <div class="si" data-d="l">
-            <p class="eyebrow6">What's Included</p>
-            <h2 class="h6" id="inc-h2">Every room. Every visit.<br />Nothing missed.</h2>
+            <h2 class="eyebrow6" id="inc-h2">What's Included</h2>
+            <p class="h6" aria-hidden="true">Every room. Every visit.<br />Nothing missed.</p>
           </div>
           <div class="si" data-d="r">
             <p class="lead6">Every standard clean follows the same structured checklist â€” no variation between cleaners, no guesswork, no forgotten corners. Here's exactly what gets done.</p>
@@ -1284,8 +1296,8 @@ const withBase = (path: string) => {
     <section id="how" class="pad" aria-labelledby="how-h2">
       <div class="c6">
         <div class="sg">
-          <p class="eyebrow6">How It Works</p>
-          <h2 class="h6" id="how-h2">Simple to book.<br />Easy to experience.</h2>
+          <h2 class="eyebrow6" id="how-h2">How It Works</h2>
+          <p class="h6" aria-hidden="true">Simple to book.<br />Easy to experience.</p>
           <p class="lead6" style="margin-top:0.75rem;">From booking to a spotless home in three steps. No forms to fill in over the phone, no lengthy back-and-forth.</p>
         </div>
         
@@ -1346,8 +1358,8 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="ideal-layout sg">
           <div class="si" data-d="l">
-            <p class="eyebrow6">When to Book</p>
-            <h2 class="h6" id="ideal-h2">Is a standard clean<br />right for you?</h2>
+            <h2 class="eyebrow6" id="ideal-h2">When to Book</h2>
+            <p class="h6" aria-hidden="true">Is a standard clean<br />right for you?</p>
             <p class="lead6" style="margin-top:0.75rem; margin-bottom:2rem;">A standard clean is the right choice for most Melbourne households â€” but it's not the right tool for every situation. Here's when it fits perfectly.</p>
             
             <div class="ideal-scenarios">
@@ -1426,8 +1438,8 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="pricing-layout sg">
           <div class="pricing-copy si" data-d="l">
-            <p class="eyebrow6">Pricing</p>
-            <h2 class="h6" id="pricing-h2">Choose flat rate<br />or hourly</h2>
+            <h2 class="eyebrow6" id="pricing-h2">Pricing</h2>
+            <p class="h6" aria-hidden="true">Choose flat rate<br />or hourly</p>
             <p class="lead6">Two pricing models â€” flat rate by bedrooms or hourly. Both include all equipment and products, and both are eligible for recurring frequency discounts.</p>
             <div class="freq-perks">
               <div class="freq-perk">Weekly bookings â€” <strong>save 10%</strong></div>
@@ -1560,8 +1572,8 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="reviews-header sg">
           <div class="si" data-d="l">
-            <p class="eyebrow6">Reviews</p>
-            <h2 class="h6" id="reviews-h2">What our customers say</h2>
+            <h2 class="eyebrow6" id="reviews-h2">Reviews</h2>
+            <p class="h6" aria-hidden="true">What our customers say</p>
           </div>
           <div class="g-badge si" data-d="r"><span class="g-logo">G</span> Verified Google Reviews</div>
         </div>
@@ -1615,8 +1627,8 @@ const withBase = (path: string) => {
         <div class="faq-layout">
           <div class="sg">
             <div class="si" data-d="l">
-              <p class="eyebrow6">FAQ</p>
-              <h2 class="h6" id="faq-h2">Questions about<br />standard cleaning</h2>
+              <h2 class="eyebrow6" id="faq-h2">FAQ</h2>
+              <p class="h6" aria-hidden="true">Questions about<br />standard cleaning</p>
               <p class="lead6">Everything you'd want to know before your first booking.</p>
             </div>
             
@@ -1655,8 +1667,8 @@ const withBase = (path: string) => {
     <section id="other-services" class="pad" aria-labelledby="other-h2">
       <div class="c6">
         <div class="sg">
-          <p class="eyebrow6">Other Services</p>
-          <h2 class="h6" id="other-h2">Need something different?</h2>
+          <h2 class="eyebrow6" id="other-h2">Other Services</h2>
+          <p class="h6" aria-hidden="true">Need something different?</p>
           <p class="lead6" style="margin-top:0.75rem; max-width:540px;">Standard cleaning covers most situations â€” but if your home needs more, we have you covered.</p>
         </div>
 
@@ -1689,8 +1701,8 @@ const withBase = (path: string) => {
         <div class="cta6-grid sg">
           <div class="cta6-left">
             <div class="si" data-d="l">
-              <p class="eyebrow6">Ready to start?</p>
-              <h2 class="h6" id="cta6-h2">Ready to experience<br /><span class="ac">the difference?</span></h2>
+              <h2 class="eyebrow6" id="cta6-h2">Ready to start?</h2>
+              <p class="h6" aria-hidden="true">Ready to experience<br /><span class="ac">the difference?</span></p>
             </div>
             <p class="cta6-sub si">
               Let Pau, Stefania, and our vetted Melbourne team take care of your home cleaning. No lock-in contracts, just real care and consistent quality you can count on.
@@ -1886,3 +1898,5 @@ const withBase = (path: string) => {
     </script>
   </body>
 </html>
+
+

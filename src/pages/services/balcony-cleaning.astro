@@ -1,4 +1,4 @@
-﻿---
+---
 import SiteFooter from "../../components/SiteFooter.astro";
 import ResponsiveImage from "../../components/ResponsiveImage.astro";
 import { brightCleanLivingRoom } from "../../data/site-images";
@@ -15,7 +15,7 @@ const withBase = (path: string) => {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Professional Balcony Cleaning Melbourne â€” Maid at Home</title>
+    <title>Professional Balcony Cleaning Melbourne — Maid at Home</title>
     <meta name="description" content="Professional balcony cleaning services in Melbourne. Floor scrubbing, glass balustrade cleaning, dusting railings & furniture. Book online." />
     <link
       rel="preload"
@@ -33,7 +33,7 @@ const withBase = (path: string) => {
         src: url("../fonts/plus-jakarta-sans-latin-normal.woff2") format("woff2");
       }
 
-      /* â”€â”€â”€ TOKENS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── TOKENS ──────────────────────────────── */
       :root {
         --navy:    #0a1d33;
         --blue-d:  #142d4c;
@@ -78,13 +78,13 @@ const withBase = (path: string) => {
       }
       img { display: block; max-width: 100%; }
 
-      /* â”€â”€â”€ KEYFRAMES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── KEYFRAMES ───────────────────────────── */
       @keyframes fadeUp {
         from { opacity: 0; transform: translateY(20px); }
         to   { opacity: 1; transform: none; }
       }
 
-      /* â”€â”€â”€ STAGGER SYSTEM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── STAGGER SYSTEM ──────────────────────── */
       .si {
         opacity: 0;
         transform: translateY(20px);
@@ -94,13 +94,13 @@ const withBase = (path: string) => {
       .si[data-d="r"] { transform: translateX(24px); }
       .si.in { opacity: 1; transform: none; }
 
-      /* â”€â”€â”€ LAYOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── LAYOUT ──────────────────────────────── */
       .c6     { max-width: 1180px; margin: 0 auto; padding: 0 2.5rem; }
       .pad    { padding: 6.5rem 0; }
       .pad-sm { padding: 4.5rem 0; }
       #service-nav + #benefits-section { padding-top: 8rem; }
 
-      /* â”€â”€â”€ SHARED TYPOGRAPHY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── SHARED TYPOGRAPHY ───────────────────── */
       .eyebrow6 {
         display: inline-flex; align-items: center; gap: 0.5rem;
         font-size: 0.72rem; font-weight: 800;
@@ -111,19 +111,22 @@ const withBase = (path: string) => {
         content: ""; width: 16px; height: 2.5px;
         background: var(--yellow); border-radius: 2px; flex-shrink: 0;
       }
-      h2.h6 {
-        font-size: clamp(2rem, 3.4vw, 2.85rem);
+      .h6 {
+        display: block;
+        margin: 0;
+        font-family: var(--font);
+font-size: clamp(2rem, 3.4vw, 2.85rem);
         font-weight: 800; letter-spacing: -0.03em;
         color: var(--navy); line-height: 1.15;
       }
-      h2.h6 .ac { color: var(--blue); }
+      .h6 .ac { color: var(--blue); }
       .lead6 {
         font-size: 1.05rem; color: var(--grey);
         line-height: 1.75; max-width: 520px;
         margin-top: 0.75rem;
       }
 
-      /* â”€â”€â”€ BUTTONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── BUTTONS ─────────────────────────────── */
       .btn6-primary {
         display: inline-flex; align-items: center; gap: 0.5rem;
         background: var(--yellow); color: var(--navy);
@@ -145,7 +148,7 @@ const withBase = (path: string) => {
       }
       .btn6-outline:hover { border-color: var(--navy); background: var(--sky); }
 
-      /* â”€â”€â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── HEADER ──────────────────────────────── */
       #hd6 {
         position: fixed; inset: 0 0 auto; z-index: 200;
         height: 72px; display: flex; align-items: center; justify-content: space-between;
@@ -272,7 +275,7 @@ const withBase = (path: string) => {
       #hd6-mob a { font-size: 1.2rem; font-weight: 600; color: var(--navy); text-decoration: none; padding: 0.95rem 0; border-bottom: 1px solid var(--grey-l); }
       .mob6-cta { background: var(--yellow); color: var(--navy); text-align: center; border-radius: var(--r); padding: 1.1rem; margin-top: 1rem; font-size: 1rem; font-weight: 700; text-decoration: none; display: block; }
 
-      /* â”€â”€â”€ PAGE HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── PAGE HERO ───────────────────────────── */
       #std-hero { background: var(--sky); padding-top: 72px; position: relative; overflow: hidden; }
       .std-hero-sun {
         position: absolute; top: -120px; right: -100px;
@@ -327,12 +330,12 @@ const withBase = (path: string) => {
       .book-divider { height: 1px; background: var(--border-subtle); margin: 1.75rem 0; }
       .book-includes { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
       .book-inc { display: flex; align-items: center; gap: 0.65rem; font-size: 0.9rem; color: var(--grey-d); font-weight: 500; }
-      .book-inc::before { content: "âœ“"; color: var(--green); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
+      .book-inc::before { content: "✓"; color: var(--green); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
       .book-cta { display: block; text-align: center; background: var(--yellow); color: var(--navy); font-weight: 700; font-size: 0.95rem; padding: 0.95rem; border-radius: 100px; text-decoration: none; transition: background 0.25s, transform 0.2s, box-shadow 0.25s; margin-bottom: 0.85rem; box-shadow: 0 4px 14px rgba(246,193,51,0.25); }
       .book-cta:hover { background: var(--yellow-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(246, 193, 51, 0.4); }
       .book-cta-sub { text-align: center; font-size: 0.76rem; color: var(--grey); }
 
-      /* â”€â”€â”€ BENEFITS SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── BENEFITS SECTION ─────────────────────── */
       #benefits-section { background: var(--white); }
       .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
       .benefit-card {
@@ -345,7 +348,7 @@ const withBase = (path: string) => {
       .benefit-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
       .benefit-card p { font-size: 0.9rem; color: var(--grey); line-height: 1.6; }
 
-      /* â”€â”€â”€ FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── FAQ ─────────────────────────────────── */
       #faq6 { background: var(--sky); border-top: 1px solid var(--border-subtle); }
       .faq6-layout { display: grid; grid-template-columns: 4fr 8fr; gap: 5rem; align-items: start; }
       .compact-contact-card {
@@ -391,7 +394,7 @@ const withBase = (path: string) => {
       .faq6-a { font-size: 0.9rem; color: var(--grey); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease), padding 0.3s; }
       .faq6-item.open .faq6-a { max-height: 280px; padding-bottom: 1.35rem; }
 
-      /* â”€â”€â”€ FINAL CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── FINAL CTA ────────────────────────────── */
       #cta6.cta-sky {
         background: var(--sky);
         padding: 6.5rem 0;
@@ -443,7 +446,7 @@ const withBase = (path: string) => {
         object-fit: cover;
       }
 
-      /* â”€â”€â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── FOOTER ──────────────────────────────── */
       #ft6 { background: var(--navy); padding: 4.5rem 2.5rem 2.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
       .ft6-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
       .ft6-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 0.85rem; max-width: 280px; }
@@ -455,7 +458,7 @@ const withBase = (path: string) => {
       .ft6-bottom span, .ft6-bottom a { font-size: 0.78rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
       .ft6-bottom a:hover { color: rgba(255,255,255,0.6); }
 
-      /* â”€â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── RESPONSIVE ──────────────────────────── */
       @media (max-width: 1024px) {
         .hd6-nav { display: none; }
         .hd6-toggle { display: flex; }
@@ -505,7 +508,7 @@ const withBase = (path: string) => {
       .mob6-sub-menu a:hover { color: var(--blue) !important; }
       .hd6-mob-section-title { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--grey); letter-spacing: 0.08em; margin-top: 0.75rem; margin-bottom: 0.25rem; }
     
-      /* â”€â”€â”€ STICKY SECTION NAV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─── STICKY SECTION NAV ─────────────────── */
       #service-nav {
         position: sticky;
         top: 64px;
@@ -590,7 +593,7 @@ const withBase = (path: string) => {
   </head>
 
   <body>
-    <!-- â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <!-- ─ HEADER ─────────────────────────────────── -->
     <header id="hd6" aria-label="Site header">
       <a href={withBase("index")} class="hd6-logo" aria-label="Maid at Home">
         <div class="hd6-mark" aria-hidden="true">
@@ -689,21 +692,21 @@ const withBase = (path: string) => {
       </div>
 
       <a href={withBase("blog")}>Blog</a>
-      <a href={withBase("booking")} class="mob6-cta">Book Now â†’</a>
+      <a href={withBase("booking")} class="mob6-cta">Book Now →</a>
     </nav>
 
     <main id="main-content">
 
-    <!-- â”€ PAGE HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <!-- ─ PAGE HERO ──────────────────────────────── -->
     <section id="std-hero" aria-labelledby="std-hero-h1">
       <div class="std-hero-sun" aria-hidden="true"></div>
       <div class="std-hero-body">
         <div class="std-hero-left">
           <nav class="ph-breadcrumb" aria-label="Breadcrumb">
             <a href={withBase("index")}>Home</a>
-            <span class="sep" aria-hidden="true">â†’</span>
+            <span class="sep" aria-hidden="true">→</span>
             <a href={withBase("services")}>House Cleaning</a>
-            <span class="sep" aria-hidden="true">â†’</span>
+            <span class="sep" aria-hidden="true">→</span>
             <span class="current" aria-current="page" style="color: var(--grey-d)">Balcony Cleaning</span>
           </nav>
           
@@ -748,28 +751,28 @@ const withBase = (path: string) => {
               <div class="book-inc">Light dusting of outdoor furniture</div>
               <div class="book-inc">Eco-friendly degreasing solutions</div>
             </div>
-            <a href={withBase("pricing")} class="book-cta">Book Balcony Cleaning â†’</a>
+            <a href={withBase("pricing")} class="book-cta">Book Balcony Cleaning →</a>
             <div class="book-cta-sub">Available as single service or add-on</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- â”€ STICKY SECTION NAV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <!-- ─ STICKY SECTION NAV ────────────────────── -->
     <nav id="service-nav" aria-label="Service sections">
       <div class="pnav-inner">
-        <a href="#benefits-section" class="pnav-link active"><span class="snav-icon">âœ¨</span> Benefits</a>
-        <a href="#faq6" class="pnav-link"><span class="snav-icon">â“</span> FAQ</a>
+        <a href="#benefits-section" class="pnav-link active"><span class="snav-icon">✨</span> Benefits</a>
+        <a href="#faq6" class="pnav-link"><span class="snav-icon">❓</span> FAQ</a>
       </div>
     </nav>
 
 
-    <!-- â”€ BENEFITS SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <!-- ─ BENEFITS SECTION ─────────────────────── -->
     <section id="benefits-section" class="pad" aria-labelledby="benefits-h2">
       <div class="c6">
         <div class="sg" style="text-align: center; margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-          <p class="eyebrow6">Our Standards</p>
-          <h2 class="h6" id="benefits-h2">Why choose professional balcony cleaning?</h2>
+          <h2 class="eyebrow6" id="benefits-h2">Our Standards</h2>
+            <p class="h6" aria-hidden="true">Why choose professional balcony cleaning?</p>
           <p class="lead6" style="margin-top: 0.75rem;">
             Keep your outdoor living space clean, hygienic, and ready for relaxation or entertaining.
           </p>
@@ -778,21 +781,21 @@ const withBase = (path: string) => {
         <div class="benefits-grid sg">
           <!-- Benefit 1 -->
           <div class="benefit-card si">
-            <div class="benefit-icon">ðŸ§¹</div>
+            <div class="benefit-icon">🧹</div>
             <h3>Deep Floor Scrubbing</h3>
             <p>We sweep away loose debris and scrub the balcony floor with targeted cleaning agents to remove outdoor dust, pollen, and light stains.</p>
           </div>
 
           <!-- Benefit 2 -->
           <div class="benefit-card si">
-            <div class="benefit-icon">âœ¨</div>
+            <div class="benefit-icon">✨</div>
             <h3>Glass Balustrade Detail</h3>
             <p>Glass balustrades often accumulate outdoor haze and dust. We clean them inside and out (where safely accessible) for a pristine look.</p>
           </div>
 
           <!-- Benefit 3 -->
           <div class="benefit-card si">
-            <div class="benefit-icon">ðŸŒ¿</div>
+            <div class="benefit-icon">🌿</div>
             <h3>Safe & Neighbour-Friendly</h3>
             <p>We clean carefully using hand tools, scrubbing brushes, and mops rather than high-pressure hoses to prevent water from leaking to apartments below.</p>
           </div>
@@ -800,14 +803,14 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- â”€ FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <!-- ─ FAQ ─────────────────────────────────────── -->
     <section id="faq6" class="pad" aria-labelledby="faq6-h2">
       <div class="c6">
         <div class="faq6-layout">
           <div class="sg">
             <div class="si" data-d="l">
-              <p class="eyebrow6">FAQ</p>
-              <h2 class="h6" id="faq6-h2">Balcony cleaning<br /><span class="ac">details</span></h2>
+              <h2 class="eyebrow6" id="faq6-h2">FAQ</h2>
+            <p class="h6" aria-hidden="true">Balcony cleaning<br /><span class="ac">details</span></p>
             </div>
             <p class="lead6 si" style="margin-bottom: 1.75rem;">
               Everything you need to know about our balcony cleaning process.
@@ -856,14 +859,14 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- â”€ FINAL CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <!-- ─ FINAL CTA ───────────────────────────────── -->
     <section id="cta6" class="cta-white" aria-labelledby="cta6-h2">
       <div class="c6">
         <div class="cta6-grid sg">
           <div class="cta6-left">
             <div class="si" data-d="l">
-              <p class="eyebrow6">Ready to start?</p>
-              <h2 class="h6" id="cta6-h2">Ready to experience<br /><span class="ac">the difference?</span></h2>
+              <h2 class="eyebrow6" id="cta6-h2">Ready to start?</h2>
+            <p class="h6" aria-hidden="true">Ready to experience<br /><span class="ac">the difference?</span></p>
             </div>
             <p class="cta6-sub si">
               Let Pau, Stefania, and our vetted Melbourne team take care of your balcony clean. No lock-in contracts, just real care and consistent quality you can count on.
@@ -890,14 +893,14 @@ const withBase = (path: string) => {
       </div>
     </section>
 
-    <!-- â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <!-- ─ FOOTER ──────────────────────────────────── -->
 
     </main>
 
     <SiteFooter baseUrl={baseUrl} />
 
     <script is:inline>
-      /* â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─ HEADER ───────────────────────────────────── */
       const hd6 = document.getElementById("hd6");
       let headerScrollTicking6 = false;
       const updateHeaderScroll6 = () => {
@@ -914,7 +917,7 @@ const withBase = (path: string) => {
       window.addEventListener("scroll", onScroll6, { passive: true });
       updateHeaderScroll6();
 
-            /* â”€ MOBILE NAV / MENU â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+            /* ─ MOBILE NAV / MENU ────────────────────────── */
       const tog6 = document.getElementById("hd6Toggle");
       const mob6 = document.getElementById("hd6-mob");
       const cls6 = document.getElementById("hd6MobClose");
@@ -945,7 +948,7 @@ const withBase = (path: string) => {
         });
       }
 
-      /* â”€ MOBILE DROPDOWN ACCORDION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─ MOBILE DROPDOWN ACCORDION ────────────────── */
       if (mob6) {
         mob6.querySelectorAll('.mob6-dropdown-toggle').forEach(btn => {
           btn.addEventListener('click', (e) => {
@@ -969,7 +972,7 @@ const withBase = (path: string) => {
         });
       }
 
-      /* â”€ STAGGER OBSERVER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─ STAGGER OBSERVER ─────────────────────────── */
       const sObs6 = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
@@ -980,7 +983,7 @@ const withBase = (path: string) => {
       }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
       document.querySelectorAll(".sg").forEach(g => sObs6.observe(g));
 
-      /* â”€ FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─ FAQ ──────────────────────────────────────── */
       document.querySelectorAll(".faq6-item").forEach(item => {
         item.querySelector(".faq6-q").addEventListener("click", () => {
           const open = item.classList.contains("open");
@@ -989,7 +992,7 @@ const withBase = (path: string) => {
         });
       });
     
-      /* â”€ ACTIVE NAV LINK ON SCROLL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+      /* ─ ACTIVE NAV LINK ON SCROLL ────────────────── */
       const pnavLinks = document.querySelectorAll('.pnav-link');
       const pnavSections = ['benefits-section', 'faq6'].map(id => document.getElementById(id));
       let pnavSectionsOffsets = [];
@@ -1039,3 +1042,6 @@ const withBase = (path: string) => {
     </script>
   </body>
 </html>
+
+
+

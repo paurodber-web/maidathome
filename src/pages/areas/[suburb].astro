@@ -226,14 +226,17 @@ const withBase = (path: string) => {
         border-radius: 2px;
         flex-shrink: 0;
       }
-      h2.h6 {
+      .h6 {
+        display: block;
+        margin: 0;
+        font-family: var(--font);
         font-size: clamp(2rem, 3.4vw, 2.85rem);
         font-weight: 800;
         letter-spacing: -0.03em;
         color: var(--navy);
         line-height: 1.15;
       }
-      h2.h6 .ac {
+      .h6 .ac {
         color: var(--blue);
       }
       .lead6 {
@@ -2941,10 +2944,10 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="sec-header6 sg">
           <div class="si" data-d="l">
-            <p class="eyebrow6">Our Services</p>
-            <h2 class="h6" id="srv6-h2">
+            <h2 class="eyebrow6" id="srv6-h2">Our Services</h2>
+            <p class="h6" aria-hidden="true">
               Everything your<br /><span class="ac">home needs</span>
-            </h2>
+            </p>
           </div>
           <p class="lead6 si" data-d="r">
             Every service delivered by trained, insured professionals. Book a
@@ -3050,10 +3053,10 @@ const withBase = (path: string) => {
           class="sg"
           style="text-align: center; margin-bottom: 3.5rem; max-width: 600px; margin-left: auto; margin-right: auto;"
         >
-          <p class="eyebrow6">Recurring Cleaning</p>
-          <h2 class="h6" id="rec6-h2">
+          <h2 class="eyebrow6" id="rec6-h2">Recurring Cleaning</h2>
+            <p class="h6" aria-hidden="true">
             Set it and forget it. Save with frequency.
-          </h2>
+          </p>
           <p class="lead6" style="margin-top: 0.75rem;">
             Choose your frequency and we do the rest. The same trusted cleaner,
             every time — who learns your home and your preferences.
@@ -3202,10 +3205,10 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="sec-header6 sg">
           <div class="si" data-d="l">
-            <p class="eyebrow6">How It Works</p>
-            <h2 class="h6" id="how6-h2">
+            <h2 class="eyebrow6" id="how6-h2">How It Works</h2>
+            <p class="h6" aria-hidden="true">
               Simple from<br /><span class="ac">start to finish</span>
-            </h2>
+            </p>
           </div>
           <p class="lead6 si" data-d="r">
             No lengthy forms. No confusing quotes. Just tell us about your home,
@@ -3274,10 +3277,10 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="sec-header6 sg">
           <div class="si" data-d="l">
-            <p class="eyebrow6">Reviews</p>
-            <h2 class="h6" id="tst6-h2">
+            <h2 class="eyebrow6" id="tst6-h2">Reviews</h2>
+            <p class="h6" aria-hidden="true">
               What {suburb.name}<br /><span class="ac">families say</span>
-            </h2>
+            </p>
           </div>
           <p class="lead6 si" data-d="r">
             All reviews are sourced directly from our Google Business Profile
@@ -3320,10 +3323,10 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="sec-header6 sg" style="margin-bottom: 3.5rem;">
           <div class="si" data-d="l">
-            <p class="eyebrow6">Our Team</p>
-            <h2 class="h6" id="team6-h2">
+            <h2 class="eyebrow6" id="team6-h2">Our Team</h2>
+            <p class="h6" aria-hidden="true">
               Real people.<br /><span class="ac">Stunning results.</span>
-            </h2>
+            </p>
           </div>
           <p class="lead6 si" data-d="r">
             We are not a tech agency. We employ, train, and support real people
@@ -3440,10 +3443,10 @@ const withBase = (path: string) => {
             </div>
 
             <div class="eol6-checklist-card">
-              <p class="eyebrow6">End of Lease Cleaning</p>
-              <h2 class="h6" id="eol6-h2">
+              <h2 class="eyebrow6" id="eol6-h2">End of Lease Cleaning</h2>
+            <p class="h6" aria-hidden="true">
                 Get your full<br /><span class="ac">bond back.</span>
-              </h2>
+              </p>
               <p class="lead6" style="margin-top:0.75rem; margin-bottom:2rem;">
                 Our end of lease service is aligned to real estate inspection
                 checklists. Every item covered, documented, and guaranteed.
@@ -3781,7 +3784,7 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="cov6-layout sg">
           <div class="si" data-d="l">
-            <p class="eyebrow6">Local Service</p>
+            <h2 class="eyebrow6" id="faq6-h2">Local Service</p>
             <h2 class="h6" id="cov6-h2" style="margin-bottom: 1.5rem;">
               We clean, you enjoy<br /><span class="ac"
                 >your {suburb.name} home</span
@@ -3889,10 +3892,10 @@ const withBase = (path: string) => {
         <div class="faq6-layout">
           <div class="sg">
             <div class="si" data-d="l">
-              <p class="eyebrow6">FAQ</p>
-              <h2 class="h6" id="faq6-h2">
+              <p class="eyebrow6">FAQ</h2>
+            <p class="h6" aria-hidden="true">
                 Questions<br /><span class="ac">answered</span>
-              </h2>
+              </p>
             </div>
             <p class="lead6 si" style="margin-bottom:1.75rem;">
               If your question isn't here, just call — a real person picks up.
@@ -3953,12 +3956,12 @@ const withBase = (path: string) => {
         <div class="cta6-grid sg">
           <div class="cta6-left">
             <div class="si" data-d="l">
-              <p class="eyebrow6">Ready to start?</p>
-              <h2 class="h6" id="cta6-h2">
+              <h2 class="eyebrow6" id="cta6-h2">Ready to start?</h2>
+            <p class="h6" aria-hidden="true">
                 A cleaner {suburb.name} home<br /><span class="ac"
                   >starts today.</span
                 >
-              </h2>
+              </p>
             </div>
             <p class="cta6-sub si">
               Join 2,400 Melbourne households who've handed off the cleaning —
@@ -4234,3 +4237,5 @@ const withBase = (path: string) => {
     </script>
   </body>
 </html>
+
+

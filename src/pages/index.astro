@@ -29,10 +29,10 @@ const withBase = (path: string) => {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maid at Home — Premium House Cleaning Melbourne</title>
+    <title>House Cleaning Melbourne | Professional Cleaners from $120 | Maid at Home</title>
     <meta
       name="description"
-      content="Melbourne's most trusted house cleaning service. Meet our local team of professional, police-checked cleaners. Standard, deep, end of lease & carpet cleaning with 100% bond guarantee."
+      content="Book professional house cleaning in Melbourne from $120. Police-checked, fully insured cleaners. Standard, deep, end of lease & carpet cleaning. 100% bond-back guarantee. Instant online quote."
     />
     <link
       rel="preload"
@@ -158,23 +158,31 @@ const withBase = (path: string) => {
       /* ─── STAGGER SYSTEM ──────────────────────── */
       .si {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translate3d(0, 18px, 0);
         transition:
-          opacity 0.7s var(--ease),
-          transform 0.7s var(--ease);
+          opacity 0.62s ease-out,
+          transform 0.82s var(--ease);
+        transition-delay: var(--si-delay, 0ms);
       }
       .si[data-d="l"] {
-        transform: translateX(-24px);
+        transform: translate3d(-18px, 0, 0);
       }
       .si[data-d="r"] {
-        transform: translateX(24px);
+        transform: translate3d(18px, 0, 0);
       }
       .si[data-d="sc"] {
-        transform: scale(0.96);
+        transform: scale(0.985);
       }
       .si.in {
         opacity: 1;
         transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .si {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
       }
 
       /* ─── LAYOUT ──────────────────────────────── */
@@ -213,14 +221,17 @@ const withBase = (path: string) => {
         border-radius: 2px;
         flex-shrink: 0;
       }
-      h2.h6 {
+      .h6 {
+        display: block;
+        margin: 0;
+        font-family: var(--font);
         font-size: clamp(2rem, 3.4vw, 2.85rem);
         font-weight: 800;
         letter-spacing: -0.03em;
         color: var(--navy);
         line-height: 1.15;
       }
-      h2.h6 .ac {
+      .h6 .ac {
         color: var(--blue);
       }
       .lead6 {
@@ -2942,7 +2953,7 @@ const withBase = (path: string) => {
         <div class="h6-text">
           <h1 class="h6-pill" id="h6-heading">
             <span class="h6-pill-dot" aria-hidden="true"></span>
-            Professional House Cleaning in Melbourne
+            House Cleaning Services in Melbourne
           </h1>
 
           <p class="h6-display" aria-hidden="true">
@@ -2951,9 +2962,11 @@ const withBase = (path: string) => {
           </p>
 
           <p class="h6-sub">
-            Trained, insured Melbourne cleaners who treat your space with
-            genuine care. Consistent results, flexible scheduling, and a team
-            that actually shows up.
+            Police-checked, fully insured house cleaners serving Melbourne's
+            inner suburbs and CBD. We offer regular home cleaning, deep
+            cleaning, end of lease cleaning, and carpet cleaning - with
+            same-day quotes and flexible scheduling that works around your
+            life.
           </p>
 
           <div class="h6-actions">
@@ -3051,11 +3064,11 @@ const withBase = (path: string) => {
     <section id="srv6" class="pad" aria-labelledby="srv6-h2">
       <div class="c6">
         <div class="sec-header6 sg">
-          <div class="si" data-d="l">
-            <p class="eyebrow6">Our Services</p>
-            <h2 class="h6" id="srv6-h2">
+          <div>
+            <h2 class="eyebrow6 si" id="srv6-h2">House Cleaning Services in Melbourne</h2>
+            <p class="h6 si" data-d="l" aria-hidden="true">
               Everything your<br /><span class="ac">home needs</span>
-            </h2>
+            </p>
           </div>
           <p class="lead6 si" data-d="r">
             Every service delivered by trained, insured professionals. Book a
@@ -3161,11 +3174,11 @@ const withBase = (path: string) => {
           class="sg"
           style="text-align: center; margin-bottom: 3.5rem; max-width: 600px; margin-left: auto; margin-right: auto;"
         >
-          <p class="eyebrow6">Recurring Cleaning</p>
-          <h2 class="h6" id="rec6-h2">
+          <h2 class="eyebrow6 si" id="rec6-h2">Regular House Cleaning Melbourne</h2>
+            <p class="h6 si" aria-hidden="true">
             Set it and forget it. Save with frequency.
-          </h2>
-          <p class="lead6" style="margin-top: 0.75rem;">
+          </p>
+          <p class="lead6 si" style="margin-top: 0.75rem;">
             Choose your frequency and we do the rest. The same trusted cleaner,
             every time — who learns your home and your preferences.
           </p>
@@ -3300,12 +3313,13 @@ const withBase = (path: string) => {
               </p>
             </div>
             <div
+              class="sg"
               style="margin-top:0.75rem; display:flex; gap:0.75rem; flex-wrap:wrap;"
             >
-              <a href="#calc6" class="btn6-primary" id="rec6-cta"
+              <a href="#calc6" class="btn6-primary si" id="rec6-cta"
                 >Set up recurring →</a
               >
-              <a href="tel:+61399990000" class="btn6-outline"
+              <a href="tel:+61399990000" class="btn6-outline si"
                 >Talk to us first</a
               >
             </div>
@@ -3318,11 +3332,11 @@ const withBase = (path: string) => {
     <section id="how6" class="pad" aria-labelledby="how6-h2">
       <div class="c6">
         <div class="sec-header6 sg">
-          <div class="si" data-d="l">
-            <p class="eyebrow6">How It Works</p>
-            <h2 class="h6" id="how6-h2">
+          <div>
+            <h2 class="eyebrow6 si" id="how6-h2">How to book a house cleaner in Melbourne</h2>
+            <p class="h6 si" data-d="l" aria-hidden="true">
               Simple from<br /><span class="ac">start to finish</span>
-            </h2>
+            </p>
           </div>
           <p class="lead6 si" data-d="r">
             No lengthy forms. No confusing quotes. Just tell us about your home,
@@ -3390,11 +3404,11 @@ const withBase = (path: string) => {
     <section id="tst6" class="pad" aria-labelledby="tst6-h2">
       <div class="c6">
         <div class="sec-header6 sg">
-          <div class="si" data-d="l">
-            <p class="eyebrow6">Reviews</p>
-            <h2 class="h6" id="tst6-h2">
+          <div>
+            <h2 class="eyebrow6 si" id="tst6-h2">What Melbourne Homeowners say about Maid At Home</h2>
+            <p class="h6 si" data-d="l" aria-hidden="true">
               What Melbourne<br /><span class="ac">families say</span>
-            </h2>
+            </p>
           </div>
           <p class="lead6 si" data-d="r">
             All reviews are sourced directly from our Google Business Profile
@@ -3436,11 +3450,11 @@ const withBase = (path: string) => {
     <section id="team6" class="pad" aria-labelledby="team6-h2">
       <div class="c6">
         <div class="sec-header6 sg" style="margin-bottom: 3.5rem;">
-          <div class="si" data-d="l">
-            <p class="eyebrow6">Our Team</p>
-            <h2 class="h6" id="team6-h2">
+          <div>
+            <h2 class="eyebrow6 si" id="team6-h2">Our Team</h2>
+            <p class="h6 si" data-d="l" aria-hidden="true">
               Real people.<br /><span class="ac">Stunning results.</span>
-            </h2>
+            </p>
           </div>
           <p class="lead6 si" data-d="r">
             We are not a tech agency. We employ, train, and support real people
@@ -3531,7 +3545,7 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="eol6-layout sg">
           <!-- Left: checklist -->
-          <div class="eol6-left si" data-d="l">
+          <div class="eol6-left" data-d="l">
             <!-- Visual strip showing real work and quality results -->
             <div class="eol6-visual-strip">
               <div class="eol6-strip-img">
@@ -3563,11 +3577,11 @@ const withBase = (path: string) => {
             </div>
 
             <div class="eol6-checklist-card">
-              <p class="eyebrow6">End of Lease Cleaning</p>
-              <h2 class="h6" id="eol6-h2">
+              <h2 class="eyebrow6 si" id="eol6-h2">End of lease cleaning melbourne</h2>
+            <p class="h6 si" data-d="l" aria-hidden="true">
                 Get your full<br /><span class="ac">bond back.</span>
-              </h2>
-              <p class="lead6" style="margin-top:0.75rem; margin-bottom:2rem;">
+              </p>
+              <p class="lead6 si" data-d="l" style="margin-top:0.75rem; margin-bottom:2rem;">
                 Our end of lease service is aligned to real estate inspection
                 checklists. Every item covered, documented, and guaranteed.
               </p>
@@ -3736,12 +3750,12 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="calc6-layout sg">
           <!-- Left -->
-          <div class="calc6-left si" data-d="l">
-            <div class="calc6-label">⚡ Instant Pricing</div>
-            <h2 class="h6" id="calc6-h2">
+          <div class="calc6-left" data-d="l">
+            <h2 class="eyebrow6 si" id="calc6-h2">House cleaning cost in Melbourne</h2>
+            <p class="h6 si" data-d="l" aria-hidden="true">
               Your honest price<br /><span class="ac">in 30 seconds</span>
-            </h2>
-            <p class="lead6" style="margin-bottom:2rem;">
+            </p>
+            <p class="lead6 si" data-d="l" style="margin-bottom:2rem;">
               No hidden fees. No follow-up call needed. Select your service and
               home size — and get an accurate price right now.
             </p>
@@ -3911,12 +3925,12 @@ const withBase = (path: string) => {
     <section id="cov6" class="pad" aria-labelledby="cov6-h2">
       <div class="c6">
         <div class="cov6-layout sg">
-          <div class="si" data-d="l">
-            <p class="eyebrow6">Service Area</p>
-            <h2 class="h6" id="cov6-h2">
+          <div>
+            <h2 class="eyebrow6 si" id="cov6-h2">House cleaning servicess across Melbourne</h2>
+            <p class="h6 si" data-d="l" aria-hidden="true">
               All across<br /><span class="ac">Melbourne</span>
-            </h2>
-            <p class="lead6" style="margin-bottom:1.75rem;">
+            </p>
+            <p class="lead6 si" data-d="l" style="margin-bottom:1.75rem;">
               From the CBD to the outer suburbs. No travel surcharges — flat
               pricing across our entire coverage zone.
             </p>
@@ -3964,13 +3978,13 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="faq6-layout">
           <div class="sg">
-            <div class="si" data-d="l">
-              <p class="eyebrow6">FAQ</p>
-              <h2 class="h6" id="faq6-h2">
+            <div>
+              <h2 class="eyebrow6 si" id="faq6-h2">Frequently asked questions</h2>
+            <p class="h6 si" data-d="l" aria-hidden="true">
                 Questions<br /><span class="ac">answered</span>
-              </h2>
+              </p>
             </div>
-            <p class="lead6 si" style="margin-bottom:1.75rem;">
+            <p class="lead6 si" data-d="l" style="margin-bottom:1.75rem;">
               If your question isn't here, just call — a real person picks up.
             </p>
             <div class="compact-contact-card si" style="padding:2rem 2.25rem;background:var(--white);border-radius:20px;border:1px solid var(--border-subtle);width:fit-content;max-width:100%;margin-top:2rem;display:flex;flex-direction:column;gap:1.1rem;box-shadow:var(--shadow-sm);">
@@ -4059,18 +4073,18 @@ const withBase = (path: string) => {
       <div class="c6">
         <div class="cta6-grid sg">
           <div class="cta6-left">
-            <div class="si" data-d="l">
-              <p class="eyebrow6">Ready to start?</p>
-              <h2 class="h6" id="cta6-h2">
+            <div>
+              <h2 class="eyebrow6 si" id="cta6-h2">Ready to start?</h2>
+            <p class="h6 si" data-d="l" aria-hidden="true">
                 A cleaner home<br /><span class="ac">starts today.</span>
-              </h2>
+              </p>
             </div>
-            <p class="cta6-sub si">
+            <p class="cta6-sub si" data-d="l">
               Join 2,400 Melbourne households who've handed off the cleaning —
               and never looked back.
             </p>
-            <div class="cta6-actions si">
-              <a href="#calc6" class="btn6-primary" id="cta6-book">
+            <div class="cta6-actions sg">
+              <a href="#calc6" class="btn6-primary si" id="cta6-book">
                 Get an instant quote
                 <svg
                   width="13"
@@ -4086,7 +4100,7 @@ const withBase = (path: string) => {
                     stroke-linejoin="round"></path></svg
                 >
               </a>
-              <a href="tel:+61399990000" class="btn6-outline" id="cta6-call"
+              <a href="tel:+61399990000" class="btn6-outline si" id="cta6-call"
                 >Talk to us first</a
               >
             </div>
@@ -4230,22 +4244,39 @@ const withBase = (path: string) => {
       }
 
       /* ─ STAGGER OBSERVER ─────────────────────────── */
-      const sObs6 = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            const items = Array.from(
-              entry.target.querySelectorAll(".si"),
-            ).filter((el) => !el.classList.contains("in"));
-            items.forEach((item, i) =>
-              setTimeout(() => item.classList.add("in"), i * 110),
-            );
-            sObs6.unobserve(entry.target);
-          });
-        },
-        { threshold: 0.05, rootMargin: "0px 0px -20px 0px" },
-      );
-      document.querySelectorAll(".sg").forEach((g) => sObs6.observe(g));
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (prefersReducedMotion) {
+        document.querySelectorAll(".si").forEach((item) => {
+          item.classList.add("in");
+        });
+      } else {
+        const sObs6 = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const items = Array.from(
+                entry.target.querySelectorAll(".si"),
+              ).filter((el) => !el.classList.contains("in"));
+
+              items.forEach((item, i) => {
+                item.style.setProperty("--si-delay", `${i * 72}ms`);
+              });
+
+              requestAnimationFrame(() => {
+                items.forEach((item) => item.classList.add("in"));
+              });
+
+              sObs6.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.08, rootMargin: "0px 0px -12% 0px" },
+        );
+
+        document.querySelectorAll(".sg").forEach((g) => sObs6.observe(g));
+      }
 
       /* ─ FAQ ──────────────────────────────────────── */
       document.querySelectorAll(".faq6-item").forEach((item) => {
@@ -4368,3 +4399,8 @@ const withBase = (path: string) => {
     </script>
   </body>
 </html>
+
+
+
+
+

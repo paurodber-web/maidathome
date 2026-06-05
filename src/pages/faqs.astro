@@ -111,12 +111,12 @@ const withBase = (path: string) => {
         content: ""; width: 16px; height: 2.5px;
         background: var(--yellow); border-radius: 2px; flex-shrink: 0;
       }
-      h2.h6 {
+      .h6 {
         font-size: clamp(2rem, 3.4vw, 2.85rem);
         font-weight: 800; letter-spacing: -0.03em;
         color: var(--navy); line-height: 1.15;
       }
-      h2.h6 .ac { color: var(--blue); }
+      .h6 .ac { color: var(--blue); }
       .lead6 {
         font-size: 1.05rem; color: var(--grey);
         line-height: 1.75; max-width: 520px;
@@ -825,8 +825,8 @@ const withBase = (path: string) => {
         <div class="cta6-grid sg">
           <div class="cta6-left">
             <div class="si" data-d="l">
-              <p class="eyebrow6">Get Cleaned Today</p>
-              <h2 class="h6" id="cta6-h2">Ready to experience<br /><span class="ac">the difference?</span></h2>
+              <h2 class="eyebrow6" id="cta6-h2">Get Cleaned Today</h2>
+            <p class="h6" aria-hidden="true">Ready to experience<br /><span class="ac">the difference?</span></p>
             </div>
             <p class="cta6-sub si">
               Let Pau, Stefania, and our vetted Melbourne team take care of your home cleaning. Check pricing and book online in under 60 seconds.
@@ -979,4 +979,5 @@ const withBase = (path: string) => {
     </script>
   </body>
 </html>
+
 
