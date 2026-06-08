@@ -43,16 +43,9 @@ const withBase = (path: string) => {
       type="font/woff2"
       crossorigin
     />
-    <style is:global define:vars={{ plusJakartaFontSrc: `url("${withBase("fonts/plus-jakarta-sans-latin-normal.woff2")}") format("woff2")`, loraFontSrc: `url("${withBase("fonts/lora-latin-normal.woff2")}") format("woff2")`, loraItalicFontSrc: `url("${withBase("fonts/lora-latin-italic.woff2")}") format("woff2")` }}>
+    <link rel="stylesheet" href={withBase("fonts.css")} />
+    <style is:global>
       /* ─── TOKENS ──────────────────────────────── */
-      @font-face {
-        font-family: "Plus Jakarta Sans";
-        font-style: normal;
-        font-weight: 300 800;
-        font-display: swap;
-        src: var(--plusJakartaFontSrc);
-      }
-
       :root {
         --navy: #0a1d33;
         --blue-d: #142d4c;
