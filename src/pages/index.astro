@@ -11,8 +11,8 @@ import {
   melbourneSuburbAerial,
   miaTheCat,
 } from "../data/site-images";
-import { suburbsData } from '../data/suburbs';
-import { reviewsData } from '../data/reviews';
+import { suburbsData } from "../data/suburbs";
+import { reviewsData } from "../data/reviews";
 
 const selectedReviews = reviewsData.slice(0, 3);
 
@@ -29,7 +29,9 @@ const withBase = (path: string) => {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>House Cleaning Melbourne | Professional Cleaners from $120 | Maid at Home</title>
+    <title>
+      House Cleaning Melbourne | Professional Cleaners from $120 | Maid at Home
+    </title>
     <meta
       name="description"
       content="Book professional house cleaning in Melbourne from $120. Police-checked, fully insured cleaners. Standard, deep, end of lease & carpet cleaning. 100% bond-back guarantee. Instant online quote."
@@ -41,14 +43,14 @@ const withBase = (path: string) => {
       type="font/woff2"
       crossorigin
     />
-    <style is:global>
+    <style is:global define:vars={{ plusJakartaFontSrc: `url("${withBase("fonts/plus-jakarta-sans-latin-normal.woff2")}") format("woff2")`, loraFontSrc: `url("${withBase("fonts/lora-latin-normal.woff2")}") format("woff2")`, loraItalicFontSrc: `url("${withBase("fonts/lora-latin-italic.woff2")}") format("woff2")` }}>
       /* ─── TOKENS ──────────────────────────────── */
       @font-face {
         font-family: "Plus Jakarta Sans";
         font-style: normal;
         font-weight: 300 800;
         font-display: swap;
-        src: url("../fonts/plus-jakarta-sans-latin-normal.woff2") format("woff2");
+        src: var(--plusJakartaFontSrc);
       }
 
       :root {
@@ -467,7 +469,8 @@ const withBase = (path: string) => {
         flex-direction: column;
         padding: 6rem 2rem 2rem;
         gap: 0.5rem;
-      ; overflow-y: auto;}
+        overflow-y: auto;
+      }
       /* Mobile Dropdown Accordion Styling */
       .mob6-dropdown-item {
         display: flex;
@@ -481,7 +484,8 @@ const withBase = (path: string) => {
         justify-content: space-between;
         width: 100%;
       }
-      #hd6-mob a, .mob6-dropdown-label {
+      #hd6-mob a,
+      .mob6-dropdown-label {
         font-size: 1.2rem;
         font-weight: 600;
         color: var(--navy);
@@ -518,7 +522,10 @@ const withBase = (path: string) => {
         max-height: 500px;
         opacity: 1;
         overflow: hidden;
-        transition: max-height 0.35s var(--ease), opacity 0.35s var(--ease), margin 0.35s var(--ease);
+        transition:
+          max-height 0.35s var(--ease),
+          opacity 0.35s var(--ease),
+          margin 0.35s var(--ease);
       }
       .mob6-dropdown-item .mob6-sub-menu.collapsed {
         max-height: 0;
@@ -539,7 +546,8 @@ const withBase = (path: string) => {
       .mob6-dropdown-item {
         border-bottom: 1px solid var(--grey-l);
       }
-      .mob6-dropdown-item a, .mob6-dropdown-item .mob6-dropdown-label {
+      .mob6-dropdown-item a,
+      .mob6-dropdown-item .mob6-dropdown-label {
         border-bottom: none !important;
       }
 
@@ -846,7 +854,9 @@ const withBase = (path: string) => {
         white-space: nowrap;
         border-bottom: 3px solid transparent;
         margin-bottom: -1px;
-        transition: color 0.25s, border-color 0.25s;
+        transition:
+          color 0.25s,
+          border-color 0.25s;
       }
       .pnav-link:hover {
         color: var(--blue);
@@ -2812,7 +2822,15 @@ const withBase = (path: string) => {
         padding-top: 6.5rem !important;
         padding-bottom: 6.5rem !important;
       }
-      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+      section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"])
+        > :is(
+          .c6,
+          .container,
+          .article-layout,
+          .related-header,
+          .related-grid,
+          .trust-inner
+        ) {
         max-width: 1180px !important;
         margin-left: auto !important;
         margin-right: auto !important;
@@ -2824,7 +2842,15 @@ const withBase = (path: string) => {
           padding-top: 4.5rem !important;
           padding-bottom: 4.5rem !important;
         }
-        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"]) > :is(.c6, .container, .article-layout, .related-header, .related-grid, .trust-inner) {
+        section:not([id*="hero"]):not([id*="trust"]):not([id*="strip"])
+          > :is(
+            .c6,
+            .container,
+            .article-layout,
+            .related-header,
+            .related-grid,
+            .trust-inner
+          ) {
           padding-left: 1.5rem !important;
           padding-right: 1.5rem !important;
         }
@@ -2850,14 +2876,28 @@ const withBase = (path: string) => {
         <div class="hd6-nav-item-dropdown">
           <a href={withBase("services")} class="hd6-nav-dropdown-toggle">
             Our Services
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
-              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg
+              width="10"
+              height="6"
+              viewBox="0 0 10 6"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M1 1L5 5L9 1"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
             </svg>
           </a>
           <div class="hd6-dropdown-menu">
-            <a href={withBase("services/standard-cleaning")}>Standard Cleaning</a>
+            <a href={withBase("services/standard-cleaning")}
+              >Standard Cleaning</a
+            >
             <a href={withBase("services/deep-cleaning")}>Deep Cleaning</a>
-            <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a>
+            <a href={withBase("services/end-of-lease-cleaning")}>End of Lease</a
+            >
             <a href={withBase("services/move-in-cleaning")}>Move In Cleaning</a>
             <a href={withBase("services/oven-cleaning")}>Oven Cleaning</a>
             <a href={withBase("services/window-cleaning")}>Window Cleaning</a>
@@ -2870,10 +2910,25 @@ const withBase = (path: string) => {
         <a href={withBase("about")}>About Us</a>
         <a href={withBase("careers")}>Join Our Team</a>
         <div class="hd6-nav-item-dropdown">
-          <a href="#" class="hd6-nav-dropdown-toggle" onclick="event.preventDefault()">
+          <a
+            href="#"
+            class="hd6-nav-dropdown-toggle"
+            onclick="event.preventDefault()"
+          >
             Help
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
-              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg
+              width="10"
+              height="6"
+              viewBox="0 0 10 6"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M1 1L5 5L9 1"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
             </svg>
           </a>
           <div class="hd6-dropdown-menu">
@@ -2895,14 +2950,32 @@ const withBase = (path: string) => {
     </header>
 
     <nav id="hd6-mob" aria-label="Mobile navigation">
-      <button class="mob6-close" id="hd6MobClose" aria-label="Close menu">&times;</button>
+      <button class="mob6-close" id="hd6MobClose" aria-label="Close menu"
+        >&times;</button
+      >
       <!-- Services Row -->
       <div class="mob6-dropdown-item">
         <div class="mob6-dropdown-trigger">
           <a href={withBase("services")}>Services</a>
-          <button class="mob6-dropdown-toggle" aria-label="Toggle Services Menu" aria-expanded="false" data-target="mob-services-submenu">
-            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
-              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <button
+            class="mob6-dropdown-toggle"
+            aria-label="Toggle Services Menu"
+            aria-expanded="false"
+            data-target="mob-services-submenu"
+          >
+            <svg
+              width="12"
+              height="8"
+              viewBox="0 0 12 8"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M1 1L6 6L11 1"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
             </svg>
           </button>
         </div>
@@ -2927,9 +3000,25 @@ const withBase = (path: string) => {
       <div class="mob6-dropdown-item">
         <div class="mob6-dropdown-trigger">
           <span class="mob6-dropdown-label">Help</span>
-          <button class="mob6-dropdown-toggle" aria-label="Toggle Help Menu" aria-expanded="false" data-target="mob-help-submenu">
-            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
-              <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <button
+            class="mob6-dropdown-toggle"
+            aria-label="Toggle Help Menu"
+            aria-expanded="false"
+            data-target="mob-help-submenu"
+          >
+            <svg
+              width="12"
+              height="8"
+              viewBox="0 0 12 8"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M1 1L6 6L11 1"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
             </svg>
           </button>
         </div>
@@ -2944,1147 +3033,33 @@ const withBase = (path: string) => {
     </nav>
 
     <main id="main-content">
-    <!-- ─ HERO ───────────────────────────────────── -->
-    <section id="hero6" aria-labelledby="h6-heading">
-      <div class="h6-sun" aria-hidden="true"></div>
-      <div class="h6-arc" aria-hidden="true"></div>
+      <!-- ─ HERO ───────────────────────────────────── -->
+      <section id="hero6" aria-labelledby="h6-heading">
+        <div class="h6-sun" aria-hidden="true"></div>
+        <div class="h6-arc" aria-hidden="true"></div>
 
-      <div class="h6-body">
-        <div class="h6-text">
-          <h1 class="h6-pill" id="h6-heading">
-            <span class="h6-pill-dot" aria-hidden="true"></span>
-            House Cleaning Services in Melbourne
-          </h1>
+        <div class="h6-body">
+          <div class="h6-text">
+            <h1 class="h6-pill" id="h6-heading">
+              <span class="h6-pill-dot" aria-hidden="true"></span>
+              House Cleaning Services in Melbourne
+            </h1>
 
-          <p class="h6-display" aria-hidden="true">
-            <span class="h6-line"><span>Cleaning homes.</span></span>
-            <span class="h6-line em"><span>Improving lives.</span></span>
-          </p>
-
-          <p class="h6-sub">
-            Police-checked, fully insured house cleaners serving Melbourne's
-            inner suburbs and CBD. We offer regular home cleaning, deep
-            cleaning, end of lease cleaning, and carpet cleaning - with
-            same-day quotes and flexible scheduling that works around your
-            life.
-          </p>
-
-          <div class="h6-actions">
-            <a href="#calc6" class="btn6-primary" id="hero6-book">
-              Get an instant quote
-              <svg
-                width="13"
-                height="13"
-                viewBox="0 0 13 13"
-                fill="none"
-                aria-hidden="true"
-                ><path
-                  d="M2 6.5h9M7.5 2l4.5 4.5L7.5 11"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path></svg
-              >
-            </a>
-            <a href="tel:+61399990000" class="btn6-ghost">
-              <svg
-                width="13"
-                height="13"
-                viewBox="0 0 13 13"
-                fill="none"
-                aria-hidden="true"
-                ><path
-                  d="M11.5 8.8L9.2 7.9 8.3 8.8C7 8.3 4.7 6 4.2 4.7l.9-.9L4.2 1.5 1.5 1C1 2 1 3.3 1.9 5c1.4 2.7 3.4 4.7 6 6 1.7.9 3 .9 3.9.4l-.3-2.6z"
-                  stroke="currentColor"
-                  stroke-width="1.4"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path></svg
-              >
-              (03) 9999 0000
-            </a>
-          </div>
-
-          <div class="h6-trust">
-            <div class="h6-trust-item">
-              <span class="h6-trust-check" aria-hidden="true">✓</span> Police checked
-            </div>
-            <div class="h6-trust-item">
-              <span class="h6-trust-check" aria-hidden="true">✓</span> Fully insured
-            </div>
-            <div class="h6-trust-item">
-              <span class="h6-trust-check" aria-hidden="true">✓</span> Satisfaction
-              guarantee
-            </div>
-          </div>
-        </div>
-
-        <div class="h6-visual" aria-hidden="true">
-          <div class="h6-photo-bg"></div>
-          <div class="h6-photo-frame">
-            <ResponsiveImage
-              src={cleanerPortraitHeroSmall}
-              alt="Friendly Maid at Home cleaner"
-              widths={[320, 420, 510]}
-              sizes="(max-width: 768px) 320px, 510px"
-              width={510}
-              height={510}
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-            />
-          </div>
-          <div class="h6-badge">
-            <div class="h6-badge-stars">★★★★★</div>
-            <div class="h6-badge-quote">
-              "Spotless every time. We've used them for 2 years."
-            </div>
-            <div class="h6-badge-meta">— Sarah M., South Yarra</div>
-          </div>
-          <div class="h6-rating-chip">
-            <span>4.9★</span> Google · 340+ reviews
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─ SECTION NAV ───────────────────────────── -->
-    <nav id="home-nav" aria-label="Home sections">
-      <div class="pnav-inner">
-        <a href="#srv6" class="pnav-link active">Services</a>
-        <a href="#rec6" class="pnav-link">Recurring</a>
-        <a href="#how6" class="pnav-link">How It Works</a>
-        <a href="#tst6" class="pnav-link">Reviews</a>
-        <a href="#team6" class="pnav-link">Team</a>
-        <a href="#eol6" class="pnav-link">End of Lease</a>
-        <a href="#faq6" class="pnav-link">FAQ</a>
-      </div>
-    </nav>
-
-    <!-- ─ SERVICES ────────────────────────────────── -->
-    <section id="srv6" class="pad" aria-labelledby="srv6-h2">
-      <div class="c6">
-        <div class="sec-header6 sg">
-          <div>
-            <h2 class="eyebrow6 si" id="srv6-h2">House Cleaning Services in Melbourne</h2>
-            <p class="h6 si" data-d="l" aria-hidden="true">
-              Everything your<br /><span class="ac">home needs</span>
-            </p>
-          </div>
-          <p class="lead6 si" data-d="r">
-            Every service delivered by trained, insured professionals. Book a
-            one-off or set up a recurring schedule — we make it easy either way.
-          </p>
-        </div>
-
-        <div class="srv6-grid sg">
-          <div class="srv6-card cs si">
-            <div class="srv6-card-blur"></div>
-            <div class="srv6-ico-ring" aria-hidden="true">🏠</div>
-            <div class="srv6-name">Standard Cleaning</div>
-            <div class="srv6-price">From <strong>$120</strong> per visit</div>
-            <p class="srv6-desc">
-              Vacuuming, mopping, kitchen benches and appliance surfaces, full
-              bathroom clean, general dusting and tidying. The complete circuit,
-              done properly every time.
-            </p>
-            <a href={withBase("services")} class="srv6-link">View checklist →</a
-            >
-          </div>
-
-          <div class="srv6-card cd si">
-            <div class="srv6-card-blur"></div>
-            <div class="srv6-ico-ring" aria-hidden="true">🔍</div>
-            <div class="srv6-name">Deep Cleaning</div>
-            <div class="srv6-price">From <strong>$220</strong> per visit</div>
-            <p class="srv6-desc">
-              A full top-to-bottom reset. Grout lines, appliance interiors,
-              skirting boards, inside cupboards, every corner. Ideal after
-              illness, before a big event, or as a quarterly reset.
-            </p>
-            <a href={withBase("services")} class="srv6-link">View checklist →</a
-            >
-          </div>
-
-          <div class="srv6-card ceol si">
-            <div class="srv6-card-blur"></div>
-            <div class="srv6-badge" aria-label="Bond guaranteed">
-              100% Bond Guarantee
-            </div>
-            <div class="srv6-ico-ring" aria-hidden="true">📋</div>
-            <div class="srv6-name">End of Lease</div>
-            <div class="srv6-price">From <strong>$299</strong></div>
-            <p class="srv6-desc">
-              Aligned to the REIV inspection standard. 100% bond-back rate. If
-              your agent flags anything, we return within 72 hours at no cost —
-              guaranteed.
-            </p>
-            <a href="#eol6" class="srv6-link">Learn more ↓</a>
-          </div>
-
-          <div class="srv6-card cmi si">
-            <div class="srv6-card-blur"></div>
-            <div class="srv6-ico-ring" aria-hidden="true">📦</div>
-            <div class="srv6-name">Move In Cleaning</div>
-            <div class="srv6-price">From <strong>$180</strong></div>
-            <p class="srv6-desc">
-              Start your new home completely fresh before a single box is
-              unpacked. We handle any leftovers from previous tenants so you can
-              settle in straight away.
-            </p>
-            <a href={withBase("services")} class="srv6-link">View checklist →</a
-            >
-          </div>
-
-          <div class="srv6-card ccp si">
-            <div class="srv6-card-blur"></div>
-            <div class="srv6-ico-ring" aria-hidden="true">🧹</div>
-            <div class="srv6-name">Carpet Cleaning</div>
-            <div class="srv6-price">From <strong>$99</strong></div>
-            <p class="srv6-desc">
-              Professional hot water extraction that lifts deep-set stains,
-              allergens, and odours. Carpets are dry within hours and come up
-              genuinely clean — not just surface-treated.
-            </p>
-            <a href={withBase("services/carpet-cleaning")} class="srv6-link">View checklist →</a
-            >
-          </div>
-
-          <div class="srv6-card cex si">
-            <div class="srv6-card-blur"></div>
-            <div class="srv6-ico-ring" aria-hidden="true">➕</div>
-            <div class="srv6-name">Extras & Add-Ons</div>
-            <div class="srv6-price">Custom pricing</div>
-            <p class="srv6-desc">
-              Add individual extras to any booking: oven, fridge, windows,
-              blinds, balcony. You choose exactly what you need — we price it
-              accordingly. No bundled packages you don't want.
-            </p>
-            <a href={withBase("pricing")} class="srv6-link"
-              >See add-on prices →</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─ RECURRING CLEANING ──────────────────────── -->
-    <section id="rec6" class="pad" aria-labelledby="rec6-h2">
-      <div class="c6">
-        <div
-          class="sg"
-          style="text-align: center; margin-bottom: 3.5rem; max-width: 600px; margin-left: auto; margin-right: auto;"
-        >
-          <h2 class="eyebrow6 si" id="rec6-h2">Regular House Cleaning Melbourne</h2>
-            <p class="h6 si" aria-hidden="true">
-            Set it and forget it. Save with frequency.
-          </p>
-          <p class="lead6 si" style="margin-top: 0.75rem;">
-            Choose your frequency and we do the rest. The same trusted cleaner,
-            every time — who learns your home and your preferences.
-          </p>
-        </div>
-
-        <div class="rec6-grid sg">
-          <!-- Card 1: Weekly -->
-          <div class="rec6-card popular si">
-            <div class="rec6-popular-tag">Best Value</div>
-            <div class="rec6-freq-badge" aria-hidden="true">📅</div>
-            <div class="rec6-name">Weekly</div>
-            <div class="rec6-save">Save 15%</div>
-            <div class="rec6-price-wrap">
-              <div class="rec6-price">~$161</div>
-              <div class="rec6-price-sub">per visit</div>
-            </div>
-            <div class="rec6-incl-divider"></div>
-            <div class="rec6-bullet">Priority fixed day</div>
-            <div class="rec6-bullet">Same cleaner weekly</div>
-            <div class="rec6-bullet">Perfect for busy homes</div>
-          </div>
-
-          <!-- Card 2: Fortnightly -->
-          <div class="rec6-card popular si">
-            <div class="rec6-popular-tag">Most Popular</div>
-            <div class="rec6-freq-badge" aria-hidden="true">🗓️</div>
-            <div class="rec6-name">Fortnightly</div>
-            <div class="rec6-save">Save 10%</div>
-            <div class="rec6-price-wrap">
-              <div class="rec6-price">~$170</div>
-              <div class="rec6-price-sub">per visit</div>
-            </div>
-            <div class="rec6-incl-divider"></div>
-            <div class="rec6-bullet">Consistent maintenance</div>
-            <div class="rec6-bullet">Same cleaner assigned</div>
-            <div class="rec6-bullet">Great balance of cost</div>
-          </div>
-
-          <!-- Card 3: 3 Weekly -->
-          <div class="rec6-card si">
-            <div class="rec6-freq-badge" aria-hidden="true">🔄</div>
-            <div class="rec6-name">3 Weekly</div>
-            <div class="rec6-save">Save 5%</div>
-            <div class="rec6-price-wrap">
-              <div class="rec6-price">~$179</div>
-              <div class="rec6-price-sub">per visit</div>
-            </div>
-            <div class="rec6-incl-divider"></div>
-            <div class="rec6-bullet">Mid-month refreshes</div>
-            <div class="rec6-bullet">Flexible scheduling</div>
-            <div class="rec6-bullet">Ideal for low-traffic homes</div>
-          </div>
-
-          <!-- Card 4: Monthly -->
-          <div class="rec6-card monthly si">
-            <div class="rec6-freq-badge" aria-hidden="true">📆</div>
-            <div class="rec6-name">Monthly</div>
-            <div class="rec6-save">Standard Rate</div>
-            <div class="rec6-price-wrap">
-              <div class="rec6-price">~$189</div>
-              <div class="rec6-price-sub">per visit</div>
-            </div>
-            <div class="rec6-incl-divider"></div>
-            <div class="rec6-bullet">Deep reset clean</div>
-            <div class="rec6-bullet">Easy date changes</div>
-            <div class="rec6-bullet">No contract, pause anytime</div>
-          </div>
-        </div>
-
-        <div class="rec6-layout-bottom sg">
-          <!-- Left: benefits list -->
-          <div class="rec6-benefits si" data-d="l">
-            <div class="rec6-benefit">
-              <div class="rec6-benefit-ico">👤</div>
-              <div class="rec6-benefit-text">
-                <strong>Same cleaner, every visit</strong>
-                <p>
-                  We assign the same person to your home so they know your
-                  layout, preferences, and details.
-                </p>
-              </div>
-            </div>
-            <div class="rec6-benefit">
-              <div class="rec6-benefit-ico">📌</div>
-              <div class="rec6-benefit-text">
-                <strong>Priority scheduling</strong>
-                <p>
-                  Recurring clients get first access to preferred time slots and
-                  emergency availability.
-                </p>
-              </div>
-            </div>
-            <div class="rec6-benefit">
-              <div class="rec6-benefit-ico">🔄</div>
-              <div class="rec6-benefit-text">
-                <strong>Cancel or pause anytime</strong>
-                <p>
-                  No lock-in contracts. Pause for holidays or reschedule with 24
-                  hours notice.
-                </p>
-              </div>
-            </div>
-            <div class="rec6-benefit">
-              <div class="rec6-benefit-ico">🌿</div>
-              <div class="rec6-benefit-text">
-                <strong>Eco-safe products</strong>
-                <p>
-                  Safe for your children, your pets, and the planet. No harsh
-                  chemical residues.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right: Client Testimonial Box -->
-          <div
-            class="si"
-            data-d="r"
-            style="display:flex; flex-direction:column; gap:1.25rem;"
-          >
-            <div class="rec6-right-info">
-              <div class="rec6-right-info-title">
-                💛 What our recurring clients say
-              </div>
-              <p class="rec6-right-info-quote">
-                "I've had the same cleaner for 18 months. She knows our home
-                better than some guests. Couldn't imagine going back to doing it
-                ourselves."
-              </p>
-              <p class="rec6-right-info-author">
-                — Tom R., Brunswick · Weekly for 18 months
-              </p>
-            </div>
-            <div
-              class="sg"
-              style="margin-top:0.75rem; display:flex; gap:0.75rem; flex-wrap:wrap;"
-            >
-              <a href="#calc6" class="btn6-primary si" id="rec6-cta"
-                >Set up recurring →</a
-              >
-              <a href="tel:+61399990000" class="btn6-outline si"
-                >Talk to us first</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─ HOW IT WORKS ────────────────────────────── -->
-    <section id="how6" class="pad" aria-labelledby="how6-h2">
-      <div class="c6">
-        <div class="sec-header6 sg">
-          <div>
-            <h2 class="eyebrow6 si" id="how6-h2">How to book a house cleaner in Melbourne</h2>
-            <p class="h6 si" data-d="l" aria-hidden="true">
-              Simple from<br /><span class="ac">start to finish</span>
-            </p>
-          </div>
-          <p class="lead6 si" data-d="r">
-            No lengthy forms. No confusing quotes. Just tell us about your home,
-            pick a time, and we take care of everything.
-          </p>
-        </div>
-
-        <div class="how6-steps sg">
-          <div class="how6-step si">
-            <div class="how6-ico-wrap" aria-hidden="true">
-              📅
-              <span class="how6-step-num" aria-hidden="true">1</span>
-            </div>
-            <h3 class="how6-title">Book online</h3>
-            <p class="how6-desc">
-              Use our calculator to get an instant price. Pick your date and
-              time — takes under 60 seconds. No phone call needed.
-            </p>
-          </div>
-
-          <div class="how6-step si">
-            <div class="how6-ico-wrap" aria-hidden="true">
-              💬
-              <span class="how6-step-num" aria-hidden="true">2</span>
-            </div>
-            <h3 class="how6-title">We confirm instantly</h3>
-            <p class="how6-desc">
-              You'll receive an SMS confirmation with your cleaner's name and
-              arrival window. We contact you the evening before to confirm.
-            </p>
-          </div>
-
-          <div class="how6-step si">
-            <div class="how6-ico-wrap" aria-hidden="true">
-              🏠
-              <span class="how6-step-num" aria-hidden="true">3</span>
-            </div>
-            <h3 class="how6-title">We arrive, you relax</h3>
-            <p class="how6-desc">
-              Your cleaner arrives on time with all equipment. You don't need to
-              be home — just leave access. We follow your checklist every time.
-            </p>
-          </div>
-
-          <div class="how6-step si">
-            <div class="how6-ico-wrap" aria-hidden="true">
-              ✨
-              <span class="how6-step-num" aria-hidden="true">4</span>
-            </div>
-            <h3 class="how6-title">Spotless home</h3>
-            <p class="how6-desc">
-              We send you a message when we're done. If anything falls short of
-              your expectations, we return within 24 hours — at no charge.
-            </p>
-          </div>
-        </div>
-
-        <div class="how6-cta sg">
-          <a href="#calc6" class="btn6-primary si">Book your first clean →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─ TESTIMONIALS ────────────────────────────── -->
-    <section id="tst6" class="pad" aria-labelledby="tst6-h2">
-      <div class="c6">
-        <div class="sec-header6 sg">
-          <div>
-            <h2 class="eyebrow6 si" id="tst6-h2">What Melbourne Homeowners say about Maid At Home</h2>
-            <p class="h6 si" data-d="l" aria-hidden="true">
-              What Melbourne<br /><span class="ac">families say</span>
-            </p>
-          </div>
-          <p class="lead6 si" data-d="r">
-            All reviews are sourced directly from our Google Business Profile
-            and verified by Google. We haven't written a single one.<br />
-            <a href="#" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.25rem; color: var(--blue); font-size: 0.88rem; font-weight: 700; text-decoration: none; margin-top: 0.5rem; transition: gap 0.2s;" onmouseover="this.style.gap='0.45rem'" onmouseout="this.style.gap='0.25rem'">
-              Verify reviews on our Google Profile &rarr;
-            </a>
-          </p>
-        </div>
-
-        <div class="tst6-grid sg">
-          {
-            selectedReviews.map((review) => (
-              <div class="tst6-card si">
-                <div class="tst6-google-bar">
-                  <span class="tst6-gicon" aria-label="Google">Google Review</span>
-                  <span class="tst6-verified" aria-label="Verified by Google"
-                    >✓ Verified</span
-                  >
-                </div>
-                <div class="tst6-stars" aria-label="5 stars">★★★★★</div>
-                <p class="tst6-text">
-                  {review.text}
-                </p>
-                <div class="tst6-author">
-                  <div>
-                    <div class="tst6-name">{review.name}</div>
-                    <div class="tst6-meta">{review.meta}</div>
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <!-- ─ MEET THE TEAM SECTION ───────────────────── -->
-    <section id="team6" class="pad" aria-labelledby="team6-h2">
-      <div class="c6">
-        <div class="sec-header6 sg" style="margin-bottom: 3.5rem;">
-          <div>
-            <h2 class="eyebrow6 si" id="team6-h2">Our Team</h2>
-            <p class="h6 si" data-d="l" aria-hidden="true">
-              Real people.<br /><span class="ac">Stunning results.</span>
-            </p>
-          </div>
-          <p class="lead6 si" data-d="r">
-            We are not a tech agency. We employ, train, and support real people
-            in Melbourne suburbs to deliver consistent house cleaning quality.
-          </p>
-        </div>
-
-        <div class="team6-grid sg">
-          <!-- Card 1: Pau (Founder) -->
-          <div class="team6-card si">
-            <div class="team6-img">
-              <ResponsiveImage
-                src={founderPau}
-                alt="Pau - Founder of Maid at Home"
-                widths={[220, 320, 420]}
-                sizes="(max-width: 768px) 220px, 320px"
-                width={320}
-                height={320}
-                loading="lazy"
-              />
-            </div>
-            <div class="team6-body">
-              <div class="team6-role">Founder & Operations</div>
-              <div class="team6-name">Pau R.</div>
-              <div class="team6-desc">
-                Pau started Maid at Home to bring transparent, high-quality,
-                pet-friendly cleaning to Melbourne. He oversees bookings and
-                operations while Mia supervises.
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 2: Stefania (Co-Founder) -->
-          <div class="team6-card si">
-            <div class="team6-img">
-              <ResponsiveImage
-                src={founderStefania}
-                alt="Stefania - Co-Founder of Maid at Home"
-                widths={[220, 320, 420]}
-                sizes="(max-width: 768px) 220px, 320px"
-                width={320}
-                height={320}
-                loading="lazy"
-              />
-            </div>
-            <div class="team6-body">
-              <div class="team6-role">Co-Founder & Experience</div>
-              <div class="team6-name">Stefania M.</div>
-              <div class="team6-desc">
-                Stefania leads our customer experience and guarantees all
-                cleaning products we use are 100% non-toxic, eco-friendly, and
-                safe for Melbourne's furry residents.
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3: Mia (The Cat) -->
-          <div class="team6-card si">
-            <div class="team6-img">
-              <ResponsiveImage
-                src={miaTheCat}
-                alt="Mia - Chief Happiness Officer of Maid at Home"
-                widths={[220, 320, 420]}
-                sizes="(max-width: 768px) 220px, 320px"
-                width={320}
-                height={320}
-                loading="lazy"
-              />
-            </div>
-            <div class="team6-body">
-              <div class="team6-role">Chief Happiness Officer</div>
-              <div class="team6-name">Mia</div>
-              <div class="team6-desc">
-                Our pet-friendly ambassador. Mia specializes in testing the
-                cleanliness of freshly vacuumed floors and finding the absolute
-                best sunny spots to nap.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─ END OF LEASE ────────────────────────────── -->
-    <section id="eol6" class="pad" aria-labelledby="eol6-h2">
-      <div class="eol6-premium-accent" aria-hidden="true"></div>
-
-      <div class="c6">
-        <div class="eol6-layout sg">
-          <!-- Left: checklist -->
-          <div class="eol6-left" data-d="l">
-            <!-- Visual strip showing real work and quality results -->
-            <div class="eol6-visual-strip">
-              <div class="eol6-strip-img">
-                <ResponsiveImage
-                  src={beforeStoveSmall}
-                  alt="Before End of Lease Cleaning Stove reset"
-                  widths={[240, 360, 560]}
-                  sizes="(max-width: 768px) 45vw, 280px"
-                  width={560}
-                  height={560}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span>Before Clean</span>
-              </div>
-              <div class="eol6-strip-img">
-                <ResponsiveImage
-                  src={afterStoveSmall}
-                  alt="After End of Lease Cleaning Stove reset"
-                  widths={[240, 360, 560]}
-                  sizes="(max-width: 768px) 45vw, 280px"
-                  width={560}
-                  height={560}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span>After Clean (Spotless)</span>
-              </div>
-            </div>
-
-            <div class="eol6-checklist-card">
-              <h2 class="eyebrow6 si" id="eol6-h2">End of lease cleaning melbourne</h2>
-            <p class="h6 si" data-d="l" aria-hidden="true">
-                Get your full<br /><span class="ac">bond back.</span>
-              </p>
-              <p class="lead6 si" data-d="l" style="margin-top:0.75rem; margin-bottom:2rem;">
-                Our end of lease service is aligned to real estate inspection
-                checklists. Every item covered, documented, and guaranteed.
-              </p>
-
-              <div class="eol6-checklist-header">🍳 Kitchen</div>
-              <div class="eol6-checks">
-                {
-                  [
-                    "Oven interior, racks & trays",
-                    "Rangehood, filters & grease",
-                    "Stovetop — all burners & grates",
-                    "Sink, taps & basin",
-                    "Benchtops & splashback",
-                    "Cabinets — inside and out",
-                    "Dishwasher interior",
-                  ].map((i) => (
-                    <div class="eol6-check-item">
-                      <span class="eol6-check-ico" aria-hidden="true">
-                        ✓
-                      </span>
-                      {i}
-                    </div>
-                  ))
-                }
-              </div>
-
-              <div class="eol6-checklist-header">🚿 Bathrooms & Laundry</div>
-              <div class="eol6-checks">
-                {
-                  [
-                    "Shower screens & enclosure",
-                    "Tiles — cleaned & desoiled",
-                    "Grout lines",
-                    "Toilet — bowl, seat & cistern",
-                    "Vanity, sink & mirror",
-                    "Exhaust fans",
-                    "Laundry basin & tubs",
-                  ].map((i) => (
-                    <div class="eol6-check-item">
-                      <span class="eol6-check-ico" aria-hidden="true">
-                        ✓
-                      </span>
-                      {i}
-                    </div>
-                  ))
-                }
-              </div>
-
-              <div class="eol6-checklist-header">🏠 All Rooms & General</div>
-              <div class="eol6-checks">
-                {
-                  [
-                    "Floors — vacuumed & mopped",
-                    "Skirting boards & cornices",
-                    "Light switches & power points",
-                    "Door frames & handles",
-                    "Window tracks & sills",
-                    "Windows (interior)",
-                    "Blinds & curtain rails",
-                    "Walls — spot cleaned",
-                    "Wardrobe interiors",
-                    "Air conditioning filters",
-                  ].map((i) => (
-                    <div class="eol6-check-item">
-                      <span class="eol6-check-ico" aria-hidden="true">
-                        ✓
-                      </span>
-                      {i}
-                    </div>
-                  ))
-                }
-              </div>
-
-              <div class="eol6-reiv" role="note">
-                <strong>Aligned to REIV inspection standards.</strong> Our checklist
-                is built from the same criteria used by Melbourne real estate agents
-                — so there are no surprises on inspection day.
-              </div>
-            </div>
-          </div>
-
-          <!-- Right: price + guarantee dashboard -->
-          <div class="eol6-right si" data-d="r">
-            <div class="eol6-price-card">
-              <div class="eol6-from">Starting from</div>
-              <div class="eol6-price-big"><sup>$</sup>299</div>
-              <div class="eol6-price-note">
-                Final price based on property size. Use the calculator below for
-                your exact quote.
-              </div>
-              <div class="eol6-divider"></div>
-              <ul
-                class="eol6-incl"
-                style="padding-left:1.1rem; list-style-type: disc;"
-              >
-                <li>Full REIV inspection checklist</li>
-                <li>All equipment and eco-safe products supplied</li>
-                <li>72-hour re-clean guarantee included</li>
-                <li>Certificate of completion available on request</li>
-              </ul>
-            </div>
-
-            <!-- Guarantee box — the star of this section -->
-            <div
-              class="eol6-guarantee-card"
-              role="note"
-              aria-label="Our bond-back guarantee"
-            >
-              <div class="eol6-g-eyebrow">Our Guarantee</div>
-              <div class="eol6-g-title">100% Bond-Back.<br />Every time.</div>
-              <div class="eol6-g-items">
-                <div class="eol6-g-item">
-                  <span class="eol6-g-check" aria-hidden="true">✓</span>
-                  Agent flags something? We return within 72 hours.
-                </div>
-                <div class="eol6-g-item">
-                  <span class="eol6-g-check" aria-hidden="true">✓</span>
-                  Re-clean is completely free — no conditions.
-                </div>
-                <div class="eol6-g-item">
-                  <span class="eol6-g-check" aria-hidden="true">✓</span>
-                  We've maintained a 100% bond-back success rate.
-                </div>
-              </div>
-              <div class="eol6-quote">
-                <p class="eol6-quote-text">
-                  "The agent said it was the cleanest handover she'd ever seen.
-                  Full bond back, no dispute."
-                </p>
-                <div class="eol6-quote-by">
-                  — Emma S., Prahran · ★★★★★ Google Review
-                </div>
-              </div>
-            </div>
-
-            <div class="eol6-cta-wrap">
-              <a
-                href="#calc6"
-                class="btn6-primary"
-                id="eol6-main-cta"
-                style="width:100%; justify-content:center; padding:1.1rem;"
-              >
-                Get your end of lease quote →
-              </a>
-              <div class="eol6-urgency" role="note">
-                <span aria-hidden="true">⏰</span>
-                <span
-                  >Book at least <strong>48 hours before</strong> your inspection
-                  for guaranteed availability.</span
-                >
-              </div>
-              <a
-                href="tel:+61399990000"
-                class="btn6-outline"
-                style="width:100%; justify-content:center;"
-                >Or call us: (03) 9999 0000</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─ CALCULATOR ──────────────────────────────── -->
-    <section id="calc6" class="pad" aria-labelledby="calc6-h2">
-      <div class="c6">
-        <div class="calc6-layout sg">
-          <!-- Left -->
-          <div class="calc6-left" data-d="l">
-            <h2 class="eyebrow6 si" id="calc6-h2">House cleaning cost in Melbourne</h2>
-            <p class="h6 si" data-d="l" aria-hidden="true">
-              Your honest price<br /><span class="ac">in 30 seconds</span>
-            </p>
-            <p class="lead6 si" data-d="l" style="margin-bottom:2rem;">
-              No hidden fees. No follow-up call needed. Select your service and
-              home size — and get an accurate price right now.
+            <p class="h6-display" aria-hidden="true">
+              <span class="h6-line"><span>Cleaning homes.</span></span>
+              <span class="h6-line em"><span>Improving lives.</span></span>
             </p>
 
-            <div class="calc6-trustpoints">
-              {
-                [
-                  ["📋", "Price confirmed at booking — no surprises"],
-                  ["🔄", "Recurring discounts applied automatically"],
-                  ["🌿", "All products and equipment supplied"],
-                  ["✅", "Satisfaction guarantee on every clean"],
-                  ["📱", "Book instantly — confirmation in minutes"],
-                ].map(([ico, txt]) => (
-                  <div class="calc6-tp">
-                    <span class="calc6-tp-ico" aria-hidden="true">
-                      {ico}
-                    </span>
-                    <span>{txt}</span>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-
-          <!-- Right: Calculator Card -->
-          <div class="calc6-card si" data-d="r">
-            <!-- Service tabs -->
-            <div class="calc6-tabs" role="tablist" aria-label="Service type">
-              <button
-                class="calc6-tab on"
-                role="tab"
-                aria-selected="true"
-                id="c6-std"
-                data-svc="standard">Standard</button
-              >
-              <button
-                class="calc6-tab"
-                role="tab"
-                aria-selected="false"
-                id="c6-deep"
-                data-svc="deep">Deep Clean</button
-              >
-              <button
-                class="calc6-tab"
-                role="tab"
-                aria-selected="false"
-                id="c6-eol"
-                data-svc="eol">End of Lease</button
-              >
-              <button
-                class="calc6-tab"
-                role="tab"
-                aria-selected="false"
-                id="c6-mi"
-                data-svc="movein">Move In</button
-              >
-            </div>
-
-            <div class="calc6-body">
-              <!-- Bedroom + Bathroom steppers -->
-              <div class="calc6-row">
-                <div class="calc6-group">
-                  <label class="calc6-lbl" id="c6-bed-lbl">Bedrooms</label>
-                  <div
-                    class="calc6-stepper"
-                    role="group"
-                    aria-labelledby="c6-bed-lbl"
-                  >
-                    <button
-                      class="calc6-sbtn"
-                      id="c6-bed-m"
-                      aria-label="Fewer bedrooms">−</button
-                    >
-                    <div class="calc6-sval" id="c6-bed-v" aria-live="polite">
-                      2
-                    </div>
-                    <button
-                      class="calc6-sbtn"
-                      id="c6-bed-p"
-                      aria-label="More bedrooms">+</button
-                    >
-                  </div>
-                </div>
-                <div class="calc6-group">
-                  <label class="calc6-lbl" id="c6-bath-lbl">Bathrooms</label>
-                  <div
-                    class="calc6-stepper"
-                    role="group"
-                    aria-labelledby="c6-bath-lbl"
-                  >
-                    <button
-                      class="calc6-sbtn"
-                      id="c6-bath-m"
-                      aria-label="Fewer bathrooms">−</button
-                    >
-                    <div class="calc6-sval" id="c6-bath-v" aria-live="polite">
-                      1
-                    </div>
-                    <button
-                      class="calc6-sbtn"
-                      id="c6-bath-p"
-                      aria-label="More bathrooms">+</button
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <!-- Frequency options -->
-              <div class="calc6-group" style="margin-bottom:1.5rem;">
-                <label class="calc6-lbl">Frequency</label>
-                <div
-                  class="calc6-freq"
-                  id="c6-freq"
-                  role="group"
-                  aria-label="Cleaning frequency"
-                >
-                  <button class="calc6-fopt on" data-freq="once"
-                    >One-off<small>No discount</small></button
-                  >
-                  <button class="calc6-fopt" data-freq="weekly"
-                    >Weekly / Fortnightly<small>Save 10%</small></button
-                  >
-                  <button class="calc6-fopt" data-freq="monthly"
-                    >3 Weekly / Monthly<small>Save 5%</small></button
-                  >
-                </div>
-              </div>
-
-              <!-- Result -->
-              <div
-                class="calc6-result"
-                aria-live="polite"
-                aria-label="Estimated price"
-              >
-                <div class="calc6-result-top">
-                  <div>
-                    <div class="calc6-price-lbl">Your estimated price</div>
-                    <div class="calc6-price" id="c6-price"><sup>$</sup>155</div>
-                    <div class="calc6-price-note">
-                      All taxes & equipment included
-                    </div>
-                  </div>
-                </div>
-
-                <div class="calc6-includes" id="c6-includes">
-                  <!-- JS generated checklist -->
-                </div>
-
-                <div class="calc6-book-row">
-                  <a
-                    href={withBase("pricing")}
-                    class="btn6-book"
-                    id="calc6-book-btn">Book Clean Now</a
-                  >
-                  <a href="tel:+61399990000" class="btn6-call"
-                    >Or call (03) 9999 0000</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─ COVERAGE ────────────────────────────────── -->
-    <section id="cov6" class="pad" aria-labelledby="cov6-h2">
-      <div class="c6">
-        <div class="cov6-layout sg">
-          <div>
-            <h2 class="eyebrow6 si" id="cov6-h2">House cleaning servicess across Melbourne</h2>
-            <p class="h6 si" data-d="l" aria-hidden="true">
-              All across<br /><span class="ac">Melbourne</span>
+            <p class="h6-sub">
+              Maid At Home provides police-checked, fully insured house cleaners
+              for regular home cleaning, deep cleaning, end of lease cleaning,
+              and carpet cleaning. We offer same-day quotes, flexible
+              scheduling, and reliable service designed to fit around busy
+              Melbourne households.
             </p>
-            <p class="lead6 si" data-d="l" style="margin-bottom:1.75rem;">
-              From the CBD to the outer suburbs. No travel surcharges — flat
-              pricing across our entire coverage zone.
-            </p>
-              <div class="suburb-chips" role="list" aria-label="Suburbs served">
-                {
-                  Object.values(suburbsData).map((subEntry) => (
-                    <a
-                      href={withBase(`areas/${subEntry.slug}`)}
-                      class="s-chip"
-                      style="text-decoration:none;"
-                      role="listitem"
-                    >
-                      {subEntry.name}
-                    </a>
-                  ))
-                }
-              </div>
-            <p style="font-size:0.85rem; color:var(--grey); margin-top:1.5rem;">
-              Don't see your suburb? <a
-                href="tel:+61399990000"
-                style="color:var(--blue); font-weight:700; text-decoration:none;"
-                >Call us</a
-              > — we likely cover it.
-            </p>
-          </div>
-          <div class="si" data-d="r">
-            <div class="cov6-img">
-              <ResponsiveImage
-                src={melbourneSuburbAerial}
-                alt="Aerial view of Melbourne suburbs"
-                widths={[320, 480, 720]}
-                sizes="(max-width: 768px) 320px, 480px"
-                width={480}
-                height={480}
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ─ FAQ ─────────────────────────────────────── -->
-    <section id="faq6" class="pad" aria-labelledby="faq6-h2">
-      <div class="c6">
-        <div class="faq6-layout">
-          <div class="sg">
-            <div>
-              <h2 class="eyebrow6 si" id="faq6-h2">Frequently asked questions</h2>
-            <p class="h6 si" data-d="l" aria-hidden="true">
-                Questions<br /><span class="ac">answered</span>
-              </p>
-            </div>
-            <p class="lead6 si" data-d="l" style="margin-bottom:1.75rem;">
-              If your question isn't here, just call — a real person picks up.
-            </p>
-            <div class="compact-contact-card si" style="padding:2rem 2.25rem;background:var(--white);border-radius:20px;border:1px solid var(--border-subtle);width:fit-content;max-width:100%;margin-top:2rem;display:flex;flex-direction:column;gap:1.1rem;box-shadow:var(--shadow-sm);">
-              <a href="https://wa.me/61399990000" class="compact-card-line" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.8rem;font-size:0.88rem;line-height:1.2;color:var(--blue);font-weight:700;text-decoration:none;transition:opacity 0.2s;">
-                <span class="compact-card-icon" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex-shrink:0;">
-                  <svg viewBox="0 0 24 24" width="18" height="18">
-                    <path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.76.46 3.473 1.33 4.982L2 22l5.204-1.365a9.948 9.948 0 004.808 1.229h.005c5.504 0 9.983-4.482 9.983-9.988C22.003 6.482 17.518 2 12.012 2z" fill="#25D366"/>
-                    <path d="M16.924 14.15c-.27-.136-1.593-.785-1.84-.875-.246-.09-.426-.136-.606.136-.18.27-.7.876-.856 1.056-.158.18-.316.204-.586.068a7.382 7.382 0 01-2.176-1.343c-.856-.763-1.434-1.705-1.602-1.977-.168-.27-.018-.417.117-.551.121-.122.27-.317.406-.475.135-.158.18-.27.27-.452.09-.18.045-.339-.022-.475-.068-.136-.607-1.462-.832-2.004-.22-.528-.44-.457-.606-.466-.156-.008-.337-.01-.517-.01a1.002 1.002 0 00-.72.339c-.247.27-.945.927-.945 2.261 0 1.333.97 2.624 1.105 2.805.135.18 1.9 2.901 4.604 4.07.643.278 1.145.443 1.536.568.647.206 1.235.176 1.7.107.518-.078 1.593-.65 1.819-1.278.225-.628.225-1.167.157-1.278-.067-.113-.247-.18-.517-.316z" fill="#FFF"/>
-                  </svg>
-                </span>
-                <span>(03) 9999 0000</span>
-              </a>
-              <a href="mailto:hello@maidathome.com.au" class="compact-card-line" style="display:inline-flex;align-items:center;gap:0.8rem;font-size:0.88rem;line-height:1.2;color:var(--blue);font-weight:700;text-decoration:none;transition:opacity 0.2s;">
-                <span class="compact-card-icon" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex-shrink:0;">
-                  <svg viewBox="0 0 24 24" width="18" height="18">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                    <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                  </svg>
-                </span>
-                <span>hello@maidathome.com.au</span>
-              </a>
-            </div>
-          </div>
-          <div class="faq6-list sg" role="list">
-            {
-              [
-                [
-                  "Do I need to be home during the clean?",
-                  "Not at all. Most clients aren't home. Leave a key, use a lockbox, or let us in before heading out. We send a notification when we arrive and again when we're finished.",
-                ],
-                [
-                  "Do you bring your own supplies?",
-                  "Yes. Your cleaner arrives fully equipped with professional tools and eco-safe products. If you prefer a specific product for a surface, just note it at booking.",
-                ],
-                [
-                  "Can I get the same cleaner every time?",
-                  "Absolutely — and we strongly encourage it. We assign the same cleaner to your recurring bookings wherever possible. Familiarity with your home produces better results.",
-                ],
-                [
-                  "How do recurring discounts work?",
-                  "Weekly cleans receive 15% off, fortnightly cleans receive 10% off. Discounts are applied automatically when you select a recurring frequency — no codes needed.",
-                ],
-                [
-                  "What if something is missed or I'm not happy?",
-                  "We return within 24 hours and address any issue at no charge. No arguments, no conditions. That's our satisfaction guarantee.",
-                ],
-                [
-                  "What's covered in the end of lease clean?",
-                  "The full REIV inspection checklist: every room, oven, bathrooms, windows, blinds, and more. See the full list in the End of Lease section above.",
-                ],
-                [
-                  "How do I cancel or pause a recurring booking?",
-                  "Contact us at any time. Cancel or pause with 24 hours notice at no charge. No lock-in contracts — we earn your continued business by doing great work.",
-                ],
-              ].map((item, i) => (
-                <div class="faq6-item si" role="listitem">
-                  <button
-                    class="faq6-q"
-                    aria-expanded="false"
-                    id={`faq6-q-${i}`}
-                    aria-controls={`faq6-a-${i}`}
-                  >
-                    {item[0]}
-                    <span class="faq6-ico" aria-hidden="true">
-                      +
-                    </span>
-                  </button>
-                  <div
-                    class="faq6-a"
-                    id={`faq6-a-${i}`}
-                    role="region"
-                    aria-labelledby={`faq6-q-${i}`}
-                  >
-                    {item[1]}
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─ FINAL CTA ───────────────────────────────── -->
-    <section id="cta6" class="cta-white" aria-labelledby="cta6-h2">
-      <div class="c6">
-        <div class="cta6-grid sg">
-          <div class="cta6-left">
-            <div>
-              <h2 class="eyebrow6 si" id="cta6-h2">Ready to start?</h2>
-            <p class="h6 si" data-d="l" aria-hidden="true">
-                A cleaner home<br /><span class="ac">starts today.</span>
-              </p>
-            </div>
-            <p class="cta6-sub si" data-d="l">
-              Join 2,400 Melbourne households who've handed off the cleaning —
-              and never looked back.
-            </p>
-            <div class="cta6-actions sg">
-              <a href="#calc6" class="btn6-primary si" id="cta6-book">
+            <div class="h6-actions">
+              <a href="#calc6" class="btn6-primary" id="hero6-book">
                 Get an instant quote
                 <svg
                   width="13"
@@ -4100,31 +3075,1234 @@ const withBase = (path: string) => {
                     stroke-linejoin="round"></path></svg
                 >
               </a>
-              <a href="tel:+61399990000" class="btn6-outline si" id="cta6-call"
-                >Talk to us first</a
-              >
+              <a href="tel:+61399990000" class="btn6-ghost">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 13 13"
+                  fill="none"
+                  aria-hidden="true"
+                  ><path
+                    d="M11.5 8.8L9.2 7.9 8.3 8.8C7 8.3 4.7 6 4.2 4.7l.9-.9L4.2 1.5 1.5 1C1 2 1 3.3 1.9 5c1.4 2.7 3.4 4.7 6 6 1.7.9 3 .9 3.9.4l-.3-2.6z"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path></svg
+                >
+                (03) 9999 0000
+              </a>
             </div>
-            <div class="cta6-trust si">
-              <span class="cta6-trust-item">No lock-in contracts</span>
-              <span class="cta6-trust-item">Cancel anytime</span>
-              <span class="cta6-trust-item">Satisfaction guaranteed</span>
+
+            <div class="h6-trust">
+              <div class="h6-trust-item">
+                <span class="h6-trust-check" aria-hidden="true">✓</span> Police checked
+              </div>
+              <div class="h6-trust-item">
+                <span class="h6-trust-check" aria-hidden="true">✓</span> Fully insured
+              </div>
+              <div class="h6-trust-item">
+                <span class="h6-trust-check" aria-hidden="true">✓</span> Satisfaction
+                guarantee
+              </div>
             </div>
           </div>
-          <div class="cta6-right" aria-hidden="true">
-            <ResponsiveImage
-              src={brightCleanLivingRoom}
-              alt=""
-              widths={[320, 480, 640]}
-              sizes="(max-width: 768px) 320px, 480px"
-              width={480}
-              height={480}
-              loading="lazy"
-            />
+
+          <div class="h6-visual" aria-hidden="true">
+            <div class="h6-photo-bg"></div>
+            <div class="h6-photo-frame">
+              <ResponsiveImage
+                src={cleanerPortraitHeroSmall}
+                alt="Friendly Maid at Home cleaner"
+                widths={[320, 420, 510]}
+                sizes="(max-width: 768px) 320px, 510px"
+                width={510}
+                height={510}
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+              />
+            </div>
+            <div class="h6-badge">
+              <div class="h6-badge-stars">★★★★★</div>
+              <div class="h6-badge-quote">
+                "Spotless every time. We've used them for 2 years."
+              </div>
+              <div class="h6-badge-meta">— Sarah M., South Yarra</div>
+            </div>
+            <div class="h6-rating-chip">
+              <span>4.9★</span> Google · 340+ reviews
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
+      <!-- ─ SECTION NAV ───────────────────────────── -->
+      <nav id="home-nav" aria-label="Home sections">
+        <div class="pnav-inner">
+          <a href="#srv6" class="pnav-link active">Services</a>
+          <a href="#rec6" class="pnav-link">Recurring</a>
+          <a href="#how6" class="pnav-link">How It Works</a>
+          <a href="#tst6" class="pnav-link">Reviews</a>
+          <a href="#team6" class="pnav-link">Team</a>
+          <a href="#eol6" class="pnav-link">End of Lease</a>
+          <a href="#faq6" class="pnav-link">FAQ</a>
+        </div>
+      </nav>
+
+      <!-- ─ SERVICES ────────────────────────────────── -->
+      <section id="srv6" class="pad" aria-labelledby="srv6-h2">
+        <div class="c6">
+          <div class="sec-header6 sg">
+            <div>
+              <h2 class="eyebrow6 si" id="srv6-h2">
+                House Cleaning Services in Melbourne
+              </h2>
+              <p class="h6 si" data-d="l" aria-hidden="true">
+                Everything your<br /><span class="ac">home needs</span>
+              </p>
+            </div>
+            <p class="lead6 si" data-d="r">
+              Every service is delivered by trained, police-checked and fully
+              insured professionals across Melbourne. Whether you need a one-off
+              deep clean or a recurring weekly schedule, we’ve made the booking
+              process simple, flexible, and reliable.
+            </p>
+          </div>
+
+          <div class="srv6-grid sg">
+            <div class="srv6-card cs si">
+              <div class="srv6-card-blur"></div>
+              <div class="srv6-ico-ring" aria-hidden="true">🏠</div>
+              <div class="srv6-name">Standard Cleaning</div>
+              <div class="srv6-price">From <strong>$120</strong> per visit</div>
+              <p class="srv6-desc">
+                Vacuuming, mopping, kitchen benches and appliance surfaces, full
+                bathroom clean, general dusting and tidying. The complete
+                circuit, done properly every time.
+              </p>
+              <a href={withBase("services")} class="srv6-link"
+                >View checklist →</a
+              >
+            </div>
+
+            <div class="srv6-card cd si">
+              <div class="srv6-card-blur"></div>
+              <div class="srv6-ico-ring" aria-hidden="true">🔍</div>
+              <div class="srv6-name">Deep Cleaning</div>
+              <div class="srv6-price">From <strong>$220</strong> per visit</div>
+              <p class="srv6-desc">
+                A full top-to-bottom reset. Grout lines, appliance interiors,
+                skirting boards, inside cupboards, every corner. Ideal after
+                illness, before a big event, or as a quarterly reset.
+              </p>
+              <a href={withBase("services")} class="srv6-link"
+                >View checklist →</a
+              >
+            </div>
+
+            <div class="srv6-card ceol si">
+              <div class="srv6-card-blur"></div>
+              <div class="srv6-badge" aria-label="Bond guaranteed">
+                100% Bond Guarantee
+              </div>
+              <div class="srv6-ico-ring" aria-hidden="true">📋</div>
+              <div class="srv6-name">End of Lease</div>
+              <div class="srv6-price">From <strong>$299</strong></div>
+              <p class="srv6-desc">
+                Aligned to the REIV inspection standard. 100% bond-back rate. If
+                your agent flags anything, we return within 72 hours at no cost
+                — guaranteed.
+              </p>
+              <a href="#eol6" class="srv6-link">Learn more ↓</a>
+            </div>
+
+            <div class="srv6-card cmi si">
+              <div class="srv6-card-blur"></div>
+              <div class="srv6-ico-ring" aria-hidden="true">📦</div>
+              <div class="srv6-name">Move In Cleaning</div>
+              <div class="srv6-price">From <strong>$180</strong></div>
+              <p class="srv6-desc">
+                Start your new home completely fresh before a single box is
+                unpacked. We handle any leftovers from previous tenants so you
+                can settle in straight away.
+              </p>
+              <a href={withBase("services")} class="srv6-link"
+                >View checklist →</a
+              >
+            </div>
+
+            <div class="srv6-card ccp si">
+              <div class="srv6-card-blur"></div>
+              <div class="srv6-ico-ring" aria-hidden="true">🧹</div>
+              <div class="srv6-name">Carpet Cleaning</div>
+              <div class="srv6-price">From <strong>$99</strong></div>
+              <p class="srv6-desc">
+                Professional hot water extraction that lifts deep-set stains,
+                allergens, and odours. Carpets are dry within hours and come up
+                genuinely clean — not just surface-treated.
+              </p>
+              <a href={withBase("services/carpet-cleaning")} class="srv6-link"
+                >View checklist →</a
+              >
+            </div>
+
+            <div class="srv6-card cex si">
+              <div class="srv6-card-blur"></div>
+              <div class="srv6-ico-ring" aria-hidden="true">➕</div>
+              <div class="srv6-name">Extras & Add-Ons</div>
+              <div class="srv6-price">Custom pricing</div>
+              <p class="srv6-desc">
+                Add individual extras to any booking: oven, fridge, windows,
+                blinds, balcony. You choose exactly what you need — we price it
+                accordingly. No bundled packages you don't want.
+              </p>
+              <a href={withBase("pricing")} class="srv6-link"
+                >See add-on prices →</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ RECURRING CLEANING ──────────────────────── -->
+      <section id="rec6" class="pad" aria-labelledby="rec6-h2">
+        <div class="c6">
+          <div
+            class="sg"
+            style="text-align: center; margin-bottom: 3.5rem; max-width: 600px; margin-left: auto; margin-right: auto;"
+          >
+            <h2 class="eyebrow6 si" id="rec6-h2">
+              Regular House Cleaning Melbourne
+            </h2>
+            <p class="h6 si" aria-hidden="true">
+              Save up to 10% with <span class="ac">recurring cleans.</span>
+            </p>
+            <p
+              class="lead6 si"
+              style="margin-top: 0.75rem; margin-left: auto; margin-right: auto;"
+            >
+              Choose a cleaning frequency that works for you. You’ll be matched
+              with the same trusted Melbourne cleaner every time, offering a
+              personalised service that evolves with your home.
+            </p>
+          </div>
+
+          <div class="rec6-grid sg">
+            <!-- Card 1: Weekly -->
+            <div class="rec6-card popular si">
+              <div class="rec6-popular-tag">Best Value</div>
+              <div class="rec6-freq-badge" aria-hidden="true">📅</div>
+              <div class="rec6-name">Weekly</div>
+              <div class="rec6-save">Save 15%</div>
+              <div class="rec6-price-wrap">
+                <div class="rec6-price">~$161</div>
+                <div class="rec6-price-sub">per visit</div>
+              </div>
+              <div class="rec6-incl-divider"></div>
+              <div class="rec6-bullet">Priority fixed day</div>
+              <div class="rec6-bullet">Same cleaner weekly</div>
+              <div class="rec6-bullet">Perfect for busy homes</div>
+            </div>
+
+            <!-- Card 2: Fortnightly -->
+            <div class="rec6-card popular si">
+              <div class="rec6-popular-tag">Most Popular</div>
+              <div class="rec6-freq-badge" aria-hidden="true">🗓️</div>
+              <div class="rec6-name">Fortnightly</div>
+              <div class="rec6-save">Save 10%</div>
+              <div class="rec6-price-wrap">
+                <div class="rec6-price">~$170</div>
+                <div class="rec6-price-sub">per visit</div>
+              </div>
+              <div class="rec6-incl-divider"></div>
+              <div class="rec6-bullet">Consistent maintenance</div>
+              <div class="rec6-bullet">Same cleaner assigned</div>
+              <div class="rec6-bullet">Great balance of cost</div>
+            </div>
+
+            <!-- Card 3: 3 Weekly -->
+            <div class="rec6-card si">
+              <div class="rec6-freq-badge" aria-hidden="true">🔄</div>
+              <div class="rec6-name">3 Weekly</div>
+              <div class="rec6-save">Save 5%</div>
+              <div class="rec6-price-wrap">
+                <div class="rec6-price">~$179</div>
+                <div class="rec6-price-sub">per visit</div>
+              </div>
+              <div class="rec6-incl-divider"></div>
+              <div class="rec6-bullet">Mid-month refreshes</div>
+              <div class="rec6-bullet">Flexible scheduling</div>
+              <div class="rec6-bullet">Ideal for low-traffic homes</div>
+            </div>
+
+            <!-- Card 4: Monthly -->
+            <div class="rec6-card monthly si">
+              <div class="rec6-freq-badge" aria-hidden="true">📆</div>
+              <div class="rec6-name">Monthly</div>
+              <div class="rec6-save">Standard Rate</div>
+              <div class="rec6-price-wrap">
+                <div class="rec6-price">~$189</div>
+                <div class="rec6-price-sub">per visit</div>
+              </div>
+              <div class="rec6-incl-divider"></div>
+              <div class="rec6-bullet">Deep reset clean</div>
+              <div class="rec6-bullet">Easy date changes</div>
+              <div class="rec6-bullet">No contract, pause anytime</div>
+            </div>
+          </div>
+
+          <div class="rec6-layout-bottom sg">
+            <!-- Left: benefits list -->
+            <div class="rec6-benefits si" data-d="l">
+              <div class="rec6-benefit">
+                <div class="rec6-benefit-ico">👤</div>
+                <div class="rec6-benefit-text">
+                  <strong>Same cleaner, every visit</strong>
+                  <p>
+                    We assign the same person to your home so they know your
+                    layout, preferences, and details.
+                  </p>
+                </div>
+              </div>
+              <div class="rec6-benefit">
+                <div class="rec6-benefit-ico">📌</div>
+                <div class="rec6-benefit-text">
+                  <strong>Priority scheduling</strong>
+                  <p>
+                    Recurring clients get first access to preferred time slots
+                    and emergency availability.
+                  </p>
+                </div>
+              </div>
+              <div class="rec6-benefit">
+                <div class="rec6-benefit-ico">🔄</div>
+                <div class="rec6-benefit-text">
+                  <strong>Cancel or pause anytime</strong>
+                  <p>
+                    No lock-in contracts. Pause for holidays or reschedule with
+                    24 hours notice.
+                  </p>
+                </div>
+              </div>
+              <div class="rec6-benefit">
+                <div class="rec6-benefit-ico">🌿</div>
+                <div class="rec6-benefit-text">
+                  <strong>Eco-safe products</strong>
+                  <p>
+                    Safe for your children, your pets, and the planet. No harsh
+                    chemical residues.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Client Testimonial Box -->
+            <div
+              class="si"
+              data-d="r"
+              style="display:flex; flex-direction:column; gap:1.25rem;"
+            >
+              <div class="rec6-right-info">
+                <div class="rec6-right-info-title">
+                  💛 What our recurring clients say
+                </div>
+                <p class="rec6-right-info-quote">
+                  "I've had the same cleaner for 18 months. She knows our home
+                  better than some guests. Couldn't imagine going back to doing
+                  it ourselves."
+                </p>
+                <p class="rec6-right-info-author">
+                  — Tom R., Brunswick · Weekly for 18 months
+                </p>
+              </div>
+              <div
+                class="sg"
+                style="margin-top:0.75rem; display:flex; gap:0.75rem; flex-wrap:wrap;"
+              >
+                <a href="#calc6" class="btn6-primary si" id="rec6-cta"
+                  >Set up recurring →</a
+                >
+                <a href="tel:+61399990000" class="btn6-outline si"
+                  >Talk to us first</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ HOW IT WORKS ────────────────────────────── -->
+      <section id="how6" class="pad" aria-labelledby="how6-h2">
+        <div class="c6">
+          <div class="sec-header6 sg">
+            <div>
+              <h2 class="eyebrow6 si" id="how6-h2">
+                How to book a house cleaner in Melbourne
+              </h2>
+              <p class="h6 si" data-d="l" aria-hidden="true">
+                Simple from<br /><span class="ac">start to finish</span>
+              </p>
+            </div>
+            <p class="lead6 si" data-d="r">
+              Booking your house cleaning in Melbourne is simple: no lengthy
+              forms or confusing quotes. Just tell us about your home, pick a
+              time that suits your schedule, and our professional team takes
+              care of the rest.
+            </p>
+          </div>
+
+          <div class="how6-steps sg">
+            <div class="how6-step si">
+              <div class="how6-ico-wrap" aria-hidden="true">
+                📅
+                <span class="how6-step-num" aria-hidden="true">1</span>
+              </div>
+              <h3 class="how6-title">Book online</h3>
+              <p class="how6-desc">
+                Use our calculator to get an instant price. Pick your date and
+                time — takes under 60 seconds. No phone call needed.
+              </p>
+            </div>
+
+            <div class="how6-step si">
+              <div class="how6-ico-wrap" aria-hidden="true">
+                💬
+                <span class="how6-step-num" aria-hidden="true">2</span>
+              </div>
+              <h3 class="how6-title">We confirm instantly</h3>
+              <p class="how6-desc">
+                You'll receive an SMS confirmation with your cleaner's name and
+                arrival window. We contact you the evening before to confirm.
+              </p>
+            </div>
+
+            <div class="how6-step si">
+              <div class="how6-ico-wrap" aria-hidden="true">
+                🏠
+                <span class="how6-step-num" aria-hidden="true">3</span>
+              </div>
+              <h3 class="how6-title">We arrive, you relax</h3>
+              <p class="how6-desc">
+                Your cleaner arrives on time with all equipment. You don't need
+                to be home — just leave access. We follow your checklist every
+                time.
+              </p>
+            </div>
+
+            <div class="how6-step si">
+              <div class="how6-ico-wrap" aria-hidden="true">
+                ✨
+                <span class="how6-step-num" aria-hidden="true">4</span>
+              </div>
+              <h3 class="how6-title">Spotless home</h3>
+              <p class="how6-desc">
+                We send you a message when we're done. If anything falls short
+                of your expectations, we return within 24 hours — at no charge.
+              </p>
+            </div>
+          </div>
+
+          <div class="how6-cta sg">
+            <a href="#calc6" class="btn6-primary si">Book your first clean →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ TESTIMONIALS ────────────────────────────── -->
+      <section id="tst6" class="pad" aria-labelledby="tst6-h2">
+        <div class="c6">
+          <div class="sec-header6 sg">
+            <div>
+              <h2 class="eyebrow6 si" id="tst6-h2">
+                What Melbourne Homeowners say about Maid At Home
+              </h2>
+              <p class="h6 si" data-d="l" aria-hidden="true">
+                What Melbourne<br /><span class="ac">families say</span>
+              </p>
+            </div>
+            <p class="lead6 si" data-d="r">
+              Read genuine feedback from our clients across Melbourne. Every
+              review is sourced directly from our Google Business Profile and
+              verified by Google, ensuring 100% transparency and authentic
+              experiences from real homes.<br />
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="display: inline-flex; align-items: center; gap: 0.25rem; color: var(--blue); font-size: 0.88rem; font-weight: 700; text-decoration: none; margin-top: 0.5rem; transition: gap 0.2s;"
+                onmouseover="this.style.gap='0.45rem'"
+                onmouseout="this.style.gap='0.25rem'"
+              >
+                Verify reviews on our Google Business Profile &rarr;
+              </a>
+            </p>
+          </div>
+
+          <div class="tst6-grid sg">
+            {
+              selectedReviews.map((review) => (
+                <div class="tst6-card si">
+                  <div class="tst6-google-bar">
+                    <span class="tst6-gicon" aria-label="Google">
+                      Google Review
+                    </span>
+                    <span class="tst6-verified" aria-label="Verified by Google">
+                      ✓ Verified
+                    </span>
+                  </div>
+                  <div class="tst6-stars" aria-label="5 stars">
+                    ★★★★★
+                  </div>
+                  <p class="tst6-text">{review.text}</p>
+                  <div class="tst6-author">
+                    <div>
+                      <div class="tst6-name">{review.name}</div>
+                      <div class="tst6-meta">{review.meta}</div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ MEET THE TEAM SECTION ───────────────────── -->
+      <section id="team6" class="pad" aria-labelledby="team6-h2">
+        <div class="c6">
+          <div class="sec-header6 sg" style="margin-bottom: 3.5rem;">
+            <div>
+              <h2 class="eyebrow6 si" id="team6-h2">Our Team</h2>
+              <p class="h6 si" data-d="l" aria-hidden="true">
+                Real people.<br /><span class="ac">Stunning results.</span>
+              </p>
+            </div>
+            <p class="lead6 si" data-d="r">
+              Our cleaners are local Melbourne experts who are fully trained,
+              police-checked, and supported by us. This local approach allows us
+              to deliver personalized home cleaning with a level of care and
+              consistency that only a dedicated team can provide.
+            </p>
+          </div>
+
+          <div class="team6-grid sg">
+            <!-- Card 1: Pau (Founder) -->
+            <div class="team6-card si">
+              <div class="team6-img">
+                <ResponsiveImage
+                  src={founderPau}
+                  alt="Pau - Founder of Maid at Home"
+                  widths={[220, 320, 420]}
+                  sizes="(max-width: 768px) 220px, 320px"
+                  width={320}
+                  height={320}
+                  loading="lazy"
+                />
+              </div>
+              <div class="team6-body">
+                <div class="team6-role">Founder & Operations</div>
+                <div class="team6-name">Pau R.</div>
+                <div class="team6-desc">
+                  Pau started Maid at Home to bring transparent, high-quality,
+                  pet-friendly cleaning to Melbourne. He oversees bookings and
+                  operations while Mia supervises.
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Stefania (Co-Founder) -->
+            <div class="team6-card si">
+              <div class="team6-img">
+                <ResponsiveImage
+                  src={founderStefania}
+                  alt="Stefania - Co-Founder of Maid at Home"
+                  widths={[220, 320, 420]}
+                  sizes="(max-width: 768px) 220px, 320px"
+                  width={320}
+                  height={320}
+                  loading="lazy"
+                />
+              </div>
+              <div class="team6-body">
+                <div class="team6-role">Co-Founder & Experience</div>
+                <div class="team6-name">Stefania M.</div>
+                <div class="team6-desc">
+                  Stefania leads our customer experience and guarantees all
+                  cleaning products we use are 100% non-toxic, eco-friendly, and
+                  safe for Melbourne's furry residents.
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Mia (The Cat) -->
+            <div class="team6-card si">
+              <div class="team6-img">
+                <ResponsiveImage
+                  src={miaTheCat}
+                  alt="Mia - Chief Happiness Officer of Maid at Home"
+                  widths={[220, 320, 420]}
+                  sizes="(max-width: 768px) 220px, 320px"
+                  width={320}
+                  height={320}
+                  loading="lazy"
+                />
+              </div>
+              <div class="team6-body">
+                <div class="team6-role">Chief Happiness Officer</div>
+                <div class="team6-name">Mia</div>
+                <div class="team6-desc">
+                  Our pet-friendly ambassador. Mia specializes in testing the
+                  cleanliness of freshly vacuumed floors and finding the
+                  absolute best sunny spots to nap.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ END OF LEASE ────────────────────────────── -->
+      <section id="eol6" class="pad" aria-labelledby="eol6-h2">
+        <div class="eol6-premium-accent" aria-hidden="true"></div>
+
+        <div class="c6">
+          <div class="eol6-layout sg">
+            <!-- Left: checklist -->
+            <div class="eol6-left" data-d="l">
+              <!-- Visual strip showing real work and quality results -->
+              <div class="eol6-visual-strip">
+                <div class="eol6-strip-img">
+                  <ResponsiveImage
+                    src={beforeStoveSmall}
+                    alt="Before End of Lease Cleaning Stove reset"
+                    widths={[240, 360, 560]}
+                    sizes="(max-width: 768px) 45vw, 280px"
+                    width={560}
+                    height={560}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span>Before Clean</span>
+                </div>
+                <div class="eol6-strip-img">
+                  <ResponsiveImage
+                    src={afterStoveSmall}
+                    alt="After End of Lease Cleaning Stove reset"
+                    widths={[240, 360, 560]}
+                    sizes="(max-width: 768px) 45vw, 280px"
+                    width={560}
+                    height={560}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span>After Clean (Spotless)</span>
+                </div>
+              </div>
+
+              <div class="eol6-checklist-card">
+                <h2 class="eyebrow6 si" id="eol6-h2">
+                  End of lease cleaning melbourne
+                </h2>
+                <p class="h6 si" data-d="l" aria-hidden="true">
+                  Get your full<br /><span class="ac">bond back.</span>
+                </p>
+                <p
+                  class="lead6 si"
+                  data-d="l"
+                  style="margin-top:0.75rem; margin-bottom:2rem;"
+                >
+                  Our End of Lease Cleaning in Melbourne is specifically
+                  designed to meet strict real estate inspection checklists. We
+                  ensure every item is covered, documented, and guaranteed to
+                  help you secure your bond refund without the stress.
+                </p>
+
+                <div class="eol6-checklist-header">🍳 Kitchen</div>
+                <div class="eol6-checks">
+                  {
+                    [
+                      "Oven interior, racks & trays",
+                      "Rangehood, filters & grease",
+                      "Stovetop — all burners & grates",
+                      "Sink, taps & basin",
+                      "Benchtops & splashback",
+                      "Cabinets — inside and out",
+                      "Dishwasher interior",
+                    ].map((i) => (
+                      <div class="eol6-check-item">
+                        <span class="eol6-check-ico" aria-hidden="true">
+                          ✓
+                        </span>
+                        {i}
+                      </div>
+                    ))
+                  }
+                </div>
+
+                <div class="eol6-checklist-header">🚿 Bathrooms & Laundry</div>
+                <div class="eol6-checks">
+                  {
+                    [
+                      "Shower screens & enclosure",
+                      "Tiles — cleaned & desoiled",
+                      "Grout lines",
+                      "Toilet — bowl, seat & cistern",
+                      "Vanity, sink & mirror",
+                      "Exhaust fans",
+                      "Laundry basin & tubs",
+                    ].map((i) => (
+                      <div class="eol6-check-item">
+                        <span class="eol6-check-ico" aria-hidden="true">
+                          ✓
+                        </span>
+                        {i}
+                      </div>
+                    ))
+                  }
+                </div>
+
+                <div class="eol6-checklist-header">🏠 All Rooms & General</div>
+                <div class="eol6-checks">
+                  {
+                    [
+                      "Floors — vacuumed & mopped",
+                      "Skirting boards & cornices",
+                      "Light switches & power points",
+                      "Door frames & handles",
+                      "Window tracks & sills",
+                      "Windows (interior)",
+                      "Blinds & curtain rails",
+                      "Walls — spot cleaned",
+                      "Wardrobe interiors",
+                      "Air conditioning filters",
+                    ].map((i) => (
+                      <div class="eol6-check-item">
+                        <span class="eol6-check-ico" aria-hidden="true">
+                          ✓
+                        </span>
+                        {i}
+                      </div>
+                    ))
+                  }
+                </div>
+
+                <div class="eol6-reiv" role="note">
+                  <strong>Aligned to REIV inspection standards.</strong> Our checklist
+                  is built from the same criteria used by Melbourne real estate agents
+                  — so there are no surprises on inspection day.
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: price + guarantee dashboard -->
+            <div class="eol6-right si" data-d="r">
+              <div class="eol6-price-card">
+                <div class="eol6-from">Starting from</div>
+                <div class="eol6-price-big"><sup>$</sup>299</div>
+                <div class="eol6-price-note">
+                  Final price based on property size. Use the calculator below
+                  for your exact quote.
+                </div>
+                <div class="eol6-divider"></div>
+                <ul
+                  class="eol6-incl"
+                  style="padding-left:1.1rem; list-style-type: disc;"
+                >
+                  <li>Full REIV inspection checklist</li>
+                  <li>All equipment and eco-safe products supplied</li>
+                  <li>72-hour re-clean guarantee included</li>
+                  <li>Certificate of completion available on request</li>
+                </ul>
+              </div>
+
+              <!-- Guarantee box — the star of this section -->
+              <div
+                class="eol6-guarantee-card"
+                role="note"
+                aria-label="Our bond-back guarantee"
+              >
+                <div class="eol6-g-eyebrow">Our Guarantee</div>
+                <div class="eol6-g-title">100% Bond-Back.<br />Every time.</div>
+                <div class="eol6-g-items">
+                  <div class="eol6-g-item">
+                    <span class="eol6-g-check" aria-hidden="true">✓</span>
+                    Agent flags something? We return within 72 hours.
+                  </div>
+                  <div class="eol6-g-item">
+                    <span class="eol6-g-check" aria-hidden="true">✓</span>
+                    Re-clean is completely free — no conditions.
+                  </div>
+                  <div class="eol6-g-item">
+                    <span class="eol6-g-check" aria-hidden="true">✓</span>
+                    We've maintained a 100% bond-back success rate.
+                  </div>
+                </div>
+                <div class="eol6-quote">
+                  <p class="eol6-quote-text">
+                    "The agent said it was the cleanest handover she'd ever
+                    seen. Full bond back, no dispute."
+                  </p>
+                  <div class="eol6-quote-by">
+                    — Emma S., Prahran · ★★★★★ Google Review
+                  </div>
+                </div>
+              </div>
+
+              <div class="eol6-cta-wrap">
+                <a
+                  href="#calc6"
+                  class="btn6-primary"
+                  id="eol6-main-cta"
+                  style="width:100%; justify-content:center; padding:1.1rem;"
+                >
+                  Get your end of lease quote →
+                </a>
+                <div class="eol6-urgency" role="note">
+                  <span aria-hidden="true">⏰</span>
+                  <span
+                    >Book at least <strong>48 hours before</strong> your inspection
+                    for guaranteed availability.</span
+                  >
+                </div>
+                <a
+                  href="tel:+61399990000"
+                  class="btn6-outline"
+                  style="width:100%; justify-content:center;"
+                  >Or call us: (03) 9999 0000</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ CALCULATOR ──────────────────────────────── -->
+      <section id="calc6" class="pad" aria-labelledby="calc6-h2">
+        <div class="c6">
+          <div class="calc6-layout sg">
+            <!-- Left -->
+            <div class="calc6-left" data-d="l">
+              <h2 class="eyebrow6 si" id="calc6-h2">
+                House cleaning cost in Melbourne
+              </h2>
+              <p class="h6 si" data-d="l" aria-hidden="true">
+                Your honest price<br /><span class="ac">in 30 seconds</span>
+              </p>
+              <p class="lead6 si" data-d="l" style="margin-bottom:2rem;">
+                Get an instant house cleaning quote in Melbourne with no hidden
+                fees and no follow-up calls required. Simply select your service
+                and home size to see an accurate, transparent price right now.
+              </p>
+
+              <div class="calc6-trustpoints">
+                {
+                  [
+                    ["📋", "Price confirmed at booking — no surprises"],
+                    ["🔄", "Recurring discounts applied automatically"],
+                    ["🌿", "All products and equipment supplied"],
+                    ["✅", "Satisfaction guarantee on every clean"],
+                    ["📱", "Book instantly — confirmation in minutes"],
+                  ].map(([ico, txt]) => (
+                    <div class="calc6-tp">
+                      <span class="calc6-tp-ico" aria-hidden="true">
+                        {ico}
+                      </span>
+                      <span>{txt}</span>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+
+            <!-- Right: Calculator Card -->
+            <div class="calc6-card si" data-d="r">
+              <!-- Service tabs -->
+              <div class="calc6-tabs" role="tablist" aria-label="Service type">
+                <button
+                  class="calc6-tab on"
+                  role="tab"
+                  aria-selected="true"
+                  id="c6-std"
+                  data-svc="standard">Standard</button
+                >
+                <button
+                  class="calc6-tab"
+                  role="tab"
+                  aria-selected="false"
+                  id="c6-deep"
+                  data-svc="deep">Deep Clean</button
+                >
+                <button
+                  class="calc6-tab"
+                  role="tab"
+                  aria-selected="false"
+                  id="c6-eol"
+                  data-svc="eol">End of Lease</button
+                >
+                <button
+                  class="calc6-tab"
+                  role="tab"
+                  aria-selected="false"
+                  id="c6-mi"
+                  data-svc="movein">Move In</button
+                >
+              </div>
+
+              <div class="calc6-body">
+                <!-- Bedroom + Bathroom steppers -->
+                <div class="calc6-row">
+                  <div class="calc6-group">
+                    <label class="calc6-lbl" id="c6-bed-lbl">Bedrooms</label>
+                    <div
+                      class="calc6-stepper"
+                      role="group"
+                      aria-labelledby="c6-bed-lbl"
+                    >
+                      <button
+                        class="calc6-sbtn"
+                        id="c6-bed-m"
+                        aria-label="Fewer bedrooms">−</button
+                      >
+                      <div class="calc6-sval" id="c6-bed-v" aria-live="polite">
+                        2
+                      </div>
+                      <button
+                        class="calc6-sbtn"
+                        id="c6-bed-p"
+                        aria-label="More bedrooms">+</button
+                      >
+                    </div>
+                  </div>
+                  <div class="calc6-group">
+                    <label class="calc6-lbl" id="c6-bath-lbl">Bathrooms</label>
+                    <div
+                      class="calc6-stepper"
+                      role="group"
+                      aria-labelledby="c6-bath-lbl"
+                    >
+                      <button
+                        class="calc6-sbtn"
+                        id="c6-bath-m"
+                        aria-label="Fewer bathrooms">−</button
+                      >
+                      <div class="calc6-sval" id="c6-bath-v" aria-live="polite">
+                        1
+                      </div>
+                      <button
+                        class="calc6-sbtn"
+                        id="c6-bath-p"
+                        aria-label="More bathrooms">+</button
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Frequency options -->
+                <div class="calc6-group" style="margin-bottom:1.5rem;">
+                  <label class="calc6-lbl">Frequency</label>
+                  <div
+                    class="calc6-freq"
+                    id="c6-freq"
+                    role="group"
+                    aria-label="Cleaning frequency"
+                  >
+                    <button class="calc6-fopt on" data-freq="once"
+                      >One-off<small>No discount</small></button
+                    >
+                    <button class="calc6-fopt" data-freq="weekly"
+                      >Weekly / Fortnightly<small>Save 10%</small></button
+                    >
+                    <button class="calc6-fopt" data-freq="monthly"
+                      >3 Weekly / Monthly<small>Save 5%</small></button
+                    >
+                  </div>
+                </div>
+
+                <!-- Result -->
+                <div
+                  class="calc6-result"
+                  aria-live="polite"
+                  aria-label="Estimated price"
+                >
+                  <div class="calc6-result-top">
+                    <div>
+                      <div class="calc6-price-lbl">Your estimated price</div>
+                      <div class="calc6-price" id="c6-price">
+                        <sup>$</sup>155
+                      </div>
+                      <div class="calc6-price-note">
+                        All taxes & equipment included
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="calc6-book-row">
+                    <a
+                      href={withBase("pricing")}
+                      class="btn6-book"
+                      id="calc6-book-btn">Book Clean Now</a
+                    >
+                    <a href="tel:+61399990000" class="btn6-call"
+                      >Or call (03) 9999 0000</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ COVERAGE ────────────────────────────────── -->
+      <section id="cov6" class="pad" aria-labelledby="cov6-h2">
+        <div class="c6">
+          <div class="cov6-layout sg">
+            <div>
+              <h2 class="eyebrow6 si" id="cov6-h2">
+                House cleaning servicess across Melbourne
+              </h2>
+              <p class="h6 si" data-d="l" aria-hidden="true">
+                All across<br /><span class="ac">Melbourne</span>
+              </p>
+              <p class="lead6 si" data-d="l" style="margin-bottom:1.75rem;">
+                Serving over 70 Melbourne suburbs with zero travel fees. Whether
+                you're in the CBD or the outer metro area, we offer consistent,
+                flat pricing for all our home cleaning services, making
+                professional help accessible across the city.
+              </p>
+              <div class="suburb-chips" role="list" aria-label="Suburbs served">
+                {
+                  Object.values(suburbsData).map((subEntry) => (
+                    <a
+                      href={withBase(`areas/${subEntry.slug}`)}
+                      class="s-chip"
+                      style="text-decoration:none;"
+                      role="listitem"
+                    >
+                      {subEntry.name}
+                    </a>
+                  ))
+                }
+              </div>
+              <p
+                style="font-size:0.85rem; color:var(--grey); margin-top:1.5rem;"
+              >
+                Don't see your suburb? <a
+                  href="tel:+61399990000"
+                  style="color:var(--blue); font-weight:700; text-decoration:none;"
+                  >Call us</a
+                > — we likely cover it.
+              </p>
+            </div>
+            <div class="si" data-d="r">
+              <div class="cov6-img">
+                <ResponsiveImage
+                  src={melbourneSuburbAerial}
+                  alt="Aerial view of Melbourne suburbs"
+                  widths={[320, 480, 720]}
+                  sizes="(max-width: 768px) 320px, 480px"
+                  width={480}
+                  height={480}
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ FAQ ─────────────────────────────────────── -->
+      <section id="faq6" class="pad" aria-labelledby="faq6-h2">
+        <div class="c6">
+          <div class="faq6-layout">
+            <div class="sg">
+              <div>
+                <h2 class="eyebrow6 si" id="faq6-h2">
+                  Frequently asked questions
+                </h2>
+                <p class="h6 si" data-d="l" aria-hidden="true">
+                  Questions<br /><span class="ac">answered</span>
+                </p>
+              </div>
+              <p class="lead6 si" data-d="l" style="margin-bottom:1.75rem;">
+                If your question isn't here, just call — a real person picks up.
+              </p>
+              <div
+                class="compact-contact-card si"
+                style="padding:2rem 2.25rem;background:var(--white);border-radius:20px;border:1px solid var(--border-subtle);width:fit-content;max-width:100%;margin-top:2rem;display:flex;flex-direction:column;gap:1.1rem;box-shadow:var(--shadow-sm);"
+              >
+                <a
+                  href="https://wa.me/61399990000"
+                  class="compact-card-line"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="display:inline-flex;align-items:center;gap:0.8rem;font-size:0.88rem;line-height:1.2;color:var(--blue);font-weight:700;text-decoration:none;transition:opacity 0.2s;"
+                >
+                  <span
+                    class="compact-card-icon"
+                    aria-hidden="true"
+                    style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex-shrink:0;"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                      <path
+                        d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.76.46 3.473 1.33 4.982L2 22l5.204-1.365a9.948 9.948 0 004.808 1.229h.005c5.504 0 9.983-4.482 9.983-9.988C22.003 6.482 17.518 2 12.012 2z"
+                        fill="#25D366"></path>
+                      <path
+                        d="M16.924 14.15c-.27-.136-1.593-.785-1.84-.875-.246-.09-.426-.136-.606.136-.18.27-.7.876-.856 1.056-.158.18-.316.204-.586.068a7.382 7.382 0 01-2.176-1.343c-.856-.763-1.434-1.705-1.602-1.977-.168-.27-.018-.417.117-.551.121-.122.27-.317.406-.475.135-.158.18-.27.27-.452.09-.18.045-.339-.022-.475-.068-.136-.607-1.462-.832-2.004-.22-.528-.44-.457-.606-.466-.156-.008-.337-.01-.517-.01a1.002 1.002 0 00-.72.339c-.247.27-.945.927-.945 2.261 0 1.333.97 2.624 1.105 2.805.135.18 1.9 2.901 4.604 4.07.643.278 1.145.443 1.536.568.647.206 1.235.176 1.7.107.518-.078 1.593-.65 1.819-1.278.225-.628.225-1.167.157-1.278-.067-.113-.247-.18-.517-.316z"
+                        fill="#FFF"></path>
+                    </svg>
+                  </span>
+                  <span>(03) 9999 0000</span>
+                </a>
+                <a
+                  href="mailto:hello@maidathome.com.au"
+                  class="compact-card-line"
+                  style="display:inline-flex;align-items:center;gap:0.8rem;font-size:0.88rem;line-height:1.2;color:var(--blue);font-weight:700;text-decoration:none;transition:opacity 0.2s;"
+                >
+                  <span
+                    class="compact-card-icon"
+                    aria-hidden="true"
+                    style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex-shrink:0;"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                      <path
+                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        fill="none"></path>
+                      <polyline
+                        points="22,6 12,13 2,6"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        fill="none"></polyline>
+                    </svg>
+                  </span>
+                  <span>hello@maidathome.com.au</span>
+                </a>
+              </div>
+            </div>
+            <div class="faq6-list sg" role="list">
+              {
+                [
+                  [
+                    "Do I need to be home during the clean?",
+                    "Not at all. Most clients aren't home. Leave a key, use a lockbox, or let us in before heading out. We send a notification when we arrive and again when we're finished.",
+                  ],
+                  [
+                    "Do you bring your own supplies?",
+                    "Yes. Your cleaner arrives fully equipped with professional tools and eco-safe products. If you prefer a specific product for a surface, just note it at booking.",
+                  ],
+                  [
+                    "Can I get the same cleaner every time?",
+                    "Absolutely — and we strongly encourage it. We assign the same cleaner to your recurring bookings wherever possible. Familiarity with your home produces better results.",
+                  ],
+                  [
+                    "How do recurring discounts work?",
+                    "Weekly cleans receive 15% off, fortnightly cleans receive 10% off. Discounts are applied automatically when you select a recurring frequency — no codes needed.",
+                  ],
+                  [
+                    "What if something is missed or I'm not happy?",
+                    "We return within 24 hours and address any issue at no charge. No arguments, no conditions. That's our satisfaction guarantee.",
+                  ],
+                  [
+                    "What's covered in the end of lease clean?",
+                    "The full REIV inspection checklist: every room, oven, bathrooms, windows, blinds, and more. See the full list in the End of Lease section above.",
+                  ],
+                  [
+                    "How do I cancel or pause a recurring booking?",
+                    "Contact us at any time. Cancel or pause with 24 hours notice at no charge. No lock-in contracts — we earn your continued business by doing great work.",
+                  ],
+                ].map((item, i) => (
+                  <div class="faq6-item si" role="listitem">
+                    <button
+                      class="faq6-q"
+                      aria-expanded="false"
+                      id={`faq6-q-${i}`}
+                      aria-controls={`faq6-a-${i}`}
+                    >
+                      {item[0]}
+                      <span class="faq6-ico" aria-hidden="true">
+                        +
+                      </span>
+                    </button>
+                    <div
+                      class="faq6-a"
+                      id={`faq6-a-${i}`}
+                      role="region"
+                      aria-labelledby={`faq6-q-${i}`}
+                    >
+                      {item[1]}
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ FINAL CTA ───────────────────────────────── -->
+      <section id="cta6" class="cta-white" aria-labelledby="cta6-h2">
+        <div class="c6">
+          <div class="cta6-grid sg">
+            <div class="cta6-left">
+              <div>
+                <h2 class="eyebrow6 si" id="cta6-h2">Ready to start?</h2>
+                <p class="h6 si" data-d="l" aria-hidden="true">
+                  A cleaner home<br /><span class="ac">starts today.</span>
+                </p>
+              </div>
+              <p class="cta6-sub si" data-d="l">
+                Join 2,400 Melbourne households who've handed off the cleaning —
+                and never looked back.
+              </p>
+              <div class="cta6-actions sg">
+                <a href="#calc6" class="btn6-primary si" id="cta6-book">
+                  Get an instant quote
+                  <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 13 13"
+                    fill="none"
+                    aria-hidden="true"
+                    ><path
+                      d="M2 6.5h9M7.5 2l4.5 4.5L7.5 11"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path></svg
+                  >
+                </a>
+                <a
+                  href="tel:+61399990000"
+                  class="btn6-outline si"
+                  id="cta6-call">Talk to us first</a
+                >
+              </div>
+              <div class="cta6-trust si">
+                <span class="cta6-trust-item">No lock-in contracts</span>
+                <span class="cta6-trust-item">Cancel anytime</span>
+                <span class="cta6-trust-item">Satisfaction guaranteed</span>
+              </div>
+            </div>
+            <div class="cta6-right" aria-hidden="true">
+              <ResponsiveImage
+                src={brightCleanLivingRoom}
+                alt=""
+                widths={[320, 480, 640]}
+                sizes="(max-width: 768px) 320px, 480px"
+                width={480}
+                height={480}
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- ─ FOOTER ──────────────────────────────────── -->
@@ -4135,9 +4313,15 @@ const withBase = (path: string) => {
       /* ─ HEADER ───────────────────────────────────── */
       const hd6 = document.getElementById("hd6");
       const pnavLinks = document.querySelectorAll(".pnav-link");
-      const pnavSections = ["srv6", "rec6", "how6", "tst6", "team6", "eol6", "faq6"].map(
-        (id) => document.getElementById(id),
-      );
+      const pnavSections = [
+        "srv6",
+        "rec6",
+        "how6",
+        "tst6",
+        "team6",
+        "eol6",
+        "faq6",
+      ].map((id) => document.getElementById(id));
       let pnavSectionOffsets = [];
       let lastActiveIndex = -1;
       let scrollTicking = false;
@@ -4145,7 +4329,9 @@ const withBase = (path: string) => {
 
       const measurePnavSections6 = () => {
         resizeTicking = false;
-        pnavSectionOffsets = pnavSections.map((sec) => (sec ? sec.offsetTop : 0));
+        pnavSectionOffsets = pnavSections.map((sec) =>
+          sec ? sec.offsetTop : 0,
+        );
       };
 
       const updateScrollUi6 = () => {
@@ -4164,7 +4350,9 @@ const withBase = (path: string) => {
 
         if (current === lastActiveIndex) return;
         lastActiveIndex = current;
-        pnavLinks.forEach((link, i) => link.classList.toggle("active", i === current));
+        pnavLinks.forEach((link, i) =>
+          link.classList.toggle("active", i === current),
+        );
       };
 
       const onScroll6 = () => {
@@ -4188,11 +4376,11 @@ const withBase = (path: string) => {
       measurePnavSections6();
       updateScrollUi6();
 
-            /* ─ MOBILE NAV / MENU ────────────────────────── */
+      /* ─ MOBILE NAV / MENU ────────────────────────── */
       const tog6 = document.getElementById("hd6Toggle");
       const mob6 = document.getElementById("hd6-mob");
       const cls6 = document.getElementById("hd6MobClose");
-      
+
       if (tog6 && mob6) {
         tog6.addEventListener("click", () => {
           const isOpen = mob6.classList.toggle("open");
@@ -4200,7 +4388,7 @@ const withBase = (path: string) => {
           tog6.setAttribute("aria-expanded", isOpen ? "true" : "false");
         });
       }
-      
+
       if (cls6 && mob6 && tog6) {
         cls6.addEventListener("click", () => {
           mob6.classList.remove("open");
@@ -4208,9 +4396,9 @@ const withBase = (path: string) => {
           tog6.setAttribute("aria-expanded", "false");
         });
       }
-      
+
       if (mob6) {
-        mob6.querySelectorAll("a").forEach(a => {
+        mob6.querySelectorAll("a").forEach((a) => {
           a.addEventListener("click", () => {
             mob6.classList.remove("open");
             if (hd6) hd6.classList.remove("menu-open");
@@ -4221,22 +4409,22 @@ const withBase = (path: string) => {
 
       /* ─ MOBILE DROPDOWN ACCORDION ────────────────── */
       if (mob6) {
-        mob6.querySelectorAll('.mob6-dropdown-toggle').forEach(btn => {
-          btn.addEventListener('click', (e) => {
+        mob6.querySelectorAll(".mob6-dropdown-toggle").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            const targetId = btn.getAttribute('data-target');
+            const targetId = btn.getAttribute("data-target");
             const submenu = document.getElementById(targetId);
             if (submenu) {
-              const isCollapsed = submenu.classList.contains('collapsed');
+              const isCollapsed = submenu.classList.contains("collapsed");
               if (isCollapsed) {
-                submenu.classList.remove('collapsed');
-                btn.classList.add('open');
-                btn.setAttribute('aria-expanded', 'true');
+                submenu.classList.remove("collapsed");
+                btn.classList.add("open");
+                btn.setAttribute("aria-expanded", "true");
               } else {
-                submenu.classList.add('collapsed');
-                btn.classList.remove('open');
-                btn.setAttribute('aria-expanded', 'false');
+                submenu.classList.add("collapsed");
+                btn.classList.remove("open");
+                btn.setAttribute("aria-expanded", "false");
               }
             }
           });
@@ -4299,40 +4487,6 @@ const withBase = (path: string) => {
       const BED = { standard: 35, deep: 50, eol: 65, movein: 40 };
       const BATH = { standard: 25, deep: 35, eol: 50, movein: 30 };
       const DISC = { once: 1, weekly: 0.9, monthly: 0.95 };
-      const INCL = {
-        standard: [
-          "All bedrooms",
-          "Living areas",
-          "Kitchen surfaces",
-          "Bathrooms",
-          "Vacuum & mop",
-          "Dusting",
-        ],
-        deep: [
-          "Everything in Standard",
-          "Oven interior",
-          "Fridge interior",
-          "Grout lines",
-          "Skirting boards",
-          "Windows (interior)",
-        ],
-        eol: [
-          "Full REIV checklist",
-          "Oven, range & cupboards",
-          "Bathrooms, tiles & grout",
-          "Floors & skirting boards",
-          "Windows & blinds",
-          "72h re-clean guarantee",
-        ],
-        movein: [
-          "Full REIV checklist",
-          "Oven, range & cupboards",
-          "Bathrooms, tiles & grout",
-          "Floors & skirting boards",
-          "Windows & blinds",
-          "72h re-clean guarantee",
-        ],
-      };
       let C6 = { svc: "standard", beds: 2, baths: 1, freq: "once" };
 
       function renderCalc6() {
@@ -4342,10 +4496,6 @@ const withBase = (path: string) => {
           (C6.baths - 1) * BATH[C6.svc];
         const price = Math.round(raw * DISC[C6.freq]);
         document.getElementById("c6-price").innerHTML = `<sup>$</sup>${price}`;
-        const el = document.getElementById("c6-includes");
-        el.innerHTML = INCL[C6.svc]
-          .map((i) => `<div class="calc6-incl-item">${i}</div>`)
-          .join("");
       }
 
       // Tabs
@@ -4399,8 +4549,3 @@ const withBase = (path: string) => {
     </script>
   </body>
 </html>
-
-
-
-
-
