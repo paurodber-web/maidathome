@@ -13,6 +13,7 @@
   <style>
     :root {
       --navy: #103c63;
+      --navy-dark: #082b49;
       --navy-2: #082b49;
       --blue: #25689c;
       --sky: #dcecf5;
@@ -296,7 +297,7 @@
     @media (max-width: 980px) {
       :root { --container: min(100% - 36px, 760px); }
       section { padding: 90px 0; }
-      .nav-links { position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; justify-content: center; gap: 28px; background: var(--navy-2); opacity: 0; visibility: hidden; transform: translateY(-15px); transition: .3s; }
+      .nav-links { position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; justify-content: center; gap: 28px; background: var(--navy-dark); opacity: 0; visibility: hidden; transform: translateY(-15px); transition: .3s; }
       .nav-links.open { opacity: 1; visibility: visible; transform: none; }
       .nav-links a:not(.nav-cta) { color: white; font-family: "Plus Jakarta Sans"; font-size: 1.35rem; }
       .menu-toggle { position: relative; z-index: 21; display: grid; }
