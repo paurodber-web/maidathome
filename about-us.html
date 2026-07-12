@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#103c63">
+  <meta name="description" content="Meet Maid At Home, the people and values behind trusted residential cleaning for Melbourne homes.">
+  <title>About Maid At Home | Our Story & Cleaning Team</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #103c63;
+      --navy-dark: #082b49;
+      --blue: #25689c;
+      --sky: #dcecf5;
+      --mist: #f1f6f8;
+      --paper: #fbfcfc;
+      --white: #fff;
+      --ink: #17324a;
+      --muted: #657586;
+      --line: #d7e1e7;
+      --beige: #eadbbd;
+      --beige-hover: #f2e5ca;
+      --shadow: 0 24px 60px rgba(16,60,99,.11);
+      --container: min(1160px, calc(100% - 48px));
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    @media (min-width: 981px) {
+      html { scrollbar-gutter: stable; }
+    }
+    html, body { overflow-x: hidden; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: "DM Sans", sans-serif; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    html.menu-open, body.menu-open { overflow: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; }
+    h1, h2, h3, h4 { margin: 0; font-family: "Plus Jakarta Sans", sans-serif; line-height: 1.12; letter-spacing: -.035em; }
+    p { margin: 0; }
+    section { position: relative; padding: 112px 0; }
+    .container { width: var(--container); margin-inline: auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; color: var(--blue); font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 29px; height: 1px; background: currentColor; }
+    .section-head { max-width: 680px; margin-bottom: 56px; }
+    .section-head h2 { font-size: clamp(2.05rem, 4vw, 3.45rem); text-wrap: balance; }
+    .section-head p { max-width: 580px; margin-top: 20px; color: var(--muted); font-size: 1.02rem; }
+    .section-head.split { display: grid; grid-template-columns: 1.08fr .8fr; max-width: none; gap: 90px; align-items: end; }
+    .section-head.split p { margin: 0 0 4px; }
+
+    .btn { display: inline-flex; min-height: 54px; align-items: center; justify-content: space-between; gap: 28px; padding: 6px 7px 6px 23px; border: 1px solid transparent; border-radius: 999px; background: var(--beige); color: var(--navy-dark); font-size: .91rem; font-weight: 700; cursor: pointer; transition: transform .25s ease, background .25s ease, box-shadow .25s ease; }
+    .btn:hover { transform: translateY(-2px); background: var(--beige-hover); box-shadow: 0 10px 24px rgba(8,43,73,.15); }
+    .btn:focus-visible, .menu-toggle:focus-visible { outline: 3px solid #f2c66c; outline-offset: 3px; }
+    .btn-circle { display: grid; width: 40px; height: 40px; flex: 0 0 40px; place-items: center; border-radius: 50%; background: var(--navy); color: white; transition: transform .25s; }
+    .btn:hover .btn-circle { transform: translateX(2px); }
+    .btn-circle svg { width: 17px; height: 17px; }
+    .btn-outline { border-color: rgba(255,255,255,.52); background: transparent; color: white; }
+    .btn-outline:hover { background: white; color: var(--navy-dark); }
+    .btn-outline .btn-circle { background: white; color: var(--navy); }
+
+    .site-header { position: relative; z-index: 10; background: white; }
+    .nav { height: 84px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: inline-flex; align-items: center; gap: 12px; font-family: "Plus Jakarta Sans"; font-size: 1.05rem; font-weight: 700; letter-spacing: -.02em; }
+    .logo-mark { position: relative; width: 32px; height: 32px; border: 1px solid #83a4ba; border-radius: 50% 50% 46% 54%; }
+    .logo-mark::before, .logo-mark::after { content: ""; position: absolute; background: var(--blue); border-radius: 100% 0 100% 0; transform: rotate(45deg); }
+    .logo-mark::before { width: 9px; height: 9px; left: 6px; top: 7px; }
+    .logo-mark::after { width: 6px; height: 6px; right: 6px; bottom: 6px; }
+    .nav-links { display: flex; align-items: center; gap: 31px; margin: 0; padding: 0; list-style: none; }
+    .nav-links a:not(.nav-cta) { position: relative; color: #435c70; font-size: .87rem; font-weight: 600; }
+    .nav-links a:not(.nav-cta)::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -8px; height: 1px; background: var(--blue); transition: right .25s; }
+    .nav-links a:not(.nav-cta):hover::after, .nav-links a[aria-current="page"]::after { right: 0; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 13px; padding: 7px 8px 7px 18px; border-radius: 999px; background: var(--navy); color: white; font-size: .85rem; font-weight: 700; }
+    .nav-cta span { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: var(--beige); color: var(--navy); }
+    .nav-cta svg { width: 14px; }
+    .menu-toggle { display: none; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: transparent; place-items: center; cursor: pointer; }
+    .menu-toggle span, .menu-toggle::before, .menu-toggle::after { content: ""; display: block; width: 18px; height: 1px; background: var(--navy); transition: .25s; grid-area: 1 / 1; }
+    .menu-toggle::before { transform: translateY(-5px); }
+    .menu-toggle::after { transform: translateY(5px); }
+
+    .page-masthead { padding: 0 0 68px; background: var(--mist); overflow: hidden; }
+    .masthead-rule { border-top: 1px solid var(--line); }
+    .breadcrumbs { display: flex; align-items: center; gap: 9px; padding-top: 30px; color: var(--muted); font-size: .75rem; font-weight: 600; }
+    .breadcrumbs a { transition: color .2s; }
+    .breadcrumbs a:hover { color: var(--blue); }
+    .breadcrumbs svg { width: 12px; color: #91a2af; }
+    .masthead-copy { display: grid; grid-template-columns: minmax(0, 1.28fr) minmax(260px, .72fr); gap: 90px; align-items: end; padding: 68px 0 58px; }
+    .masthead-copy .eyebrow { margin-bottom: 17px; }
+    .page-masthead h1 { max-width: 720px; font-size: clamp(2.5rem, 5vw, 4.45rem); text-wrap: balance; }
+    .masthead-intro { padding-bottom: 6px; }
+    .masthead-intro p { color: var(--muted); font-size: 1.03rem; }
+    .masthead-jump { display: inline-flex; align-items: center; gap: 9px; margin-top: 20px; color: var(--navy); font-size: .82rem; font-weight: 700; }
+    .masthead-jump span { display: grid; width: 29px; height: 29px; place-items: center; border: 1px solid #b7cad5; border-radius: 50%; transition: transform .25s, background .25s; }
+    .masthead-jump svg { width: 13px; }
+    .masthead-jump:hover span { transform: translateY(2px); background: white; }
+    .masthead-media { display: grid; grid-template-columns: minmax(0, 1.68fr) minmax(260px, .62fr); min-height: 345px; border-radius: 20px; overflow: hidden; background: var(--navy); box-shadow: var(--shadow); }
+    .masthead-photo { position: relative; min-height: 345px; overflow: hidden; }
+    .masthead-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 46%; transition: transform .8s ease; }
+    .masthead-media:hover .masthead-photo img { transform: scale(1.018); }
+    .masthead-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 70%, rgba(8,43,73,.18)); }
+    .masthead-aside { display: flex; flex-direction: column; justify-content: space-between; padding: 31px; color: white; }
+    .masthead-aside > span { color: var(--beige); font-size: .69rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+    .masthead-quote { margin: 55px 0 26px; font-family: "Plus Jakarta Sans"; font-size: 1.22rem; line-height: 1.48; letter-spacing: -.025em; }
+    .masthead-stat { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.18); }
+    .masthead-stat strong { font-family: "Plus Jakarta Sans"; font-size: 1.65rem; letter-spacing: -.04em; }
+    .masthead-stat small { max-width: 105px; color: rgba(255,255,255,.6); font-size: .66rem; line-height: 1.45; text-align: right; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .page-masthead .reveal { animation: heroReveal .8s cubic-bezier(.2,.7,.2,1) both; }
+    .page-masthead .r1 { animation-delay: .12s; } .page-masthead .r2 { animation-delay: .28s; } .page-masthead .r3 { animation-delay: .44s; }
+    @keyframes heroReveal { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: none; } }
+
+    .belief { padding: 76px 0; background: white; }
+    .belief-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 100px; align-items: center; }
+    .belief-label { display: flex; align-items: center; gap: 18px; color: var(--blue); font-size: .77rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .belief-label::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+    .belief blockquote { margin: 0; font-family: "Plus Jakarta Sans"; font-size: clamp(1.55rem, 3vw, 2.35rem); line-height: 1.38; letter-spacing: -.035em; }
+    .belief blockquote span { color: var(--blue); }
+
+    .story { background: var(--mist); overflow: hidden; }
+    .story::before { content: ""; position: absolute; width: 380px; height: 380px; top: 80px; right: -190px; border: 1px solid #d2e2e9; border-radius: 50%; }
+    .timeline { position: relative; display: grid; grid-template-columns: 1fr 1fr; column-gap: 88px; row-gap: 0; }
+    .timeline::before { content: ""; position: absolute; left: 50%; top: 18px; bottom: 18px; width: 1px; background: #bdd0da; }
+    .timeline-item { position: relative; min-height: 265px; padding: 15px 0 55px; }
+    .timeline-item:nth-child(odd) { grid-column: 1; padding-right: 20px; text-align: right; }
+    .timeline-item:nth-child(even) { grid-column: 2; padding-left: 20px; transform: translateY(130px); }
+    .timeline-item::after { content: ""; position: absolute; top: 19px; width: 13px; height: 13px; border: 4px solid var(--mist); border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 1px #a9c3d0; }
+    .timeline-item:nth-child(odd)::after { right: -51px; }
+    .timeline-item:nth-child(even)::after { left: -51px; }
+    .timeline-step { color: var(--blue); font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .timeline-item h3 { margin-top: 12px; font-size: 1.55rem; }
+    .timeline-item p { max-width: 440px; margin-top: 13px; color: var(--muted); font-size: .94rem; }
+    .timeline-item:nth-child(odd) p { margin-left: auto; }
+    .timeline-end { height: 125px; }
+
+    .numbers { padding: 0; background: var(--navy); color: white; }
+    .numbers-grid { display: grid; grid-template-columns: 1.2fr repeat(3, 1fr); }
+    .numbers-intro, .stat { min-height: 220px; display: flex; flex-direction: column; justify-content: center; padding: 38px; }
+    .numbers-intro { padding-left: 0; }
+    .numbers-intro .eyebrow { color: var(--beige); }
+    .numbers-intro h2 { max-width: 280px; font-size: 1.7rem; }
+    .stat { border-left: 1px solid rgba(255,255,255,.16); }
+    .stat strong { font-family: "Plus Jakarta Sans"; font-size: clamp(2.4rem, 4vw, 3.8rem); letter-spacing: -.06em; color: var(--beige); }
+    .stat span { margin-top: 5px; color: rgba(255,255,255,.68); font-size: .82rem; }
+
+    .team { background: white; }
+    .team-intro { display: grid; grid-template-columns: 1fr .68fr; gap: 85px; align-items: end; }
+    .team-intro .section-head { margin: 0; }
+    .team-note { padding: 23px; border-left: 2px solid var(--blue); background: var(--mist); color: var(--muted); font-size: .88rem; }
+    .team-note strong { color: var(--ink); }
+    .team-grid { display: grid; grid-template-columns: 1.1fr .9fr .9fr; gap: 15px; margin-top: 55px; }
+    .team-card { position: relative; min-height: 430px; border-radius: 19px; overflow: hidden; background: var(--sky); }
+    .team-card:first-child { min-height: 520px; }
+    .team-card img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.86); transition: transform .55s ease, filter .35s ease; }
+    .team-card:hover img { transform: scale(1.025); filter: saturate(1); }
+    .team-card::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(0deg, rgba(7,38,62,.9), transparent); }
+    .team-card-info { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 26px; color: white; }
+    .team-card h3 { font-size: 1.22rem; }
+    .team-card p { margin-top: 5px; color: rgba(255,255,255,.72); font-size: .78rem; }
+    .team-band { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; margin-top: 16px; padding: 37px; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); }
+    .team-band h3 { font-size: 1.35rem; }
+    .team-band p { color: var(--muted); font-size: .9rem; }
+
+    .standards { background: #edf5f8; }
+    .standards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .standard-card { min-height: 285px; display: flex; flex-direction: column; padding: 27px; border: 1px solid #cddfe7; border-radius: 17px; background: rgba(255,255,255,.73); transition: transform .25s, background .25s, box-shadow .25s; }
+    .standard-card:hover { transform: translateY(-4px); background: white; box-shadow: var(--shadow); }
+    .standard-icon { display: grid; width: 43px; height: 43px; place-items: center; border-radius: 50%; background: var(--sky); color: var(--navy); }
+    .standard-icon svg { width: 21px; }
+    .standard-card h3 { margin-top: auto; font-size: 1.15rem; }
+    .standard-card p { margin-top: 10px; color: var(--muted); font-size: .84rem; }
+
+    .care { padding: 0; background: white; }
+    .care-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 660px; }
+    .care-image { position: relative; }
+    .care-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .care-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 75%, white); }
+    .care-copy { display: flex; flex-direction: column; justify-content: center; padding: 90px max(24px, calc((100vw - 1160px)/2)) 90px 80px; }
+    .care-copy h2 { max-width: 540px; font-size: clamp(2rem, 4vw, 3.4rem); }
+    .care-copy > p { max-width: 520px; margin-top: 21px; color: var(--muted); }
+    .care-list { display: grid; gap: 16px; margin-top: 30px; }
+    .care-point { display: grid; grid-template-columns: 34px 1fr; gap: 13px; align-items: start; }
+    .care-point > span { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 50%; background: var(--sky); color: var(--blue); font-size: .72rem; font-weight: 700; }
+    .care-point strong { display: block; font-size: .91rem; }
+    .care-point p { margin-top: 3px; color: var(--muted); font-size: .79rem; }
+
+    .promise { background: var(--paper); }
+    .promise-inner { display: grid; grid-template-columns: .8fr 1.2fr; gap: 90px; align-items: start; }
+    .promise-copy { position: sticky; top: 110px; }
+    .promise-copy h2 { font-size: clamp(2.05rem, 4vw, 3.4rem); }
+    .promise-copy p { margin-top: 20px; color: var(--muted); }
+    .promise-list { border-top: 1px solid var(--line); }
+    .promise-row { display: grid; grid-template-columns: 60px 1fr; gap: 20px; padding: 29px 0; border-bottom: 1px solid var(--line); }
+    .promise-row > span { color: var(--blue); font-family: "Plus Jakarta Sans"; font-size: .78rem; font-weight: 700; }
+    .promise-row h3 { font-size: 1.18rem; }
+    .promise-row p { margin-top: 8px; color: var(--muted); font-size: .87rem; }
+
+    .final-cta { padding: 36px; background: var(--paper); }
+    .cta-inner { position: relative; min-height: 480px; display: grid; place-items: center; padding: 70px 24px; border-radius: 28px; color: white; text-align: center; overflow: hidden; isolation: isolate; }
+    .cta-inner::before { content: ""; position: absolute; inset: 0; z-index: -2; background: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=84') center / cover; }
+    .cta-inner::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(8,43,73,.77); }
+    .cta-content { max-width: 700px; }
+    .cta-content .eyebrow { color: var(--beige); }
+    .cta-content h2 { font-size: clamp(2.2rem, 5vw, 4.25rem); }
+    .cta-content p { max-width: 565px; margin: 21px auto 30px; color: rgba(255,255,255,.78); }
+    .cta-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 13px; }
+
+    footer { padding: 70px 0 28px; background: var(--navy-dark); color: white; }
+    footer .logo-mark { border-color: rgba(255,255,255,.6); }
+    footer .logo-mark::before, footer .logo-mark::after { background: var(--beige); }
+    .footer-top { display: grid; grid-template-columns: 1.4fr repeat(3, .7fr); gap: 60px; padding-bottom: 55px; }
+    .footer-brand p { max-width: 310px; margin-top: 18px; color: rgba(255,255,255,.6); font-size: .86rem; }
+    .footer-col h3 { margin-bottom: 17px; color: var(--beige); font-size: .75rem; letter-spacing: .09em; text-transform: uppercase; }
+    .footer-col a, .footer-col span { display: block; margin: 9px 0; color: rgba(255,255,255,.68); font-size: .82rem; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 25px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.46); font-size: .72rem; }
+
+    @media (max-width: 980px) {
+      :root { --container: min(100% - 36px, 760px); }
+      section { padding: 90px 0; }
+      .nav-links { position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; justify-content: center; gap: 28px; background: var(--navy-dark); opacity: 0; visibility: hidden; transform: translateY(-15px); transition: .3s; }
+      .nav-links.open { opacity: 1; visibility: visible; transform: none; }
+      .nav-links a:not(.nav-cta) { color: white; font-family: "Plus Jakarta Sans"; font-size: 1.35rem; }
+      .menu-toggle { position: relative; z-index: 21; display: grid; }
+      .menu-toggle.open { border-color: rgba(255,255,255,.35); }
+      .menu-toggle.open span { opacity: 0; }
+      .menu-toggle.open::before, .menu-toggle.open::after { background: white; }
+      .menu-toggle.open::before { transform: rotate(45deg); }
+      .menu-toggle.open::after { transform: rotate(-45deg); }
+      .masthead-copy { grid-template-columns: 1fr; gap: 24px; padding: 58px 0 45px; }
+      .masthead-intro { max-width: 610px; }
+      .masthead-media { grid-template-columns: minmax(0, 1.35fr) minmax(245px, .65fr); }
+      .belief-grid { grid-template-columns: 1fr; gap: 35px; }
+      .numbers-grid { grid-template-columns: 1fr 1fr; }
+      .numbers-intro { padding-left: 35px; }
+      .stat:nth-child(3) { border-left: 0; border-top: 1px solid rgba(255,255,255,.16); }
+      .stat:nth-child(4) { border-top: 1px solid rgba(255,255,255,.16); }
+      .team-intro { grid-template-columns: 1fr; gap: 35px; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .team-card:first-child { grid-column: 1 / -1; min-height: 500px; }
+      .standards-grid { grid-template-columns: 1fr 1fr; }
+      .care-grid { grid-template-columns: 1fr; }
+      .care-image { min-height: 520px; }
+      .care-image::after { background: linear-gradient(0deg, white, transparent 35%); }
+      .care-copy { width: var(--container); margin-inline: auto; padding: 45px 0 90px; }
+      .promise-inner { grid-template-columns: 1fr; gap: 45px; }
+      .promise-copy { position: static; }
+      .footer-top { grid-template-columns: 1.2fr 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 640px) {
+      :root { --container: calc(100% - 28px); }
+      section { padding: 74px 0; }
+      .section-head { margin-bottom: 38px; }
+      .section-head.split { grid-template-columns: 1fr; gap: 18px; }
+      .nav { height: 72px; }
+      .page-masthead { padding-bottom: 28px; }
+      .breadcrumbs { padding-top: 22px; }
+      .masthead-copy { padding: 46px 0 36px; }
+      .page-masthead h1 { font-size: clamp(2.25rem, 10.5vw, 3.2rem); }
+      .masthead-intro p { font-size: .94rem; }
+      .masthead-media { grid-template-columns: 1fr; min-height: 0; border-radius: 16px; }
+      .masthead-photo { min-height: 270px; }
+      .masthead-aside { min-height: 245px; padding: 24px; }
+      .masthead-quote { max-width: 350px; margin: 35px 0 24px; }
+      .belief { padding: 62px 0; }
+      .timeline { grid-template-columns: 31px 1fr; column-gap: 22px; }
+      .timeline::before { left: 15px; }
+      .timeline-item:nth-child(n) { grid-column: 2; min-height: 0; padding: 5px 0 58px; text-align: left; transform: none; }
+      .timeline-item:nth-child(n)::after { left: -44px; right: auto; top: 8px; }
+      .timeline-item:nth-child(n) p { margin-left: 0; }
+      .timeline-end { display: none; }
+      .numbers-grid { grid-template-columns: 1fr; }
+      .numbers-intro, .stat { min-height: 160px; padding: 28px 0; border-left: 0; border-top: 1px solid rgba(255,255,255,.16); }
+      .numbers-intro { border: 0; }
+      .team-grid { grid-template-columns: 1fr; gap: 11px; }
+      .team-card:first-child { grid-column: auto; min-height: 420px; }
+      .team-card { min-height: 390px; }
+      .team-band { grid-template-columns: 1fr; gap: 18px; padding: 26px 21px; }
+      .standards-grid { grid-template-columns: 1fr; }
+      .standard-card { min-height: 230px; }
+      .care-image { min-height: 400px; }
+      .care-copy { padding-bottom: 74px; }
+      .promise-row { grid-template-columns: 42px 1fr; gap: 12px; }
+      .final-cta { padding: 12px; }
+      .cta-inner { min-height: 500px; border-radius: 20px; }
+      .cta-actions .btn { width: 100%; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 38px 22px; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Maid At Home",
+    "description": "The story, team and values behind Maid At Home residential cleaning in Melbourne.",
+    "url": "https://maidathome.com.au/about",
+    "mainEntity": {
+      "@type": "HomeAndConstructionBusiness",
+      "name": "Maid At Home",
+      "url": "https://maidathome.com.au/",
+      "slogan": "Cleaning spaces to improve lives.",
+      "areaServed": { "@type": "City", "name": "Melbourne" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Melbourne", "addressRegion": "VIC", "addressCountry": "AU" }
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="logo" href="index.html" aria-label="Maid At Home home"><span class="logo-mark" aria-hidden="true"></span>Maid At Home</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="services/index.html">Services</a></li>
+        <li><a href="about-us.html" aria-current="page">About</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="locations.html">Areas</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="nav-cta" href="https://maidathome.com.au/booking">Book a clean <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-masthead" aria-labelledby="page-title">
+      <div class="masthead-rule container">
+        <nav class="breadcrumbs reveal r1" aria-label="Breadcrumb"><a href="maid-at-home-landing.html">Home</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg><span aria-current="page">About us</span></nav>
+        <div class="masthead-copy">
+          <div class="reveal r1"><span class="eyebrow">About Maid At Home</span><h1 id="page-title">Care for homes. Respect for the lives inside them.</h1></div>
+          <div class="masthead-intro reveal r2"><p>We are a Melbourne residential cleaning team built around good people, clear communication and the belief that a well-cared-for home creates more room for living.</p><a class="masthead-jump" href="#our-story">Read our story <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span></a></div>
+        </div>
+        <div class="masthead-media reveal r3">
+          <div class="masthead-photo"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1500&q=84" alt="A friendly local team sharing a relaxed moment" width="1500" height="900"></div>
+          <aside class="masthead-aside"><span>Our point of view</span><p class="masthead-quote">“A clean home should give you something back: time, calm and space to enjoy it.”</p><div class="masthead-stat"><strong>90%+</strong><small>of clients choose to return</small></div></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="belief" aria-label="Our belief">
+      <div class="container belief-grid reveal"><div class="belief-label">What we believe</div><blockquote>Cleaning is never only about surfaces. It is about making a home feel <span>lighter, calmer and easier to enjoy.</span></blockquote></div>
+    </section>
+
+    <section class="story" id="our-story">
+      <div class="container">
+        <div class="section-head split reveal"><div><span class="eyebrow">Our story</span><h2>Built one home, one relationship at a time.</h2></div><p>We did not set out to create the biggest cleaning company. We set out to build the kind of service we would feel comfortable welcoming into our own home.</p></div>
+        <div class="timeline">
+          <article class="timeline-item reveal"><span class="timeline-step">Chapter 01 · The idea</span><h3>It started with a simple frustration.</h3><p>Finding dependable home help felt harder than it should. Communication was often unclear, quality varied and the experience rarely felt personal.</p></article>
+          <article class="timeline-item reveal"><span class="timeline-step">Chapter 02 · The first homes</span><h3>Trust came before growth.</h3><p>Our earliest clients taught us what really matters: listening carefully, arriving prepared and treating every home with genuine respect.</p></article>
+          <article class="timeline-item reveal"><span class="timeline-step">Chapter 03 · A local team</span><h3>Good people became our foundation.</h3><p>We grew by working with experienced cleaning professionals who care about the details and understand the responsibility of entering someone's home.</p></article>
+          <article class="timeline-item reveal"><span class="timeline-step">Chapter 04 · A better system</span><h3>Reliable care needed thoughtful support.</h3><p>We refined our booking, matching and follow-up process so clients could spend less time coordinating and cleaners could focus on doing their best work.</p></article>
+          <article class="timeline-item reveal"><span class="timeline-step">Today · Still personal</span><h3>Thousands of cleans later, the idea is unchanged.</h3><p>We remain focused on Melbourne homes, long-term relationships and a service that feels professional without ever becoming impersonal.</p></article>
+          <div class="timeline-end" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="numbers" aria-label="Maid At Home in numbers">
+      <div class="container numbers-grid">
+        <div class="numbers-intro reveal"><span class="eyebrow">A local story in numbers</span><h2>Care measured by the trust we keep.</h2></div>
+        <div class="stat reveal"><strong>5,000+</strong><span>Melbourne homes cleaned</span></div>
+        <div class="stat reveal"><strong>9,000+</strong><span>hours of home care delivered</span></div>
+        <div class="stat reveal"><strong>90%+</strong><span>of clients choose to return</span></div>
+      </div>
+    </section>
+
+    <section class="team" id="team">
+      <div class="container">
+        <div class="team-intro"><div class="section-head reveal"><span class="eyebrow">The people behind the care</span><h2>A team you can feel comfortable welcoming home.</h2><p>Our cleaning professionals bring experience, care and their own quiet attention to detail. Behind them is a support team coordinating every booking and making sure communication stays clear.</p></div><aside class="team-note reveal"><strong>Good to know</strong><br>Our cleaners are independent professionals with insurance, experience and a proven commitment to residential home care.</aside></div>
+        <div class="team-grid">
+          <article class="team-card reveal"><img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=82" alt="Friendly member of the Maid At Home team" loading="lazy" width="1000" height="1300"><div class="team-card-info"><h3>Daniela</h3><p>Home care professional</p></div></article>
+          <article class="team-card reveal"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=82" alt="Friendly member of the Maid At Home team" loading="lazy" width="900" height="1200"><div class="team-card-info"><h3>Yineth</h3><p>Home care professional</p></div></article>
+          <article class="team-card reveal"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=82" alt="Friendly member of the Maid At Home team" loading="lazy" width="900" height="1200"><div class="team-card-info"><h3>Shayra</h3><p>Home care professional</p></div></article>
+        </div>
+        <div class="team-band reveal"><h3>Many people, one shared standard.</h3><p>Our wider Melbourne team includes experienced professionals working across the inner north, east, south and west. We match each booking based on availability, location and the needs of the home.</p></div>
+      </div>
+    </section>
+
+    <section class="standards">
+      <div class="container">
+        <div class="section-head split reveal"><div><span class="eyebrow">What guides us</span><h2>The standard behind every clean.</h2></div><p>Our values are practical. They shape how we select professionals, communicate with clients and respond when something needs attention.</p></div>
+        <div class="standards-grid">
+          <article class="standard-card reveal"><div class="standard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Trust is earned</h3><p>Inviting someone into your home is personal. We treat that trust as a responsibility, never a transaction.</p></article>
+          <article class="standard-card reveal"><div class="standard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3 1.5-5A8 8 0 1 1 21 15Z"/></svg></div><h3>Clarity matters</h3><p>Clear expectations, straightforward pricing and honest communication make the entire experience easier.</p></article>
+          <article class="standard-card reveal"><div class="standard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v18M3 12h18"/><path d="M6 6l12 12M18 6 6 18"/></svg></div><h3>Details create calm</h3><p>The smallest touches often change how a room feels. Thoughtful work is what turns clean into cared for.</p></article>
+          <article class="standard-card reveal"><div class="standard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V8l8-5 8 5v11H4Z"/><path d="M9 19v-6h6v6"/></svg></div><h3>Homes are lived in</h3><p>We work around real families, pets, routines and priorities — never an unrealistic idea of a perfect home.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="care">
+      <div class="care-grid">
+        <div class="care-image reveal"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1500&q=82" alt="Warm, bright and carefully maintained family home" loading="lazy" width="1500" height="1200"></div>
+        <div class="care-copy reveal"><span class="eyebrow">Built around real life</span><h2>Professional standards. A genuinely human service.</h2><p>Every booking has a person behind it. That means listening to priorities, noting access details, considering pets and matching the right team wherever possible.</p><div class="care-list"><div class="care-point"><span>01</span><div><strong>Residential specialists</strong><p>Our service is designed specifically for homes, not offices or commercial spaces.</p></div></div><div class="care-point"><span>02</span><div><strong>Thoughtful matching</strong><p>We consider location, availability and booking needs when coordinating your cleaner.</p></div></div><div class="care-point"><span>03</span><div><strong>Pet-aware home care</strong><p>Let us know about pets, allergies or concerns so everyone arrives prepared.</p></div></div></div></div>
+      </div>
+    </section>
+
+    <section class="promise">
+      <div class="container promise-inner">
+        <div class="promise-copy reveal"><span class="eyebrow">Our promise</span><h2>Care you can see. Support you can reach.</h2><p>A premium experience is not about being formal. It is about making every part of the service feel considered, dependable and easy.</p></div>
+        <div class="promise-list">
+          <article class="promise-row reveal"><span>01</span><div><h3>We listen before we clean.</h3><p>Your booking notes and priorities help us understand what matters most in your home.</p></div></article>
+          <article class="promise-row reveal"><span>02</span><div><h3>We communicate clearly.</h3><p>From assignment to arrival, we keep the process straightforward and let you know when your team is confirmed.</p></div></article>
+          <article class="promise-row reveal"><span>03</span><div><h3>We stand behind the result.</h3><p>If something is not right, our satisfaction process is designed to review it and coordinate an appropriate re-clean.</p></div></article>
+          <article class="promise-row reveal"><span>04</span><div><h3>We keep improving.</h3><p>Feedback from clients and cleaners continuously shapes how we organise, communicate and deliver the service.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" aria-labelledby="cta-heading">
+      <div class="cta-inner reveal"><div class="cta-content"><span class="eyebrow">Meet us at your place</span><h2 id="cta-heading">A little more room for living starts here.</h2><p>Tell us about your home and the kind of support you need. We will help you choose the right service and take care of the next steps.</p><div class="cta-actions"><a class="btn" href="https://maidathome.com.au/booking">Book your home clean <span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="btn btn-outline" href="maid-at-home-landing.html#services">Explore our services <span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></div></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container"><div class="footer-top"><div class="footer-brand"><a class="logo" href="maid-at-home-landing.html"><span class="logo-mark"></span>Maid At Home</a><p>Professional home cleaning designed to give Melbourne households a little more time and a lot less to think about.</p></div><div class="footer-col"><h3>Services</h3><a href="maid-at-home-landing.html#services">Standard Clean</a><a href="maid-at-home-landing.html#services">Deep Clean</a><a href="maid-at-home-landing.html#end-of-lease">End of Lease</a><a href="maid-at-home-landing.html#services">Hourly Clean</a></div><div class="footer-col"><h3>Explore</h3><a href="#our-story">Our story</a><a href="#team">Our team</a><a href="maid-at-home-landing.html#areas">Areas we serve</a><a href="https://maidathome.com.au/booking">Book now</a></div><div class="footer-col"><h3>Contact</h3><a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a><span>Melbourne, Victoria</span><span>Mon–Sat · 9am–6pm</span></div></div><div class="footer-bottom"><span>© <span id="year"></span> Maid At Home. All rights reserved.</span><span>Cleaning spaces to improve lives.</span></div></div>
+  </footer>
+
+  <script>
+    (() => {
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      menuToggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        menuToggle.classList.toggle('open', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        document.body.classList.toggle('menu-open', open);
+        document.documentElement.classList.toggle('menu-open', open);
+      });
+      navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+        document.documentElement.classList.remove('menu-open');
+      }));
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .12, rootMargin: '0px 0px -35px' });
+      document.querySelectorAll('main .reveal').forEach((element, index) => {
+        if (!element.closest('.page-masthead')) {
+          element.style.transitionDelay = `${Math.min((index % 4) * 80, 240)}ms`;
+          observer.observe(element);
+        }
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>

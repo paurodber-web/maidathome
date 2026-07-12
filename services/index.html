@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#103c63">
+  <meta name="description" content="Explore Maid At Home residential cleaning services in Melbourne, including standard, deep, end of lease, move in and hourly cleaning, plus optional extras.">
+  <title>House Cleaning Services Melbourne | Maid At Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #103c63;
+      --navy-dark: #082b49;
+      --blue: #25689c;
+      --sky: #dcecf5;
+      --mist: #f1f6f8;
+      --paper: #fbfcfc;
+      --white: #fff;
+      --ink: #17324a;
+      --muted: #657586;
+      --line: #d7e1e7;
+      --beige: #eadbbd;
+      --beige-hover: #f2e5ca;
+      --shadow: 0 24px 60px rgba(16,60,99,.11);
+      --container: min(1160px, calc(100% - 48px));
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; scrollbar-gutter: stable; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: "DM Sans", sans-serif; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    body.menu-open { overflow: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; }
+    h1, h2, h3, h4 { margin: 0; font-family: "Plus Jakarta Sans", sans-serif; line-height: 1.12; letter-spacing: -.035em; }
+    p { margin: 0; }
+    section { position: relative; padding: 112px 0; }
+    .container { width: var(--container); margin-inline: auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; color: var(--blue); font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 29px; height: 1px; background: currentColor; }
+    .section-head { max-width: 680px; margin-bottom: 56px; }
+    .section-head h2 { font-size: clamp(2.05rem, 4vw, 3.45rem); text-wrap: balance; }
+    .section-head p { max-width: 580px; margin-top: 20px; color: var(--muted); font-size: 1.02rem; }
+    .section-head.split { display: grid; grid-template-columns: 1.08fr .8fr; max-width: none; gap: 90px; align-items: end; }
+    .section-head.split p { margin: 0 0 4px; }
+
+    .btn { display: inline-flex; min-height: 54px; align-items: center; justify-content: space-between; gap: 28px; padding: 6px 7px 6px 23px; border: 1px solid transparent; border-radius: 999px; background: var(--beige); color: var(--navy-dark); font-size: .91rem; font-weight: 700; cursor: pointer; transition: transform .25s ease, background .25s ease, box-shadow .25s ease; }
+    .btn:hover { transform: translateY(-2px); background: var(--beige-hover); box-shadow: 0 10px 24px rgba(8,43,73,.15); }
+    .btn:focus-visible, .menu-toggle:focus-visible, .service-link:focus-visible, .extra-card:focus-visible { outline: 3px solid #f2c66c; outline-offset: 3px; }
+    .btn-circle { display: grid; width: 40px; height: 40px; flex: 0 0 40px; place-items: center; border-radius: 50%; background: var(--navy); color: white; transition: transform .25s; }
+    .btn:hover .btn-circle { transform: translateX(2px); }
+    .btn-circle svg { width: 17px; height: 17px; }
+    .btn-outline { border-color: rgba(255,255,255,.52); background: transparent; color: white; }
+    .btn-outline:hover { background: white; color: var(--navy-dark); }
+    .btn-outline .btn-circle { background: white; color: var(--navy); }
+
+    .site-header { position: relative; z-index: 10; background: white; }
+    .nav { height: 84px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: inline-flex; align-items: center; gap: 12px; font-family: "Plus Jakarta Sans"; font-size: 1.05rem; font-weight: 700; letter-spacing: -.02em; }
+    .logo-mark { position: relative; width: 32px; height: 32px; border: 1px solid #83a4ba; border-radius: 50% 50% 46% 54%; }
+    .logo-mark::before, .logo-mark::after { content: ""; position: absolute; background: var(--blue); border-radius: 100% 0 100% 0; transform: rotate(45deg); }
+    .logo-mark::before { width: 9px; height: 9px; left: 6px; top: 7px; }
+    .logo-mark::after { width: 6px; height: 6px; right: 6px; bottom: 6px; }
+    .nav-links { display: flex; align-items: center; gap: 31px; margin: 0; padding: 0; list-style: none; }
+    .nav-links a:not(.nav-cta) { position: relative; color: #435c70; font-size: .87rem; font-weight: 600; }
+    .nav-links a:not(.nav-cta)::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -8px; height: 1px; background: var(--blue); transition: right .25s; }
+    .nav-links a:not(.nav-cta):hover::after, .nav-links a[aria-current="page"]::after { right: 0; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 13px; padding: 7px 8px 7px 18px; border-radius: 999px; background: var(--navy); color: white; font-size: .85rem; font-weight: 700; }
+    .nav-cta span { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: var(--beige); color: var(--navy); }
+    .nav-cta svg { width: 14px; }
+    .menu-toggle { display: none; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: transparent; place-items: center; cursor: pointer; }
+    .menu-toggle span, .menu-toggle::before, .menu-toggle::after { content: ""; display: block; width: 18px; height: 1px; background: var(--navy); transition: .25s; grid-area: 1 / 1; }
+    .menu-toggle::before { transform: translateY(-5px); }
+    .menu-toggle::after { transform: translateY(5px); }
+
+    .page-masthead { padding: 0 0 68px; background: var(--mist); overflow: hidden; }
+    .masthead-rule { border-top: 1px solid var(--line); }
+    .breadcrumbs { display: flex; align-items: center; gap: 9px; padding-top: 30px; color: var(--muted); font-size: .75rem; font-weight: 600; }
+    .breadcrumbs a { transition: color .2s; }
+    .breadcrumbs a:hover { color: var(--blue); }
+    .breadcrumbs svg { width: 12px; color: #91a2af; }
+    .masthead-copy { display: grid; grid-template-columns: minmax(0, 1.28fr) minmax(260px, .72fr); gap: 90px; align-items: end; padding: 68px 0 58px; }
+    .masthead-copy .eyebrow { margin-bottom: 17px; }
+    .page-masthead h1 { max-width: 720px; font-size: clamp(2.5rem, 5vw, 4.45rem); text-wrap: balance; }
+    .masthead-intro { padding-bottom: 6px; }
+    .masthead-intro p { color: var(--muted); font-size: 1.03rem; }
+    .masthead-jump { display: inline-flex; align-items: center; gap: 9px; margin-top: 20px; color: var(--navy); font-size: .82rem; font-weight: 700; }
+    .masthead-jump span { display: grid; width: 29px; height: 29px; place-items: center; border: 1px solid #b7cad5; border-radius: 50%; transition: transform .25s, background .25s; }
+    .masthead-jump svg { width: 13px; }
+    .masthead-jump:hover span { transform: translateY(2px); background: white; }
+    .masthead-media { display: grid; grid-template-columns: minmax(0, 1.68fr) minmax(260px, .62fr); min-height: 345px; border-radius: 20px; overflow: hidden; background: var(--navy); box-shadow: var(--shadow); }
+    .masthead-photo { position: relative; min-height: 345px; overflow: hidden; }
+    .masthead-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 56%; transition: transform .8s ease; }
+    .masthead-media:hover .masthead-photo img { transform: scale(1.018); }
+    .masthead-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 70%, rgba(8,43,73,.18)); }
+    .masthead-aside { display: flex; flex-direction: column; justify-content: space-between; padding: 31px; color: white; }
+    .masthead-aside > span { color: var(--beige); font-size: .69rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+    .masthead-links { display: grid; gap: 2px; margin: 30px 0; }
+    .masthead-links a { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.13); color: rgba(255,255,255,.78); font-size: .78rem; font-weight: 600; }
+    .masthead-links a:hover { color: white; }
+    .masthead-links svg { width: 13px; }
+    .masthead-stat { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; padding-top: 18px; }
+    .masthead-stat strong { font-family: "Plus Jakarta Sans"; font-size: 1.65rem; letter-spacing: -.04em; }
+    .masthead-stat small { max-width: 110px; color: rgba(255,255,255,.6); font-size: .66rem; line-height: 1.45; text-align: right; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .page-masthead .reveal { animation: pageReveal .8s cubic-bezier(.2,.7,.2,1) both; }
+    .page-masthead .r1 { animation-delay: .12s; } .page-masthead .r2 { animation-delay: .28s; } .page-masthead .r3 { animation-delay: .44s; }
+    @keyframes pageReveal { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: none; } }
+
+    .service-hub { background: white; }
+    .service-list { display: grid; gap: 18px; }
+    .service-row { position: relative; display: grid; grid-template-columns: 1.03fr .97fr; min-height: 390px; border: 1px solid var(--line); border-radius: 21px; overflow: hidden; background: var(--paper); transition: box-shadow .3s, border-color .3s, transform .3s; }
+    .service-row:hover { transform: translateY(-4px); border-color: #b9cfda; box-shadow: var(--shadow); }
+    .service-row:nth-child(even) .service-image { order: 2; }
+    .service-row:nth-child(even) .service-copy { order: 1; }
+    .service-image { position: relative; min-height: 390px; overflow: hidden; }
+    .service-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .65s ease; }
+    .service-row:hover .service-image img { transform: scale(1.025); }
+    .service-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(7,38,62,.16), transparent 50%); }
+    .service-number { position: absolute; top: 22px; left: 22px; z-index: 2; display: grid; width: 45px; height: 45px; place-items: center; border-radius: 50%; background: rgba(255,255,255,.92); color: var(--navy); font-family: "Plus Jakarta Sans"; font-size: .72rem; font-weight: 700; }
+    .service-copy { display: flex; flex-direction: column; justify-content: center; padding: 48px; }
+    .service-type { color: var(--blue); font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .service-copy h2 { margin-top: 12px; font-size: clamp(1.75rem, 3vw, 2.65rem); }
+    .service-copy > p { max-width: 485px; margin-top: 16px; color: var(--muted); font-size: .93rem; }
+    .service-details { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 23px 0 27px; padding: 20px 0; border-block: 1px solid var(--line); }
+    .service-details span { display: flex; align-items: center; gap: 8px; color: #526a7c; font-size: .76rem; font-weight: 600; }
+    .service-details span::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); }
+    .service-link { display: inline-flex; align-items: center; gap: 13px; align-self: flex-start; color: var(--navy); font-size: .86rem; font-weight: 700; }
+    .service-link span { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid #abc2cf; border-radius: 50%; transition: transform .25s, background .25s, color .25s; }
+    .service-link svg { width: 14px; }
+    .service-link:hover span { transform: translateX(3px); background: var(--navy); color: white; }
+    .service-row.eol { background: var(--navy-dark); color: white; border-color: var(--navy-dark); }
+    .service-row.eol .service-type { color: var(--beige); }
+    .service-row.eol .service-copy > p, .service-row.eol .service-details span { color: rgba(255,255,255,.68); }
+    .service-row.eol .service-details { border-color: rgba(255,255,255,.16); }
+    .service-row.eol .service-details span::before { background: var(--beige); }
+    .service-row.eol .service-link { color: white; }
+    .service-row.eol .service-link span { border-color: rgba(255,255,255,.42); }
+    .service-row.eol .service-link:hover span { background: white; color: var(--navy); }
+
+    .comparison { background: var(--mist); overflow: hidden; }
+    .comparison-wrap { border: 1px solid var(--line); border-radius: 20px; background: white; overflow: hidden; }
+    .comparison-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    .comparison-table th, .comparison-table td { padding: 21px 18px; border-bottom: 1px solid var(--line); text-align: center; vertical-align: middle; }
+    .comparison-table th { background: #f7f9fa; color: var(--navy); font-family: "Plus Jakarta Sans"; font-size: .76rem; }
+    .comparison-table th:first-child, .comparison-table td:first-child { width: 26%; padding-left: 27px; text-align: left; }
+    .comparison-table td:first-child { color: #40596d; font-size: .8rem; font-weight: 600; }
+    .comparison-table td { color: var(--muted); font-size: .77rem; }
+    .comparison-table tr:last-child td { border-bottom: 0; }
+    .yes { display: inline-grid; width: 25px; height: 25px; place-items: center; border-radius: 50%; background: var(--sky); color: var(--blue); font-size: .7rem; font-weight: 800; }
+    .dash { color: #a4b2bc; }
+    .comparison-note { display: flex; justify-content: space-between; gap: 30px; padding: 20px 27px; border-top: 1px solid var(--line); background: #fbfcfc; color: var(--muted); font-size: .75rem; }
+
+    .extras { background: white; }
+    .extras-layout { display: grid; grid-template-columns: .66fr 1.34fr; gap: 78px; align-items: start; }
+    .extras-copy { position: sticky; top: 110px; }
+    .extras-copy h2 { font-size: clamp(2.05rem, 4vw, 3.4rem); }
+    .extras-copy p { margin-top: 20px; color: var(--muted); }
+    .extras-note { margin-top: 27px; padding: 18px 19px; border-left: 2px solid var(--blue); background: var(--mist); color: var(--muted); font-size: .8rem; }
+    .extras-note strong { color: var(--ink); }
+    .extras-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
+    .extra-card { min-height: 178px; display: flex; flex-direction: column; padding: 20px; border: 1px solid var(--line); border-radius: 15px; background: var(--paper); transition: transform .25s, background .25s, box-shadow .25s; }
+    .extra-card:hover { transform: translateY(-3px); background: white; box-shadow: 0 16px 36px rgba(16,60,99,.09); }
+    .extra-icon { display: grid; width: 39px; height: 39px; place-items: center; border-radius: 50%; background: var(--sky); color: var(--navy); }
+    .extra-icon svg { width: 18px; height: 18px; }
+    .extra-card h3 { margin-top: auto; font-size: .95rem; letter-spacing: -.02em; }
+    .extra-card p { margin-top: 6px; color: var(--muted); font-size: .72rem; line-height: 1.45; }
+
+    .recurring-strip { padding: 0; background: var(--navy); color: white; }
+    .recurring-grid { display: grid; grid-template-columns: 1.05fr repeat(2, .8fr); align-items: stretch; }
+    .recurring-copy, .discount { min-height: 245px; display: flex; flex-direction: column; justify-content: center; padding: 42px; }
+    .recurring-copy { padding-left: 0; }
+    .recurring-copy .eyebrow { color: var(--beige); }
+    .recurring-copy h2 { max-width: 410px; font-size: clamp(1.75rem, 3vw, 2.55rem); }
+    .discount { border-left: 1px solid rgba(255,255,255,.16); }
+    .discount span { color: rgba(255,255,255,.62); font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .discount strong { margin-top: 10px; color: var(--beige); font-family: "Plus Jakarta Sans"; font-size: 2.5rem; letter-spacing: -.05em; }
+    .discount p { margin-top: 6px; color: rgba(255,255,255,.68); font-size: .78rem; }
+
+    .guide { background: #edf5f8; }
+    .guide-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .guide-card { min-height: 300px; display: flex; flex-direction: column; padding: 28px; border: 1px solid #cbdde6; border-radius: 17px; background: rgba(255,255,255,.72); }
+    .guide-label { color: var(--blue); font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .guide-card h3 { margin-top: 15px; font-size: 1.2rem; }
+    .guide-card > p { margin-top: 10px; color: var(--muted); font-size: .84rem; }
+    .guide-card .service-link { margin-top: auto; padding-top: 28px; }
+
+    .how { background: white; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .step { padding: 30px; border-top: 1px solid var(--line); }
+    .step-number { display: flex; align-items: center; justify-content: space-between; color: var(--blue); font-family: "Plus Jakarta Sans"; font-size: .76rem; font-weight: 700; }
+    .step-number svg { width: 35px; height: 35px; padding: 8px; border: 1px solid var(--line); border-radius: 50%; }
+    .step h3 { margin-top: 46px; font-size: 1.25rem; }
+    .step p { margin-top: 10px; color: var(--muted); font-size: .88rem; }
+
+    .faq { background: var(--mist); }
+    .faq-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: 90px; align-items: start; }
+    .faq-copy { position: sticky; top: 110px; }
+    .faq-copy h2 { font-size: clamp(2rem, 4vw, 3.35rem); }
+    .faq-copy p { margin-top: 18px; color: var(--muted); }
+    .faq-list { border-top: 1px solid var(--line); }
+    details { border-bottom: 1px solid var(--line); }
+    summary { position: relative; padding: 25px 50px 25px 0; cursor: pointer; list-style: none; font-family: "Plus Jakarta Sans"; font-size: 1rem; font-weight: 600; letter-spacing: -.02em; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; position: absolute; right: 0; top: 22px; display: grid; width: 31px; height: 31px; place-items: center; border: 1px solid #b9cbd5; border-radius: 50%; color: var(--blue); font: 400 1.1rem "DM Sans"; transition: transform .25s, background .25s; }
+    details[open] summary::after { transform: rotate(45deg); background: white; }
+    .faq-answer { max-width: 670px; padding: 0 48px 25px 0; color: var(--muted); font-size: .88rem; }
+
+    .final-cta { padding: 36px; background: var(--paper); }
+    .cta-inner { position: relative; min-height: 480px; display: grid; place-items: center; padding: 70px 24px; border-radius: 28px; color: white; text-align: center; overflow: hidden; isolation: isolate; }
+    .cta-inner::before { content: ""; position: absolute; inset: 0; z-index: -2; background: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=84') center 57% / cover; }
+    .cta-inner::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(8,43,73,.78); }
+    .cta-content { max-width: 700px; }
+    .cta-content .eyebrow { color: var(--beige); }
+    .cta-content h2 { font-size: clamp(2.2rem, 5vw, 4.25rem); }
+    .cta-content p { max-width: 565px; margin: 21px auto 30px; color: rgba(255,255,255,.78); }
+    .cta-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 13px; }
+
+    footer { padding: 70px 0 28px; background: var(--navy-dark); color: white; }
+    footer .logo-mark { border-color: rgba(255,255,255,.6); }
+    footer .logo-mark::before, footer .logo-mark::after { background: var(--beige); }
+    .footer-top { display: grid; grid-template-columns: 1.4fr repeat(3, .7fr); gap: 60px; padding-bottom: 55px; }
+    .footer-brand p { max-width: 310px; margin-top: 18px; color: rgba(255,255,255,.6); font-size: .86rem; }
+    .footer-col h3 { margin-bottom: 17px; color: var(--beige); font-size: .75rem; letter-spacing: .09em; text-transform: uppercase; }
+    .footer-col a, .footer-col span { display: block; margin: 9px 0; color: rgba(255,255,255,.68); font-size: .82rem; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 25px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.46); font-size: .72rem; }
+
+    @media (max-width: 980px) {
+      :root { --container: min(100% - 36px, 760px); }
+      section { padding: 90px 0; }
+      .nav-links { position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; justify-content: center; gap: 28px; background: var(--navy-dark); opacity: 0; visibility: hidden; transform: translateY(-15px); transition: .3s; }
+      .nav-links.open { opacity: 1; visibility: visible; transform: none; }
+      .nav-links a:not(.nav-cta) { color: white; font-family: "Plus Jakarta Sans"; font-size: 1.35rem; }
+      .menu-toggle { position: relative; z-index: 21; display: grid; }
+      .menu-toggle.open { border-color: rgba(255,255,255,.35); }
+      .menu-toggle.open span { opacity: 0; }
+      .menu-toggle.open::before, .menu-toggle.open::after { background: white; }
+      .menu-toggle.open::before { transform: rotate(45deg); }
+      .menu-toggle.open::after { transform: rotate(-45deg); }
+      .masthead-copy { grid-template-columns: 1fr; gap: 24px; padding: 58px 0 45px; }
+      .masthead-intro { max-width: 610px; }
+      .masthead-media { grid-template-columns: minmax(0, 1.35fr) minmax(245px, .65fr); }
+      .service-row { grid-template-columns: 1fr; }
+      .service-row:nth-child(n) .service-image { order: 1; min-height: 360px; }
+      .service-row:nth-child(n) .service-copy { order: 2; }
+      .comparison-wrap { overflow-x: auto; }
+      .comparison-table { min-width: 790px; }
+      .extras-layout, .faq-layout { grid-template-columns: 1fr; gap: 48px; }
+      .extras-copy, .faq-copy { position: static; }
+      .extras-grid { grid-template-columns: repeat(3, 1fr); }
+      .recurring-grid { grid-template-columns: 1fr 1fr; }
+      .recurring-copy { grid-column: 1 / -1; min-height: 200px; padding-left: 35px; }
+      .discount:nth-child(3) { border-left: 0; border-top: 1px solid rgba(255,255,255,.16); }
+      .guide-grid { grid-template-columns: 1fr 1fr; }
+      .guide-card:last-child { grid-column: 1 / -1; }
+      .footer-top { grid-template-columns: 1.2fr 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 640px) {
+      :root { --container: calc(100% - 28px); }
+      section { padding: 74px 0; }
+      .section-head { margin-bottom: 38px; }
+      .section-head.split { grid-template-columns: 1fr; gap: 18px; }
+      .nav { height: 72px; }
+      .page-masthead { padding-bottom: 28px; }
+      .breadcrumbs { padding-top: 22px; }
+      .masthead-copy { padding: 46px 0 36px; }
+      .page-masthead h1 { font-size: clamp(2.25rem, 10.5vw, 3.2rem); }
+      .masthead-intro p { font-size: .94rem; }
+      .masthead-media { grid-template-columns: 1fr; min-height: 0; border-radius: 16px; }
+      .masthead-photo { min-height: 270px; }
+      .masthead-aside { min-height: 285px; padding: 24px; }
+      .masthead-links { margin: 22px 0; }
+      .service-list { gap: 12px; }
+      .service-row { min-height: 0; border-radius: 16px; }
+      .service-row:nth-child(n) .service-image { min-height: 270px; }
+      .service-copy { padding: 30px 22px 34px; }
+      .service-details { gap: 8px 13px; }
+      .comparison-note { flex-direction: column; gap: 7px; }
+      .extras-grid { grid-template-columns: 1fr 1fr; }
+      .extra-card { min-height: 165px; padding: 17px; }
+      .recurring-grid { grid-template-columns: 1fr; }
+      .recurring-copy { grid-column: auto; padding: 40px 0; }
+      .discount { min-height: 175px; padding: 30px 0; border-left: 0; border-top: 1px solid rgba(255,255,255,.16); }
+      .guide-grid { grid-template-columns: 1fr; }
+      .guide-card:last-child { grid-column: auto; }
+      .guide-card { min-height: 245px; }
+      .steps { grid-template-columns: 1fr; }
+      .step { padding: 24px 5px; }
+      .step h3 { margin-top: 25px; }
+      .final-cta { padding: 12px; }
+      .cta-inner { min-height: 500px; border-radius: 20px; }
+      .cta-actions .btn { width: 100%; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 38px 22px; }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Maid At Home Cleaning Services",
+    "description": "Residential cleaning services for Melbourne homes.",
+    "url": "https://maidathome.com.au/services",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Standard Clean","url":"https://maidathome.com.au/services/standard-clean"},
+        {"@type":"ListItem","position":2,"name":"Deep Clean","url":"https://maidathome.com.au/services/deep-clean"},
+        {"@type":"ListItem","position":3,"name":"End of Lease Clean","url":"https://maidathome.com.au/services/end-of-lease-cleaning"},
+        {"@type":"ListItem","position":4,"name":"Move In Clean","url":"https://maidathome.com.au/services/move-in-cleaning"},
+        {"@type":"ListItem","position":5,"name":"Hourly Clean","url":"https://maidathome.com.au/services/hourly-cleaning"}
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="logo" href="../index.html" aria-label="Maid At Home home"><span class="logo-mark" aria-hidden="true"></span>Maid At Home</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" aria-current="page">Services</a></li>
+        <li><a href="../about-us.html">About</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+        <li><a href="../locations.html">Areas</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../faqs.html">FAQs</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+        <li><a class="nav-cta" href="https://maidathome.com.au/booking">Book a clean <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-masthead" aria-labelledby="page-title">
+      <div class="masthead-rule container">
+        <nav class="breadcrumbs reveal r1" aria-label="Breadcrumb"><a href="../index.html">Home</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg><span aria-current="page">Services</span></nav>
+        <div class="masthead-copy">
+          <div class="reveal r1"><span class="eyebrow">Home cleaning services</span><h1 id="page-title">The right kind of clean for where life is now.</h1></div>
+          <div class="masthead-intro reveal r2"><p>From a dependable home reset to moving-day detail, choose the service that fits your space, priorities and schedule.</p><a class="masthead-jump" href="#all-services">Explore all services <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span></a></div>
+        </div>
+        <div class="masthead-media reveal r3">
+          <div class="masthead-photo"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=84" alt="Bright, carefully maintained Melbourne home" width="1600" height="900"></div>
+          <aside class="masthead-aside"><span>Jump to a service</span><div class="masthead-links"><a href="#standard">Standard Clean <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="#deep">Deep Clean <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="#end-of-lease">End of Lease <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="#move-in">Move In Clean <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="#hourly">Hourly Clean <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div><div class="masthead-stat"><strong>5</strong><small>services made for real homes</small></div></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-hub" id="all-services">
+      <div class="container">
+        <div class="section-head split reveal"><div><span class="eyebrow">Explore the range</span><h2>Five services, each with a clear purpose.</h2></div><p>Every clean is residential, professionally coordinated and easy to personalise with the extras your home needs.</p></div>
+        <div class="service-list">
+          <article class="service-row reveal" id="standard"><div class="service-image"><span class="service-number">01</span><img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=82" alt="Clean and organised residential kitchen" loading="lazy" width="1200" height="800"></div><div class="service-copy"><span class="service-type">Everyday home care</span><h2>Standard Clean</h2><p>A reliable reset for the most-used areas of your home. Choose it as a one-off service or make it part of a regular routine.</p><div class="service-details"><span>One-off or recurring</span><span>Kitchens and bathrooms</span><span>Living areas and bedrooms</span></div><a class="service-link" href="standard-clean.html">Explore Standard Clean <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></article>
+          <article class="service-row reveal" id="deep"><div class="service-image"><span class="service-number">02</span><img src="https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?auto=format&fit=crop&w=1200&q=82" alt="Fresh and detailed living room" loading="lazy" width="1200" height="800"></div><div class="service-copy"><span class="service-type">A more thorough reset</span><h2>Deep / Spring Clean</h2><p>Extra time and attention for built-up dust, detail work and areas that sit outside an everyday maintenance clean.</p><div class="service-details"><span>More detailed than Standard</span><span>One-off or recurring</span><span>Starting prices by bedrooms</span></div><a class="service-link" href="deep-clean.html">Explore Deep Clean <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></article>
+          <article class="service-row eol reveal" id="end-of-lease"><div class="service-image"><span class="service-number">03</span><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=82" alt="Empty apartment prepared for final handover" loading="lazy" width="1200" height="800"></div><div class="service-copy"><span class="service-type">For property handover</span><h2>End of Lease Clean</h2><p>A comprehensive clean for an empty property, designed to reduce the pressure around moving and leave the space ready for inspection.</p><div class="service-details"><span>Empty properties</span><span>Oven included</span><span>Inside cabinets included</span><span>7-day re-clean support</span></div><a class="service-link" href="end-of-lease-cleaning.html">Explore End of Lease <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></article>
+          <article class="service-row reveal" id="move-in"><div class="service-image"><span class="service-number">04</span><img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=82" alt="Bright empty home ready for a new resident" loading="lazy" width="1200" height="800"></div><div class="service-copy"><span class="service-type">Start fresh</span><h2>Move In Clean</h2><p>Detailed cleaning before furniture and boxes arrive, so your new place feels genuinely ready from the first night.</p><div class="service-details"><span>Before moving in</span><span>Empty property preferred</span><span>Flat pricing by bedrooms</span></div><a class="service-link" href="move-in-cleaning.html">Explore Move In Clean <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></article>
+          <article class="service-row reveal" id="hourly"><div class="service-image"><span class="service-number">05</span><img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=1200&q=82" alt="Professional cleaner caring for a home" loading="lazy" width="1200" height="800"></div><div class="service-copy"><span class="service-type">Time built around priorities</span><h2>Hourly Clean</h2><p>Book a set number of hours and tell us what matters most. Ideal for targeted lists, special requests or flexible household help.</p><div class="service-details"><span>Two-hour minimum</span><span>Priority-based</span><span>One-off or recurring</span></div><a class="service-link" href="hourly-cleaning.html">Explore Hourly Clean <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="comparison" aria-labelledby="comparison-title">
+      <div class="container"><div class="section-head reveal"><span class="eyebrow">At a glance</span><h2 id="comparison-title">Compare your options.</h2><p>A quick guide to the purpose and structure of each service. Full inclusions appear on every individual service page.</p></div><div class="comparison-wrap reveal"><table class="comparison-table"><thead><tr><th scope="col">Service feature</th><th scope="col">Standard</th><th scope="col">Deep</th><th scope="col">End of Lease</th><th scope="col">Move In</th><th scope="col">Hourly</th></tr></thead><tbody><tr><td>Works for recurring cleans</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="yes">✓</span></td></tr><tr><td>Flat price by bedrooms</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="dash">—</span></td></tr><tr><td>Priority-based task list</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="yes">✓</span></td></tr><tr><td>Designed for an empty home</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td>Optional</td></tr><tr><td>Oven and cabinets included</td><td>Extra</td><td>Extra</td><td><span class="yes">✓</span></td><td>Optional</td><td>By priority</td></tr><tr><td>Optional extras available</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr></tbody></table><div class="comparison-note"><span>Not every task can be completed during a time-limited Hourly Clean.</span><a class="service-link" href="maid-at-home-landing.html#pricing">View pricing <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></div></div>
+    </section>
+
+    <section class="extras" id="extras">
+      <div class="container extras-layout">
+        <div class="extras-copy reveal"><span class="eyebrow">Personalise your clean</span><h2>Add what matters to your home.</h2><p>Nine optional extras let you extend the service without choosing a completely different clean. Select them during booking and see pricing before confirming.</p><div class="extras-note"><strong>Included already?</strong><br>The oven and inside cabinets are included in End of Lease cleaning, so you will not need to add them separately.</div></div>
+        <div class="extras-grid">
+          <article class="extra-card reveal"><div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h8"/></svg></div><h3>Inside oven</h3><p>Interior oven surfaces, racks and accessible areas.</p></article>
+          <article class="extra-card reveal"><div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M6 10h12M9 6h1M9 14h1"/></svg></div><h3>Inside fridge</h3><p>Interior shelves, drawers and accessible surfaces.</p></article>
+          <article class="extra-card reveal"><div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M12 4v16M3 12h18"/></svg></div><h3>Interior windows</h3><p>Internal glass and accessible window surfaces.</p></article>
+          <article class="extra-card reveal"><div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 18h14M7 18V7h10v11M9 11h6M8 21h8"/><path d="M10 4h4"/></svg></div><h3>Carpet steam clean</h3><p>Carpet treatment, subject to provider availability.</p></article>
+          <article class="extra-card reveal"><div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 18h16M6 18V8h12v10M8 8V5h8v3"/><path d="M9 12h6"/></svg></div><h3>Balcony</h3><p>Accessible balcony floor and standard surfaces.</p></article>
+          <article class="extra-card reveal"><div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 17v-5h18v5M5 12V7h5a3 3 0 0 1 3 3v2M3 17v3M21 17v3"/></svg></div><h3>Change bed linen</h3><p>Fresh linen fitted when left ready for the team.</p></article>
+          <article class="extra-card reveal"><div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 4h16v16H4zM10 4v16M14 4v16"/><path d="M7 8h1M16 8h1"/></svg></div><h3>Inside cabinets</h3><p>Interior cupboard shelves and accessible surfaces.</p></article>
+          <article class="extra-card reveal"><div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M8 8c3 0 5 1 8 0M8 16c3 0 5-1 8 0"/></svg></div><h3>Laundry service</h3><p>Washing, hanging or folding based on booking notes.</p></article>
+          <article class="extra-card reveal"><div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 11V8a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v3M4 11a2 2 0 0 1 2 2v6h12v-6a2 2 0 0 1 2-2"/><path d="M8 15h8"/></svg></div><h3>Upholstery clean</h3><p>Steam treatment for selected upholstered furniture.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="recurring-strip" aria-labelledby="recurring-title"><div class="container recurring-grid"><div class="recurring-copy reveal"><span class="eyebrow">Recurring home care</span><h2 id="recurring-title">A cleaner routine, with automatic savings.</h2></div><div class="discount reveal"><span>Weekly or fortnightly</span><strong>10% off</strong><p>Applied from your second completed service.</p></div><div class="discount reveal"><span>Every 3 or 4 weeks</span><strong>5% off</strong><p>Applied from your second completed service.</p></div></div></section>
+
+    <section class="guide">
+      <div class="container"><div class="section-head split reveal"><div><span class="eyebrow">Not sure which to choose?</span><h2>Start with what your home needs today.</h2></div><p>The best service is not always the largest one. These three questions usually make the choice much easier.</p></div><div class="guide-grid"><article class="guide-card reveal"><span class="guide-label">It is generally maintained</span><h3>Does your home need its regular reset?</h3><p>Choose Standard Clean for everyday surfaces and the main areas used throughout the week.</p><a class="service-link" href="standard-clean.html">Choose Standard <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></article><article class="guide-card reveal"><span class="guide-label">It needs extra attention</span><h3>Has detail work or dust built up?</h3><p>Choose Deep Clean when the home needs more time and a more thorough level of care.</p><a class="service-link" href="deep-clean.html">Choose Deep <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></article><article class="guide-card reveal"><span class="guide-label">Your list is specific</span><h3>Do you have clear priorities and limited areas?</h3><p>Choose Hourly Clean, set the available time and tell us what should be handled first.</p><a class="service-link" href="hourly-cleaning.html">Choose Hourly <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></article></div></div>
+    </section>
+
+    <section class="how"><div class="container"><div class="section-head reveal"><span class="eyebrow">Made to feel easy</span><h2>Choose, personalise, come home.</h2></div><div class="steps"><article class="step reveal"><div class="step-number"><span>STEP 01</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V8l8-5 8 5v11H4Z"/><path d="M9 19v-6h6v6"/></svg></div><h3>Choose your service</h3><p>Select the clean that best reflects the current condition and needs of your home.</p></article><article class="step reveal"><div class="step-number"><span>STEP 02</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v18M3 12h18"/></svg></div><h3>Add the useful extras</h3><p>Personalise the booking with only the additional tasks that matter to your space.</p></article><article class="step reveal"><div class="step-number"><span>STEP 03</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z"/></svg></div><h3>Pick a suitable time</h3><p>Tell us when you need the clean and we will coordinate the right available team.</p></article></div></div></section>
+
+    <section class="faq"><div class="container faq-layout"><div class="faq-copy reveal"><span class="eyebrow">Common questions</span><h2>A few useful details before booking.</h2><p>Full service inclusions and exclusions are available on each individual service page.</p></div><div class="faq-list reveal"><details><summary>What is the difference between Standard and Deep cleaning?</summary><div class="faq-answer">Standard Clean focuses on maintaining the main areas and everyday surfaces of a generally cared-for home. Deep Clean allows more time and attention for built-up dust and detailed work.</div></details><details><summary>Do I need to provide cleaning products?</summary><div class="faq-answer">Cleaning products are included. To help avoid cross-contamination between homes, clients generally provide a mop and vacuum. If this is not possible, let us know so we can try to assign a suitably equipped team.</div></details><details><summary>Can I add extras to any service?</summary><div class="faq-answer">Most extras can be added to flat-rate and hourly bookings. Some are already included in End of Lease cleaning, and steam cleaning is subject to specialist availability.</div></details><details><summary>How do recurring discounts work?</summary><div class="faq-answer">Weekly and fortnightly clients receive 10% off, while three-weekly and four-weekly clients receive 5% off. The discount begins from the second completed service.</div></details><details><summary>How does an Hourly Clean work?</summary><div class="faq-answer">You book a minimum of two hours and provide a priority list. The cleaner works through that list in order, but the service guarantees quality rather than a fixed number of completed areas.</div></details></div></div></section>
+
+    <section class="final-cta" aria-labelledby="cta-title"><div class="cta-inner reveal"><div class="cta-content"><span class="eyebrow">Your home, your kind of clean</span><h2 id="cta-title">Ready to choose your service?</h2><p>Build your clean, see an instant estimate and tell us what matters most in your home.</p><div class="cta-actions"><a class="btn" href="https://maidathome.com.au/booking">Book your home clean <span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="btn btn-outline" href="maid-at-home-landing.html#pricing">Check pricing <span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></div></div></section>
+  </main>
+
+  <footer><div class="container"><div class="footer-top"><div class="footer-brand"><a class="logo" href="maid-at-home-landing.html"><span class="logo-mark"></span>Maid At Home</a><p>Professional home cleaning designed to give Melbourne households a little more time and a lot less to think about.</p></div><div class="footer-col"><h3>Services</h3><a href="standard-clean.html">Standard Clean</a><a href="deep-clean.html">Deep Clean</a><a href="end-of-lease-cleaning.html">End of Lease</a><a href="hourly-cleaning.html">Hourly Clean</a></div><div class="footer-col"><h3>Explore</h3><a href="about-us.html">About us</a><a href="maid-at-home-landing.html#pricing">Pricing</a><a href="maid-at-home-landing.html#areas">Areas we serve</a><a href="https://maidathome.com.au/booking">Book now</a></div><div class="footer-col"><h3>Contact</h3><a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a><span>Melbourne, Victoria</span><span>Mon–Sat · 9am–6pm</span></div></div><div class="footer-bottom"><span>© <span id="year"></span> Maid At Home. All rights reserved.</span><span>Cleaning spaces to improve lives.</span></div></div></footer>
+
+  <script>
+    (() => {
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      menuToggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        menuToggle.classList.toggle('open', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        document.body.classList.toggle('menu-open', open);
+      });
+      navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+        navLinks.classList.remove('open'); menuToggle.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false'); document.body.classList.remove('menu-open');
+      }));
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+        });
+      }, { threshold: .1, rootMargin: '0px 0px -35px' });
+      document.querySelectorAll('main .reveal').forEach((element, index) => {
+        if (!element.closest('.page-masthead')) {
+          element.style.transitionDelay = `${Math.min((index % 4) * 80, 240)}ms`;
+          observer.observe(element);
+        }
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
