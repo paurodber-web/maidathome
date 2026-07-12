@@ -145,7 +145,7 @@
     .extras-inner { display: grid; grid-template-columns: .78fr 1.45fr; gap: 85px; align-items: center; }
     .extras h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); }
     .extras p { margin-top: 16px; color: var(--muted); }
-    .extras-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .extras-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
     .extra-label { display: flex; min-height: 51px; align-items: center; gap: 10px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 12px; color: #40576a; font-size: .82rem; font-weight: 600; }
     .extra-label span { display: grid; width: 23px; height: 23px; flex: 0 0 23px; place-items: center; border-radius: 50%; background: var(--sky); color: var(--navy); font-size: .93rem; }
 
@@ -208,7 +208,7 @@
     .frequency { min-height: 57px; padding: 6px 4px; border: 1px solid var(--line); border-radius: 10px; background: white; font-size: .72rem; font-weight: 700; cursor: pointer; }
     .frequency span { display: block; color: var(--blue); font-size: .65rem; }
     .frequency.active { border-color: var(--blue); background: #edf6fb; color: var(--navy); }
-    .extra-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .extra-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
     .extra { display: flex; min-height: 43px; align-items: center; gap: 8px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 9px; background: white; text-align: left; color: #496175; font-size: .72rem; font-weight: 600; cursor: pointer; }
     .extra::before { content: "+"; display: grid; width: 20px; height: 20px; flex: 0 0 20px; place-items: center; border-radius: 50%; background: var(--mist); color: var(--blue); font-size: .9rem; }
     .extra.active { border-color: var(--blue); background: #f1f7fa; color: var(--navy); }
@@ -301,7 +301,7 @@
       .service-card:nth-child(n) { grid-column: span 6; }
       .service-card:last-child { grid-column: span 12; }
       .extras-inner, .recurring-layout, .areas-layout { grid-template-columns: 1fr; gap: 50px; }
-      .extras-list { grid-template-columns: repeat(3, 1fr); }
+      .extras-list { grid-template-columns: repeat(4, 1fr); }
       .eol-layout { min-height: 0; grid-template-columns: 1fr; }
       .eol-image { min-height: 490px; }
       .eol-image::after { background: linear-gradient(0deg, var(--navy-2), transparent 45%); }
@@ -446,16 +446,16 @@
           <article class="service-card has-photo reveal"><div class="service-photo"><img src="https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?auto=format&fit=crop&w=1200&q=80" alt="Calm and clean living room" loading="lazy" width="1200" height="800"></div><span class="service-number">02</span><div class="service-content"><h3>Deep / Spring Clean</h3><p>Extra attention for built-up dust, detail work and overlooked areas. The right choice when your home needs a thorough refresh.</p><a class="card-link" href="#pricing">Estimate price <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></article>
           <article class="service-card reveal"><span class="service-number">03</span><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 11 12 4l9 7v9H3v-9Z"/><path d="M9 20v-6h6v6"/></svg></div><div class="service-content"><h3>End of Lease</h3><p>A comprehensive empty-property clean designed for handover day, with the oven and inside cabinets included.</p><a class="card-link" href="#end-of-lease">See what's included <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></article>
           <article class="service-card reveal"><span class="service-number">04</span><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m12 2 3 6 6 .9-4.5 4.4 1 6.2L12 16.6l-5.5 2.9 1-6.2L3 8.9 9 8l3-6Z"/></svg></div><div class="service-content"><h3>Move In Clean</h3><p>Start fresh in your new place with a detailed clean completed before the boxes and furniture arrive.</p><a class="card-link" href="#pricing">Estimate price <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></article>
-          <article class="service-card reveal"><span class="service-number">05</span><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></div><div class="service-content"><h3>Hourly Clean</h3><p>Set your priorities and book the time you need. Best for targeted lists, special requests or homes needing flexibility.</p><a class="card-link" href="#pricing">Estimate price <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></article>
+          <article class="service-card reveal"><span class="service-number">05</span><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0M4 17c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg></div><div class="service-content"><h3>Carpet Clean</h3><p>Professional steam cleaning to deep clean, sanitise and restore carpets throughout your home — removing stains and dust.</p><a class="card-link" href="#pricing">Estimate price <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div></article>
         </div>
       </div>
     </section>
 
     <section class="extras" aria-labelledby="extras-title">
       <div class="container extras-inner">
-        <div class="reveal"><span class="eyebrow">Make it yours</span><h2 id="extras-title">Add only what your home needs.</h2><p>Nine optional extras turn any clean into your clean — selected during booking, with pricing shown upfront.</p></div>
+        <div class="reveal"><span class="eyebrow">Make it yours</span><h2 id="extras-title">Add only what your home needs.</h2><p>Eight optional extras turn any clean into your clean — selected during booking, with pricing shown upfront.</p></div>
         <div class="extras-list reveal">
-          <div class="extra-label"><span>+</span>Inside oven</div><div class="extra-label"><span>+</span>Inside fridge</div><div class="extra-label"><span>+</span>Interior windows</div><div class="extra-label"><span>+</span>Carpet steam clean</div><div class="extra-label"><span>+</span>Balcony</div><div class="extra-label"><span>+</span>Change bed linen</div><div class="extra-label"><span>+</span>Inside cabinets</div><div class="extra-label"><span>+</span>Laundry service</div><div class="extra-label"><span>+</span>Upholstery clean</div>
+          <div class="extra-label"><span>+</span>Inside oven</div><div class="extra-label"><span>+</span>Inside fridge</div><div class="extra-label"><span>+</span>Interior windows</div><div class="extra-label"><span>+</span>Balcony</div><div class="extra-label"><span>+</span>Change bed linen</div><div class="extra-label"><span>+</span>Inside cabinets</div><div class="extra-label"><span>+</span>Laundry service</div><div class="extra-label"><span>+</span>Upholstery clean</div>
         </div>
       </div>
     </section>
@@ -484,10 +484,10 @@
         <div class="calc-head reveal"><div><span class="eyebrow">Simple pricing. No surprises.</span><h2>Build your clean and see the price.</h2></div><p>Choose a service, home size, frequency and any extras. Your estimate updates instantly — no email required.</p></div>
         <div class="calc-shell reveal">
           <div class="calc-form">
-            <div class="calc-section"><div class="calc-title"><h3>1. Choose your service</h3><span>Prices in AUD</span></div><div class="tabs" role="group" aria-label="Cleaning service"><button class="tab active" data-service="standard">Standard</button><button class="tab" data-service="deep">Deep Clean</button><button class="tab" data-service="eol">End of Lease</button><button class="tab" data-service="move">Move In</button><button class="tab" data-service="hourly">Hourly</button></div></div>
-            <div class="calc-section"><div class="calc-title"><h3>2. Tell us about the home</h3></div><div class="option-row"><div class="field"><label for="bedrooms">Bedrooms</label><select id="bedrooms"><option value="1">1 bedroom</option><option value="2" selected>2 bedrooms</option><option value="3">3 bedrooms</option><option value="4">4 bedrooms</option><option value="5">5 bedrooms</option><option value="6">6 bedrooms</option></select></div><div class="field"><label for="bathrooms">Bathrooms</label><select id="bathrooms"><option value="1" selected>1 bathroom</option><option value="2">2 bathrooms</option><option value="3">3 bathrooms</option><option value="4">4 bathrooms</option></select></div><div class="field" id="hoursField" hidden><label for="hours">Hours</label><select id="hours"><option value="2">2 hours</option><option value="2.5">2.5 hours</option><option value="3" selected>3 hours</option><option value="3.5">3.5 hours</option><option value="4">4 hours</option><option value="5">5 hours</option><option value="6">6 hours</option></select></div></div></div>
+            <div class="calc-section"><div class="calc-title"><h3>1. Choose your service</h3><span>Prices in AUD</span></div><div class="tabs" role="group" aria-label="Cleaning service"><button class="tab active" data-service="standard">Standard</button><button class="tab" data-service="deep">Deep Clean</button><button class="tab" data-service="eol">End of Lease</button><button class="tab" data-service="move">Move In</button><button class="tab" data-service="carpet">Carpet Clean</button></div></div>
+            <div class="calc-section"><div class="calc-title"><h3>2. Tell us about the home</h3></div><div class="option-row"><div class="field"><label for="bedrooms">Bedrooms</label><select id="bedrooms"><option value="1">1 bedroom</option><option value="2" selected>2 bedrooms</option><option value="3">3 bedrooms</option><option value="4">4 bedrooms</option><option value="5">5 bedrooms</option><option value="6">6 bedrooms</option></select></div><div class="field"><label for="bathrooms">Bathrooms</label><select id="bathrooms"><option value="1" selected>1 bathroom</option><option value="2">2 bathrooms</option><option value="3">3 bathrooms</option><option value="4">4 bathrooms</option></select></div></div></div>
             <div class="calc-section" id="frequencySection"><div class="calc-title"><h3>3. How often?</h3><span>Discounts from visit two</span></div><div class="frequencies" role="group" aria-label="Cleaning frequency"><button class="frequency active" data-frequency="once" data-discount="0">One-off<span>No discount</span></button><button class="frequency" data-frequency="weekly" data-discount=".10">Weekly<span>Save 10%</span></button><button class="frequency" data-frequency="fortnightly" data-discount=".10">Fortnightly<span>Save 10%</span></button><button class="frequency" data-frequency="3-weekly" data-discount=".05">3-weekly<span>Save 5%</span></button><button class="frequency" data-frequency="monthly" data-discount=".05">Monthly<span>Save 5%</span></button></div></div>
-            <div class="calc-section"><div class="calc-title"><h3>4. Add any extras</h3><span>Optional</span></div><div class="extra-options" role="group" aria-label="Cleaning extras"><button class="extra" data-extra="Oven" data-price="45">Oven · $45</button><button class="extra" data-extra="Fridge" data-price="35">Fridge · $35</button><button class="extra" data-extra="Windows" data-price="55">Windows · $55</button><button class="extra" data-extra="Steam clean" data-price="80">Steam · $80</button><button class="extra" data-extra="Balcony" data-price="30">Balcony · $30</button><button class="extra" data-extra="Bed linen" data-price="15">Bed linen · $15</button><button class="extra" data-extra="Cabinets" data-price="40">Cabinets · $40</button><button class="extra" data-extra="Laundry" data-price="30">Laundry · $30</button><button class="extra" data-extra="Upholstery" data-price="65">Upholstery · $65</button></div></div>
+            <div class="calc-section"><div class="calc-title"><h3>4. Add any extras</h3><span>Optional</span></div><div class="extra-options" role="group" aria-label="Cleaning extras"><button class="extra" data-extra="Oven" data-price="45">Oven · $45</button><button class="extra" data-extra="Fridge" data-price="35">Fridge · $35</button><button class="extra" data-extra="Windows" data-price="55">Windows · $55</button><button class="extra" data-extra="Balcony" data-price="30">Balcony · $30</button><button class="extra" data-extra="Bed linen" data-price="15">Bed linen · $15</button><button class="extra" data-extra="Cabinets" data-price="40">Cabinets · $40</button><button class="extra" data-extra="Laundry" data-price="30">Laundry · $30</button><button class="extra" data-extra="Upholstery" data-price="65">Upholstery · $65</button></div></div>
           </div>
           <aside class="calc-summary" aria-live="polite"><span>Your estimate</span><div class="price"><span class="currency">$</span><strong id="totalPrice">175</strong></div><p class="price-note">Estimated starting price, including selected extras.</p><div class="summary-lines"><div class="summary-line"><span>Service</span><strong id="sumService">Standard Clean</strong></div><div class="summary-line"><span>Home</span><strong id="sumHome">2 bed · 1 bath</strong></div><div class="summary-line"><span>Frequency</span><strong id="sumFrequency">One-off</strong></div><div class="summary-line"><span>Extras</span><strong id="sumExtras">None</strong></div></div><a class="btn" href="https://maidathome.com.au/booking">Continue to booking <span class="btn-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><p class="calc-disclaimer">Final pricing may vary after reviewing property details. Recurring discounts apply from the second service.</p></aside>
         </div>
@@ -545,37 +545,37 @@
         standard: [0, 155, 175, 195, 235, 285, 315],
         deep: [0, 185, 215, 245, 285, 345, 385],
         eol: [0, 270, 330, 395, 475, 560, 640],
-        move: [0, 215, 255, 305, 365, 435, 495]
+        move: [0, 215, 255, 305, 365, 435, 495],
+        carpet: [0, 90, 130, 170, 210, 250, 290]
       };
-      const names = { standard: 'Standard Clean', deep: 'Deep Clean', eol: 'End of Lease', move: 'Move In Clean', hourly: 'Hourly Clean' };
+      const names = { standard: 'Standard Clean', deep: 'Deep Clean', eol: 'End of Lease', move: 'Move In Clean', carpet: 'Carpet Clean' };
       const calc = { service: 'standard', frequency: 'once', discount: 0, extras: new Map() };
       const tabs = [...document.querySelectorAll('.tab')];
       const frequencies = [...document.querySelectorAll('.frequency')];
       const extras = [...document.querySelectorAll('.extra')];
       const bedrooms = document.getElementById('bedrooms');
       const bathrooms = document.getElementById('bathrooms');
-      const hours = document.getElementById('hours');
-      const hoursField = document.getElementById('hoursField');
       const frequencySection = document.getElementById('frequencySection');
-
+ 
       function updatePrice() {
         const beds = Number(bedrooms.value), baths = Number(bathrooms.value);
-        const isHourly = calc.service === 'hourly';
-        let base = isHourly ? Number(hours.value) * 60 : prices[calc.service][beds] + Math.max(0, baths - 1) * 25;
-        const eligible = ['standard', 'deep', 'hourly'].includes(calc.service);
+        const isCarpet = calc.service === 'carpet';
+        let base = prices[calc.service][beds] + (isCarpet ? 0 : Math.max(0, baths - 1) * 25);
+        const eligible = ['standard', 'deep', 'carpet'].includes(calc.service);
         const discounted = eligible ? base * (1 - calc.discount) : base;
         const extrasTotal = [...calc.extras.values()].reduce((sum, n) => sum + n, 0);
         document.getElementById('totalPrice').textContent = Math.round(discounted + extrasTotal);
         document.getElementById('sumService').textContent = names[calc.service];
-        document.getElementById('sumHome').textContent = isHourly ? `${hours.value} hours · priorities` : `${beds} bed · ${baths} bath`;
+        document.getElementById('sumHome').textContent = isCarpet ? `${beds} rooms` : `${beds} bed · ${baths} bath`;
         document.getElementById('sumFrequency').textContent = eligible ? (calc.frequency === 'once' ? 'One-off' : calc.frequency.replace('-', ' ')) : 'One-off only';
         document.getElementById('sumExtras').textContent = calc.extras.size ? [...calc.extras.keys()].join(', ') : 'None';
       }
       tabs.forEach(tab => tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active')); tab.classList.add('active'); calc.service = tab.dataset.service;
-        const hourly = calc.service === 'hourly';
-        hoursField.hidden = !hourly; bedrooms.closest('.field').hidden = hourly; bathrooms.closest('.field').hidden = hourly;
-        const recurringAllowed = ['standard','deep','hourly'].includes(calc.service);
+        const carpet = calc.service === 'carpet';
+        bathrooms.closest('.field').hidden = carpet;
+        bedrooms.previousElementSibling.textContent = carpet ? 'Rooms' : 'Bedrooms';
+        const recurringAllowed = ['standard','deep','carpet'].includes(calc.service);
         frequencySection.hidden = !recurringAllowed;
         if (!recurringAllowed) { calc.frequency = 'once'; calc.discount = 0; frequencies.forEach((f, i) => f.classList.toggle('active', i === 0)); }
         updatePrice();
@@ -589,7 +589,7 @@
         if (calc.extras.has(name)) calc.extras.delete(name); else calc.extras.set(name, Number(button.dataset.price));
         button.classList.toggle('active'); button.setAttribute('aria-pressed', button.classList.contains('active')); updatePrice();
       }));
-      [bedrooms, bathrooms, hours].forEach(el => el.addEventListener('change', updatePrice));
+      [bedrooms, bathrooms].forEach(el => el.addEventListener('change', updatePrice));
       updatePrice();
 
       const suburbSearch = document.getElementById('suburbSearch');
