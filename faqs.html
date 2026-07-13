@@ -11,11 +11,103 @@
     .help-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.help-card{display:flex;min-height:240px;padding:29px;border:1px solid var(--blue-200);border-radius:21px;flex-direction:column;background:var(--white)}.help-card__icon{display:grid;width:46px;height:46px;margin-bottom:28px;place-items:center;border-radius:50%;color:var(--blue-800);background:var(--beige)}.help-card__icon svg{width:21px;height:21px}.help-card h3{margin-bottom:9px;font-size:1.16rem}.help-card p{margin-bottom:22px;font-size:.76rem}.help-card a{width:fit-content;margin-top:auto;color:var(--blue-700);font-size:.73rem;font-weight:800}
     .final-cta{padding:22px}.final-cta__panel{position:relative;min-height:480px;border-radius:var(--radius-lg);isolation:isolate;overflow:hidden;color:var(--white)}.final-cta__image{position:absolute;z-index:-3;inset:0;height:100%}.final-cta__panel::before{content:"";position:absolute;z-index:-2;inset:0;background:linear-gradient(90deg,rgba(14,49,73,.91),rgba(14,49,73,.59) 52%,rgba(14,49,73,.13) 86%)}.final-cta__inner{display:flex;min-height:480px;align-items:center}.final-cta__content{max-width:650px}.eyebrow{display:inline-flex;padding:9px 13px;border:1px solid rgba(255,255,255,.4);border-radius:100px;color:var(--white);background:rgba(14,51,77,.22);font-size:.7rem;font-weight:800;text-transform:uppercase}.final-cta h2{margin:17px 0 19px;color:var(--white);font-size:clamp(2.45rem,5.4vw,4.65rem);font-weight:600}.final-cta p{max-width:520px;margin-bottom:29px;color:rgba(255,255,255,.8)}.site-footer{padding:72px 0 28px;background:var(--blue-50)}.footer-top{display:grid;grid-template-columns:1.4fr repeat(3,.7fr);gap:50px;padding-bottom:55px}.footer-brand p{max-width:310px;margin:18px 0 23px;font-size:.76rem}.footer-contact{display:grid;gap:6px;color:var(--blue-800);font-size:.72rem;font-weight:700}.footer-column h3{margin-bottom:18px;font-size:.77rem;font-weight:800;text-transform:uppercase}.footer-column nav{display:grid;gap:10px}.footer-column a{width:fit-content;color:var(--ink-soft);font-size:.73rem}.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:24px;border-top:1px solid var(--blue-200)}.footer-bottom p{margin:0;font-size:.65rem}.footer-legal{display:flex;gap:18px;color:var(--ink-soft);font-size:.65rem}
     @media(max-width:1080px){:root{--shell:min(100% - 40px,960px)}.desktop-nav{gap:13px}.desktop-nav a:not(.nav-cta){font-size:.74rem}.desktop-nav a:nth-child(5){display:none}.footer-top{grid-template-columns:1.2fr repeat(3,.65fr);gap:30px}}@media(max-width:820px){:root{--nav-height:74px;--shell:min(100% - 36px,720px)}.desktop-nav{display:none}.menu-toggle,.mobile-menu{display:block}.faq-hero{padding-top:calc(var(--nav-height) + 25px)}.breadcrumb{margin-bottom:34px}.faq-hero__grid{grid-template-columns:1fr;gap:32px}.faq-hero h1{font-size:clamp(2.8rem,9vw,4rem)}.faq-hero__visual{height:245px}.faq-hero__visual img{border-radius:75px 22px 22px 22px}.faq-jumps{grid-template-columns:repeat(3,1fr)}.faq-jumps a:nth-child(4){border-top:1px solid var(--blue-200);border-left:0}.faq-jumps a:nth-child(5){border-top:1px solid var(--blue-200)}.section-intro,.faq-layout{grid-template-columns:1fr}.faq-layout{gap:35px}.faq-side{position:static}.help-grid{grid-template-columns:1fr}.help-card{min-height:200px}.footer-top{grid-template-columns:1.4fr 1fr 1fr}.footer-brand{grid-column:1/-1}}@media(max-width:620px){:root{--shell:calc(100% - 30px);--radius-lg:28px}body{font-size:15px}.section{padding-block:78px}.faq-hero{padding-bottom:42px}.faq-hero h1{font-size:clamp(2.45rem,12vw,3.25rem)}.faq-hero__actions{align-items:stretch;flex-direction:column}.faq-hero__actions .button{width:100%}.faq-hero__visual{height:205px}.faq-hero__note{right:10px;bottom:10px;width:180px}.faq-jumps{grid-template-columns:repeat(2,1fr)}.faq-jumps a{border-top:1px solid var(--blue-200)}.faq-jumps a:nth-child(-n+2){border-top:0}.faq-jumps a:nth-child(odd){border-left:0}.faq-jumps a:nth-child(4){border-left:1px solid var(--blue-200)}.faq-jumps a:last-child{grid-column:1/-1}.search-panel{margin-top:-20px;padding:14px}.faq-answer p{padding-right:10px}.final-cta{padding:10px}.final-cta__panel,.final-cta__inner{min-height:560px}.final-cta__panel::before{background:linear-gradient(0deg,rgba(12,44,66,.93),rgba(12,44,66,.22))}.final-cta__inner{align-items:flex-end;padding-bottom:42px}.footer-top{grid-template-columns:repeat(2,1fr)}.footer-brand{grid-column:1/-1}.footer-bottom{align-items:flex-start;flex-direction:column}}@media(max-width:400px){.footer-top{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
-  </style>
+  
+/* Added by Antigravity: Reading progress bar & Services Dropdown */
+.reading-progress {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--beige, #f4df9f);
+  transition: width 0.08s linear;
+}
+.nav-item-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--white, #fff);
+  border: 1px solid var(--grey-200, #dbe4e8);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(29, 80, 119, 0.08);
+  padding: 10px;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s cubic-bezier(.22,1,.36,1), transform 0.25s cubic-bezier(.22,1,.36,1), visibility 0.25s;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nav-item-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-menu a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem !important;
+  font-weight: 600;
+  color: var(--ink, #183042) !important;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+  text-align: left;
+}
+.dropdown-menu a::after {
+  display: none !important;
+}
+.dropdown-menu a:hover {
+  background: var(--blue-50, #f4fafc) !important;
+  color: var(--blue-700, #286b9d) !important;
+}
+
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a><header class="site-header" id="siteHeader"><div class="nav shell" aria-label="Main navigation"><a class="brand" href="maid-at-home-landing.html#home" aria-label="Maid At Home, back to home"><span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3.5 10.8 12 3.7l8.5 7.1"></path><path d="M5.7 9.4v9.4h12.6V9.4"></path><path d="M9.5 18.8v-5.2h5v5.2"></path></svg></span><span>Maid At Home</span></a><nav class="desktop-nav" aria-label="Desktop navigation"><a href="services.html">Services</a><a href="about-us.html">About</a><a href="pricing.html">Pricing</a><a href="areas-we-serve.html">Areas</a><a href="blog.html">Blog</a><a href="#main-content" aria-current="page">FAQs</a><a href="contact.html">Contact</a><a class="nav-cta" href="https://maidathome.com.au/booknow">Book a clean <span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a></nav><button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button></div></header>
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true"><div class="mobile-menu__inner"><nav class="mobile-menu__links" aria-label="Mobile navigation"><a href="services.html">Services <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="about-us.html">About <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="pricing.html">Pricing <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="areas-we-serve.html">Areas <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="blog.html">Blog <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="#main-content" aria-current="page">FAQs <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="contact.html">Contact <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a></nav><div class="mobile-menu__bottom"><p>Still deciding? We are happy to help.</p><a class="button button--primary" href="contact.html">Ask us <span class="button__icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a></div></div></div>
+  <div class="reading-progress" id="readingProgress"></div>
+  <a class="skip-link" href="#main-content">Skip to content</a><header class="site-header" id="siteHeader">
+    <div class="nav shell" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Maid At Home, back to home">
+        <span class="brand__mark brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.8 12 3.7l8.5 7.1"></path><path d="M5.7 9.4v9.4h12.6V9.4"></path><path d="M9.5 18.8v-5.2h5v5.2"></path><path d="m17.7 4 .5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5.5-1.2Z"></path></svg></span>
+        <span>Maid At Home</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Desktop navigation">
+        <div class="nav-item-dropdown">
+          <a href="services/index.html" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
+            <a href="services/standard-clean.html">Standard clean</a>
+          </div>
+        </div>
+        <a href="about-us.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="areas-we-serve.html">Areas</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-cta" href="booking.html">Book a clean <span aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true"><div class="mobile-menu__inner"><nav class="mobile-menu__links" aria-label="Mobile navigation">
+        <a href="services/index.html">Services <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="services/standard-clean.html" style="padding-left: 20px; font-size: 0.9em; border-bottom: none; color: var(--blue-700, #286b9d);">— Standard clean <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="about-us.html">About us <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="pricing.html">Pricing <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="areas-we-serve.html">Areas <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="faqs.html">FAQs <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="blog/index.html">Blog <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="contact.html">Contact <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+      </nav><div class="mobile-menu__bottom"><p>Still deciding? We are happy to help.</p><a class="button button--primary" href="contact.html">Ask us <span class="button__icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a></div></div></div>
   <main id="main-content">
     <section class="faq-hero" aria-labelledby="faq-hero-title"><div class="shell"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="maid-at-home-landing.html#home">Home</a><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="m6 3 5 5-5 5"></path></svg><span aria-current="page">FAQs</span></nav><div class="faq-hero__grid"><div class="faq-hero__content"><div class="section-kicker">Straightforward answers</div><h1 id="faq-hero-title">Answers, without the <em>runaround.</em></h1><p class="faq-hero__copy">Everything you need to know about choosing a service, preparing the home, pricing and what happens on cleaning day.</p><div class="faq-hero__actions"><a class="button button--blue" href="#questions">Find an answer <span class="button__icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="m6 8 4 4 4-4"></path></svg></span></a><a class="button button--primary" href="contact.html">Ask our team <span class="button__icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a></div></div><div class="faq-hero__visual"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1000&q=84" alt="Bright, comfortable and carefully kept Melbourne home" width="1000" height="667" fetchpriority="high"><div class="faq-hero__note"><span class="round-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21a9 9 0 1 0-9-9"></path><path d="M9.7 9a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1.2.9-1.2 1.7M12 17h.01"></path></svg></span><span>Clear guidance before, during and after you book.</span></div></div></div><nav class="faq-jumps" aria-label="FAQ topics"><a href="#questions" data-jump-filter="booking">Booking</a><a href="#questions" data-jump-filter="services">Services</a><a href="#questions" data-jump-filter="pricing">Pricing</a><a href="#questions" data-jump-filter="preparation">Home prep</a><a href="#questions" data-jump-filter="policies">Policies</a></nav></div></section>
     <div class="search-panel shell"><label class="faq-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 4 4"></path></svg><input id="faqSearch" type="search" placeholder="Search a question, service or topic..." autocomplete="off" aria-label="Search frequently asked questions"></label><p class="search-status" id="searchStatus" aria-live="polite">Showing all 15 questions.</p></div>
@@ -40,5 +132,21 @@
     <section class="final-cta"><div class="final-cta__panel"><img class="final-cta__image" src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=2200&q=86" alt="Calm, clean home ready to enjoy" width="2200" height="1467" loading="lazy"><div class="final-cta__inner shell"><div class="final-cta__content reveal"><span class="eyebrow">Found what you needed?</span><h2>Now let us take care of the home.</h2><p>Choose your service, preferred time and any extras. We will confirm the details before assigning the booking.</p><a class="button button--primary" href="pricing.html#calculator">Build my clean <span class="button__icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a></div></div></div></section>
   </main>
   <footer class="site-footer"><div class="shell"><div class="footer-top"><div class="footer-brand"><a class="brand" href="maid-at-home-landing.html#home"><span class="brand__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3.5 10.8 12 3.7l8.5 7.1"></path><path d="M5.7 9.4v9.4h12.6V9.4"></path></svg></span><span>Maid At Home</span></a><p>Friendly, professional home cleaning across Melbourne since 2017.</p><div class="footer-contact"><a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a><a href="https://maidathome.com.au">maidathome.com.au</a></div></div><div class="footer-column"><h3>Services</h3><nav><a href="services.html#standard">Standard clean</a><a href="services.html#deep">Deep clean</a><a href="services.html#end-of-lease">End of lease</a><a href="services.html#move-in">Move in clean</a><a href="services.html#hourly">Hourly clean</a></nav></div><div class="footer-column"><h3>Explore</h3><nav><a href="about-us.html">About us</a><a href="areas-we-serve.html">Areas we serve</a><a href="blog.html">Blog</a><a href="#questions">FAQs</a><a href="contact.html">Contact</a></nav></div><div class="footer-column"><h3>Book</h3><nav><a href="pricing.html#calculator">Price calculator</a><a href="https://maidathome.com.au/booknow">Book online</a><a href="contact.html">Ask a question</a></nav></div></div><div class="footer-bottom"><p>© <span id="currentYear">2026</span> Maid At Home. All rights reserved.</p><div class="footer-legal"><span>Privacy policy</span><span>Terms &amp; conditions</span></div></div></div></footer>
-  <script>(()=>{"use strict";const header=document.getElementById("siteHeader"),toggle=document.getElementById("menuToggle"),menu=document.getElementById("mobileMenu"),links=[...menu.querySelectorAll("a")];let last=null;const setMenu=open=>{toggle.setAttribute("aria-expanded",String(open));toggle.setAttribute("aria-label",open?"Close menu":"Open menu");menu.setAttribute("aria-hidden",String(!open));menu.classList.toggle("is-open",open);document.body.classList.toggle("menu-open",open);if(open){last=document.activeElement;setTimeout(()=>links[0]?.focus(),350)}else if(last instanceof HTMLElement)last.focus({preventScroll:true})};toggle.addEventListener("click",()=>setMenu(toggle.getAttribute("aria-expanded")!=="true"));links.forEach(a=>a.addEventListener("click",()=>setMenu(false)));addEventListener("scroll",()=>header.classList.toggle("is-scrolled",scrollY>24),{passive:true});matchMedia("(min-width:821px)").addEventListener?.("change",e=>{if(e.matches)setMenu(false)});const reveals=document.querySelectorAll(".reveal");if("IntersectionObserver"in window){const o=new IntersectionObserver((es,ob)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("is-visible");ob.unobserve(e.target)}}),{threshold:.08});reveals.forEach(x=>o.observe(x))}else reveals.forEach(x=>x.classList.add("is-visible"));const items=[...document.querySelectorAll(".faq-item")],filters=[...document.querySelectorAll(".faq-filter")],search=document.getElementById("faqSearch"),status=document.getElementById("searchStatus"),empty=document.getElementById("noResults");let category="all";const apply=()=>{const term=search.value.trim().toLowerCase();let visible=0;items.forEach(item=>{const matchCategory=category==="all"||item.dataset.category===category,matchText=!term||item.textContent.toLowerCase().includes(term),show=matchCategory&&matchText;item.classList.toggle("is-filtered",!show);if(show)visible++});status.textContent=`Showing ${visible} ${visible===1?"question":"questions"}${term?` matching “${search.value.trim()}”`:""}.`;empty.hidden=visible!==0};filters.forEach(button=>button.addEventListener("click",()=>{category=button.dataset.filter;filters.forEach(b=>b.setAttribute("aria-pressed",String(b===button)));apply()}));document.querySelectorAll("[data-jump-filter]").forEach(link=>link.addEventListener("click",()=>{category=link.dataset.jumpFilter;filters.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.filter===category)));apply()}));search.addEventListener("input",apply);document.querySelectorAll(".faq-question").forEach(button=>button.addEventListener("click",()=>{const item=button.closest(".faq-item"),open=button.getAttribute("aria-expanded")!=="true";items.forEach(other=>{other.classList.remove("is-open");other.querySelector(".faq-question").setAttribute("aria-expanded","false")});if(open){item.classList.add("is-open");button.setAttribute("aria-expanded","true")}}));document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});document.getElementById("currentYear").textContent=new Date().getFullYear()})();</script>
+  <script>(()=>{"use strict";const header=document.getElementById("siteHeader"),toggle=document.getElementById("menuToggle"),menu=document.getElementById("mobileMenu"),links=[...menu.querySelectorAll("a")];let last=null;const setMenu=open=>{toggle.setAttribute("aria-expanded",String(open));toggle.setAttribute("aria-label",open?"Close menu":"Open menu");menu.setAttribute("aria-hidden",String(!open));menu.classList.toggle("is-open",open);document.body.classList.toggle("menu-open",open);if(open){last=document.activeElement;setTimeout(()=>links[0]?.focus(),350)}else if(last instanceof HTMLElement)last.focus({preventScroll:true})};toggle.addEventListener("click",()=>setMenu(toggle.getAttribute("aria-expanded")!=="true"));links.forEach(a=>a.addEventListener("click",()=>setMenu(false)));addEventListener("scroll",()=>header.classList.toggle("is-scrolled",scrollY>24),{passive:true});matchMedia("(min-width:821px)").addEventListener?.("change",e=>{if(e.matches)setMenu(false)});const reveals=document.querySelectorAll(".reveal");if("IntersectionObserver"in window){const o=new IntersectionObserver((es,ob)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("is-visible");ob.unobserve(e.target)}}),{threshold:.08});reveals.forEach(x=>o.observe(x))}else reveals.forEach(x=>x.classList.add("is-visible"));const items=[...document.querySelectorAll(".faq-item")],filters=[...document.querySelectorAll(".faq-filter")],search=document.getElementById("faqSearch"),status=document.getElementById("searchStatus"),empty=document.getElementById("noResults");let category="all";const apply=()=>{const term=search.value.trim().toLowerCase();let visible=0;items.forEach(item=>{const matchCategory=category==="all"||item.dataset.category===category,matchText=!term||item.textContent.toLowerCase().includes(term),show=matchCategory&&matchText;item.classList.toggle("is-filtered",!show);if(show)visible++});status.textContent=`Showing ${visible} ${visible===1?"question":"questions"}${term?` matching “${search.value.trim()}”`:""}.`;empty.hidden=visible!==0};filters.forEach(button=>button.addEventListener("click",()=>{category=button.dataset.filter;filters.forEach(b=>b.setAttribute("aria-pressed",String(b===button)));apply()}));document.querySelectorAll("[data-jump-filter]").forEach(link=>link.addEventListener("click",()=>{category=link.dataset.jumpFilter;filters.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.filter===category)));apply()}));search.addEventListener("input",apply);document.querySelectorAll(".faq-question").forEach(button=>button.addEventListener("click",()=>{const item=button.closest(".faq-item"),open=button.getAttribute("aria-expanded")!=="true";items.forEach(other=>{other.classList.remove("is-open");other.querySelector(".faq-question").setAttribute("aria-expanded","false")});if(open){item.classList.add("is-open");button.setAttribute("aria-expanded","true")}}));document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});document.getElementById("currentYear").textContent=new Date().getFullYear()})();
+  // Scroll progress bar logic
+  (function() {
+    const progress = document.getElementById("readingProgress");
+    if (progress) {
+      const updateProgress = () => {
+        const scrolled = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0;
+        progress.style.width = Math.min(100, Math.max(0, pct)) + "%";
+      };
+      updateProgress();
+      window.addEventListener("scroll", updateProgress, { passive: true });
+    }
+  })();
+
+</script>
 </body></html>

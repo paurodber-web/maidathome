@@ -804,45 +804,109 @@
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
       .reveal { opacity: 1; transform: none; }
     }
-  </style>
+  
+/* Added by Antigravity: Reading progress bar & Services Dropdown */
+.reading-progress {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--beige, #f4df9f);
+  transition: width 0.08s linear;
+}
+.nav-item-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--white, #fff);
+  border: 1px solid var(--grey-200, #dbe4e8);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(29, 80, 119, 0.08);
+  padding: 10px;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s cubic-bezier(.22,1,.36,1), transform 0.25s cubic-bezier(.22,1,.36,1), visibility 0.25s;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nav-item-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-menu a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem !important;
+  font-weight: 600;
+  color: var(--ink, #183042) !important;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+  text-align: left;
+}
+.dropdown-menu a::after {
+  display: none !important;
+}
+.dropdown-menu a:hover {
+  background: var(--blue-50, #f4fafc) !important;
+  color: var(--blue-700, #286b9d) !important;
+}
+
+</style>
 </head>
 
 <body>
+  <div class="reading-progress" id="readingProgress"></div>
   <a class="skip-link" href="#main-content">Skip to content</a>
 
   <!-- SHARED HEADER -->
   <header class="site-header" id="siteHeader">
     <div class="nav shell" aria-label="Main navigation">
-      <a class="brand" href="maid-at-home-landing.html#home" aria-label="Maid At Home, back to home">
-        <span class="brand__mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.8 12 3.7l8.5 7.1"></path><path d="M5.7 9.4v9.4h12.6V9.4"></path><path d="M9.5 18.8v-5.2h5v5.2"></path><path d="m17.7 4 .5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5.5-1.2Z"></path></svg>
-        </span>
+      <a class="brand" href="index.html" aria-label="Maid At Home, back to home">
+        <span class="brand__mark brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.8 12 3.7l8.5 7.1"></path><path d="M5.7 9.4v9.4h12.6V9.4"></path><path d="M9.5 18.8v-5.2h5v5.2"></path><path d="m17.7 4 .5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5.5-1.2Z"></path></svg></span>
         <span>Maid At Home</span>
       </a>
-
       <nav class="desktop-nav" aria-label="Desktop navigation">
-        <a href="services.html">Services</a>
-        <a href="maid-at-home-landing.html#regular-cleaning">Regular cleaning</a>
-        <a href="maid-at-home-landing.html#end-of-lease">End of lease</a>
-        <a href="maid-at-home-landing.html#areas">Areas</a>
-        <a href="#main-content" aria-current="page">About</a>
-        <a href="#faqs">FAQs</a>
-        <a class="nav-cta" href="maid-at-home-landing.html#price-calculator">Get a price <span aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a>
+        <div class="nav-item-dropdown">
+          <a href="services/index.html" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
+            <a href="services/standard-clean.html">Standard clean</a>
+          </div>
+        </div>
+        <a href="about-us.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="areas-we-serve.html">Areas</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-cta" href="booking.html">Book a clean <span aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a>
       </nav>
-
-      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
     </div>
   </header>
 
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-menu__inner">
       <nav class="mobile-menu__links" aria-label="Mobile navigation">
-        <a href="services.html">Services <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
-        <a href="services.html#recurring">Regular cleaning <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
-        <a href="services.html#end-of-lease">End of lease <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
-        <a href="maid-at-home-landing.html#areas">Areas we serve <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
-        <a href="#main-content" aria-current="page">About us <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
-        <a href="#faqs">FAQs <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="services/index.html">Services <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="services/standard-clean.html" style="padding-left: 20px; font-size: 0.9em; border-bottom: none; color: var(--blue-700, #286b9d);">— Standard clean <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="about-us.html">About us <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="pricing.html">Pricing <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="areas-we-serve.html">Areas <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="faqs.html">FAQs <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="blog/index.html">Blog <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="contact.html">Contact <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
       </nav>
       <div class="mobile-menu__bottom">
         <p>Home cleaning, thoughtfully organised across Melbourne.</p>
@@ -1171,6 +1235,22 @@
 
       document.getElementById("currentYear").textContent = new Date().getFullYear();
     })();
-  </script>
+  
+  // Scroll progress bar logic
+  (function() {
+    const progress = document.getElementById("readingProgress");
+    if (progress) {
+      const updateProgress = () => {
+        const scrolled = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0;
+        progress.style.width = Math.min(100, Math.max(0, pct)) + "%";
+      };
+      updateProgress();
+      window.addEventListener("scroll", updateProgress, { passive: true });
+    }
+  })();
+
+</script>
 </body>
 </html>

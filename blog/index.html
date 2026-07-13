@@ -29,18 +29,104 @@
     @media(max-width:820px){:root{--nav-height:74px;--shell:min(100% - 36px,720px)}.desktop-nav{display:none}.menu-toggle,.mobile-menu{display:block}.blog-hero{padding-top:calc(var(--nav-height) + 25px)}.breadcrumb{margin-bottom:34px}.blog-hero__grid{grid-template-columns:1fr;gap:32px}.blog-hero h1{font-size:clamp(2.8rem,9vw,4rem)}.blog-hero__visual{height:245px}.blog-hero__visual img{border-radius:75px 22px 22px 22px}.topic-jumps{grid-template-columns:repeat(3,1fr)}.topic-jumps a:nth-child(4){border-top:1px solid var(--blue-200);border-left:0}.topic-jumps a:nth-child(5){border-top:1px solid var(--blue-200)}.section-intro{grid-template-columns:1fr;gap:15px}.featured-card{grid-template-columns:1fr}.featured-card__image{min-height:280px;height:280px}.guide-grid,.newsletter-card{grid-template-columns:1fr}.guide-grid{gap:42px}.newsletter-card{gap:32px}.footer-top{grid-template-columns:1.4fr 1fr 1fr}.footer-brand{grid-column:1/-1}}
     @media(max-width:620px){:root{--shell:calc(100% - 30px);--radius-lg:28px}body{font-size:15px}.section{padding-block:78px}.blog-hero{padding-bottom:42px}.blog-hero h1{font-size:clamp(2.45rem,12vw,3.25rem)}.blog-hero__actions{align-items:stretch;flex-direction:column}.blog-hero__actions .button{width:100%}.blog-hero__visual{height:205px}.blog-hero__note{right:10px;bottom:10px;width:182px}.topic-jumps{grid-template-columns:repeat(2,1fr)}.topic-jumps a{border-top:1px solid var(--blue-200)}.topic-jumps a:nth-child(-n+2){border-top:0}.topic-jumps a:nth-child(odd){border-left:0}.topic-jumps a:nth-child(4){border-left:1px solid var(--blue-200)}.topic-jumps a:last-child{grid-column:1/-1}.featured-card__image{min-height:220px;height:220px}.featured-card__content{padding:29px 24px}.articles-grid{grid-template-columns:1fr}.article-card__body{min-height:230px}.newsletter-card{padding:31px 22px}.newsletter-form{grid-template-columns:1fr}.newsletter-form .button{width:100%}.final-cta{padding:10px}.final-cta__panel,.final-cta__inner{min-height:560px}.final-cta__panel::before{background:linear-gradient(0deg,rgba(12,44,66,.93),rgba(12,44,66,.22))}.final-cta__inner{align-items:flex-end;padding-bottom:42px}.footer-top{grid-template-columns:repeat(2,1fr)}.footer-brand{grid-column:1/-1}.footer-bottom{align-items:flex-start;flex-direction:column}}
     @media(max-width:400px){.footer-top{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
-  </style>
+  
+/* Added by Antigravity: Reading progress bar & Services Dropdown */
+.reading-progress {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--beige, #f4df9f);
+  transition: width 0.08s linear;
+}
+.nav-item-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--white, #fff);
+  border: 1px solid var(--grey-200, #dbe4e8);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(29, 80, 119, 0.08);
+  padding: 10px;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s cubic-bezier(.22,1,.36,1), transform 0.25s cubic-bezier(.22,1,.36,1), visibility 0.25s;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nav-item-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-menu a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem !important;
+  font-weight: 600;
+  color: var(--ink, #183042) !important;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+  text-align: left;
+}
+.dropdown-menu a::after {
+  display: none !important;
+}
+.dropdown-menu a:hover {
+  background: var(--blue-50, #f4fafc) !important;
+  color: var(--blue-700, #286b9d) !important;
+}
+
+</style>
 </head>
 <body>
+  <div class="reading-progress" id="readingProgress"></div>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header" id="siteHeader">
     <div class="nav shell" aria-label="Main navigation">
-      <a class="brand" href="maid-at-home-landing.html#home" aria-label="Maid At Home, back to home"><span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.8 12 3.7l8.5 7.1"></path><path d="M5.7 9.4v9.4h12.6V9.4"></path><path d="M9.5 18.8v-5.2h5v5.2"></path><path d="m17.7 4 .5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5.5-1.2Z"></path></svg></span><span>Maid At Home</span></a>
-      <nav class="desktop-nav" aria-label="Desktop navigation"><a href="services.html">Services</a><a href="about-us.html">About</a><a href="pricing.html">Pricing</a><a href="areas-we-serve.html">Areas</a><a href="#main-content" aria-current="page">Blog</a><a href="maid-at-home-landing.html#faqs">FAQs</a><a href="mailto:hello@maidathome.com.au">Contact</a><a class="nav-cta" href="https://maidathome.com.au/booknow">Book a clean <span aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a></nav>
+      <a class="brand" href="../index.html" aria-label="Maid At Home, back to home">
+        <span class="brand__mark brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.8 12 3.7l8.5 7.1"></path><path d="M5.7 9.4v9.4h12.6V9.4"></path><path d="M9.5 18.8v-5.2h5v5.2"></path><path d="m17.7 4 .5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5.5-1.2Z"></path></svg></span>
+        <span>Maid At Home</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Desktop navigation">
+        <div class="nav-item-dropdown">
+          <a href="../services/index.html" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
+            <a href="../services/standard-clean.html">Standard clean</a>
+          </div>
+        </div>
+        <a href="../about-us.html">About</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../areas-we-serve.html">Areas</a>
+        <a href="../faqs.html">FAQs</a>
+        <a href="../blog/index.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+        <a class="nav-cta" href="../booking.html">Book a clean <span aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a>
+      </nav>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
     </div>
   </header>
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true"><div class="mobile-menu__inner"><nav class="mobile-menu__links" aria-label="Mobile navigation"><a href="services.html">Services <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="about-us.html">About <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="pricing.html">Pricing <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="areas-we-serve.html">Areas <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="#main-content" aria-current="page">Blog <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="maid-at-home-landing.html#faqs">FAQs <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="mailto:hello@maidathome.com.au">Contact <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a></nav><div class="mobile-menu__bottom"><p>Friendly home cleaning across Melbourne.</p><a class="button button--primary" href="https://maidathome.com.au/booknow">Book a clean <span class="button__icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a></div></div></div>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true"><div class="mobile-menu__inner"><nav class="mobile-menu__links" aria-label="Mobile navigation">
+        <a href="../services/index.html">Services <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="../services/standard-clean.html" style="padding-left: 20px; font-size: 0.9em; border-bottom: none; color: var(--blue-700, #286b9d);">— Standard clean <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="../about-us.html">About us <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="../pricing.html">Pricing <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="../areas-we-serve.html">Areas <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="../faqs.html">FAQs <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="../blog/index.html">Blog <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="../contact.html">Contact <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+      </nav><div class="mobile-menu__bottom"><p>Friendly home cleaning across Melbourne.</p><a class="button button--primary" href="https://maidathome.com.au/booknow">Book a clean <span class="button__icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a></div></div></div>
   <main id="main-content">
     <section class="blog-hero" aria-labelledby="blog-hero-title"><div class="shell"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="maid-at-home-landing.html#home">Home</a><svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="m6 3 5 5-5 5"></path></svg><span aria-current="page">Blog</span></nav><div class="blog-hero__grid"><div class="blog-hero__content"><div class="section-kicker">The Maid At Home journal</div><h1 id="blog-hero-title">Helpful ideas for a <em>calmer home.</em></h1><p class="blog-hero__copy">Practical cleaning advice, moving guides and thoughtful home-care ideas from a Melbourne team that works in real homes every day.</p><div class="blog-hero__actions"><a class="button button--blue" href="#latest">Explore the journal <span class="button__icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="m6 8 4 4 4-4"></path></svg></span></a><a class="button button--primary" href="#newsletter">Get fresh tips <span class="button__icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a></div></div><div class="blog-hero__visual"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=84" alt="Calm, bright and carefully kept living room" width="1000" height="667" fetchpriority="high"><div class="blog-hero__note"><span class="round-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 4h10a4 4 0 0 1 4 4v12H8a3 3 0 0 1-3-3V4Z"></path><path d="M8 4v13a3 3 0 0 0 3 3"></path><path d="M11 8h5M11 12h5"></path></svg></span><span>Useful advice, written for everyday Melbourne homes.</span></div></div></div><nav class="topic-jumps" aria-label="Blog topics"><a href="#featured-article">Featured</a><a href="#latest" data-filter-link="home-care">Home care</a><a href="#latest" data-filter-link="cleaning-guides">Cleaning guides</a><a href="#latest" data-filter-link="moving">Moving</a><a href="#newsletter">Fresh tips</a></nav></div></section>
     <section class="section" id="featured-article" aria-labelledby="featured-title"><div class="shell"><div class="section-intro reveal"><div><div class="section-kicker">Featured story</div><h2 id="featured-title">A good routine should make life feel lighter.</h2></div><p>Our most useful read this month: a simple rhythm that keeps the home comfortable without turning every spare hour into cleaning time.</p></div><article class="featured-card reveal"><img class="featured-card__image" src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=84" alt="Tidy, sunlit Melbourne living room" width="1200" height="800" loading="lazy"><div class="featured-card__content"><div class="article-meta"><span>Home care</span><i></i><span>7 min read</span></div><h2>A realistic weekly cleaning routine for busy Melbourne homes.</h2><p>Break the work into small, repeatable resets and leave the deeper details for the right moment.</p><button class="article-link" type="button" data-article data-category="Home care" data-title="A realistic weekly cleaning routine for busy Melbourne homes." data-copy="A comfortable home does not require a full clean every day. The most sustainable routines separate quick daily resets from weekly care and occasional detail work.">Read the article <span class="article-link__icon"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></button></div></article></div></section>
@@ -69,6 +155,22 @@
       document.getElementById("newsletterForm").addEventListener("submit",event=>{event.preventDefault();const email=document.getElementById("newsletterEmail"),note=document.getElementById("newsletterNote");if(!email.checkValidity()){email.reportValidity();return}note.textContent="You're on the list — welcome to the Maid At Home journal.";note.classList.add("is-success");event.currentTarget.reset()});
       document.addEventListener("keydown",event=>{if(event.key==="Escape"&&toggle.getAttribute("aria-expanded")==="true")setMenu(false)});document.getElementById("currentYear").textContent=new Date().getFullYear();
     })();
-  </script>
+  
+  // Scroll progress bar logic
+  (function() {
+    const progress = document.getElementById("readingProgress");
+    if (progress) {
+      const updateProgress = () => {
+        const scrolled = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0;
+        progress.style.width = Math.min(100, Math.max(0, pct)) + "%";
+      };
+      updateProgress();
+      window.addEventListener("scroll", updateProgress, { passive: true });
+    }
+  })();
+
+</script>
 </body>
 </html>

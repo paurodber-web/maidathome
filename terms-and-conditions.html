@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{--ink:#183042;--soft:#526978;--b900:#153e60;--b800:#1d5077;--b700:#286b9d;--b600:#3d86b9;--b400:#6ea6c9;--b300:#a9d1e7;--b200:#cfe7f3;--b100:#e8f5fb;--b50:#f4fafc;--white:#fff;--g50:#f7f9fa;--g100:#edf2f4;--g200:#dbe4e8;--beige:#f4df9f;--beige2:#fbf2d5;--green:#2e755d;--shadow:0 10px 30px rgba(29,80,119,.08);--shadow2:0 24px 70px rgba(23,63,93,.13);--shell:min(1180px,calc(100% - 48px));--nav:84px;--ease:cubic-bezier(.22,1,.36,1)}
-    *,*:before,*:after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 25px)}body{margin:0;min-width:320px;overflow-x:clip;color:var(--ink);background:#fff;font:16px/1.65 "DM Sans",Arial,sans-serif;-webkit-font-smoothing:antialiased}body.menu-open{overflow:hidden}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit}a{color:inherit;text-decoration:none}h1,h2,h3,p,ul,ol{margin-top:0}h1,h2,h3{font-family:"Plus Jakarta Sans",Arial,sans-serif;line-height:1.1;letter-spacing:-.04em}p{color:var(--soft)}:focus-visible{outline:3px solid var(--beige);outline-offset:4px}::selection{color:var(--ink);background:var(--beige)}.shell{width:var(--shell);margin-inline:auto}.skip{position:fixed;z-index:1000;top:12px;left:12px;padding:11px 16px;color:#fff;background:var(--b900);border-radius:8px;transform:translateY(-160%);transition:.2s}.skip:focus{transform:none}.reading-progress{position:fixed;z-index:200;top:0;left:0;width:0;height:3px;background:var(--beige)}.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.show{opacity:1;transform:none}.kicker{display:flex;align-items:center;gap:10px;margin-bottom:18px;color:var(--b700);font-size:.7rem;font-weight:800;letter-spacing:.14em;line-height:1;text-transform:uppercase}.kicker:before{content:"";width:26px;height:2px;background:currentColor}.button{display:inline-flex;min-height:54px;align-items:center;justify-content:space-between;gap:20px;padding:7px 7px 7px 21px;border:1px solid transparent;border-radius:100px;font-size:.88rem;font-weight:700;line-height:1;transition:transform .35s var(--ease),background .35s}.button:hover{transform:translateY(-2px)}.button i{display:grid;width:40px;height:40px;place-items:center;border-radius:50%;font-style:normal;transition:transform .35s}.button:hover i{transform:rotate(-8deg) translateX(2px)}.button svg{width:16px}.button.blue{color:#fff;background:var(--b700)}.button.blue i{color:var(--b900);background:var(--beige)}.button.beige{color:var(--ink);background:var(--beige)}.button.beige i{color:#fff;background:var(--b800)}.text-link{display:inline-flex;align-items:center;gap:8px;color:var(--b700);font-size:.78rem;font-weight:800}.text-link svg{width:14px;transition:transform .3s}.text-link:hover svg{transform:translateX(4px)}
+    *,*:before,*:after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 25px)}body{margin:0;min-width:320px;overflow-x:clip;color:var(--ink);background:#fff;font:16px/1.65 "DM Sans",Arial,sans-serif;-webkit-font-smoothing:antialiased}body.menu-open{overflow:hidden}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit}a{color:inherit;text-decoration:none}h1,h2,h3,p,ul,ol{margin-top:0}h1,h2,h3{font-family:"Plus Jakarta Sans",Arial,sans-serif;line-height:1.1;letter-spacing:-.04em}p{color:var(--soft)}:focus-visible{outline:3px solid var(--beige);outline-offset:4px}::selection{color:var(--ink);background:var(--beige)}.shell{width:var(--shell);margin-inline:auto}.skip{position:fixed;z-index:1000;top:12px;left:12px;padding:11px 16px;color:#fff;background:var(--b900);border-radius:8px;transform:translateY(-160%);transition:.2s}.skip:focus{transform:none}.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.show{opacity:1;transform:none}.kicker{display:flex;align-items:center;gap:10px;margin-bottom:18px;color:var(--b700);font-size:.7rem;font-weight:800;letter-spacing:.14em;line-height:1;text-transform:uppercase}.kicker:before{content:"";width:26px;height:2px;background:currentColor}.button{display:inline-flex;min-height:54px;align-items:center;justify-content:space-between;gap:20px;padding:7px 7px 7px 21px;border:1px solid transparent;border-radius:100px;font-size:.88rem;font-weight:700;line-height:1;transition:transform .35s var(--ease),background .35s}.button:hover{transform:translateY(-2px)}.button i{display:grid;width:40px;height:40px;place-items:center;border-radius:50%;font-style:normal;transition:transform .35s}.button:hover i{transform:rotate(-8deg) translateX(2px)}.button svg{width:16px}.button.blue{color:#fff;background:var(--b700)}.button.blue i{color:var(--b900);background:var(--beige)}.button.beige{color:var(--ink);background:var(--beige)}.button.beige i{color:#fff;background:var(--b800)}.text-link{display:inline-flex;align-items:center;gap:8px;color:var(--b700);font-size:.78rem;font-weight:800}.text-link svg{width:14px;transition:transform .3s}.text-link:hover svg{transform:translateX(4px)}
     .site-header{position:fixed;z-index:100;top:0;left:0;width:100%;height:var(--nav);color:var(--ink);background:#fff;transition:background .35s,box-shadow .35s}.site-header.scrolled{background:rgba(255,255,255,.96);box-shadow:0 8px 30px rgba(27,63,88,.08);backdrop-filter:blur(14px)}.nav{display:flex;height:100%;align-items:center;justify-content:space-between;gap:28px}.brand{position:relative;z-index:102;display:inline-flex;align-items:center;gap:10px;font-family:"Plus Jakarta Sans";font-size:1.06rem;font-weight:800;letter-spacing:-.035em}.brand-mark{display:grid;width:36px;height:36px;place-items:center;border-radius:11px 11px 16px 11px;color:var(--b800);background:var(--beige);box-shadow:0 7px 17px rgba(24,48,66,.13);transform:rotate(-4deg)}.brand-mark svg{width:21px;transform:rotate(4deg)}.desktop-nav{display:flex;align-items:center;gap:clamp(18px,2.1vw,32px);margin-left:auto}.desktop-nav>a:not(.nav-cta){position:relative;padding-block:8px;font-size:.83rem;font-weight:600}.desktop-nav>a:not(.nav-cta):after{content:"";position:absolute;right:0;bottom:2px;left:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .35s}.desktop-nav>a:hover:after{transform:scaleX(1);transform-origin:left}.nav-cta{display:inline-flex;min-height:43px;align-items:center;gap:12px;padding:5px 6px 5px 17px;border-radius:100px;background:var(--beige);font-size:.8rem;font-weight:700}.nav-cta span{display:grid;width:31px;height:31px;place-items:center;border-radius:50%;color:#fff;background:var(--b800)}.nav-cta svg{width:13px}.menu-btn{position:relative;z-index:102;display:none;width:48px;height:48px;border:1px solid var(--g200);border-radius:50%;background:var(--b50);cursor:pointer}.menu-btn span{position:absolute;left:14px;width:19px;height:1.5px;background:currentColor;transition:.5s var(--ease)}.menu-btn span:nth-child(1){top:17px}.menu-btn span:nth-child(2){top:23px;width:14px}.menu-btn span:nth-child(3){top:29px}.menu-btn[aria-expanded=true] span:nth-child(1){top:23px;transform:rotate(45deg)}.menu-btn[aria-expanded=true] span:nth-child(2){opacity:0}.menu-btn[aria-expanded=true] span:nth-child(3){top:23px;transform:rotate(-45deg)}.mobile-menu{position:fixed;z-index:99;inset:0;display:none;height:100dvh;overflow-y:auto;background:var(--b50);clip-path:circle(0 at calc(100% - 47px) 37px);visibility:hidden;pointer-events:none;transition:clip-path .75s var(--ease),visibility .75s}.mobile-menu.open{clip-path:circle(150vmax at calc(100% - 47px) 37px);visibility:visible;pointer-events:auto}.mobile-inner{display:flex;width:min(100% - 48px,620px);min-height:100%;margin:auto;padding:calc(var(--nav) + 52px) 0 35px;flex-direction:column}.mobile-links{display:grid}.mobile-links a{display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--b200);font-family:"Plus Jakarta Sans";font-size:clamp(1.45rem,7vw,2.15rem);font-weight:600;letter-spacing:-.04em}.mobile-links svg{width:20px}.mobile-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-top:auto;padding-top:40px}.mobile-bottom p{max-width:210px;margin:0;font-size:.85rem}
     .legal-hero{position:relative;padding:calc(var(--nav) + 30px) 0 66px;overflow:hidden;background:var(--b50)}.legal-hero:before{content:"";position:absolute;right:-150px;bottom:-190px;width:390px;height:390px;border:62px solid rgba(169,209,231,.22);border-radius:50%}.legal-hero:after{content:"";position:absolute;top:115px;left:-95px;width:190px;height:190px;border-radius:50%;background:rgba(251,242,213,.55)}.breadcrumb{position:relative;z-index:1;display:flex;align-items:center;gap:10px;margin-bottom:45px;color:var(--soft);font-size:.71rem;font-weight:650}.breadcrumb a{color:var(--b700)}.breadcrumb svg{width:13px;color:var(--b400)}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.18fr) minmax(330px,.62fr);align-items:end;gap:70px}.legal-hero h1{max-width:720px;margin:0 0 19px;font-size:clamp(3rem,5.5vw,5rem);font-weight:600;line-height:.98;letter-spacing:-.06em}.legal-hero h1 em{color:var(--b700);font-style:normal}.hero-copy p{max-width:620px;margin:0}.hero-card{padding:24px;border:1px solid var(--b200);border-radius:20px;background:rgba(255,255,255,.86);box-shadow:var(--shadow)}.hero-card-top{display:flex;align-items:center;gap:13px;margin-bottom:16px}.hero-icon{display:grid;width:43px;height:43px;place-items:center;border-radius:14px;color:var(--b800);background:var(--beige)}.hero-icon svg{width:21px}.hero-card strong{display:block;font-size:.76rem}.hero-card span{display:block;color:var(--soft);font-size:.62rem}.hero-card p{margin:0;padding-top:15px;border-top:1px solid var(--g100);font-size:.7rem}
     .summary-wrap{padding:0 0 42px;background:linear-gradient(var(--b50) 0 34px,#fff 34px)}.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden;border:1px solid var(--b200);border-radius:21px;background:#fff;box-shadow:var(--shadow)}.summary-item{min-height:122px;padding:23px;border-left:1px solid var(--b200)}.summary-item:first-child{border-left:0}.summary-item svg{width:20px;margin-bottom:13px;color:var(--b700)}.summary-item strong{display:block;margin-bottom:4px;font-size:.76rem}.summary-item span{display:block;color:var(--soft);font-size:.63rem;line-height:1.45}
@@ -22,12 +22,103 @@
     @media(max-width:620px){:root{--shell:calc(100% - 30px)}body{font-size:15px}.legal-hero{padding-bottom:48px}.breadcrumb{margin-bottom:32px}.legal-hero h1{font-size:clamp(2.5rem,13vw,3.5rem)}.summary-wrap{background:linear-gradient(var(--b50) 0 20px,#fff 20px)}.summary-item{min-height:112px;padding:19px}.legal-area{padding-top:35px;padding-bottom:80px}.toc nav{grid-template-columns:1fr}.legal-intro{margin-bottom:44px}.legal-section{padding-bottom:44px;margin-bottom:44px}.legal-section h2{font-size:clamp(1.7rem,9vw,2.25rem)}.definition-grid{grid-template-columns:1fr}.plain-note{grid-template-columns:1fr}.contact-panel{padding:29px 24px}.page-switch{align-items:flex-start;flex-direction:column}.footer-top{grid-template-columns:repeat(2,1fr)}.footer-brand{grid-column:1/-1}.footer-bottom{align-items:flex-start;flex-direction:column}}
     @media(max-width:400px){.summary-grid{grid-template-columns:1fr}.summary-item{border-top:1px solid var(--b200);border-left:0}.summary-item:first-child{border-top:0}.footer-top{grid-template-columns:1fr}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
-  </style>
+  
+/* Added by Antigravity: Reading progress bar & Services Dropdown */
+.reading-progress {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--beige, #f4df9f);
+  transition: width 0.08s linear;
+}
+.nav-item-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--white, #fff);
+  border: 1px solid var(--grey-200, #dbe4e8);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(29, 80, 119, 0.08);
+  padding: 10px;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s cubic-bezier(.22,1,.36,1), transform 0.25s cubic-bezier(.22,1,.36,1), visibility 0.25s;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nav-item-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-menu a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem !important;
+  font-weight: 600;
+  color: var(--ink, #183042) !important;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+  text-align: left;
+}
+.dropdown-menu a::after {
+  display: none !important;
+}
+.dropdown-menu a:hover {
+  background: var(--blue-50, #f4fafc) !important;
+  color: var(--blue-700, #286b9d) !important;
+}
+
+</style>
 </head>
 <body>
   <div class="reading-progress" id="readingProgress"></div><a class="skip" href="#legalContent">Skip to terms and conditions</a>
-  <header class="site-header" id="header"><div class="nav shell"><a class="brand" href="index.html"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3.5 10.8 12 3.7l8.5 7.1M5.7 9.4v9.4h12.6V9.4M9.5 18.8v-5.2h5v5.2M17.7 4l.5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5.5-1.2Z"></path></svg></span><span>Maid At Home</span></a><nav class="desktop-nav"><a href="services.html">Services</a><a href="about-us.html">About</a><a href="pricing.html">Pricing</a><a href="areas-we-serve.html">Areas</a><a href="faqs.html">FAQs</a><a href="contact.html">Contact</a><a class="nav-cta" href="booking.html">Book a clean <span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a></nav><button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button></div></header>
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true"><div class="mobile-inner"><nav class="mobile-links"><a href="services.html">Services <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="about-us.html">About us <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="pricing.html">Pricing <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="areas-we-serve.html">Areas <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="faqs.html">FAQs <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="contact.html">Contact <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a></nav><div class="mobile-bottom"><p>Friendly, professional home cleaning across Melbourne.</p><a class="button blue" href="booking.html">Book now <i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></i></a></div></div></div>
+  <header class="site-header" id="header">
+    <div class="nav shell" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Maid At Home, back to home">
+        <span class="brand__mark brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.8 12 3.7l8.5 7.1"></path><path d="M5.7 9.4v9.4h12.6V9.4"></path><path d="M9.5 18.8v-5.2h5v5.2"></path><path d="m17.7 4 .5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5.5-1.2Z"></path></svg></span>
+        <span>Maid At Home</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Desktop navigation">
+        <div class="nav-item-dropdown">
+          <a href="services/index.html" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
+            <a href="services/standard-clean.html">Standard clean</a>
+          </div>
+        </div>
+        <a href="about-us.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="areas-we-serve.html">Areas</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-cta" href="booking.html">Book a clean <span aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true"><div class="mobile-inner"><nav class="mobile-links">
+        <a href="services/index.html">Services <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="services/standard-clean.html" style="padding-left: 20px; font-size: 0.9em; border-bottom: none; color: var(--blue-700, #286b9d);">— Standard clean <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="about-us.html">About us <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="pricing.html">Pricing <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="areas-we-serve.html">Areas <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="faqs.html">FAQs <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="blog/index.html">Blog <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="contact.html">Contact <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+      </nav><div class="mobile-bottom"><p>Friendly, professional home cleaning across Melbourne.</p><a class="button blue" href="booking.html">Book now <i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></i></a></div></div></div>
 
   <!-- PAGE CONTENT START -->
   <main>
@@ -58,7 +149,23 @@
 
   <footer><div class="shell"><div class="footer-top"><div class="footer-brand"><a class="brand" href="index.html"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3.5 10.8 12 3.7l8.5 7.1M5.7 9.4v9.4h12.6V9.4M9.5 18.8v-5.2h5v5.2"></path></svg></span><span>Maid At Home</span></a><p>Friendly, professional home cleaning across Melbourne. Cleaning spaces to improve lives since 2017.</p><div class="footer-contact"><a href="mailto:hello@maidathome.com.au">hello@maidathome.com.au</a><a href="https://maidathome.com.au">maidathome.com.au</a></div></div><div class="footer-col"><h3>Services</h3><nav><a href="standard-clean.html">Standard clean</a><a href="services.html#deep">Deep clean</a><a href="services.html#end-of-lease">End of lease</a><a href="services.html#move-in">Move in clean</a><a href="services.html#hourly">Hourly clean</a></nav></div><div class="footer-col"><h3>Explore</h3><nav><a href="about-us.html">About us</a><a href="areas-we-serve.html">Areas we serve</a><a href="blog.html">Blog</a><a href="faqs.html">FAQs</a><a href="contact.html">Contact</a></nav></div><div class="footer-col"><h3>Book</h3><nav><a href="pricing.html">Price calculator</a><a href="booking.html">Book online</a><a href="contact.html#whatsapp">WhatsApp</a></nav></div></div><div class="footer-bottom"><p>© <span id="year">2026</span> Maid At Home. All rights reserved.</p><div class="legal-links"><a href="privacy-policy.html">Privacy policy</a><a href="terms-and-conditions.html" aria-current="page">Terms &amp; conditions</a></div></div></div></footer>
   <script>
-    (()=>{const header=document.getElementById('header'),btn=document.getElementById('menuBtn'),menu=document.getElementById('mobileMenu'),progress=document.getElementById('readingProgress'),content=document.getElementById('legalContent');const setMenu=open=>{btn.setAttribute('aria-expanded',open);btn.setAttribute('aria-label',open?'Close menu':'Open menu');menu.setAttribute('aria-hidden',!open);menu.classList.toggle('open',open);document.body.classList.toggle('menu-open',open)};btn.addEventListener('click',()=>setMenu(btn.getAttribute('aria-expanded')!=='true'));menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});const sections=[...document.querySelectorAll('.legal-section[id],.contact-panel[id]')],links=[...document.querySelectorAll('.toc a')];const update=()=>{header.classList.toggle('scrolled',scrollY>24);const start=content.offsetTop-innerHeight*.35,end=content.offsetTop+content.offsetHeight-innerHeight*.65;progress.style.width=Math.max(0,Math.min(1,(scrollY-start)/(end-start)))*100+'%';let current=sections[0]?.id;sections.forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.38)current=s.id});links.forEach(a=>a.classList.toggle('active',a.hash==='#'+current))};update();addEventListener('scroll',update,{passive:true});const items=document.querySelectorAll('.reveal');if('IntersectionObserver'in window&&!matchMedia('(prefers-reduced-motion:reduce)').matches){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.06,rootMargin:'0px 0px -25px'});items.forEach(x=>io.observe(x))}else items.forEach(x=>x.classList.add('show'));document.getElementById('year').textContent=new Date().getFullYear()})();
-  </script>
+    (()=>{const header=document.getElementById('header'),btn=document.getElementById('menuBtn'),menu=document.getElementById('mobileMenu'),content=document.getElementById('legalContent');const setMenu=open=>{btn.setAttribute('aria-expanded',open);btn.setAttribute('aria-label',open?'Close menu':'Open menu');menu.setAttribute('aria-hidden',!open);menu.classList.toggle('open',open);document.body.classList.toggle('menu-open',open)};btn.addEventListener('click',()=>setMenu(btn.getAttribute('aria-expanded')!=='true'));menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});const sections=[...document.querySelectorAll('.legal-section[id],.contact-panel[id]')],links=[...document.querySelectorAll('.toc a')];const update=()=>{header.classList.toggle('scrolled',scrollY>24);const start=content.offsetTop-innerHeight*.35,end=content.offsetTop+content.offsetHeight-innerHeight*.65;let current=sections[0]?.id;sections.forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.38)current=s.id});links.forEach(a=>a.classList.toggle('active',a.hash==='#'+current))};update();addEventListener('scroll',update,{passive:true});const items=document.querySelectorAll('.reveal');if('IntersectionObserver'in window&&!matchMedia('(prefers-reduced-motion:reduce)').matches){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.06,rootMargin:'0px 0px -25px'});items.forEach(x=>io.observe(x))}else items.forEach(x=>x.classList.add('show'));document.getElementById('year').textContent=new Date().getFullYear()})();
+  
+  // Scroll progress bar logic
+  (function() {
+    const progress = document.getElementById("readingProgress");
+    if (progress) {
+      const updateProgress = () => {
+        const scrolled = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0;
+        progress.style.width = Math.min(100, Math.max(0, pct)) + "%";
+      };
+      updateProgress();
+      window.addEventListener("scroll", updateProgress, { passive: true });
+    }
+  })();
+
+</script>
 </body>
 </html>

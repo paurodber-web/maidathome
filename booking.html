@@ -25,12 +25,104 @@
     @media(max-width:620px){:root{--shell:calc(100% - 30px)}body{font-size:15px}.section{padding-block:76px}.booking-hero{padding-bottom:42px}.breadcrumb{margin-bottom:30px}.booking-hero h1{font-size:clamp(2.45rem,12vw,3.25rem)}.hero-reassurance{grid-template-columns:1fr;gap:0}.reassurance-row{padding:10px 0;border-right:0;border-bottom:1px solid var(--g100)}.steps-band{background:linear-gradient(var(--b50) 0 20px,#fff 20px)}.steps{grid-template-columns:1fr}.step{min-height:74px;border-top:1px solid var(--b200);border-left:0}.step:first-child{border-top:0}.step svg{top:auto;right:auto;bottom:-8px;left:30px;transform:rotate(90deg)}.step:nth-child(2) svg{display:block}.booking-section{padding-top:38px;padding-bottom:78px}.booking-sidebar{grid-template-columns:1fr}.side-card:first-child{grid-row:auto}.help-card{grid-column:auto}.frame-card{border-radius:19px}.frame-card-head{align-items:flex-start;padding:19px;flex-direction:column}.secure-label{margin-left:56px;margin-top:-12px}.frame-notice{align-items:flex-start;flex-direction:column}.booking-frame-wrap{min-height:1550px}.booking-frame{height:1650px}.frame-fallback{align-items:flex-start;flex-direction:column}.faq-question{font-size:.88rem}.support-inner{align-items:flex-start;flex-direction:column}.support-actions{width:100%;flex-direction:column}.support-actions .button{width:100%}.footer-bottom{align-items:flex-start;flex-direction:column}.footer-links{display:grid;grid-template-columns:repeat(2,1fr);width:100%;gap:11px 18px}}
     @media(max-width:400px){.booking-hero h1{font-size:2.3rem}.button{gap:12px;padding-left:18px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}.loader-ring{animation:none}}
-  </style>
+  
+/* Added by Antigravity: Reading progress bar & Services Dropdown */
+.reading-progress {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--beige, #f4df9f);
+  transition: width 0.08s linear;
+}
+.nav-item-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--white, #fff);
+  border: 1px solid var(--grey-200, #dbe4e8);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(29, 80, 119, 0.08);
+  padding: 10px;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s cubic-bezier(.22,1,.36,1), transform 0.25s cubic-bezier(.22,1,.36,1), visibility 0.25s;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nav-item-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-menu a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem !important;
+  font-weight: 600;
+  color: var(--ink, #183042) !important;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+  text-align: left;
+}
+.dropdown-menu a::after {
+  display: none !important;
+}
+.dropdown-menu a:hover {
+  background: var(--blue-50, #f4fafc) !important;
+  color: var(--blue-700, #286b9d) !important;
+}
+
+</style>
 </head>
 <body>
+  <div class="reading-progress" id="readingProgress"></div>
   <a class="skip" href="#booking">Skip to booking form</a>
-  <header class="site-header" id="header"><div class="nav shell"><a class="brand" href="index.html" aria-label="Maid At Home home"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3.5 10.8 12 3.7l8.5 7.1M5.7 9.4v9.4h12.6V9.4M9.5 18.8v-5.2h5v5.2M17.7 4l.5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5.5-1.2Z"></path></svg></span><span>Maid At Home</span></a><div class="nav-help"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v12H8l-4 3V5ZM8 9h8M8 13h5"></path></svg><span>Need help? <strong>hello@maidathome.com.au</strong></span></div><a class="nav-exit" href="index.html">Back to website <span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M15 10H4M8 6l-4 4 4 4"></path></svg></span></a><button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button></div></header>
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true"><div class="mobile-inner"><nav class="mobile-links"><a href="index.html">Back to home <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="services.html">Compare services <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="pricing.html">View pricing <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="areas-we-serve.html">Check service areas <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a><a href="contact.html">Contact our team <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a></nav><div class="mobile-bottom"><p>Your booking is confirmed by email once a suitable cleaner has been assigned.</p><a class="button blue" href="contact.html#whatsapp">Ask on WhatsApp <i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></i></a></div></div></div>
+  <header class="site-header" id="header">
+    <div class="nav shell" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Maid At Home, back to home">
+        <span class="brand__mark brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.8 12 3.7l8.5 7.1"></path><path d="M5.7 9.4v9.4h12.6V9.4"></path><path d="M9.5 18.8v-5.2h5v5.2"></path><path d="m17.7 4 .5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5.5-1.2Z"></path></svg></span>
+        <span>Maid At Home</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Desktop navigation">
+        <div class="nav-item-dropdown">
+          <a href="services/index.html" class="dropdown-trigger">Services</a>
+          <div class="dropdown-menu">
+            <a href="services/standard-clean.html">Standard clean</a>
+          </div>
+        </div>
+        <a href="about-us.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="areas-we-serve.html">Areas</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-cta" href="booking.html">Book a clean <span aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></span></a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true"><div class="mobile-inner"><nav class="mobile-links">
+        <a href="services/index.html">Services <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="services/standard-clean.html" style="padding-left: 20px; font-size: 0.9em; border-bottom: none; color: var(--blue-700, #286b9d);">— Standard clean <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="about-us.html">About us <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="pricing.html">Pricing <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="areas-we-serve.html">Areas <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="faqs.html">FAQs <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="blog/index.html">Blog <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+        <a href="contact.html">Contact <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></a>
+      </nav><div class="mobile-bottom"><p>Your booking is confirmed by email once a suitable cleaner has been assigned.</p><a class="button blue" href="contact.html#whatsapp">Ask on WhatsApp <i><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg></i></a></div></div></div>
 
   <main>
     <section class="booking-hero"><div class="shell"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="m6 3 5 5-5 5"></path></svg><span>Book a clean</span></nav><div class="hero-grid"><div class="hero-copy"><div class="kicker">Online booking</div><h1>Book your clean. Get your <em>week back.</em></h1><p>Choose the service, home size, frequency and extras that suit you. You will see the price before completing your booking.</p></div><div class="hero-reassurance"><div class="reassurance-row"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5z"></path></svg></i><div><strong>Secure checkout</strong><span>Protected online payment</span></div></div><div class="reassurance-row"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5h16v14H4zM4 8l8 6 8-6"></path></svg></i><div><strong>Email confirmation</strong><span>Sent once your cleaner is assigned</span></div></div><div class="reassurance-row"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3 4 6v6c0 5 3.3 8 8 9 4.7-1 8-4 8-9V6l-8-3ZM8 12l2.5 2.5L16 9"></path></svg></i><div><strong>Insured cleaners</strong><span>Professional home care</span></div></div></div></div></div></section>
@@ -61,6 +153,22 @@
     (()=>{const header=document.getElementById('header'),btn=document.getElementById('menuBtn'),menu=document.getElementById('mobileMenu');const setMenu=open=>{btn.setAttribute('aria-expanded',open);btn.setAttribute('aria-label',open?'Close menu':'Open menu');menu.setAttribute('aria-hidden',!open);menu.classList.toggle('open',open);document.body.classList.toggle('menu-open',open)};btn.addEventListener('click',()=>setMenu(btn.getAttribute('aria-expanded')!=='true'));menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>24),{passive:true});document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
       const frame=document.getElementById('bookingFrame'),loader=document.getElementById('frameLoader');frame.src=frame.dataset.src;frame.addEventListener('load',()=>setTimeout(()=>loader.classList.add('hidden'),350));setTimeout(()=>loader.classList.add('hidden'),7000);addEventListener('message',event=>{const height=Number(event.data?.bookingFrameHeight||event.data?.height);if(Number.isFinite(height)&&height>600&&height<4000){frame.style.height=height+'px';frame.parentElement.style.minHeight=height+'px'}});
       document.querySelectorAll('.faq-question').forEach(q=>q.addEventListener('click',()=>{const item=q.closest('.faq-item'),open=q.getAttribute('aria-expanded')!=='true';document.querySelectorAll('.faq-item').forEach(x=>{x.classList.remove('open');x.querySelector('.faq-question').setAttribute('aria-expanded','false')});if(open){item.classList.add('open');q.setAttribute('aria-expanded','true')}}));const reveals=document.querySelectorAll('.reveal');if('IntersectionObserver'in window&&!matchMedia('(prefers-reduced-motion:reduce)').matches){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.07,rootMargin:'0px 0px -25px'});reveals.forEach(x=>io.observe(x))}else reveals.forEach(x=>x.classList.add('show'));document.getElementById('year').textContent=new Date().getFullYear()})();
-  </script>
+  
+  // Scroll progress bar logic
+  (function() {
+    const progress = document.getElementById("readingProgress");
+    if (progress) {
+      const updateProgress = () => {
+        const scrolled = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0;
+        progress.style.width = Math.min(100, Math.max(0, pct)) + "%";
+      };
+      updateProgress();
+      window.addEventListener("scroll", updateProgress, { passive: true });
+    }
+  })();
+
+</script>
 </body>
 </html>
