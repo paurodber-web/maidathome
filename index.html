@@ -69,8 +69,9 @@
     .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(5,31,52,.88) 0%, rgba(7,39,65,.72) 38%, rgba(9,42,66,.27) 68%, rgba(7,32,50,.16) 100%), linear-gradient(0deg, rgba(5,28,45,.38), transparent 45%); }
     @keyframes heroImage { from { opacity: .35; transform: scale(1.1); } to { opacity: 1; transform: scale(1.04); } }
     .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: transparent; border-bottom: 1px solid rgba(255,255,255,.15); transition: background .35s, border-color .35s, box-shadow .35s; }
-    .site-header.scrolled { background: white; border-color: var(--line); box-shadow: 0 4px 20px rgba(0,0,0,.05); }
-    .nav { height: 84px; display: flex; align-items: center; justify-content: space-between; }
+    .site-header.scrolled { background: rgba(255,255,255,.98); border-color: var(--line); box-shadow: 0 10px 30px rgba(8,43,73,.09); }
+    .nav { height: 84px; display: flex; align-items: center; justify-content: space-between; transition: height .35s; }
+    .site-header.scrolled .nav { height: 76px; }
     .logo { display: inline-flex; align-items: center; gap: 12px; font-family: "Plus Jakarta Sans"; font-size: 1.05rem; font-weight: 700; letter-spacing: -.02em; color: white; transition: color .3s; }
     .site-header.scrolled .logo { color: var(--navy); }
     .logo-mark { position: relative; width: 32px; height: 32px; border: 1px solid rgba(255,255,255,.65); border-radius: 50% 50% 46% 54%; transition: border-color .3s; }
@@ -86,8 +87,8 @@
     .nav-cta { display: inline-flex; align-items: center; gap: 13px; padding: 7px 8px 7px 18px; border-radius: 999px; background: white; color: var(--navy-2); font-size: .85rem; font-weight: 700; transition: background .3s, color .3s; }
     .nav-cta span { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: var(--navy); color: white; transition: background .3s, color .3s; }
     .nav-cta svg { width: 14px; }
-    .site-header.scrolled .nav-cta { background: var(--navy); color: white; }
-    .site-header.scrolled .nav-cta span { background: var(--beige); color: var(--navy); }
+    .site-header.scrolled .nav-cta { background: var(--beige); color: var(--navy-dark); }
+    .site-header.scrolled .nav-cta span { background: var(--navy); color: white; }
     .menu-toggle { display: none; width: 44px; height: 44px; padding: 0; border: 1px solid rgba(255,255,255,.45); border-radius: 50%; background: transparent; place-items: center; cursor: pointer; transition: border-color .3s; }
     .site-header.scrolled .menu-toggle { border-color: var(--line); }
     .menu-toggle span, .menu-toggle::before, .menu-toggle::after { content: ""; display: block; width: 18px; height: 1px; background: white; transition: .25s, background .3s; grid-area: 1 / 1; }
