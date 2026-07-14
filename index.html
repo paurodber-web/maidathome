@@ -4364,7 +4364,7 @@
       const extraOptions = [...document.querySelectorAll(".extra-option")];
       const hourlyExtrasNotice = document.createElement("p");
       hourlyExtrasNotice.className = "hourly-extras-notice";
-      hourlyExtrasNotice.innerHTML = "<strong>Extras use your booked time.</strong> They are included in your hourly booking, not charged separately. Please book enough hours for your regular clean <strong>plus every extra</strong> you select—oven, windows and cabinets all need additional time.";
+      hourlyExtrasNotice.innerHTML = "<strong>Extras use your booked time.</strong> They are included in your hourly booking, not charged separately. Please book enough hours for your regular clean <strong>plus every extra</strong> you select. Without enough booked time, we may not be able to complete every task, including your extras.";
       document.getElementById("extrasGrid").after(hourlyExtrasNotice);
       const extraLabels = new Map(extraOptions.map((option) => [option.dataset.extra, option.querySelector("small").textContent]));
 
