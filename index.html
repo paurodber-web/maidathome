@@ -4440,7 +4440,7 @@
           if (!input.checked || input.disabled) return;
           const item = extraConfig[key];
           const quantity = item.quantity ? calcState[key] : 1;
-          const linePrice = item.price * quantity;
+          const linePrice = service === "hourly" ? 0 : item.price * quantity;
           extraTotal += linePrice;
           selectedExtras.push({ name: item.name, quantity, linePrice, showQuantity: item.quantity });
         });
