@@ -4250,8 +4250,14 @@
       const mobileLinks = [...mobileMenu.querySelectorAll("a")];
       let lastFocusedElement = null;
 
-      const updateHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 24);
-      updateHeader();
+      let headerFrame = 0;
+      const updateHeader = () => {
+        if (headerFrame) return;
+        headerFrame = requestAnimationFrame(() => {
+          header.classList.toggle("is-scrolled", window.scrollY > 24);
+          headerFrame = 0;
+        });
+      };
       window.addEventListener("scroll", updateHeader, { passive: true });
 
       const setMenu = (open) => {
@@ -4612,20 +4618,25 @@
         });
       });
 
-      document.getElementById("currentYear").textContent = new Date().getFullYear();
+      const currentYear = document.getElementById("currentYear") || document.getElementById("year");
+      if (currentYear) currentYear.textContent = new Date().getFullYear();
     })();
 
     // Scroll progress bar logic
     (function () {
       const progress = document.getElementById("readingProgress");
       if (progress) {
+        let progressFrame = 0;
         const updateProgress = () => {
-          const scrolled = window.scrollY;
-          const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-          const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0;
-          progress.style.width = Math.min(100, Math.max(0, pct)) + "%";
+          if (progressFrame) return;
+          progressFrame = requestAnimationFrame(() => {
+            const scrolled = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0;
+            progress.style.width = Math.min(100, Math.max(0, pct)) + "%";
+            progressFrame = 0;
+          });
         };
-        updateProgress();
         window.addEventListener("scroll", updateProgress, { passive: true });
       }
     })();
