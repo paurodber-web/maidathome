@@ -137,10 +137,12 @@ fs.mkdirSync(layoutsDir, { recursive: true });
 fs.mkdirSync(publicDir, { recursive: true });
 fs.cpSync(path.join(root, 'assets'), path.join(publicDir, 'assets'), { recursive: true });
 fs.writeFileSync(path.join(componentsDir, 'OptimizedImage.astro'), `---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 
 interface Props {
-  src?: string;
+  src?: any;
+  mobileSrc?: any;
+  mobileBreakpoint?: string;
   alt?: string;
   width?: number;
   height?: number;
@@ -149,12 +151,31 @@ interface Props {
   [key: string]: unknown;
 }
 
-const { src = '', alt = '', width, height, loading, fetchpriority, ...attributes } = Astro.props;
+const { src = '', mobileSrc, mobileBreakpoint = '620px', alt = '', width, height, loading, fetchpriority, ...attributes } = Astro.props;
 const priority = fetchpriority === 'high';
 const dimensions = width && height ? { width, height } : { inferSize: true };
 const safeLoading = loading === 'lazy' ? 'lazy' : undefined;
+const quality = priority ? 72 : 60;
+const mobileSourceWidth = mobileSrc && typeof mobileSrc === 'object' && 'width' in mobileSrc ? Number(mobileSrc.width) : 0;
+const mobileWidths = [...new Set([390, 640, 750, 828, mobileSourceWidth])]
+  .filter((candidate) => candidate > 0 && (!mobileSourceWidth || candidate <= mobileSourceWidth))
+  .sort((a, b) => a - b);
+const mobileCandidates = mobileSrc
+  ? await Promise.all(mobileWidths.map(async (candidate) => ({
+      width: candidate,
+      image: await getImage({ src: mobileSrc, width: candidate, quality, format: 'webp' }),
+    })))
+  : [];
+const mobileSrcset = mobileCandidates.map(({ width: candidate, image }) => image.src + ' ' + candidate + 'w').join(', ');
 ---
-<Image src={src} alt={alt} {...dimensions} quality={priority ? 45 : 60} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />
+{mobileSrc ? (
+  <picture>
+    <source media={'(max-width: ' + mobileBreakpoint + ')'} srcset={mobileSrcset} sizes="100vw" type="image/webp" />
+    <Image src={src} alt={alt} {...dimensions} quality={quality} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />
+  </picture>
+) : (
+  <Image src={src} alt={alt} {...dimensions} quality={quality} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />
+)}
 `);
 
 const modernHeader = absolutizeLinks(extractHeaderAndMenu(read('contact.html')), 'contact.html');
@@ -220,11 +241,11 @@ for (const sourceFile of sourcePages) {
       fs.readFileSync(output, 'utf8')
         .replace(
           /(import OptimizedImage from ['"][^'"]+['"];\n)/,
-          "$1import landingHeroCleaner from '../../assets-src/landing-hero-cleaner.png';\n",
+          "$1import landingHeroCleaner from '../../assets-src/landing-hero-cleaner-v2.png';\nimport landingHeroCleanerMobile from '../../assets-src/landing-hero-cleaner-mobile-v2.png';\n",
         )
         .replace(
           '\n];\n---',
-          "\n];\nimages[0] = { ...images[0], src: landingHeroCleaner, alt: 'Professional cleaner wiping a kitchen island in a bright Melbourne home', width: landingHeroCleaner.width, height: landingHeroCleaner.height };\n---",
+          "\n];\nimages[0] = { ...images[0], src: landingHeroCleaner, mobileSrc: landingHeroCleanerMobile, alt: 'Professional cleaner vacuuming a bright Melbourne home', width: landingHeroCleaner.width, height: landingHeroCleaner.height };\n---",
         ),
     );
   }
