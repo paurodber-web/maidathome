@@ -143,6 +143,8 @@ interface Props {
   src?: any;
   mobileSrc?: any;
   mobileBreakpoint?: string;
+  mobileAspectRatio?: number;
+  mobilePosition?: string;
   alt?: string;
   width?: number;
   height?: number;
@@ -151,19 +153,21 @@ interface Props {
   [key: string]: unknown;
 }
 
-const { src = '', mobileSrc, mobileBreakpoint = '620px', alt = '', width, height, loading, fetchpriority, ...attributes } = Astro.props;
+const { src = '', mobileSrc, mobileBreakpoint = '620px', mobileAspectRatio = 390 / 844, mobilePosition = 'center', alt = '', width, height, loading, fetchpriority, ...attributes } = Astro.props;
 const priority = fetchpriority === 'high';
 const dimensions = width && height ? { width, height } : { inferSize: true };
 const safeLoading = loading === 'lazy' ? 'lazy' : undefined;
 const quality = priority ? 72 : 60;
 const mobileSourceWidth = mobileSrc && typeof mobileSrc === 'object' && 'width' in mobileSrc ? Number(mobileSrc.width) : 0;
-const mobileWidths = [...new Set([390, 640, 750, 828, mobileSourceWidth])]
-  .filter((candidate) => candidate > 0 && (!mobileSourceWidth || candidate <= mobileSourceWidth))
+const mobileSourceHeight = mobileSrc && typeof mobileSrc === 'object' && 'height' in mobileSrc ? Number(mobileSrc.height) : 0;
+const mobileMaxWidth = mobileSourceHeight ? Math.min(mobileSourceWidth, Math.floor(mobileSourceHeight * mobileAspectRatio)) : mobileSourceWidth;
+const mobileWidths = [...new Set([390, 640, 750, 828, mobileMaxWidth])]
+  .filter((candidate) => candidate > 0 && (!mobileMaxWidth || candidate <= mobileMaxWidth))
   .sort((a, b) => a - b);
 const mobileCandidates = mobileSrc
   ? await Promise.all(mobileWidths.map(async (candidate) => ({
       width: candidate,
-      image: await getImage({ src: mobileSrc, width: candidate, quality, format: 'webp' }),
+      image: await getImage({ src: mobileSrc, width: candidate, height: Math.round(candidate / mobileAspectRatio), fit: 'cover', position: mobilePosition, quality, format: 'webp' }),
     })))
   : [];
 const mobileSrcset = mobileCandidates.map(({ width: candidate, image }) => image.src + ' ' + candidate + 'w').join(', ');
@@ -241,11 +245,11 @@ for (const sourceFile of sourcePages) {
       fs.readFileSync(output, 'utf8')
         .replace(
           /(import OptimizedImage from ['"][^'"]+['"];\n)/,
-          "$1import landingHeroCleaner from '../../assets-src/landing-hero-cleaner-v2.png';\nimport landingHeroCleanerMobile from '../../assets-src/landing-hero-cleaner-mobile-v2.png';\n",
+          "$1import womanVacuuming from '../../assets-src/woman_vacuuming.jpeg';\n",
         )
         .replace(
           '\n];\n---',
-          "\n];\nimages[0] = { ...images[0], src: landingHeroCleaner, mobileSrc: landingHeroCleanerMobile, alt: 'Professional cleaner vacuuming a bright Melbourne home', width: landingHeroCleaner.width, height: landingHeroCleaner.height };\n---",
+          "\n];\nimages[0] = { ...images[0], src: womanVacuuming, mobileSrc: womanVacuuming, alt: 'Woman vacuuming a bright Melbourne home', width: womanVacuuming.width, height: womanVacuuming.height };\n---",
         ),
     );
   }

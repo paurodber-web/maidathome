@@ -1,8 +1,7 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import OptimizedImage from '../components/OptimizedImage.astro';
-import landingHeroCleaner from '../../assets-src/landing-hero-cleaner-v2.png';
-import landingHeroCleanerMobile from '../../assets-src/landing-hero-cleaner-mobile-v2.png';
+import womanVacuuming from '../../assets-src/woman_vacuuming.jpeg';
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const withBase = (markup: string) => markup.replace(/(href|src)=([\"\'])\/(?!\/)/g, '$1=$2' + base);
@@ -1258,10 +1257,10 @@ const content = withBase(`<main id="main-content">
 const contentParts = content.split(/__ASTRO_IMAGE_\d+__/);
 const images: Array<Record<string, any>> = [
   {
-    "src": "/assets-src/landing-hero-cleaner-v2.png",
-    "alt": "Professional cleaner vacuuming a bright Melbourne home",
-    "width": 1672,
-    "height": 941,
+    "src": "/assets-src/woman_vacuuming.jpeg",
+    "alt": "Woman vacuuming a bright Melbourne home",
+    "width": 2752,
+    "height": 1536,
     "fetchpriority": "high",
     "class": "hero__media"
   },
@@ -1328,7 +1327,7 @@ const images: Array<Record<string, any>> = [
     "class": "final-cta__image"
   }
 ];
-images[0] = { ...images[0], src: landingHeroCleaner, mobileSrc: landingHeroCleanerMobile, alt: 'Professional cleaner vacuuming a bright Melbourne home', width: landingHeroCleaner.width, height: landingHeroCleaner.height };
+images[0] = { ...images[0], src: womanVacuuming, mobileSrc: womanVacuuming, alt: 'Woman vacuuming a bright Melbourne home', width: womanVacuuming.width, height: womanVacuuming.height };
 ---
 <SiteLayout title={title} description={description} styles={styles} scripts={scripts} preHeader={preHeader} legacyHeader={false} skipLink={true} yearId="year" currentPath="/" bodyClass="home-page">
   {contentParts.map((part, index) => (<>
