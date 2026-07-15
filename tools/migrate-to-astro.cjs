@@ -117,13 +117,6 @@ function extractPage(sourceFile) {
   if (mainStart < 0) throw new Error(`No main found in ${sourceFile}`);
   body = body.slice(mainStart);
   body = body.replace(/<footer\b[\s\S]*?<\/footer>/i, '');
-  if (sourceFile === 'index.html') {
-    body = body.replace('photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2200&q=88', 'photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1440&q=82');
-    body = body.replace(
-      'src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1440&q=82"',
-      'src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1440&q=82" srcset="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=640&q=72 640w, https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=960&q=80 960w, https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1440&q=82 1440w, https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2200&q=88 2200w" sizes="100vw"'
-    );
-  }
   body = absolutizeLinks(body, sourceFile);
   const { content, images } = extractImages(body);
   return { title, description, styles: minifyCss(styles), content: cleanText(content), images, scripts: cleanText(scripts), preHeader: cleanText(preHeader), legacy: /<header\b[^>]*\bid=(['\"])header\1/i.test(html), skipLink: /<a\b[^>]*class=(['\"])[^'\"]*\bskip-link\b[^'\"]*\1/i.test(extractBody(html)), yearId: /\bid=(['\"])currentYear\1/i.test(html) ? 'currentYear' : 'year', bodyClass: sourceFile === 'index.html' ? 'home-page' : '' };
@@ -144,10 +137,14 @@ fs.mkdirSync(layoutsDir, { recursive: true });
 fs.mkdirSync(publicDir, { recursive: true });
 fs.cpSync(path.join(root, 'assets'), path.join(publicDir, 'assets'), { recursive: true });
 fs.writeFileSync(path.join(componentsDir, 'OptimizedImage.astro'), `---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 
 interface Props {
-  src?: string;
+  src?: any;
+  mobileSrc?: any;
+  mobileBreakpoint?: string;
+  mobileAspectRatio?: number;
+  mobilePosition?: string;
   alt?: string;
   width?: number;
   height?: number;
@@ -156,12 +153,33 @@ interface Props {
   [key: string]: unknown;
 }
 
-const { src = '', alt = '', width, height, loading, fetchpriority, ...attributes } = Astro.props;
+const { src = '', mobileSrc, mobileBreakpoint = '620px', mobileAspectRatio = 390 / 844, mobilePosition = 'center', alt = '', width, height, loading, fetchpriority, ...attributes } = Astro.props;
 const priority = fetchpriority === 'high';
 const dimensions = width && height ? { width, height } : { inferSize: true };
 const safeLoading = loading === 'lazy' ? 'lazy' : undefined;
+const quality = priority ? 72 : 60;
+const mobileSourceWidth = mobileSrc && typeof mobileSrc === 'object' && 'width' in mobileSrc ? Number(mobileSrc.width) : 0;
+const mobileSourceHeight = mobileSrc && typeof mobileSrc === 'object' && 'height' in mobileSrc ? Number(mobileSrc.height) : 0;
+const mobileMaxWidth = mobileSourceHeight ? Math.min(mobileSourceWidth, Math.floor(mobileSourceHeight * mobileAspectRatio)) : mobileSourceWidth;
+const mobileWidths = [...new Set([390, 640, 750, 828, mobileMaxWidth])]
+  .filter((candidate) => candidate > 0 && (!mobileMaxWidth || candidate <= mobileMaxWidth))
+  .sort((a, b) => a - b);
+const mobileCandidates = mobileSrc
+  ? await Promise.all(mobileWidths.map(async (candidate) => ({
+      width: candidate,
+      image: await getImage({ src: mobileSrc, width: candidate, height: Math.round(candidate / mobileAspectRatio), fit: 'cover', position: mobilePosition, quality, format: 'webp' }),
+    })))
+  : [];
+const mobileSrcset = mobileCandidates.map(({ width: candidate, image }) => image.src + ' ' + candidate + 'w').join(', ');
 ---
-<Image src={src} alt={alt} {...dimensions} quality={priority ? 35 : 60} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />
+{mobileSrc ? (
+  <picture>
+    <source media={'(max-width: ' + mobileBreakpoint + ')'} srcset={mobileSrcset} sizes="100vw" type="image/webp" />
+    <Image src={src} alt={alt} {...dimensions} quality={quality} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />
+  </picture>
+) : (
+  <Image src={src} alt={alt} {...dimensions} quality={quality} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />
+)}
 `);
 
 const modernHeader = absolutizeLinks(extractHeaderAndMenu(read('contact.html')), 'contact.html');
@@ -221,6 +239,20 @@ for (const sourceFile of sourcePages) {
       .replace('`;\nconst content = `', '`);\nconst content = withBase(`')
       .replace('`;\nconst contentParts =', '`);\nconst contentParts ='),
   );
+  if (sourceFile === 'index.html') {
+    fs.writeFileSync(
+      output,
+      fs.readFileSync(output, 'utf8')
+        .replace(
+          /(import OptimizedImage from ['"][^'"]+['"];\n)/,
+          "$1import womanVacuuming from '../../assets-src/woman_vacuuming.jpeg';\n",
+        )
+        .replace(
+          '\n];\n---',
+          "\n];\nimages[0] = { ...images[0], src: womanVacuuming, mobileSrc: womanVacuuming, alt: 'Woman vacuuming a bright Melbourne home', width: womanVacuuming.width, height: womanVacuuming.height };\n---",
+        ),
+    );
+  }
 }
 
 console.log(`Migrated ${sourcePages.length} pages into Astro components.`);

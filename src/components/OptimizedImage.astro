@@ -1,8 +1,12 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 
 interface Props {
-  src?: string;
+  src?: any;
+  mobileSrc?: any;
+  mobileBreakpoint?: string;
+  mobileAspectRatio?: number;
+  mobilePosition?: string;
   alt?: string;
   width?: number;
   height?: number;
@@ -11,9 +15,30 @@ interface Props {
   [key: string]: unknown;
 }
 
-const { src = '', alt = '', width, height, loading, fetchpriority, ...attributes } = Astro.props;
+const { src = '', mobileSrc, mobileBreakpoint = '620px', mobileAspectRatio = 390 / 844, mobilePosition = 'center', alt = '', width, height, loading, fetchpriority, ...attributes } = Astro.props;
 const priority = fetchpriority === 'high';
 const dimensions = width && height ? { width, height } : { inferSize: true };
 const safeLoading = loading === 'lazy' ? 'lazy' : undefined;
+const quality = priority ? 72 : 60;
+const mobileSourceWidth = mobileSrc && typeof mobileSrc === 'object' && 'width' in mobileSrc ? Number(mobileSrc.width) : 0;
+const mobileSourceHeight = mobileSrc && typeof mobileSrc === 'object' && 'height' in mobileSrc ? Number(mobileSrc.height) : 0;
+const mobileMaxWidth = mobileSourceHeight ? Math.min(mobileSourceWidth, Math.floor(mobileSourceHeight * mobileAspectRatio)) : mobileSourceWidth;
+const mobileWidths = [...new Set([390, 640, 750, 828, mobileMaxWidth])]
+  .filter((candidate) => candidate > 0 && (!mobileMaxWidth || candidate <= mobileMaxWidth))
+  .sort((a, b) => a - b);
+const mobileCandidates = mobileSrc
+  ? await Promise.all(mobileWidths.map(async (candidate) => ({
+      width: candidate,
+      image: await getImage({ src: mobileSrc, width: candidate, height: Math.round(candidate / mobileAspectRatio), fit: 'cover', position: mobilePosition, quality, format: 'webp' }),
+    })))
+  : [];
+const mobileSrcset = mobileCandidates.map(({ width: candidate, image }) => image.src + ' ' + candidate + 'w').join(', ');
 ---
-<Image src={src} alt={alt} {...dimensions} quality={priority ? 35 : 60} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />
+{mobileSrc ? (
+  <picture>
+    <source media={'(max-width: ' + mobileBreakpoint + ')'} srcset={mobileSrcset} sizes="100vw" type="image/webp" />
+    <Image src={src} alt={alt} {...dimensions} quality={quality} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />
+  </picture>
+) : (
+  <Image src={src} alt={alt} {...dimensions} quality={quality} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />
+)}
