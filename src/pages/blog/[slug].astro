@@ -1,0 +1,262 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import OptimizedImage from '../../components/OptimizedImage.astro';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+export async function getStaticPaths() {
+  const now = new Date();
+  const posts = await getCollection('blog', ({ data }) => !data.draft && data.publishedAt <= now);
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const tocHeadings = headings.filter((heading) => heading.depth === 2);
+const canonicalUrl = new URL(`${base.replace(/^\//, '')}blog/${post.id}/`, `${Astro.site ?? Astro.url.origin}/`).toString();
+const shareEmailHref = `mailto:?subject=${encodeURIComponent(post.data.title)}&body=${encodeURIComponent(`I thought you might find this useful: ${canonicalUrl}`)}`;
+const publishedLabel = new Intl.DateTimeFormat('en-AU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(post.data.publishedAt);
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.publishedAt <= new Date()))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const relatedPosts = allPosts
+  .filter((entry) => entry.id !== post.id)
+  .sort((a, b) => Number(b.data.category === post.data.category) - Number(a.data.category === post.data.category))
+  .slice(0, 3);
+const pageTitle = `${post.data.title} | Maid At Home`;
+const styles = `:root{--ink:#183042;--soft:#526978;--blue-900:#153e60;--blue-800:#1d5077;--blue-700:#286b9d;--blue-600:#3d86b9;--blue-300:#a9d1e7;--blue-200:#cfe7f3;--blue-100:#e8f5fb;--blue-50:#f4fafc;--white:#fff;--grey-100:#edf2f4;--beige:#f4df9f;--beige-light:#fbf2d5;--shadow:0 24px 70px rgba(23,63,93,.13);--shell:min(1120px,calc(100% - 48px));--nav-height:84px}*,*:before,*:after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;color:var(--ink);background:var(--white);font:16px/1.7 "DM Sans",Arial,sans-serif;-webkit-font-smoothing:antialiased}body.menu-open{overflow:hidden}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.shell{width:var(--shell);margin-inline:auto}.reading-progress{position:fixed;z-index:200;top:0;left:0;width:0;height:3px;background:var(--beige)}.article-hero{padding:calc(var(--nav-height) + 48px) 0 62px;background:var(--blue-50)}.breadcrumb{display:flex;align-items:center;gap:10px;margin-bottom:34px;color:var(--soft);font-size:.72rem;font-weight:700}.breadcrumb a{color:var(--blue-700)}.article-hero__grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(360px,.72fr);align-items:center;gap:clamp(45px,7vw,90px)}.article-category{display:inline-flex;margin-bottom:18px;padding:8px 12px;border-radius:999px;color:var(--blue-900);background:var(--beige);font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.article-hero h1{max-width:760px;margin:0 0 22px;font:650 clamp(2.55rem,5vw,4.55rem)/1.01 "Plus Jakarta Sans",Arial,sans-serif;letter-spacing:-.055em}.article-hero__description{max-width:690px;margin:0 0 22px;color:var(--soft);font-size:1.03rem}.article-meta{display:flex;flex-wrap:wrap;gap:10px 18px;color:var(--blue-700);font-size:.72rem;font-weight:800}.article-hero__image{width:100%;height:430px;border-radius:28px 115px 28px 28px;object-fit:cover;box-shadow:var(--shadow)}.article-layout{display:grid;grid-template-columns:minmax(0,760px) 250px;justify-content:space-between;gap:70px;padding:clamp(72px,9vw,120px) 0}.article-content{min-width:0}.article-content h2{margin:2.2em 0 .65em;font:700 clamp(1.65rem,3vw,2.3rem)/1.15 "Plus Jakarta Sans",Arial,sans-serif;letter-spacing:-.035em}.article-content h2:first-child{margin-top:0}.article-content h3{margin:1.8em 0 .55em;font:700 1.3rem/1.25 "Plus Jakarta Sans",Arial,sans-serif}.article-content p{margin:0 0 1.35em;color:var(--soft);font-size:1.02rem}.article-content ul,.article-content ol{display:grid;gap:.65em;margin:0 0 1.5em;padding-left:1.35em;color:var(--soft)}.article-content a{color:var(--blue-700);font-weight:700;text-decoration:underline;text-underline-offset:3px}.article-aside{position:sticky;top:110px;align-self:start;padding:24px;border:1px solid var(--blue-200);border-radius:20px;background:var(--blue-50)}.article-aside strong{display:block;margin-bottom:8px;font-family:"Plus Jakarta Sans",Arial,sans-serif}.article-aside p{margin:0 0 18px;color:var(--soft);font-size:.76rem}.article-aside a{display:inline-flex;align-items:center;gap:8px;color:var(--blue-700);font-size:.78rem;font-weight:800}.related{padding:80px 0 105px;background:var(--blue-50)}.related__head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:34px}.related h2{margin:0;font:700 clamp(2rem,4vw,3.2rem)/1.1 "Plus Jakarta Sans",Arial,sans-serif;letter-spacing:-.04em}.related__head>a{color:var(--blue-700);font-size:.8rem;font-weight:800}.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.related-card{overflow:hidden;border:1px solid var(--blue-200);border-radius:20px;background:var(--white)}.related-card img{width:100%;height:180px;object-fit:cover}.related-card__body{padding:21px}.related-card span{display:block;margin-bottom:9px;color:var(--blue-700);font-size:.62rem;font-weight:800;text-transform:uppercase}.related-card h3{margin:0;font:700 1rem/1.35 "Plus Jakarta Sans",Arial,sans-serif}.back-blog{display:inline-flex;align-items:center;gap:9px;margin-top:28px;color:var(--blue-700);font-size:.82rem;font-weight:800}@media(max-width:900px){:root{--nav-height:74px;--shell:min(100% - 36px,760px)}.article-hero__grid,.article-layout{grid-template-columns:1fr}.article-hero__image{height:360px}.article-layout{gap:42px}.article-aside{position:static}.related-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){:root{--shell:calc(100% - 30px)}.article-hero{padding-top:calc(var(--nav-height) + 34px)}.article-hero h1{font-size:clamp(2.25rem,11vw,3.15rem)}.article-hero__image{height:260px;border-radius:22px 70px 22px 22px}.article-content p{font-size:.98rem}.related{padding:64px 0 80px}.related__head{align-items:flex-start;flex-direction:column}.related-grid{grid-template-columns:1fr}.related-card img{height:210px}}`;
+const editorialStyles = `.article-layout{width:min(1360px,calc(100% - 64px));grid-template-columns:minmax(190px,230px) minmax(0,760px) minmax(170px,190px);grid-template-areas:"toc content share";align-items:start;justify-content:center;gap:clamp(34px,4vw,66px);padding:clamp(82px,9vw,126px) 0}.article-content{grid-area:content}.article-sidebar-label{margin:0 0 16px;color:var(--blue-700);font:800 .68rem/1 "DM Sans",Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}.article-toc{position:sticky;top:112px;grid-area:toc;align-self:start}.article-toc ol{margin:0;padding:0;border-top:1px solid var(--blue-200);list-style:none}.article-toc li{border-bottom:1px solid var(--blue-200)}.article-toc a{display:block;padding:11px 4px;color:var(--soft);font-size:.72rem;font-weight:650;line-height:1.35;transition:color .22s,transform .22s}.article-toc a:hover,.article-toc a[aria-current=location]{color:var(--blue-700);transform:translateX(4px)}.article-read-status{margin:20px 0 0;color:var(--soft);font-size:.68rem}.article-read-status strong{color:var(--ink);font-variant-numeric:tabular-nums}.article-share{position:sticky;top:112px;grid-area:share;align-self:start}.share-actions{display:grid;gap:9px}.share-action{display:flex;width:100%;min-height:48px;align-items:center;gap:11px;padding:10px 13px;border:1px solid var(--blue-200);border-radius:12px;cursor:pointer;color:var(--soft);background:var(--white);font:700 .72rem/1 "DM Sans",Arial,sans-serif;text-align:left;transition:border-color .22s,color .22s,background .22s,transform .22s}.share-action:hover{border-color:var(--blue-600);color:var(--blue-700);background:var(--blue-50);transform:translateY(-2px)}.share-action:active{transform:translateY(0) scale(.985)}.share-action:focus-visible{outline:3px solid var(--beige);outline-offset:3px}.share-action svg{width:18px;height:18px;flex:0 0 auto;stroke-width:1.8}.copy-status{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.article-content>p:first-child{font-size:clamp(1.08rem,1.6vw,1.24rem);line-height:1.75;color:var(--ink)}@media(max-width:1020px){.article-layout{width:min(900px,calc(100% - 40px));grid-template-columns:minmax(0,1fr) minmax(180px,.55fr);grid-template-areas:"toc share" "content content";gap:36px 48px}.article-toc,.article-share{position:static}.article-toc ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}.article-content{max-width:760px;width:100%;margin-inline:auto}}@media(max-width:620px){.article-layout{width:calc(100% - 30px);grid-template-columns:1fr;grid-template-areas:"toc" "share" "content";gap:30px;padding:62px 0 80px}.article-toc ol{grid-template-columns:1fr}.share-actions{grid-template-columns:repeat(2,minmax(0,1fr))}.share-action{justify-content:center}.article-content>p:first-child{font-size:1.03rem}}`;
+const layoutCorrections = `:root{--shell:min(1180px,calc(100% - 48px))}.article-layout{width:var(--shell);margin-inline:auto}.article-content h2{scroll-margin-top:92px}@media(max-width:1040px){:root{--shell:min(100% - 40px,940px)}}@media(max-width:820px){:root{--shell:min(100% - 36px,720px)}}@media(max-width:620px){:root{--shell:calc(100% - 30px)}}`;
+const articleEnhancements = `
+.article-lead{margin:0 0 34px!important;color:var(--ink)!important;font-size:clamp(1.1rem,1.65vw,1.28rem)!important;line-height:1.78}
+.article-summary{margin:0 0 52px;padding:24px 26px 25px;border-left:4px solid var(--blue-600);background:var(--blue-50)}
+.article-summary span{display:block;margin-bottom:7px;color:var(--blue-700);font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.article-summary strong{display:block;color:var(--ink);font:700 .96rem/1.5 "Plus Jakarta Sans",Arial,sans-serif}
+.article-prose h2{margin-top:2.35em}
+.article-prose h3{color:var(--blue-900);font-size:1.05rem}
+.article-prose strong{color:var(--ink)}
+.article-prose li::marker{color:var(--blue-700);font-weight:800}
+.article-prose blockquote{position:relative;margin:44px 0;padding:31px 34px 27px;border:0;border-radius:22px;color:var(--white);background:var(--blue-900);box-shadow:0 18px 46px rgba(21,62,96,.15)}
+.article-prose blockquote::before{display:none}
+.article-prose blockquote p{position:relative;margin:0 0 22px;color:var(--white);font:600 clamp(1rem,1.6vw,1.18rem)/1.58 "Plus Jakarta Sans",Arial,sans-serif}
+.article-prose blockquote p::before{content:"“"}.article-prose blockquote p::after{content:"”"}
+.article-prose blockquote cite{display:block;color:var(--beige);font:800 .68rem/1 "DM Sans",Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;font-style:normal}
+.article-prose table{display:table;width:100%;margin:30px 0 38px;overflow:hidden;border:1px solid var(--blue-200);border-spacing:0;border-collapse:separate;border-radius:14px;color:var(--soft);font-size:.78rem;line-height:1.5}
+.article-prose th,.article-prose td{padding:15px 17px;border-bottom:1px solid var(--blue-200);text-align:left;vertical-align:top}
+.article-prose th{color:var(--blue-700);background:var(--blue-50);font-size:.68rem;font-weight:800}
+.article-prose th:first-child,.article-prose td:first-child{width:118px}
+.article-prose tr:last-child th,.article-prose tr:last-child td{border-bottom:0}
+.article-figure{margin:42px 0 58px}
+.article-figure img{width:100%;aspect-ratio:2.05/1;max-height:350px;border-radius:16px;object-fit:cover;box-shadow:0 18px 46px rgba(23,63,93,.1)}
+.article-figure figcaption{margin-top:10px;color:#718795;font-size:.62rem;line-height:1.5}
+.article-checklist{margin:28px 0 38px;padding:25px 27px;border:1px solid var(--blue-200);border-radius:15px;background:var(--blue-50)}
+.article-checklist>strong{display:block;margin-bottom:16px;font:700 .86rem/1.3 "Plus Jakarta Sans",Arial,sans-serif}
+.article-checklist ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px 22px;margin:0;padding:0;list-style:none}
+.article-checklist li{position:relative;padding-left:25px;font-size:.76rem;line-height:1.45}
+.article-checklist li::before{content:"";position:absolute;top:2px;left:0;width:15px;height:15px;border:1px solid var(--blue-300);border-radius:4px;background:var(--white)}
+.article-callout{margin:38px 0 44px;padding:23px 25px;border-left:4px solid var(--beige);background:var(--blue-50)}
+.article-callout span{display:block;margin-bottom:6px;color:var(--blue-700);font-size:.6rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+.article-callout strong{display:block;margin-bottom:5px;font:700 .93rem/1.4 "Plus Jakarta Sans",Arial,sans-serif}
+.article-callout p{margin:0;font-size:.78rem}
+.back-blog{margin-top:24px}
+.related{padding:90px 0 104px}
+.related__head{align-items:end}
+.related__kicker{display:flex;align-items:center;gap:10px;margin:0 0 14px;color:var(--blue-700);font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.related__kicker::before{content:"";width:26px;height:2px;background:currentColor}
+.related h2{font-size:clamp(2rem,3.8vw,3rem)}
+.related-card{display:flex;min-height:100%;flex-direction:column;transition:transform .3s,box-shadow .3s,border-color .3s}
+.related-card:hover{border-color:var(--blue-300);box-shadow:0 18px 45px rgba(23,63,93,.11);transform:translateY(-5px)}
+.related-card__body{display:flex;flex:1;flex-direction:column;padding:21px 22px 19px}
+.related-card__body>span{letter-spacing:.08em}
+.related-card p{margin:10px 0 18px;color:var(--soft);font-size:.7rem;line-height:1.55}
+.related-card__meta{display:flex!important;align-items:center;justify-content:space-between;margin:auto 0 0!important;color:var(--soft)!important;font-size:.62rem!important;font-weight:700!important;letter-spacing:0!important;text-transform:none!important}
+.related-card__arrow{display:grid!important;width:28px;height:28px;place-items:center;margin:0!important;border:1px solid var(--blue-200);border-radius:50%;color:var(--blue-700);transition:background .25s,color .25s}
+.related-card:hover .related-card__arrow{color:var(--white);background:var(--blue-700)}
+.final-cta{padding:22px;background:var(--white)}
+.final-cta__panel{position:relative;min-height:500px;overflow:hidden;isolation:isolate;border-radius:38px;color:var(--white);background:var(--blue-700)}
+.final-cta__image{position:absolute;z-index:-3;inset:0;width:100%;height:100%;object-fit:cover}
+.final-cta__panel::before{content:"";position:absolute;z-index:-2;inset:0;background:linear-gradient(90deg,rgba(14,49,73,.91),rgba(14,49,73,.59) 52%,rgba(14,49,73,.13) 86%)}
+.final-cta__panel::after{content:"";position:absolute;z-index:-1;top:50%;right:8%;width:260px;height:260px;border:1px solid rgba(255,255,255,.2);border-radius:50%;box-shadow:0 0 0 55px rgba(255,255,255,.035),0 0 0 110px rgba(255,255,255,.025);transform:translateY(-50%)}
+.final-cta__inner{display:flex;min-height:500px;align-items:center}
+.final-cta__content{max-width:650px}
+.final-cta__eyebrow{display:inline-flex;padding:9px 13px;border:1px solid rgba(255,255,255,.4);border-radius:100px;color:var(--white);background:rgba(14,51,77,.22);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.final-cta h2{margin:17px 0 19px;color:var(--white);font:600 clamp(2.45rem,5.4vw,4.65rem)/1.05 "Plus Jakarta Sans",Arial,sans-serif;letter-spacing:-.045em}
+.final-cta p{max-width:520px;margin:0 0 29px;color:rgba(255,255,255,.82)}
+.button{display:inline-flex;min-height:56px;align-items:center;justify-content:space-between;gap:22px;padding:7px 7px 7px 22px;border:1px solid transparent;border-radius:100px;font-size:.91rem;font-weight:700;line-height:1;transition:transform .35s,box-shadow .35s}
+.button:hover{transform:translateY(-2px)}
+.button__icon{display:grid;width:42px;height:42px;flex:0 0 auto;place-items:center;border-radius:50%;line-height:0}
+.button__icon svg{width:17px;height:17px}
+.button--primary{color:var(--ink);background:var(--beige);box-shadow:0 12px 28px rgba(26,54,72,.16)}
+.button--primary .button__icon{color:var(--white);background:var(--blue-800)}
+@media(max-width:820px){.final-cta{padding:14px}.final-cta__panel,.final-cta__inner{min-height:540px}.final-cta__panel::before{background:linear-gradient(0deg,rgba(12,44,66,.93),rgba(12,44,66,.22))}.final-cta__inner{align-items:flex-end;padding-bottom:42px}.final-cta__panel::after{display:none}}
+@media(max-width:620px){.article-summary{margin-bottom:42px;padding:21px 20px}.article-prose blockquote{padding:27px 24px}.article-prose table{font-size:.72rem}.article-prose th:first-child,.article-prose td:first-child{width:96px}.article-checklist{padding:22px 20px}.article-checklist ul{grid-template-columns:1fr}.article-figure{margin:34px 0 45px}.article-figure img{aspect-ratio:2/1;max-height:220px}.related{padding:72px 0 82px}.final-cta{padding:10px}.final-cta__panel,.final-cta__inner{min-height:570px}.final-cta__panel{border-radius:28px}.final-cta h2{font-size:clamp(2.35rem,11vw,3.5rem)}}
+`;
+const scripts = `<script>
+  (()=>{"use strict";
+    const header=document.getElementById("siteHeader"),toggle=document.getElementById("menuToggle"),menu=document.getElementById("mobileMenu"),links=[...menu.querySelectorAll("a")];
+    const setMenu=open=>{toggle.setAttribute("aria-expanded",String(open));toggle.setAttribute("aria-label",open?"Close menu":"Open menu");menu.setAttribute("aria-hidden",String(!open));menu.classList.toggle("is-open",open);document.body.classList.toggle("menu-open",open)};
+    toggle.addEventListener("click",()=>setMenu(toggle.getAttribute("aria-expanded")!=="true"));links.forEach(link=>link.addEventListener("click",()=>setMenu(false)));addEventListener("scroll",()=>header.classList.toggle("is-scrolled",scrollY>24),{passive:true});document.addEventListener("keydown",event=>{if(event.key==="Escape")setMenu(false)});
+    const progress=document.getElementById("readingProgress"),article=document.querySelector(".article-content"),articlePercent=document.getElementById("articleReadPercent"),tocLinks=[...document.querySelectorAll(".article-toc a")];
+    const updateProgress=()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?Math.min(100,scrollY/max*100):0)+"%";if(article&&articlePercent){const headerHeight=header?.getBoundingClientRect().height??0,start=article.offsetTop-headerHeight,end=Math.max(start+1,article.offsetTop+article.offsetHeight-innerHeight),value=Math.round(Math.min(100,Math.max(0,(scrollY-start)/(end-start)*100)));articlePercent.textContent=value+"%"}let current="";tocLinks.forEach(link=>{const section=document.getElementById(link.hash.slice(1));if(section&&section.getBoundingClientRect().top<=170)current=link.hash});tocLinks.forEach(link=>current===link.hash?link.setAttribute("aria-current","location"):link.removeAttribute("aria-current"))};
+    updateProgress();addEventListener("scroll",updateProgress,{passive:true});addEventListener("resize",updateProgress,{passive:true});
+    const copyButton=document.getElementById("copyArticleLink"),copyLabel=document.getElementById("copyArticleLabel"),copyStatus=document.getElementById("copyStatus");
+    copyButton?.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(location.href);copyLabel.textContent="Copied";copyStatus.textContent="Article link copied";setTimeout(()=>{copyLabel.textContent="Copy link";copyStatus.textContent=""},1800)}catch{copyStatus.textContent="Could not copy the link"}});
+    const emailLink=document.getElementById("emailArticleLink");if(emailLink){const subject=emailLink.dataset.subject||document.title,body="I thought you might find this useful: "+location.href;emailLink.href="mailto:?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body)}
+  })();
+</script>`;
+---
+
+<SiteLayout
+  title={pageTitle}
+  description={post.data.description}
+  styles={`${styles}${editorialStyles}${layoutCorrections}${articleEnhancements}`}
+  scripts={scripts}
+  preHeader={'<div class="reading-progress" id="readingProgress"></div>'}
+  legacyHeader={false}
+  skipLink={true}
+  yearId="year"
+  currentPath="/blog/"
+  bodyClass=""
+>
+  <main id="main-content">
+    <section class="article-hero">
+      <div class="shell">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href={base}>Home</a><span aria-hidden="true">/</span>
+          <a href={`${base}blog/`}>Blog</a><span aria-hidden="true">/</span>
+          <span aria-current="page">{post.data.categoryLabel}</span>
+        </nav>
+        <div class="article-hero__grid">
+          <div>
+            <span class="article-category">{post.data.categoryLabel}</span>
+            <h1>{post.data.title}</h1>
+            <p class="article-hero__description">{post.data.description}</p>
+            <div class="article-meta">
+              <time datetime={post.data.publishedAt.toISOString()}>{publishedLabel}</time>
+              <span>{post.data.readingTime}</span>
+              <span>By Maid At Home</span>
+            </div>
+          </div>
+          <OptimizedImage
+            src={post.data.image}
+            alt={post.data.imageAlt}
+            width={post.data.imageWidth}
+            height={post.data.imageHeight}
+            fetchpriority="high"
+            class="article-hero__image"
+          />
+        </div>
+      </div>
+    </section>
+
+    <div class="article-layout">
+      <nav class="article-toc" aria-labelledby="article-toc-title">
+        <p class="article-sidebar-label" id="article-toc-title">In this article</p>
+        <ol>
+          {tocHeadings.map((heading) => (
+            <li><a href={`#${heading.slug}`}>{heading.text}</a></li>
+          ))}
+        </ol>
+        <p class="article-read-status"><strong id="articleReadPercent">0%</strong> read</p>
+      </nav>
+      <article class="article-content">
+        {post.data.intro && <p class="article-lead">{post.data.intro}</p>}
+        {post.data.takeaway && (
+          <aside class="article-summary" aria-label="Article summary">
+            <span>The short version</span>
+            <strong>{post.data.takeaway}</strong>
+          </aside>
+        )}
+        <div class="article-prose"><Content /></div>
+        <a class="back-blog" href={`${base}blog/`}>← Back to all articles</a>
+      </article>
+      <aside class="article-share" aria-labelledby="article-share-title">
+        <p class="article-sidebar-label" id="article-share-title">Share</p>
+        <div class="share-actions">
+          <button class="share-action" id="copyArticleLink" type="button">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.5 13.5a4.5 4.5 0 0 0 6.36.14l2.78-2.78a4.5 4.5 0 0 0-6.36-6.36l-1.59 1.59"></path><path d="M13.5 10.5a4.5 4.5 0 0 0-6.36-.14l-2.78 2.78a4.5 4.5 0 0 0 6.36 6.36l1.59-1.59"></path></svg>
+            <span id="copyArticleLabel">Copy link</span>
+          </button>
+          <a class="share-action" id="emailArticleLink" href={shareEmailHref} data-subject={post.data.title}>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 5h18v14H3z"></path><path d="m3 6 9 7 9-7"></path></svg>
+            <span>Email</span>
+          </a>
+        </div>
+        <span class="copy-status" id="copyStatus" role="status" aria-live="polite"></span>
+      </aside>
+    </div>
+
+    {relatedPosts.length > 0 && (
+      <section class="related" aria-labelledby="related-title">
+        <div class="shell">
+          <div class="related__head">
+            <div>
+              <p class="related__kicker">Keep reading</p>
+              <h2 id="related-title">More useful home-care guides.</h2>
+            </div>
+            <a href={`${base}blog/`}>View all articles →</a>
+          </div>
+          <div class="related-grid">
+            {relatedPosts.map((related) => (
+              <a class="related-card" href={`${base}blog/${related.id}/`}>
+                <OptimizedImage
+                  src={related.data.image}
+                  alt={related.data.imageAlt}
+                  width={related.data.imageWidth}
+                  height={related.data.imageHeight}
+                  loading="lazy"
+                />
+                <div class="related-card__body">
+                  <span>{related.data.categoryLabel}</span>
+                  <h3>{related.data.title}</h3>
+                  <p>{related.data.description}</p>
+                  <span class="related-card__meta">
+                    {related.data.readingTime}
+                    <span class="related-card__arrow" aria-hidden="true">→</span>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="final-cta" aria-labelledby="final-cta-title">
+      <div class="final-cta__panel">
+        <OptimizedImage
+          src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=2200&q=86"
+          alt="Calm, clean home ready to enjoy"
+          width={2200}
+          height={1467}
+          loading="lazy"
+          class="final-cta__image"
+        />
+        <div class="final-cta__inner shell">
+          <div class="final-cta__content">
+            <span class="final-cta__eyebrow">Less cleaning. More living.</span>
+            <h2 id="final-cta-title">Ready to enjoy your free time?</h2>
+            <p>Choose your service, preferred time and any extras. We will take it from there.</p>
+            <a class="button button--primary" href={`${base}pricing#calculator`}>
+              Build my clean
+              <span class="button__icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M4 10h11M11 6l4 4-4 4"></path></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</SiteLayout>
