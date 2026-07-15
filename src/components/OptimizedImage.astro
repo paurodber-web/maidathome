@@ -1,0 +1,19 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  src?: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+  loading?: string;
+  fetchpriority?: string;
+  [key: string]: unknown;
+}
+
+const { src = '', alt = '', width, height, loading, fetchpriority, ...attributes } = Astro.props;
+const priority = fetchpriority === 'high';
+const dimensions = width && height ? { width, height } : { inferSize: true };
+const safeLoading = loading === 'lazy' ? 'lazy' : undefined;
+---
+<Image src={src} alt={alt} {...dimensions} quality={priority ? 35 : 60} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />
