@@ -1,0 +1,9 @@
+/* Keep below-the-fold sections out of initial style and layout work. They are
+   rendered normally before entering the viewport, so their design and motion
+   remain unchanged. */
+@supports (content-visibility: auto) {
+  #main-content > section:not(:first-child) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+}

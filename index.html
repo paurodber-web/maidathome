@@ -2979,7 +2979,7 @@
       }
 
       .hero__media {
-        object-position: 61% center;
+        object-position: center;
       }
 
       .hero__headline {
@@ -3387,8 +3387,8 @@
     <!-- HERO -->
     <section class="hero" id="home" aria-labelledby="hero-title">
       <img class="hero__media"
-        src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2200&q=88"
-        alt="Bright, calm family living room in a Melbourne-style home" width="2200" height="1467" fetchpriority="high">
+        src="assets-src/woman_vacuuming.jpeg"
+        alt="Woman vacuuming a bright Melbourne home" width="2752" height="1536" fetchpriority="high">
       <div class="hero__inner shell">
         <div class="hero__content">
           <h1 class="eyebrow" id="hero-title">
@@ -3925,7 +3925,7 @@
 
         <div class="about-content reveal">
           <div class="section-kicker">About Maid At Home</div>
-          <h2 id="about-title">Melbourne cleaners who know what good care takes.</h2>
+          <h2 id="about-title">Thoughtful cleaning, by people who care.</h2>
           <p>We started by cleaning homes ourselves. That hands-on beginning shaped the way we still work today: listen
             carefully, organise reliably and never lose sight of the person who lives behind every booking.</p>
           <p>Now our Melbourne team helps busy households protect their time and enjoy their homes, with clear pricing
@@ -3948,7 +3948,7 @@
       <div class="areas-layout shell">
         <div class="areas-intro reveal">
           <div class="section-kicker">Across Melbourne</div>
-          <h2 id="areas-title">House cleaning across Melbourne, near you.</h2>
+          <h2 id="areas-title">House cleaning across Melbourne.</h2>
           <p>We care for homes across inner Melbourne and surrounding suburbs. Explore by area or search for yours.</p>
           <label class="areas-search">
             <span class="sr-only"
@@ -4250,8 +4250,14 @@
       const mobileLinks = [...mobileMenu.querySelectorAll("a")];
       let lastFocusedElement = null;
 
-      const updateHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 24);
-      updateHeader();
+      let headerFrame = 0;
+      const updateHeader = () => {
+        if (headerFrame) return;
+        headerFrame = requestAnimationFrame(() => {
+          header.classList.toggle("is-scrolled", window.scrollY > 24);
+          headerFrame = 0;
+        });
+      };
       window.addEventListener("scroll", updateHeader, { passive: true });
 
       const setMenu = (open) => {
@@ -4612,20 +4618,25 @@
         });
       });
 
-      document.getElementById("currentYear").textContent = new Date().getFullYear();
+      const currentYear = document.getElementById("currentYear") || document.getElementById("year");
+      if (currentYear) currentYear.textContent = new Date().getFullYear();
     })();
 
     // Scroll progress bar logic
     (function () {
       const progress = document.getElementById("readingProgress");
       if (progress) {
+        let progressFrame = 0;
         const updateProgress = () => {
-          const scrolled = window.scrollY;
-          const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-          const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0;
-          progress.style.width = Math.min(100, Math.max(0, pct)) + "%";
+          if (progressFrame) return;
+          progressFrame = requestAnimationFrame(() => {
+            const scrolled = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0;
+            progress.style.width = Math.min(100, Math.max(0, pct)) + "%";
+            progressFrame = 0;
+          });
         };
-        updateProgress();
         window.addEventListener("scroll", updateProgress, { passive: true });
       }
     })();

@@ -1,0 +1,33 @@
+{
+  "name": "maid-at-home---friendly---astro",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "astro dev",
+    "dev:mobile": "node tools/dev-mobile.cjs",
+    "build": "astro build",
+    "build:github-pages": "node tools/build-github-pages.cjs",
+    "preview": "astro preview",
+    "preview:github-pages": "node tools/build-github-pages.cjs preview",
+    "check": "astro check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paurodber-web/maidathome.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paurodber-web/maidathome/issues"
+  },
+  "homepage": "https://github.com/paurodber-web/maidathome#readme",
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "cloudflared": "^0.7.1",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "astro": "^7.0.9"
+  }
+}
