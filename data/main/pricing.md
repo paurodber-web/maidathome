@@ -103,7 +103,7 @@ Perfect for those who need a single, thorough cleaning session without any recur
 Includes:
 
 
-- Minimum 3 hours booking
+- Minimum 2 hours booking
 
 - All standard cleaning tasks
 
