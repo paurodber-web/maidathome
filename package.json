@@ -7,6 +7,7 @@
     "build": "astro build",
     "build:github-pages": "node tools/build-github-pages.cjs",
     "preview": "astro preview",
+    "preview:github-pages": "node tools/build-github-pages.cjs preview",
     "check": "astro check"
   },
   "repository": {
