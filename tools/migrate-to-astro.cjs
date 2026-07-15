@@ -130,7 +130,7 @@ function extractPage(sourceFile) {
 }
 
 function makeComponent(name, markup) {
-  return `---\ninterface Props { currentPath?: string; }\nconst { currentPath = '' } = Astro.props;\nconst markup = \`${escapeTemplate(markup)}\`;\nconst withoutCurrent = markup.replace(/\\saria-current=(['\"])page\\1/g, '');\nconst current = currentPath.replace(/\\/+$/, '') || '/index.html';\nconst html = withoutCurrent.replace(new RegExp('(href=([\\\"\\\'])' + current + '\\\\2)', 'g'), '$1 aria-current=\\\"page\\\"');\n---\n<Fragment set:html={html} />\n`;
+  return `---\ninterface Props { currentPath?: string; }\nconst { currentPath = '' } = Astro.props;\nconst base = import.meta.env.BASE_URL.replace(/\\/?$/, '/');\nconst markup = \`${escapeTemplate(markup)}\`;\nconst withoutCurrent = markup.replace(/\\saria-current=(['\"])page\\1/g, '');\nconst current = currentPath.replace(/\\/+$/, '') || '/index.html';\nconst html = withoutCurrent.replace(new RegExp('(href=([\\\"\\\'])' + current + '\\\\2)', 'g'), '$1 aria-current=\\\"page\\\"');\nconst basedHtml = html.replace(/(href|src)=([\\\"\\\'])\\/(?!\\/)/g, '$1=$2' + base);\n---\n<Fragment set:html={basedHtml} />\n`;
 }
 
 function makeLayout() {
@@ -167,7 +167,7 @@ const safeLoading = loading === 'lazy' ? 'lazy' : undefined;
 const modernHeader = absolutizeLinks(extractHeaderAndMenu(read('contact.html')), 'contact.html');
 const legacyHeader = absolutizeLinks(extractHeaderAndMenu(read('booking.html')), 'booking.html');
 const footer = absolutizeLinks(extractBody(read('contact.html')).match(/<footer\b[\s\S]*?<\/footer>/i)?.[0] ?? '', 'contact.html');
-fs.writeFileSync(path.join(componentsDir, 'Header.astro'), `---\ninterface Props { currentPath?: string; legacy?: boolean; }\nconst { currentPath = '', legacy = false } = Astro.props;\nconst modern = \`${escapeTemplate(modernHeader)}\`;\nconst old = \`${escapeTemplate(legacyHeader)}\`;\nconst markup = legacy ? old : modern;\nconst withoutCurrent = markup.replace(/\\saria-current=(['\"])page\\1/g, '');\nconst current = currentPath.replace(/\\/+$/, '') || '/index.html';\nconst html = withoutCurrent.replace(new RegExp('(href=([\\\"\\\'])' + current + '\\\\2)', 'g'), '$1 aria-current=\\\"page\\\"');\n---\n<Fragment set:html={html} />\n`);
+fs.writeFileSync(path.join(componentsDir, 'Header.astro'), `---\ninterface Props { currentPath?: string; legacy?: boolean; }\nconst { currentPath = '', legacy = false } = Astro.props;\nconst base = import.meta.env.BASE_URL.replace(/\\/?$/, '/');\nconst modern = \`${escapeTemplate(modernHeader)}\`;\nconst old = \`${escapeTemplate(legacyHeader)}\`;\nconst markup = legacy ? old : modern;\nconst withoutCurrent = markup.replace(/\\saria-current=(['\"])page\\1/g, '');\nconst current = currentPath.replace(/\\/+$/, '') || '/index.html';\nconst html = withoutCurrent.replace(new RegExp('(href=([\\\"\\\'])' + current + '\\\\2)', 'g'), '$1 aria-current=\\\"page\\\"');\nconst basedHtml = html.replace(/(href|src)=([\\\"\\\'])\\/(?!\\/)/g, '$1=$2' + base);\n---\n<Fragment set:html={basedHtml} />\n`);
 fs.writeFileSync(path.join(componentsDir, 'Footer.astro'), makeComponent('Footer', footer).replace('interface Props { currentPath?: string; }', 'interface Props { currentPath?: string; yearId?: string; }').replace("const { currentPath = '' } = Astro.props;", "const { currentPath = '', yearId = 'year' } = Astro.props;").replace('const withoutCurrent = markup.replace', 'const datedMarkup = markup.replace(\'id=\\\"year\\\"\', `id=\\\"${yearId}\\\"`);' + '\n' + 'const withoutCurrent = datedMarkup.replace'));
 const layoutPath = path.join(layoutsDir, 'SiteLayout.astro');
 const sharedStyles = minifyCss(`${read('assets/fonts.css')}\n${read('assets/site-shell.css')}\n${read('assets/performance.css')}`);
@@ -176,14 +176,22 @@ fs.writeFileSync(
   layoutPath,
   fs.readFileSync(layoutPath, 'utf8')
     .replace(
+      "const { title, description, styles = '', scripts = '', preHeader = '', legacyHeader = false, skipLink = false, yearId = 'year', currentPath = '', bodyClass = '' } = Astro.props;",
+      `const base = import.meta.env.BASE_URL.replace(/\\/?$/, '/');\nconst sharedStyles = \`${escapeTemplate(sharedStyles)}\`.replace(/url\\((['\"]?)\\/(?!\\/)/g, 'url($1' + base);\nconst { title, description, styles = '', scripts = '', preHeader = '', legacyHeader = false, skipLink = false, yearId = 'year', currentPath = '', bodyClass = '' } = Astro.props;`,
+    )
+    .replace(
       /    <link rel="preconnect" href="https:\/\/fonts\.googleapis\.com"[\s\S]*?    <noscript>[\s\S]*?<\/noscript>\n/,
-      '    <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />\n    <link rel="preload" href="/fonts/dm-sans-latin-ext.woff2" as="font" type="font/woff2" crossorigin />\n    <link rel="preload" href="/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />\n    <link rel="preload" href="/fonts/plus-jakarta-sans-latin-ext.woff2" as="font" type="font/woff2" crossorigin />\n',
+      '    <link rel="preload" href={`${base}fonts/dm-sans-latin.woff2`} as="font" type="font/woff2" crossorigin />\n    <link rel="preload" href={`${base}fonts/dm-sans-latin-ext.woff2`} as="font" type="font/woff2" crossorigin />\n    <link rel="preload" href={`${base}fonts/plus-jakarta-sans-latin.woff2`} as="font" type="font/woff2" crossorigin />\n    <link rel="preload" href={`${base}fonts/plus-jakarta-sans-latin-ext.woff2`} as="font" type="font/woff2" crossorigin />\n',
     )
     .replace('    <link rel="preconnect" href="https://images.unsplash.com" />\n', '')
     .replace(
       '    <link rel="stylesheet" href="/assets/site-shell.css" />\n    <link rel="stylesheet" href="/assets/performance.css" />',
-      `    <style is:inline>${sharedStyles}</style>`,
+      '    <style is:inline set:html={sharedStyles} />',
     ),
+);
+fs.writeFileSync(
+  layoutPath,
+  fs.readFileSync(layoutPath, 'utf8').replace('href="/assets/favicon.svg"', 'href={`${base}assets/favicon.svg`}'),
 );
 
 for (const sourceFile of sourcePages) {
@@ -200,6 +208,19 @@ for (const sourceFile of sourcePages) {
   const pagePath = routeForSource(sourceFile);
   fs.writeFileSync(output, `---\nimport SiteLayout from '${relativeLayout.startsWith('.') ? relativeLayout : `./${relativeLayout}`}';\nimport OptimizedImage from '${relativeImage.startsWith('.') ? relativeImage : `./${relativeImage}`}';\n\nconst title = \`${escapeTemplate(page.title)}\`;\nconst description = \`${escapeTemplate(page.description)}\`;\nconst styles = \`${escapeTemplate(page.styles)}\`;\nconst scripts = \`${escapeTemplate(page.scripts)}\`;\nconst preHeader = \`${escapeTemplate(page.preHeader)}\`;\nconst content = \`${escapeTemplate(page.content)}\`;\nconst contentParts = content.split(/__ASTRO_IMAGE_\\d+__/);\nconst images = ${JSON.stringify(page.images, null, 2)};\n---\n<SiteLayout title={title} description={description} styles={styles} scripts={scripts} preHeader={preHeader} legacyHeader={${page.legacy}} skipLink={${page.skipLink}} yearId=\"${page.yearId}\" currentPath=\"${pagePath}\" bodyClass=\"${page.bodyClass}\">\n  {contentParts.map((part, index) => (<>\n    <Fragment set:html={part} />\n    {images[index] && <OptimizedImage {...images[index]} />}\n  </>))}\n</SiteLayout>\n`);
   fs.writeFileSync(output, fs.readFileSync(output, 'utf8').replace('const images =', 'const images: Array<Record<string, any>> ='));
+  fs.writeFileSync(
+    output,
+    fs.readFileSync(output, 'utf8')
+      .replace(
+        'const title =',
+        "const base = import.meta.env.BASE_URL.replace(/\\/?$/, '/');\nconst withBase = (markup: string) => markup.replace(/(href|src)=([\\\"\\\'])\\/(?!\\/)/g, '$1=$2' + base);\nconst withBaseStyles = (css: string) => css.replace(/url\\((['\"]?)\\/(?!\\/)/g, 'url($1' + base);\nconst title =",
+      )
+      .replace('const styles = `', 'const styles = withBaseStyles(`')
+      .replace('`;\nconst scripts =', '`);\nconst scripts =')
+      .replace('const preHeader = `', 'const preHeader = withBase(`')
+      .replace('`;\nconst content = `', '`);\nconst content = withBase(`')
+      .replace('`;\nconst contentParts =', '`);\nconst contentParts ='),
+  );
 }
 
 console.log(`Migrated ${sourcePages.length} pages into Astro components.`);
