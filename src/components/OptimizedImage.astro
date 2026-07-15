@@ -16,4 +16,4 @@ const priority = fetchpriority === 'high';
 const dimensions = width && height ? { width, height } : { inferSize: true };
 const safeLoading = loading === 'lazy' ? 'lazy' : undefined;
 ---
-<Image src={src} alt={alt} {...dimensions} quality={priority ? 35 : 60} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />
+<Image src={src} alt={alt} {...dimensions} quality={priority ? 45 : 60} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />

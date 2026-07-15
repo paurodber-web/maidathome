@@ -117,13 +117,6 @@ function extractPage(sourceFile) {
   if (mainStart < 0) throw new Error(`No main found in ${sourceFile}`);
   body = body.slice(mainStart);
   body = body.replace(/<footer\b[\s\S]*?<\/footer>/i, '');
-  if (sourceFile === 'index.html') {
-    body = body.replace('photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2200&q=88', 'photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1440&q=82');
-    body = body.replace(
-      'src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1440&q=82"',
-      'src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1440&q=82" srcset="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=640&q=72 640w, https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=960&q=80 960w, https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1440&q=82 1440w, https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2200&q=88 2200w" sizes="100vw"'
-    );
-  }
   body = absolutizeLinks(body, sourceFile);
   const { content, images } = extractImages(body);
   return { title, description, styles: minifyCss(styles), content: cleanText(content), images, scripts: cleanText(scripts), preHeader: cleanText(preHeader), legacy: /<header\b[^>]*\bid=(['\"])header\1/i.test(html), skipLink: /<a\b[^>]*class=(['\"])[^'\"]*\bskip-link\b[^'\"]*\1/i.test(extractBody(html)), yearId: /\bid=(['\"])currentYear\1/i.test(html) ? 'currentYear' : 'year', bodyClass: sourceFile === 'index.html' ? 'home-page' : '' };
@@ -161,7 +154,7 @@ const priority = fetchpriority === 'high';
 const dimensions = width && height ? { width, height } : { inferSize: true };
 const safeLoading = loading === 'lazy' ? 'lazy' : undefined;
 ---
-<Image src={src} alt={alt} {...dimensions} quality={priority ? 35 : 60} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />
+<Image src={src} alt={alt} {...dimensions} quality={priority ? 45 : 60} priority={priority} loading={priority ? 'eager' : safeLoading} {...attributes} />
 `);
 
 const modernHeader = absolutizeLinks(extractHeaderAndMenu(read('contact.html')), 'contact.html');
@@ -221,6 +214,20 @@ for (const sourceFile of sourcePages) {
       .replace('`;\nconst content = `', '`);\nconst content = withBase(`')
       .replace('`;\nconst contentParts =', '`);\nconst contentParts ='),
   );
+  if (sourceFile === 'index.html') {
+    fs.writeFileSync(
+      output,
+      fs.readFileSync(output, 'utf8')
+        .replace(
+          /(import OptimizedImage from ['"][^'"]+['"];\n)/,
+          "$1import landingHeroCleaner from '../../assets-src/landing-hero-cleaner.png';\n",
+        )
+        .replace(
+          '\n];\n---',
+          "\n];\nimages[0] = { ...images[0], src: landingHeroCleaner, alt: 'Professional cleaner wiping a kitchen island in a bright Melbourne home', width: landingHeroCleaner.width, height: landingHeroCleaner.height };\n---",
+        ),
+    );
+  }
 }
 
 console.log(`Migrated ${sourcePages.length} pages into Astro components.`);
