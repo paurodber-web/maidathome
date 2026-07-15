@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:github-pages": "node tools/build-github-pages.cjs",
     "preview": "astro preview",
     "check": "astro check"
   },
